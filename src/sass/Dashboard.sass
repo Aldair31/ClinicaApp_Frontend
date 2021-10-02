@@ -1,0 +1,136 @@
+.tableBig
+    max-height: 450px !important
+.nombre
+    color: #222222
+    &:hover
+        text-decoration: underline
+        cursor: pointer
+.filaPacientes
+    grid-template-columns: 360px 1fr 1fr 1fr !important
+
+.active
+    border: 2px solid #50b4a1 !important
+    background: #ffffff !important
+.header_dashboard
+    width: 100%
+    height: 10vh
+    border-bottom: 3px solid #50B4A1
+    position: fixed
+    top: 0
+    display: flex
+    align-items: center
+    .contenedor
+        width: 90%
+        margin: auto
+        max-width: 1200px
+        display: flex
+        align-items: center
+        justify-content: space-between
+        h1
+            font-weight: 400
+            color: #000
+            text-align: center
+            font-size: 28px
+            margin-left: -20px
+.contenedor_dashboard
+    height: 90vh
+    margin-top: 10vh
+    display: grid
+    grid-template-columns: auto 1fr
+    gap: 32px
+    .menu_cont
+        padding: 24px
+        .menu
+            display: flex
+            flex-direction: column
+            justify-content: center
+            background: #f4f4f4
+            padding: 28px
+            border-radius: 13px
+            height: 74vh
+            position: relative
+            margin-left: 140px
+            .item
+
+                margin-top: 22px
+                margin-bottom: 22px
+                cursor: pointer
+                background: #dbdbdb
+                padding: 6px
+                border-radius: 25%
+                display: flex
+                align-items: center
+                justify-content: center
+                border: none
+
+    .list
+        h2
+            margin-bottom: 16px
+            margin-top: 24px
+            span
+                text-decoration: underline
+                cursor: pointer
+                font-weight: 400
+                font-size: 16px
+                color: #379e8b
+                &:hover
+                    font-weight: 600
+        .opcionesRapidas
+            width: 72%
+            display: grid
+            grid-template-columns: 1fr 1fr 1fr
+            gap: 25px
+            .opRapida
+                font-size: 18px
+                cursor: pointer
+                border-radius: 5px
+                padding: 20px 10px
+                background: #f4f4f4
+                text-align: center
+                transition: .3s ease all
+                &:hover
+                    font-weight: 700
+        .tableList
+            border-radius: 18px
+            background: #f4f4f4
+            width: 72%
+            max-height: 300px
+            overflow-y: scroll
+            .listado
+                width: 85%
+                margin: auto
+                padding-top: 20px
+                padding-bottom: 20px
+                .encabListado
+                    background: #03C8A4 !important
+                    color: #ffffff
+                .filaListado
+                    background: #ffffff
+                    padding: 15px
+                    border-radius: 12px
+                    margin-bottom: 15px
+                    display: grid
+                    grid-template-columns: 280px 1fr 1fr 1fr 1fr
+                    .datoListado
+                        padding: 0px 12px
+                    .atendido
+                        text-align: center
+                        display: flex
+                        justify-content: center
+                        align-items: center
+                        .cuadro
+                            cursor: pointer
+                            height: 26px
+                            width: 26px
+                            border: 2px solid #222222
+                            display: flex
+                            justify-content: center
+                            align-items: center
+                    .cancelar
+                        text-align: center
+                        display: flex
+                        justify-content: center
+                        align-items: center
+                        svg
+                            cursor: pointer
+
