@@ -4,7 +4,7 @@ import Inicio from './Inicio';
 import Dashboard from '../components/private/Dashboard';
 
 const RootComponent = ({ usuario }) => {
-	return <>{usuario.ok === false ? <Dashboard /> : <Inicio />}</>;
+	return <>{usuario.ok === true ? <Dashboard /> : <Inicio />}</>;
 };
 
 const mapStateToProps = (state) => ({

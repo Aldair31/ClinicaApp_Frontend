@@ -15,6 +15,7 @@ const reducerUsuario = (state = initialState, action) => {
 				...state,
 				usuario: {
 					ok: action.usuario.ok,
+					rol:action.usuario.rol
 				},
 			};
 		case 'LOGOUT_OK':

@@ -9,7 +9,7 @@ function Header() {
 				<div className="contenedor">
 					<h1>Clinica Mi Bebé</h1>
 					<nav>
-						<Link className="link" to="/">
+						<Link className="link" to="/" >
 							Nosotros
 						</Link>
 						<Link className="link" to="/">

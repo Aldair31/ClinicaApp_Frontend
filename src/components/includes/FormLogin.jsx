@@ -11,11 +11,12 @@ const FormLogin = ({usuario,logearUsuario}) => {
 		if(resultado.ok){
 			console.log('Ok (y)');
 			logearUsuario(resultado)
-			console.log(usuario);
+			console.log(resultado);
 		}
 		else{
 			console.log('No ok :(');
-			console.log(usuario);
+			console.log(resultado);
+			alert('Ha ingresado datos inválidos')
 		}
 	};
 	return (
