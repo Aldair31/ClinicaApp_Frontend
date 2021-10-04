@@ -14,7 +14,7 @@ const FormCita = () => {
 			<Formik
 				initialValues={{
 					nombre_paciente: '',
-					DNI: '',
+					dni_paciente: '',
 					responsable: '',
 					telefono: '',
 					fecha_nac: '',
@@ -46,10 +46,10 @@ const FormCita = () => {
 						errores.nombre =
 							'EL nombre del responsable sólo puede contener letras y espacios';
 					}
-					if (!valores.DNI) {
-						errores.DNI = 'Por favor ingrese el DNI';
-					} else if (!/^[0-9]{8,8}$/.test(valores.DNI)) {
-						errores.DNI =
+					if (!valores.dni_paciente) {
+						errores.dni_paciente = 'Por favor ingrese el DNI';
+					} else if (!/^[0-9]{8,8}$/.test(valores.dni_paciente)) {
+						errores.dni_paciente =
 							'El DNI sólo puede contener 8 números.';
 					}
 					if (!valores.telefono) {
@@ -75,7 +75,7 @@ const FormCita = () => {
 					console.log(valores);
 					console.log('.------------');
 					consumirNuevaCita({nombre_paciente: valores.nombre_paciente, 
-					fecha_nac: valores.fecha_nac, sexo: valores.sexo, responsable: valores.responsable, telefono: valores.telefono, motivo: valores.motivo, condicion: valores.condicion })
+					fecha_nac: valores.fecha_nac, sexo: valores.sexo, responsable: valores.responsable, telefono: valores.telefono, motivo: valores.motivo, condicion: valores.condicion, dni_paciente: valores.dni_paciente})
 				}}
 			>
 				{({ errors }) => (
@@ -122,16 +122,16 @@ const FormCita = () => {
 						</div>
 						<div>
 							<label>DNI Paciente</label>
-							<Field type="text" name="DNI"></Field>
+							<Field type="text" name="dni_paciente"></Field>
 						</div>
 						<ErrorMessage
-							name="DNI"
+							name="dni_paciente"
 							component={() => (
 								<div className="msj_error_login">
 									<span>
 										<i className="fas fa-times-circle"></i>
 									</span>
-									<span>{errors.DNI}</span>
+									<span>{errors.dni_paciente}</span>
 								</div>
 							)}
 						/>
