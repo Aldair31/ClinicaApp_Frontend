@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import consumNuevaCita from '../../../functions/citas';
+import moment from 'moment';
 // consumNuevaCita
 const FormCita = () => {
 	const consumirNuevaCita = async (body) => {
@@ -74,8 +75,15 @@ const FormCita = () => {
 					console.log('Formulario enviado');
 					console.log(valores);
 					console.log('.------------');
-					consumirNuevaCita({nombre_paciente: valores.nombre_paciente, 
-					fecha_nac: valores.fecha_nac, sexo: valores.sexo, responsable: valores.responsable, telefono: valores.telefono, motivo: valores.motivo, condicion: valores.condicion, dni_paciente: valores.dni_paciente})
+					consumirNuevaCita(
+						{nombre_paciente: valores.nombre_paciente, 
+						fecha_nac: valores.fecha_nac, 
+						fecha: moment(new Date(`${valores.fecha} ${valores.hora}`)).subtract(5, 'hours').format(),
+						sexo: valores.sexo, 
+						responsable: valores.responsable, 
+						telefono: valores.telefono, motivo: valores.motivo,
+						condicion: valores.condicion,
+						DNI: valores.dni_paciente})
 				}}
 			>
 				{({ errors }) => (
