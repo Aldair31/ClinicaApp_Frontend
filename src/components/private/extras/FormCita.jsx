@@ -21,7 +21,8 @@ const FormCita = () => {
 					motivo:'3',
 					sexo:'2',
 					hora:'',
-					fecha:''
+					fecha:'',
+					condicion:"1"
 				}}
 				validate={(valores) => {
 					let errores = {};
@@ -73,7 +74,8 @@ const FormCita = () => {
 					console.log('Formulario enviado');
 					console.log(valores);
 					console.log('.------------');
-					consumirNuevaCita(valores)
+					consumirNuevaCita({nombre_paciente: valores.nombre_paciente, 
+					fecha_nac: valores.fecha_nac, sexo: valores.sexo, responsable: valores.responsable, telefono: valores.telefono, motivo: valores.motivo, condicion: valores.condicion })
 				}}
 			>
 				{({ errors }) => (
@@ -209,7 +211,7 @@ const FormCita = () => {
 						/>
 						<div>
 							<label>Condición</label>
-							<Field name="codicion" as="select">
+							<Field name="condicion" as="select">
 								<option value="1">Nuevo</option>
 								<option value="2">Continuador</option>
 							</Field>
