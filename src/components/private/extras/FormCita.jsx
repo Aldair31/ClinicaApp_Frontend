@@ -9,6 +9,12 @@ const FormCita = () => {
 		let resultado = await consumNuevaCita(body);
 		console.log('Resultado: ');
 		console.log(resultado);
+		if(resultado.ok ===false){
+			alert(resultado.msg)
+		}
+		else{
+			alert('Registro exitoso')
+		}
 	};
 	return (
 		<>

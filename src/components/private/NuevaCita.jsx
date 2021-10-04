@@ -1,12 +1,12 @@
 import React from 'react';
 import '../../sass/Cita.sass';
 import FormCita from './extras/FormCita';
-
+// import {BrowserRouter} from 'react-router-dom'
 const NuevaCita = () => {
 	return (
 		<>
 			<div className="nuevaCita">
-				<h2>Nueva cita</h2>
+				<div><h2>Nueva cita</h2> </div>
 				<FormCita/>
 			</div>
 		</>
