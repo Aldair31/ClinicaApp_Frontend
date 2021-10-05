@@ -16,6 +16,8 @@ import Citas from './Citas';
 import Filiacion from './Filiacion';
 import Responsables from './Responsables';
 import NuevaCita from './NuevaCita';
+import DatosF from './DatosF';
+// DatosF
 // Error404
 const Dashboard = ({ usuario, logout }) => {
 	console.log(usuario);
@@ -180,6 +182,11 @@ const Dashboard = ({ usuario, logout }) => {
 								path="/filiacion"
 								component={Filiacion}
 							/>
+							<Route
+								path='/datos-f/:id'
+								component={DatosF}
+							/>
+								
 							<Error404 component={Error404} />
 						</Switch>
 					</>

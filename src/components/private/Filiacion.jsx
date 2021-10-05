@@ -1,5 +1,6 @@
 import React from 'react';
 import useAfiliacion from '../../hooks/useAfiliacion';
+import {Link} from 'react-router-dom'
 import '../../sass/Dashboard.sass';
 import '../../sass/Filiacion.sass';
 import moment from 'moment';
@@ -12,27 +13,43 @@ const Filiacion = () => {
 			{loading !== null ? (
 				<div className="datos_filiacion">
 					{datos_af.map((item) => (
-						<div className="dato_filiacion">
-                       
+						<div className="dato_filiacion" key={item._id}>
 							<p>
 								<strong>-DNI del paciente: </strong>
 								{item.dni_paciente}
 							</p>
-                            <p>
+							<p>
 								<strong>-Nombres del paciente: </strong>
 								{item.nombres_paciente}
 							</p>
-                            <p>
+							<p>
 								<strong>-Fecha de nacimiento: </strong>
-								{moment(item.fecha_nac).format('DD/MM/YYYY')}
+								{moment(item.fecha_nac).format(
+									'DD/MM/YYYY'
+								)}
 							</p>
-                            <p>
+							<p>
 								<strong>-Edad: </strong>
-								{moment(moment(item.fecha_nac).format('ll')).fromNow().replace('months ago','meses')}
+								{moment(
+									moment(item.fecha_nac).format('ll')
+								)
+									.fromNow()
+									.replace('months ago', 'meses')}
 							</p>
-                            <p>
-                                <strong>-</strong><strong style={{textDecoration:'underline',cursor:'pointer'}}>Ver más</strong>
-                            </p>
+							<p>
+								<Link to={`datos-f/${item._id}`}>
+									<strong>-</strong>
+									<strong
+										style={{
+											textDecoration: 'underline',
+											cursor: 'pointer',
+										}}
+									>
+										Ver más
+									</strong>
+									{item.post}
+								</Link>
+							</p>
 						</div>
 					))}
 				</div>
