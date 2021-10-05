@@ -9,15 +9,21 @@ const initialState = {
 };
 const reducerUsuario = (state = initialState, action) => {
 	switch (action.type) {
+		case 'ADD_RESP':
+			return {
+				...state,
+				responsables: action.responsables
+			};
 		case 'LOGIN_OK':
 			console.log(action);
 			return {
 				...state,
 				usuario: {
 					ok: action.usuario.ok,
-					rol:action.usuario.rol
+					rol: action.usuario.rol,
 				},
 			};
+
 		case 'LOGOUT_OK':
 			return {
 				...state,

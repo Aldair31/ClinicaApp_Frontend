@@ -1,6 +1,9 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-const FormResponsable = () => {
+import url from '../../../keys/backend_keys';
+
+
+const FormResponsable = ({datos,set_datos}) => {
 	return (
 		<>
 			<Formik
@@ -8,6 +11,7 @@ const FormResponsable = () => {
 					nombre: '',
 					email: '',
 					dni: '',
+					password: '',
 				}}
 				validate={(valores) => {
 					let errores = {};
@@ -34,37 +38,80 @@ const FormResponsable = () => {
 						errores.dni =
 							'El DNI sólo puede contener 8 números.';
 					}
+					if (!valores.password) {
+						valores.password = 'Por favor ingrese su clave';
+					}
 					return errores;
 				}}
 				onSubmit={(valores, { resetForm }) => {
 					resetForm();
-					console.log('Formulario enviado');
-					console.log(valores);
+
+					fetch(`${url}/api/auth/new`, {
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						method: 'POST',
+						body: JSON.stringify({
+							...valores,
+							rol: 'Apoderado',
+						}),
+					})
+						.then((resp) => {
+							return resp.json();
+						})
+						.then((data) => {
+							if (data.ok) {
+								alert('Registrado con éxito');
+								set_datos([...datos,{dni:valores.dni,_id:valores.id,nombre:valores.nombre,email:valores.email}])
+							} else {
+								alert(data.msg);
+							}
+							return data;
+						});
 				}}
 			>
 				{({ errors }) => (
 					<Form className="formulario">
 						{/* <div> */}
-							<label htmlFor="nombre">Nombre</label>
-							<div>
-								<Field
-									type="text"
-									id="nombre"
-									name="nombre"
-									placeholder="Ejemplo: John Farroñan"
-								></Field>
-								<ErrorMessage
-									name="nombre"
-									component={() => (
-										<div className="msj_error_login">
-											<span>
-												<i className="fas fa-times-circle"></i>
-											</span>
-											<span>{errors.nombre}</span>
-										</div>
-									)}
-								/>
-							</div>
+						<label htmlFor="nombre">Nombre</label>
+						<div>
+							<Field
+								type="text"
+								id="nombre"
+								name="nombre"
+								placeholder="Ejemplo: John Farroñan"
+							></Field>
+							<ErrorMessage
+								name="nombre"
+								component={() => (
+									<div className="msj_error_login">
+										<span>
+											<i className="fas fa-times-circle"></i>
+										</span>
+										<span>{errors.nombre}</span>
+									</div>
+								)}
+							/>
+						</div>
+						<label htmlFor="password">Password</label>
+						<div>
+							<Field
+								type="password"
+								id="password"
+								name="password"
+							></Field>
+							<ErrorMessage
+								name="password"
+								component={() => (
+									<div className="msj_error_login">
+										<span>
+											<i className="fas fa-times-circle"></i>
+										</span>
+										<span>{errors.password}</span>
+									</div>
+								)}
+							/>
+						</div>
 						{/* </div> */}
 						<div>
 							<label htmlFor="email">Correo</label>
@@ -96,7 +143,10 @@ const FormResponsable = () => {
 							<ErrorMessage
 								name="dni"
 								component={() => (
-									<div className="msj_error_login">
+									<div
+										className="msj_error_login"
+										style={{ margin: '0' }}
+									>
 										<span>
 											<i className="fas fa-times-circle"></i>
 										</span>
@@ -105,7 +155,16 @@ const FormResponsable = () => {
 								)}
 							/>
 						</div>
-						<button type="submit">Enviar</button>
+						<button
+							type="submit"
+							style={{
+								padding: '10px',
+								border: 'none',
+								margin: 'auto',
+							}}
+						>
+							Enviar
+						</button>
 					</Form>
 				)}
 			</Formik>

@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import moment from 'moment';
 import '../../sass/Dashboard.sass';
 import '../../sass/ModalPaciente.sass';
 import '../../sass/Responsables.sass';
@@ -10,12 +8,12 @@ import url from '../../keys/backend_keys';
 import FormResponsable from './extras/FormResponsable';
 // FormResponsable
 const Responsables = () => {
-	const MostrarFormNuevo = () => {
+	const MostrarFormNuevo = ({datos,set_datos}) => {
 		return (
 			<>				
 				<div className="modalPaciente">
 					<div className="contenedorForms">
-						<FormResponsable/>
+						<FormResponsable   datos={datos} set_datos={set_datos} />
 					</div>
 					<div
 						className="cerrarForm"
@@ -65,7 +63,8 @@ const Responsables = () => {
 				Responsables&nbsp;&nbsp;&nbsp;&nbsp;
 				<span onClick={onForm}>Nuevo</span>
 			</h2>
-			{form && <MostrarFormNuevo />}
+			{/* Mostrar Form Nuevo */}
+			{form && <MostrarFormNuevo datos={datos} set_datos={set_datos}/>}
 			{loading === false ? (
 				<div className="datos_responsables">
 					{datos.map((item) => (
