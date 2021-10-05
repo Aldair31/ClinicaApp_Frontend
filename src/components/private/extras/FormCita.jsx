@@ -60,7 +60,7 @@ const FormCita = () => {
 							'El DNI sólo puede contener 8 números.';
 					}
 					if (!valores.telefono) {
-						errores.telefono = 'Por favor ingrese el DNI';
+						errores.telefono = 'Por favor ingrese el teléfono';
 					} else if (!/^[0-9]{9,9}$/.test(valores.telefono)) {
 						errores.telefono =
 							'El teléfono sólo puede contener 9 números.';

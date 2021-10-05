@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Check } from './extras/Check';
+
 import '../../sass/Dashboard.sass';
 const Consultas = () => {
 	let [mostrandoFormNuevo, cambiarMostrandoFormNuevo] = useState(false);
+	
 	const mostrarFormNuevo = () => {
 		return (
 			<div className="modalPaciente">
@@ -154,6 +156,7 @@ const Consultas = () => {
 			</div>
 		);
 	};
+
 	return (
 		<>
 			{mostrandoFormNuevo ? mostrarFormNuevo() : null}

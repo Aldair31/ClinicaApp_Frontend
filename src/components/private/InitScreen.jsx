@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Check } from './extras/Check';
+// import { Check } from './extras/Check';
 import '../../sass/Dashboard.sass'
 import InicioSecretaria from './InicioSecretaria';
 import InicioDoctor from './InicioDoctor';

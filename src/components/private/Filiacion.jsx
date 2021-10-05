@@ -24,9 +24,14 @@ const Filiacion = () => {
 							</p>
 							<p>
 								<strong>-Fecha de nacimiento: </strong>
-								{moment(item.fecha_nac).format(
-									'DD/MM/YYYY'
-								)}
+								{moment(
+									moment(item.fecha_nac).format(
+										'DD/MM/YYYY'
+									),
+									'DD/MM/YYYY',
+
+								).add(1, 'days').calendar()}
+	
 							</p>
 							<p>
 								<strong>-Edad: </strong>
@@ -34,7 +39,7 @@ const Filiacion = () => {
 									moment(item.fecha_nac).format('ll')
 								)
 									.fromNow()
-									.replace('months ago', 'meses')}
+									.replace('months ago', 'meses').replace('years ago','años')}
 							</p>
 							<p>
 								<Link to={`datos-f/${item._id}`}>
