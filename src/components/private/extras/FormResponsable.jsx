@@ -39,7 +39,7 @@ const FormResponsable = ({datos,set_datos}) => {
 							'El DNI sólo puede contener 8 números.';
 					}
 					if (!valores.password) {
-						valores.password = 'Por favor ingrese su clave';
+						errores.password = 'Por favor ingrese su clave';
 					}
 					return errores;
 				}}
@@ -72,47 +72,49 @@ const FormResponsable = ({datos,set_datos}) => {
 			>
 				{({ errors }) => (
 					<Form className="formulario">
-						{/* <div> */}
-						<label htmlFor="nombre">Nombre</label>
 						<div>
-							<Field
-								type="text"
-								id="nombre"
-								name="nombre"
-								placeholder="Ejemplo: John Farroñan"
-							></Field>
-							<ErrorMessage
-								name="nombre"
-								component={() => (
-									<div className="msj_error_login">
-										<span>
-											<i className="fas fa-times-circle"></i>
-										</span>
-										<span>{errors.nombre}</span>
-									</div>
-								)}
-							/>
+							<label htmlFor="nombre">Nombre</label>
+							<div>
+								<Field
+									type="text"
+									id="nombre"
+									name="nombre"
+									placeholder="Ejemplo: John Farroñan"
+								></Field>
+								<ErrorMessage
+									name="nombre"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.nombre}</span>
+										</div>
+									)}
+								/>
+							</div>
 						</div>
-						<label htmlFor="password">Password</label>
 						<div>
-							<Field
-								type="password"
-								id="password"
-								name="password"
-							></Field>
-							<ErrorMessage
-								name="password"
-								component={() => (
-									<div className="msj_error_login">
-										<span>
-											<i className="fas fa-times-circle"></i>
-										</span>
-										<span>{errors.password}</span>
-									</div>
-								)}
-							/>
+							<label htmlFor="password">Password</label>
+							<div>
+								<Field
+									type="password"
+									id="password"
+									name="password"
+								></Field>
+								<ErrorMessage
+									name="password"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.password}</span>
+										</div>
+									)}
+								/>
+							</div>
 						</div>
-						{/* </div> */}
 						<div>
 							<label htmlFor="email">Correo</label>
 							<div>
@@ -136,24 +138,25 @@ const FormResponsable = ({datos,set_datos}) => {
 							</div>
 						</div>
 						<div>
-							<label>DNI Paciente</label>
-						</div>
-						<div>
-							<Field type="text" name="dni"></Field>
-							<ErrorMessage
-								name="dni"
-								component={() => (
-									<div
-										className="msj_error_login"
-										style={{ margin: '0' }}
-									>
-										<span>
-											<i className="fas fa-times-circle"></i>
-										</span>
-										<span>{errors.dni}</span>
-									</div>
-								)}
-							/>
+							<label>DNI</label>
+						{/* </div> */}
+							<div>
+								<Field type="text" name="dni"></Field>
+								<ErrorMessage
+									name="dni"
+									component={() => (
+										<div
+											className="msj_error_login"
+											style={{ margin: '0' }}
+										>
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.dni}</span>
+										</div>
+									)}
+								/>
+							</div>
 						</div>
 						<button
 							type="submit"
