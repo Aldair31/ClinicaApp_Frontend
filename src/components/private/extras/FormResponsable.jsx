@@ -147,7 +147,7 @@ const FormResponsable = ({datos,set_datos}) => {
 									component={() => (
 										<div
 											className="msj_error_login"
-											style={{ margin: '0' }}
+											// style={{ margin: '0' }}
 										>
 											<span>
 												<i className="fas fa-times-circle"></i>

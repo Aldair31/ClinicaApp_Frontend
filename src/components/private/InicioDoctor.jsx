@@ -16,7 +16,6 @@ const InicioDoctor = () => {
 					</svg>
 					&nbsp;&nbsp;Consultas
 				</h2>
-				g
 			</div>
 		</>
 	);
