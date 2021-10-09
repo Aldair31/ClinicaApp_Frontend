@@ -2,8 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import url from '../../../keys/backend_keys';
 
-
-const FormResponsable = ({datos,set_datos}) => {
+const FormResponsable = ({ datos, set_datos }) => {
 	return (
 		<>
 			<Formik
@@ -61,8 +60,22 @@ const FormResponsable = ({datos,set_datos}) => {
 						})
 						.then((data) => {
 							if (data.ok) {
+								console.log('-----data-----');
+								console.log(data);
+								console.log('--------------');
 								alert('Registrado con éxito');
-								set_datos([...datos,{dni:valores.dni,_id:valores.id,nombre:valores.nombre,email:valores.email}])
+								console.log('--------');
+								console.log(valores);
+								console.log('---------');
+								set_datos([
+									...datos,
+									{
+										dni: valores.dni,
+										_id: data.uid,
+										nombre: valores.nombre,
+										email: valores.email,
+									},
+								]);
 							} else {
 								alert(data.msg);
 							}
@@ -139,7 +152,7 @@ const FormResponsable = ({datos,set_datos}) => {
 						</div>
 						<div>
 							<label>DNI</label>
-						{/* </div> */}
+							{/* </div> */}
 							<div>
 								<Field type="text" name="dni"></Field>
 								<ErrorMessage
