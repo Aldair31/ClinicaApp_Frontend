@@ -18,7 +18,7 @@ const useCita = () => {
 				return err;
 			});
 	}, []);
-	return [datos_af, loading];
+	return [datos_af, loading, set_datos_af];
 };
 
 export default useCita;

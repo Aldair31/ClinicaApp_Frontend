@@ -1,9 +1,10 @@
 import React from 'react';
 // import { Check } from './extras/Check';
 import useCita from '../../hooks/useCita';
+import url from '../../keys/backend_keys';
 import '../../sass/Dashboard.sass';
 const InicioSecretaria = () => {
-	let [datos_af, loading] = useCita();
+	let [datos_af, loading, set_datos_af] = useCita();
 	const switchMotivo = (valor) => {
 		switch (valor) {
 			case 1:
@@ -14,6 +15,25 @@ const InicioSecretaria = () => {
 				return 'Control de crecimiento';
 		}
 	};
+	const onDelete = (id) => {
+		fetch(`${url}/Cita/${id}`, {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			method: 'DELETE',
+		})
+			.then((resp) => {
+				return resp.json();
+			})
+			.then((data) => {
+				alert(data.msg);
+			})
+			.then(() => {
+				set_datos_af(datos_af.filter((item) => item._id !== id));
+			});
+	};
+	
+
 	return (
 		<>
 			<div className="list">
@@ -72,6 +92,20 @@ const InicioSecretaria = () => {
 											: 'Nuevo'}
 									</span>
 								</p>
+								<p>
+								&nbsp;&nbsp;
+								<strong
+									onClick={() => {
+										onDelete(item._id);
+									}}
+									style={{
+										cursor: 'pointer',
+										color: 'crimson',
+									}}
+								>
+									Eliminar
+								</strong>
+								</p>
 							</div>
 						))}
 					</div>
@@ -80,5 +114,6 @@ const InicioSecretaria = () => {
 		</>
 	);
 };
+
 
 export default InicioSecretaria;
