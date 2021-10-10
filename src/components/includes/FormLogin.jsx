@@ -95,7 +95,7 @@ const FormLogin = ({usuario,logearUsuario}) => {
 									component={() => (
 										<div className="msj_error_login">
 											<span>
-												<i class="fas fa-times-circle"></i>
+												<i className="fas fa-times-circle"></i>
 											</span>
 											<span>{errors.password}</span>
 										</div>
