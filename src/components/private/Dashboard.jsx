@@ -161,7 +161,7 @@ const Dashboard = ({ usuario, logout }) => {
 										Inicio
 									</div>
 									
-									<div className="itemLong">
+									{/* <div className="itemLong">
 										<NavLink
 											className="item"
 											to="/filiacion"
@@ -177,7 +177,7 @@ const Dashboard = ({ usuario, logout }) => {
 											</svg>
 										</NavLink>
 										Filiacion
-									</div>
+									</div> */}
 								</>
 							) : null}
 							<div className="itemLong">
