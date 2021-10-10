@@ -5,7 +5,7 @@ import useResponsables from '../../hooks/useResponsables';
 import FormApoderado from './extras/FormApoderado';
 
 const InicioApoderado = () => {
-	const [datos, loading, setDatos] = useResponsables();
+	const [datos, loading] = useResponsables();
 	return (
 		<>
 			<div className="list">

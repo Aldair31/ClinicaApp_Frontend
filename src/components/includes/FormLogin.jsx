@@ -64,7 +64,7 @@ const FormLogin = ({usuario,logearUsuario}) => {
 										id="dni"
 										name="dni"
 										placeholder="Ingresa tu DNI"
-										autocomplete="off"
+										autoComplete="off"
 									></Field>
 								</div>
 
