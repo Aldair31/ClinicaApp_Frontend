@@ -21,6 +21,7 @@ const reducerUsuario = (state = initialState, action) => {
 				usuario: {
 					ok: action.usuario.ok,
 					rol: action.usuario.rol,
+					uid: action.usuario.uid,
 				},
 			};
 
