@@ -5,7 +5,7 @@ import InitScreen from '../private/InitScreen';
 import '../../sass/Dashboard.sass';
 import '../../sass/Scroll.sass';
 
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch,Link } from 'react-router-dom';
 import Pacientes from './Pacientes';
 import Consultas from './Consultas';
 import Error404 from '../Error404';
@@ -18,6 +18,7 @@ import Filiacion from './Filiacion';
 import Responsables from './Responsables';
 import NuevaCita from './NuevaCita';
 import DatosF from './DatosF';
+import HistoriaClinica from './HistoriaPaciente';
 // DatosF
 // Error404
 const Dashboard = ({ usuario, logout }) => {
@@ -160,11 +161,12 @@ const Dashboard = ({ usuario, logout }) => {
 										</NavLink>
 										Inicio
 									</div>
-	
 								</>
 							) : null}
 							<div className="itemLong">
-								<NavLink to='/'
+								<Link
+								exact
+									to="/"
 									className="item"
 									onClick={() => {
 										logout();
@@ -178,7 +180,7 @@ const Dashboard = ({ usuario, logout }) => {
 									>
 										<path d="M0 2v20h14v-2h-12v-16h12v-2h-14zm18 7.408l2.963 2.592-2.963 2.592v-1.592h-8v-2h8v-1.592zm-2-4.408v4h-8v6h8v4l8-7-8-7z" />
 									</svg>
-								</NavLink>
+								</Link>
 								Salir
 							</div>
 						</div>
@@ -195,6 +197,10 @@ const Dashboard = ({ usuario, logout }) => {
 							<Route
 								path="/consultas"
 								component={Consultas}
+							/>
+							<Route
+								path="/historia/:id"
+								component={HistoriaClinica}
 							/>
 							<Route path="/vacunas" component={Vacunas} />
 							<Route
