@@ -26,6 +26,14 @@ const InicioApoderado = () => {
 					{datos.map((item) => (
 						<div className="dato_responsable" key={item._id}>
 							<p>
+								<img src={'http://localhost:5000/api/auth/uploads/'+item.foto_perfil}
+								width="50px"
+								height="50px"/>
+							</p>
+							<p>
+								{item.foto_perfil}
+							</p>
+							<p>
 								<strong>-DNI : </strong>
 								{item.dni}
 							</p>
