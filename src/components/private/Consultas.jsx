@@ -32,9 +32,7 @@ const Consultas = () => {
 								<p>Referencia: {item.referencia}</p>
 								<NavLink to={`/historia/${item._id}`}>
 									<p className="ver">
-
 											Ver todo
-									
 									</p>
 								</NavLink>
 							</div>
