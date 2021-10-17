@@ -39,7 +39,7 @@ const Filiacion = () => {
 									moment(item.fecha_nac).format('ll')
 								)
 									.fromNow()
-									.replace('months ago', 'meses').replace('years ago','años')}
+									.replace('months ago', 'meses').replace('years ago','años').replace('days ago','días')}
 							</p>
 							<p>
 								<Link to={`datos-f/${item._id}`}>

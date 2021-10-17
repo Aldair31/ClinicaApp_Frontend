@@ -27,13 +27,19 @@ const FormApoderado = (usuario) => {
 			console.log('....');
 			console.log(res);
 			console.log('.....');
-			let [user] = usuario.datos.filter((item) => item._id === usuario.usuario.uid)
-			user.foto_perfil = res.data.usuario.foto_perfil
+			let [user] = usuario.datos.filter(
+				(item) => item._id === usuario.usuario.uid
+			);
+			user.foto_perfil = res.data.usuario.foto_perfil;
 			console.log(user);
-			usuario.set_datos(usuario.datos.filter((item) => item._id !== usuario.usuario.uid ))
+			usuario.set_datos(
+				usuario.datos.filter(
+					(item) => item._id !== usuario.usuario.uid
+				)
+			);
 
 			// user.foto_perfil= res.file.name
-		    usuario.set_datos([...usuario.datos,{user}])
+			usuario.set_datos([...usuario.datos, { user }]);
 		});
 	};
 	return (
@@ -60,9 +66,9 @@ const FormApoderado = (usuario) => {
 					background: '#ffffff',
 					padding: '12px',
 					position: 'absolute',
-					top:'0px',
+					top: '0px',
 					right: '0px',
-					cursor: 'pointer'
+					cursor: 'pointer',
 				}}
 				onClick={() => {
 					usuario.setForm(false);
@@ -88,9 +94,21 @@ const FormApoderado = (usuario) => {
 			>
 				<div>
 					<br />
+					<label
+						for="inputfileuser"
+						style={{
+							cursor: 'pointer',
+						}}
+					>
+						Subir foto de perfil
+					</label>
 					<input
+						style={{
+							display: 'none',
+						}}
 						type="file"
 						name="avatar"
+						id="inputfileuser"
 						onChange={(e) => subirArchivo(e)}
 					></input>
 				</div>
