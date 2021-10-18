@@ -3,7 +3,8 @@ import '../../sass/Dashboard.sass';
 import '../../sass/ModalPaciente.sass';
 import '../../sass/Responsables.sass';
 import useResponsables from '../../hooks/useResponsables';
-import url from '../../keys/backend_keys';
+import { NavLink } from 'react-router-dom'
+// import url from '../../keys/backend_keys';
 
 import FormResponsable from './extras/FormResponsable';
 // FormResponsable
@@ -39,23 +40,24 @@ const Responsables = () => {
 	const onForm = () => {
 		setForm(!form);
 	};
-	const onDelete = (id) => {
-		fetch(`${url}/api/auth/${id}`, {
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			method: 'DELETE',
-		})
-			.then((resp) => {
-				return resp.json();
-			})
-			.then((data) => {
-				alert(data.msg);
-			})
-			.then(() => {
-				set_datos(datos.filter((item) => item._id !== id));
-			});
-	};
+	// const onDelete = (id) => {
+	// 	fetch(`${url}/api/auth/${id}`, {
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 		},
+	// 		method: 'DELETE',
+	// 	})
+	// 		.then((resp) => {
+	// 			return resp.json();
+	// 		})
+	// 		.then((data) => {
+	// 			alert(data.msg);
+	// 		})
+	// 		.then(() => {
+	// 			set_datos(datos.filter((item) => item._id !== id));
+	// 		});
+	// };
+
 	return (
 		<div className="list">
 			{console.log(datos)}
@@ -73,15 +75,18 @@ const Responsables = () => {
 								<strong>-DNI : </strong>
 								{item.dni}
 							</p>
+							<br/>
 							<p>
 								<strong>-Nombre: </strong>
 								{item.nombre}
 							</p>
+							<br/>
 							<p>
 								<strong>-Email: </strong>
 								{item.email}
 							</p>
-							<p>
+							<br/>
+							{/* <p>
 								&nbsp;&nbsp;
 								<strong
 									onClick={() => {
@@ -94,6 +99,11 @@ const Responsables = () => {
 								>
 									Eliminar
 								</strong>
+							</p>
+							<br/> */}
+							<p>
+								<NavLink to={`/hijos/${item._id}`} style={{color:'#50B4A1',cursor:'pointer'}}>Ver hijos</NavLink>
+								
 							</p>
 						</div>
 					))}

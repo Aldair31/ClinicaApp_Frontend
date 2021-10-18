@@ -94,14 +94,28 @@ const FormApoderado = (usuario) => {
 			>
 				<div>
 					<br />
-					<label
-						for="inputfileuser"
-						style={{
-							cursor: 'pointer',
-						}}
-					>
+					<label>
 						Subir foto de perfil
+						<br />
+						<br />
 					</label>
+					<p style={{ textAlign: 'center' }}>
+						<label
+							for="inputfileuser"
+							style={{
+								textAlign: 'center',
+								color: '#58C5E3',
+							}}
+						>
+							<i
+								class="fas fa-cloud-upload-alt"
+								style={{
+									fontSize: '28px',
+									cursor: 'pointer',
+								}}
+							></i>
+						</label>
+					</p>
 					<input
 						style={{
 							display: 'none',
@@ -116,8 +130,16 @@ const FormApoderado = (usuario) => {
 				<button
 					type="button"
 					onClick={() => consumirArchivo(usuario)}
+					style={{
+						width: '100%',
+						padding: '7px',
+						border: 'none',
+						background: '#50B4A1',
+						color: 'white',
+						cursor: 'pointer',
+					}}
 				>
-					Subir
+					Enviar
 				</button>
 			</form>
 		</div>
