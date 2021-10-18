@@ -9,7 +9,7 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import Pacientes from './Pacientes';
 import Consultas from './Consultas';
 import Error404 from '../Error404';
-
+import Hijo from './Hijo';
 // import Consultas from '../private/Consultas';
 import Vacunas from '../private/Vacunas';
 // Citas
@@ -239,9 +239,14 @@ const Dashboard = ({ usuario, logout }) => {
 								component={DatosF}
 							/>
 							<Route path="/hijos/:id" component={Hijos} />
+
 							<Route
 								path="/mis-hijos"
 								component={MisHijos}
+							/>
+							<Route
+								path="/hijo/:id"
+								component={Hijo}
 							/>
 							<Error404 component={Error404} />
 						</Switch>
