@@ -1,9 +1,9 @@
 import React from 'react';
-import { useState } from 'react'
-import url from '../../../keys/backend_keys'
-import axios from 'axios'
+import { useState } from 'react';
+import url from '../../../keys/backend_keys';
+import axios from 'axios';
 
-const FormFoto = ({id}) => {
+const FormFoto = ({ id, setForm, setFotos, fotos }) => {
 	const [state, setEstado] = useState({ file: null });
 
 	const subirArchivo = (e) => {
@@ -16,31 +16,21 @@ const FormFoto = ({id}) => {
 		let file = state.file;
 		let formdata = new FormData();
 		formdata.append('foto', file);
-		console.log(id)
-        // const id = props.match.params.id
+		console.log(formdata);
 		axios({
 			url: `${url}/Fotos/files`,
 			method: 'POST',
 			data: formdata,
 			headers: {
-                id
+				id,
 			},
 		}).then((res) => {
 			console.log('....');
 			console.log(res);
 			console.log('.....');
-			// let [user] = usuario.datos.filter(
-			// 	(item) => item._id === id
-			// );
-			// user.foto_perfil = res.data.usuario.foto_perfil;
-			// console.log(user);
-			// usuario.set_datos(
-			// 	usuario.datos.filter(
-			// 		(item) => item._id !== id
-			// 	)
-			// );
-
-			
+			fetch(`${url}/Fotos/${id}`)
+				.then((resp) => resp.json())
+				.then((dat) => setFotos(dat));
 		});
 	};
 	return (
@@ -147,5 +137,4 @@ const FormFoto = ({id}) => {
 	);
 };
 
-
-export default FormFoto
+export default FormFoto;
