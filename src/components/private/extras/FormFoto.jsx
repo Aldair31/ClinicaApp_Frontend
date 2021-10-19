@@ -3,7 +3,7 @@ import { useState } from 'react'
 import url from '../../../keys/backend_keys'
 import axios from 'axios'
 
-const FormFoto = ({setForm}) => {
+const FormFoto = ({id}) => {
 	const [state, setEstado] = useState({ file: null });
 
 	const subirArchivo = (e) => {
@@ -15,7 +15,8 @@ const FormFoto = ({setForm}) => {
 	const consumirArchivo = (id) => {
 		let file = state.file;
 		let formdata = new FormData();
-		formdata.append('avatar', file);
+		formdata.append('foto', file);
+		console.log(id)
         // const id = props.match.params.id
 		axios({
 			url: `${url}/Fotos/files`,
@@ -129,7 +130,7 @@ const FormFoto = ({setForm}) => {
 				<br />
 				<button
 					type="button"
-					onClick={() => consumirArchivo()}
+					onClick={() => consumirArchivo(id)}
 					style={{
 						width: '100%',
 						padding: '7px',

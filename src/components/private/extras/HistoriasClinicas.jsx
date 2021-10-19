@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import url from '../../../keys/backend_keys';
 import Antecedentes from './Antecedentes';
+import ExamenFisico from './ExamenFisico';
+
 const HistoriasClinicas = ({ id }) => {
 	const [datos, setDatos] = useState([]);
 	useEffect(() => {
@@ -25,6 +27,22 @@ const HistoriasClinicas = ({ id }) => {
 				setCitas(datos);
 			});
 	}, []);
+
+	const componentes=[
+		<Antecedentes id={id}  key='antecedentes'/>,
+		<ExamenFisico id={id}  key='examenFisico'/>
+	]
+
+	const [componente, setComponente] = useState('antecedentes');
+	const clickEvent =(e)=>{
+		setComponente(e.target.innerHTML.toLowerCase())
+	}
+		
+	
+
+
+
+
 	return (
 		<div>
 			<div className="list">
@@ -72,8 +90,19 @@ const HistoriasClinicas = ({ id }) => {
 						);
 					})}
 				</div>
+				<div className="Botones">
+					<button onClick= {clickEvent}>
+						Antecedentes
+					</button>
+					<button onClick={clickEvent}>
+						Examen Fisico
+					</button>
+					{
+						componentes.map((item)=><div className={componente===item.key?'':'none'}>{item}</div>)
+					}
+				</div>
 				<div>
-					<Antecedentes id={id}/>
+					
 				</div>
 			</div>
 		</div>
