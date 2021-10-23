@@ -11,10 +11,12 @@ const HistoriasClinicas = ({ id }) => {
 			.then((resp) => resp.json())
 			.then((data) => {
 				setDatos(data);
+				console.log('datos aldair diaz');
+				console.log(data);
 			});
 	}, []);
 	// const [citas, setCitas] = useCita([]);
-	
+
 	const [citas, setCitas] = useState([]);
 	useEffect(() => {
 		fetch(`${url}/Historia`)
@@ -28,57 +30,74 @@ const HistoriasClinicas = ({ id }) => {
 			});
 	}, []);
 
-	const componentes=[
-		<Antecedentes id={id}  key='antecedentes'/>,
-		<ExamenFisico id={id}  key='examenFisico'/>
-	]
+	const componentes = [
+		<Antecedentes id={id} key="antecedentes" />,
+		<ExamenFisico id={id} key="examenFisico" />,
+	];
 
 	const [componente, setComponente] = useState('antecedentes');
-	const clickEvent =(e)=>{
-		setComponente(e.target.innerHTML.toLowerCase())
-	}
-		
-	
-
-
-
+	const clickEvent = (e) => {
+		setComponente(e.target.innerHTML.toLowerCase());
+	};
 
 	return (
 		<div>
 			<div className="list">
 				<h2>Historia clínica</h2>
 				<div>
-				<div className="citas">
-					{citas.map((item) => {
-						return (
-							<>
-								{item._id === id? (
-									<div key={item._id} className="cita">
-										<h3>Datos de Filiación</h3>
-										<p>Dirección: {item.direccion}</p>
-										<p>DNI: {item.dni_paciente}</p>
-										<p>Nombre: {item.nombres_paciente}</p>
-										<p>Referencia: {item.referencia}</p>
-									</div>
-								) : null}
-							</>
-						);
-						
-					})}
-				</div>
+					<div className="citas">
+						{citas.map((item) => {
+							return (
+								<>
+									{item._id === id ? (
+										<div
+											key={item._id}
+											className="cita"
+										>
+											<h3>Datos de Filiación</h3>
+											<p>
+												Dirección: {item.direccion}
+											</p>
+											<p>DNI: {item.dni_paciente}</p>
+											<p>
+												Nombre:{' '}
+												{item.nombres_paciente}
+											</p>
+											<p>
+												Referencia:{' '}
+												{item.referencia}
+											</p>
+										</div>
+									) : null}
+								</>
+							);
+						})}
+					</div>
 				</div>
 				<div className="citas">
 					{datos.map((item) => {
-						console.log(item)
+						console.log(item);
 						return (
 							<>
-								{item.id_Historia===id? (
+								{item.id_Historia === id ? (
 									<div key={item._id} className="cita">
 										<h3>Historia</h3>
-										<p>Fecha: {moment(item.fecha_nac).format('DD-MM-YYYY')}</p>
-										<p>Diagnostico: {item.diagnostico}</p>
-										<p>Tratamiento: {item.tratamiento}</p>
-										<p>Examenes Auxiliares: {item.examenesAuxiliares}</p>
+										<p>
+											Fecha:{' '}
+											{moment(item.fecha_nac).format(
+												'DD-MM-YYYY'
+											)}
+										</p>
+										<p>
+											Diagnostico: {item.diagnostico}
+										</p>
+										<p>
+											Tratamiento: {item.tratamiento}
+										</p>
+										<p>
+											Examenes Auxiliares:{' '}
+											{item.examenesAuxiliares}
+										</p>
 										{/* <NavLink to={`/historia/${item._id}`}>
 											<p className="ver">
 													Antecedentes
@@ -91,19 +110,19 @@ const HistoriasClinicas = ({ id }) => {
 					})}
 				</div>
 				<div className="Botones">
-					<button onClick= {clickEvent}>
-						Antecedentes
-					</button>
-					<button onClick={clickEvent}>
-						Examen Fisico
-					</button>
-					{
-						componentes.map((item)=><div className={componente===item.key?'':'none'}>{item}</div>)
-					}
+					<button onClick={clickEvent}>Antecedentes</button>
+					<button onClick={clickEvent}>Examen Fisico</button>
+					{componentes.map((item) => (
+						<div
+							className={
+								componente === item.key ? '' : 'none'
+							}
+						>
+							{item}
+						</div>
+					))}
 				</div>
-				<div>
-					
-				</div>
+				<div></div>
 			</div>
 		</div>
 	);

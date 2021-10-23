@@ -21,7 +21,7 @@ import Responsables from './Responsables';
 import NuevaCita from './NuevaCita';
 import DatosF from './DatosF';
 
-import HistoriaClinica from './HistoriaPaciente';
+import HistoriasClinicas from '../private/extras/HistoriasClinicas'
 import Antecedentes from './extras/Antecedentes';
 // DatosF
 // Error404
@@ -221,7 +221,7 @@ const Dashboard = ({ usuario, logout }) => {
 							/>
 							<Route
 								path="/historia-clinica/:id"
-								component={HistoriaClinica}
+								component={HistoriasClinicas}
 							/>
 							<Route
 								path="/antecedentes/:id"
