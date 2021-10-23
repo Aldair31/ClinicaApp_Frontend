@@ -84,8 +84,8 @@ const Hijo = (props) => {
 				<strong
 					style={{ cursor: 'pointer', color: '#50B4A1' }}
 					onClick={() => {
-						// setForm(true);
-						// setIdFoto()
+						setForm(true);
+						setIdFoto()
 					}}
 				>
 					Nueva foto

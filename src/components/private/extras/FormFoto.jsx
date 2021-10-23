@@ -114,6 +114,7 @@ const FormFoto = ({ id, setForm, setFotos, fotos }) => {
 						type="file"
 						name="foto"
 						id="inputfileuser"
+						accept="image/*"
 						onChange={(e) => subirArchivo(e)}
 					></input>
 				</div>

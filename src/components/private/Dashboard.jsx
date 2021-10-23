@@ -6,6 +6,7 @@ import '../../sass/Dashboard.sass';
 import '../../sass/Scroll.sass';
 
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Pacientes from './Pacientes';
 import Consultas from './Consultas';
 import Error404 from '../Error404';
@@ -15,12 +16,13 @@ import Vacunas from '../private/Vacunas';
 // Citas
 import Hijos from './Hijos';
 import MisHijos from './MisHijos';
-import { NavLink } from 'react-router-dom';
 import Filiacion from './Filiacion';
 import Responsables from './Responsables';
 import NuevaCita from './NuevaCita';
 import DatosF from './DatosF';
+
 import HistoriaClinica from './HistoriaPaciente';
+import Antecedentes from './extras/Antecedentes';
 // DatosF
 // Error404
 const Dashboard = ({ usuario, logout }) => {
@@ -218,8 +220,12 @@ const Dashboard = ({ usuario, logout }) => {
 								component={Consultas}
 							/>
 							<Route
-								path="/historia/:id"
+								path="/historia-clinica/:id"
 								component={HistoriaClinica}
+							/>
+							<Route
+								path="/antecedentes/:id"
+								component={Antecedentes}
 							/>
 							<Route path="/vacunas" component={Vacunas} />
 							<Route

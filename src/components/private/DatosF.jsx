@@ -1,23 +1,51 @@
 import React from 'react';
 import useAfiliacion from '../../hooks/useAfiliacion';
+import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import '../../sass/DatosF.sass';
-
-import FormFiliacion from './extras/FormFiliacion'
-const DatosF = (props) => {
+import { Link } from 'react-router-dom';
+import FormFiliacion from './extras/FormFiliacion';
+const DatosF = ({ usuario }) => {
 	const [datos_af, loading] = useAfiliacion();
-	console.log(props.match.params);
+	const { id } = useParams();
+	const rol = usuario.rol;
 	return (
 		<div>
 			{loading === false ? (
 				<div className="datos_h_af">
 					{datos_af
-						.filter(
-							(item) => item._id === props.match.params.id
-						)
+						.filter((item) => item._id === id)
 						.map((item) => (
 							<>
-								<h2>Datos de filiación</h2>
-								<FormFiliacion item={item}/>
+								<h2>
+									Datos de filiación&nbsp;&nbsp;
+									{rol === 'Doctor' ? (
+										<p>
+											<Link
+												to={`historia-clinica/${id}`}
+												style={{
+													fontSize: '16px',
+													cursor: 'pointer',
+													color: 'crimson',
+												}}
+											>
+												Ver H. clínica
+											</Link>
+											&nbsp;&nbsp;
+											<Link
+												to={`historia-clinica/${id}`}
+												style={{
+													fontSize: '16px',
+													cursor: 'pointer',
+													color: 'crimson',
+												}}
+											>
+												Ver Antecedentes
+											</Link>
+										</p>
+									) : null}
+								</h2>
+								<FormFiliacion item={item} />
 							</>
 						))}
 				</div>
@@ -25,5 +53,8 @@ const DatosF = (props) => {
 		</div>
 	);
 };
+const mapStateToProps = (state) => ({
+	usuario: state.usuario,
+});
 
-export default DatosF;
+export default connect(mapStateToProps)(DatosF);

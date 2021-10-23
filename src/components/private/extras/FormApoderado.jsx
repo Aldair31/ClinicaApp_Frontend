@@ -122,6 +122,7 @@ const FormApoderado = (usuario) => {
 						}}
 						type="file"
 						name="avatar"
+						accept="image/*"
 						id="inputfileuser"
 						onChange={(e) => subirArchivo(e)}
 					></input>

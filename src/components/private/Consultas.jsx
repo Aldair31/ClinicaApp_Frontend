@@ -30,10 +30,8 @@ const Consultas = () => {
 								<p>DNI: {item.dni_paciente}</p>
 								<p>Nombre: {item.nombres_paciente}</p>
 								<p>Referencia: {item.referencia}</p>
-								<NavLink to={`/historia/${item._id}`}>
-									<p className="ver">
-											Ver todo
-									</p>
+								<NavLink to={`/datos-f/${item._id}`}>
+									<p className="ver">Ver todo</p>
 								</NavLink>
 							</div>
 						);

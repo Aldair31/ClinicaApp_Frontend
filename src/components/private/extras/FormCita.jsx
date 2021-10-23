@@ -9,11 +9,12 @@ const FormCita = () => {
 		let resultado = await consumNuevaCita(body);
 		console.log('Resultado: ');
 		console.log(resultado);
-		if(resultado.ok ===false){
-			alert(resultado.msg)
-		}
-		else{
-			alert('Registro exitoso')
+		if (resultado.ok === false) {
+			alert(resultado.msg);
+			return false;
+		} else {
+			alert('Registro exitoso');
+			return true;
 		}
 	};
 	return (
@@ -25,11 +26,11 @@ const FormCita = () => {
 					responsable: '',
 					telefono: '',
 					fecha_nac: '',
-					motivo:'3',
-					sexo:'2',
-					hora:'',
-					fecha:'',
-					condicion:"1"
+					motivo: '3',
+					sexo: '2',
+					hora: '',
+					fecha: '',
+					condicion: '1',
 				}}
 				validate={(valores) => {
 					let errores = {};
@@ -55,7 +56,9 @@ const FormCita = () => {
 					}
 					if (!valores.dni_paciente) {
 						errores.dni_paciente = 'Por favor ingrese el DNI';
-					} else if (!/^[0-9]{8,8}$/.test(valores.dni_paciente)) {
+					} else if (
+						!/^[0-9]{8,8}$/.test(valores.dni_paciente)
+					) {
 						errores.dni_paciente =
 							'El DNI sólo puede contener 8 números.';
 					}
@@ -65,31 +68,47 @@ const FormCita = () => {
 						errores.telefono =
 							'El teléfono sólo puede contener 9 números.';
 					}
-					if(''===valores.fecha_nac){
-						errores.fecha_nac='Por favor, ingrese una fecha de nacimiento'
+					if ('' === valores.fecha_nac) {
+						errores.fecha_nac =
+							'Por favor, ingrese una fecha de nacimiento';
 					}
-					if(''===valores.fecha){
-						errores.fecha='Por favor, ingrese una fecha de la cita'
+					if ('' === valores.fecha) {
+						errores.fecha =
+							'Por favor, ingrese una fecha de la cita';
 					}
-					if(''===valores.hora){
-						errores.hora='Por favor, ingrese una hora de la cita'
+					if ('' === valores.hora) {
+						errores.hora =
+							'Por favor, ingrese una hora de la cita';
 					}
 					return errores;
 				}}
 				onSubmit={(valores, { resetForm }) => {
-					resetForm();
+					// resetForm();
+					alert('enviadoo');
 					console.log('Formulario enviado');
 					console.log(valores);
 					console.log('.------------');
-					consumirNuevaCita(
-						{nombre_paciente: valores.nombre_paciente, 
-						fecha_nac: valores.fecha_nac, 
-						fecha: moment(new Date(`${valores.fecha} ${valores.hora}`)).subtract(5, 'hours').format(),
-						sexo: valores.sexo, 
-						responsable: valores.responsable, 
-						telefono: valores.telefono, motivo: valores.motivo,
-						condicion: valores.condicion,
-						DNI: valores.dni_paciente})
+					if (
+						consumirNuevaCita({
+							nombre_paciente: valores.nombre_paciente,
+							fecha_nac: valores.fecha_nac,
+							fecha: moment(
+								new Date(
+									`${valores.fecha} ${valores.hora}`
+								)
+							)
+								.subtract(5, 'hours')
+								.format(),
+							sexo: valores.sexo,
+							responsable: valores.responsable,
+							telefono: valores.telefono,
+							motivo: valores.motivo,
+							condicion: valores.condicion,
+							DNI: valores.dni_paciente,
+						})
+					) {
+						resetForm();
+					}
 				}}
 			>
 				{({ errors }) => (
@@ -167,7 +186,6 @@ const FormCita = () => {
 						<div>
 							<label>Teléfono</label>
 							<Field type="text" name="telefono"></Field>
-							{/* <input type="text" /> */}
 						</div>
 						<ErrorMessage
 							name="telefono"
@@ -195,7 +213,6 @@ const FormCita = () => {
 						<div>
 							<label>Fecha</label>
 							<Field name="fecha" type="date"></Field>
-							{/* <input type="date" /> */}
 						</div>
 						<ErrorMessage
 							name="fecha"
@@ -231,11 +248,9 @@ const FormCita = () => {
 							</Field>
 						</div>
 						<div>
-							<input
-								type="submit"
-								className="agregar"
-								value="Agregar cita"
-							/>
+							<button type="submit" className="agregar">
+								Agregar
+							</button>
 						</div>
 					</Form>
 				)}

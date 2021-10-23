@@ -46,7 +46,7 @@ const HistoriasClinicas = ({ id }) => {
 	return (
 		<div>
 			<div className="list">
-				<h2>HISTORIA CLINICA</h2>
+				<h2>Historia clínica</h2>
 				<div>
 				<div className="citas">
 					{citas.map((item) => {
