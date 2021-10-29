@@ -1,0 +1,11 @@
+const getFecha = ()=>{
+    var f=new Date();
+    var a = f.getFullYear()
+    var m = f.getMonth()+1
+    var d = f.getDate()
+    var fecha = ''
+    fecha = (m > 9) ? `${a}-${m}-${d}`:`${a}-0${m}-${d}` 
+    console.log(fecha);
+    return fecha
+}
+export default getFecha

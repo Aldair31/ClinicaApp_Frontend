@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import url from '../../../keys/backend_keys';
+import getFecha from '../../../functions/fecha';
+// import getFecha  from '../../../functions/fecha';
 const FormFiliacion = ({ item }) => {
 	return (
 		<>
@@ -181,7 +183,7 @@ const FormFiliacion = ({ item }) => {
 						/>
 						<div>
 							<label>Fecha de nacimiento</label>
-							<Field type="date" name="fecha_nac"></Field>
+							<Field type="date" name="fecha_nac" max={getFecha()}></Field>
 						</div>
 						<ErrorMessage
 							name="fecha_nac"

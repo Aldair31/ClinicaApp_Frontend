@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import consumNuevaCita from '../../../functions/citas';
 import moment from 'moment';
+import getFecha from '../../../functions/fecha'
 // consumNuevaCita
 const FormCita = () => {
 	const consumirNuevaCita = async (body) => {
@@ -133,7 +134,7 @@ const FormCita = () => {
 						/>
 						<div>
 							<label>Fecha de nacimiento</label>
-							<Field name="fecha_nac" type="date"></Field>
+							<Field name="fecha_nac" type="date" max={getFecha()}></Field>
 						</div>
 						<ErrorMessage
 							name="fecha_nac"
@@ -212,7 +213,7 @@ const FormCita = () => {
 						</div>
 						<div>
 							<label>Fecha</label>
-							<Field name="fecha" type="date"></Field>
+							<Field name="fecha" type="date" max={getFecha()}></Field>
 						</div>
 						<ErrorMessage
 							name="fecha"
