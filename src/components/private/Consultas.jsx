@@ -4,7 +4,7 @@ import '../../sass/LC.sass';
 // NavLink
 // import ListadosCitas from './extras/ListadosCitas';
 import url from '../../keys/backend_keys';
-import { NavLink } from 'react-router-dom';
+
 
 const Consultas = () => {
 	const [citas, setCitas] = useState([]);
@@ -31,9 +31,6 @@ const Consultas = () => {
 								<p>DNI: {item.dni_paciente}</p>
 								<p>Nombre: {item.nombres_paciente}</p>
 								<p>Referencia: {item.referencia}</p>
-								<NavLink to={`/datos-f/${item._id}`}>
-									<p className="ver">Ver todo</p>
-								</NavLink>
 							</div>
 						);
 					})}

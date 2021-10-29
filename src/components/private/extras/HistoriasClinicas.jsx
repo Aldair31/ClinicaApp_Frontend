@@ -16,7 +16,7 @@ const HistoriasClinicas = () => {
 				setDatos(data);
 				// console.log('datos aldair diaz');
 				console.log(data);
-				console.log(id)
+				console.log(id);
 			});
 	}, []);
 	// const [citas, setCitas] = useCita([]);
@@ -46,6 +46,20 @@ const HistoriasClinicas = () => {
 
 	return (
 		<div>
+			<p>
+				<button
+					style={{
+						marginTop: '22px',
+						marginBottom: '22px',
+						cursor: 'pointer',
+						color: 'crimson',
+						border: 'none',
+						background: 'transparent'
+					}}
+				>
+					Nueva H. Clínica
+				</button>
+			</p>
 			<div className="list">
 				{/* <h2>Historia clínica</h2> */}
 				{/* <div>
@@ -80,15 +94,14 @@ const HistoriasClinicas = () => {
 				</div> */}
 				<div className="citas">
 					{datos.map((item) => {
-						console.log('*********')
+						console.log('*********');
 						console.log(item.id_Historia);
-						console.log('*********')
+						console.log('*********');
 						return (
 							<>
-							
 								{item.id_Historia === id ? (
 									<div key={item._id} className="cita">
-									<h3>Historia Clinica</h3>
+										<h3>Historia Clinica</h3>
 										<p>
 											Fecha:{' '}
 											{moment(item.fecha_nac).format(

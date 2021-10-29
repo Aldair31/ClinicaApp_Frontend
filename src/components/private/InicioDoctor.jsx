@@ -2,6 +2,7 @@ import React from 'react';
 import useCita from '../../hooks/useCita';
 import '../../sass/Dashboard.sass';
 import moment from 'moment';
+import { NavLink } from 'react-router-dom';
 const InicioDoctor = () => {
 	let [datos_af, loading] = useCita();
 	const switchMotivo = (valor) => {
@@ -82,6 +83,9 @@ const InicioDoctor = () => {
 											: 'Nuevo'}
 									</span>
 								</p>
+								<NavLink to={`/datos-f/${item.id_Historia}`}>
+									<p className="ver">Ver todo</p>
+								</NavLink>
 							</div>
 						))}
 					</div>
