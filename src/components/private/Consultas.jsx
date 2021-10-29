@@ -5,6 +5,7 @@ import '../../sass/LC.sass';
 // import ListadosCitas from './extras/ListadosCitas';
 import url from '../../keys/backend_keys';
 import { NavLink } from 'react-router-dom';
+
 const Consultas = () => {
 	const [citas, setCitas] = useState([]);
 	useEffect(() => {

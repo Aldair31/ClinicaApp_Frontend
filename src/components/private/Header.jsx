@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Header = () => {
+const Header = ({usuario}) => {
+	console.log(usuario)
 	return (
 		<>
 			<div className="header_dashboard">
@@ -8,6 +9,7 @@ const Header = () => {
 					<h2>Clínica mi bebé</h2>
 					<nav></nav>
 				</div>
+				{/* <div>rol</div> */}
 			</div>
 		</>
 	);

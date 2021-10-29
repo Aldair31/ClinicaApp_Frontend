@@ -127,7 +127,7 @@ const FormFiliacion = ({ item }) => {
 								return evento;
 							}
 						})
-						.then((e) => {
+						.then((e) => {		
 							valores.direccion = e.direccion;
 							valores.nombres_paciente = e.nombres_paciente;
 							valores.dni_paciente = e.dni_paciente;

@@ -21,8 +21,10 @@ import Responsables from './Responsables';
 import NuevaCita from './NuevaCita';
 import DatosF from './DatosF';
 
-import HistoriasClinicas from '../private/extras/HistoriasClinicas'
-import Antecedentes from './extras/Antecedentes';
+import HistoriasClinicas from './extras/HistoriasClinicas'
+import Antecedentes from './Antecedentes';
+import ExamenFisico from './ExamenFisico';
+import FormAntecedentes from './extras/FormAntecedentes';
 // DatosF
 // Error404
 const Dashboard = ({ usuario, logout }) => {
@@ -226,6 +228,10 @@ const Dashboard = ({ usuario, logout }) => {
 							<Route
 								path="/antecedentes/:id"
 								component={Antecedentes}
+							/>
+							<Route
+								path="/examen-fisico/:id"
+								component={ExamenFisico}
 							/>
 							<Route path="/vacunas" component={Vacunas} />
 							<Route

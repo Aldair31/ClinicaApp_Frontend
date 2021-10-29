@@ -109,6 +109,7 @@ const Hijo = (props) => {
 								<img
 									className="foto"
 									width="100%"
+									height="200px"
 									clave={item.nombre}
 									alt=""
 									src={`${url}/Fotos/album/${item.nombre}`}

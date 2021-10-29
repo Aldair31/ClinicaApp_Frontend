@@ -1,7 +1,19 @@
 import React from 'react';
-
+import useCita from '../../hooks/useCita';
 import '../../sass/Dashboard.sass';
+import moment from 'moment';
 const InicioDoctor = () => {
+	let [datos_af, loading] = useCita();
+	const switchMotivo = (valor) => {
+		switch (valor) {
+			case 1:
+				return 'Vacuna';
+			case 2:
+				return 'Consulta pediátrica';
+			default:
+				return 'Control de crecimiento';
+		}
+	};
 	return (
 		<>
 			<div className="list">
@@ -16,6 +28,64 @@ const InicioDoctor = () => {
 					</svg>
 					&nbsp;&nbsp;Consultas
 				</h2>
+				{loading !== null ? (
+					<div className="datos_filiacion">
+						{datos_af.map((item) => (
+							<div className="dato_filiacion" key={item._id}>
+								<p>
+									<strong>-Fecha de consulta: </strong>
+									{moment(
+										moment(item.fecha).format(
+											'DD/MM/YYYY'
+										),
+										'DD/MM/YYYY',
+
+									).add(1, 'days').calendar()}
+								</p>
+								<p>
+									<strong>-DNI del paciente: </strong>
+									{item.DNI}
+								</p>
+								<p>
+									<strong>
+										-Nombres del paciente:{' '}
+									</strong>
+									{item.nombre_paciente}
+								</p>
+								<p>
+									<strong>-Responsable: </strong>
+									{item.responsable}
+								</p>
+								<p>
+									<strong>-Telefono: </strong>
+									{item.telefono}
+								</p>
+								<p>
+									<strong>-Motivo: </strong>
+									<span>
+										{switchMotivo(item.motivo)}
+									</span>
+								</p>
+								<p>
+									<strong>-Sexo: </strong>
+									<span>
+										{item.sexo === 1
+											? 'Hombre'
+											: 'Mujer'}
+									</span>
+								</p>
+								<p>
+									<strong>-Condición: </strong>
+									<span>
+										{item.condicion === 1
+											? 'Continuador'
+											: 'Nuevo'}
+									</span>
+								</p>
+							</div>
+						))}
+					</div>
+				) : null}
 			</div>
 		</>
 	);

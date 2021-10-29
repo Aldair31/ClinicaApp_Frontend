@@ -1,50 +1,54 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment';
+import { useParams } from 'react-router-dom';
 import url from '../../../keys/backend_keys';
-import Antecedentes from './Antecedentes';
-import ExamenFisico from './ExamenFisico';
+// import '../../../sass/Dashboard.sass';
+// import Antecedentes from './Antecedentes';
+// import ExamenFisico from './ExamenFisico';
 
-const HistoriasClinicas = ({ id }) => {
+const HistoriasClinicas = () => {
+	const { id } = useParams();
 	const [datos, setDatos] = useState([]);
 	useEffect(() => {
 		fetch(`${url}/HistClinica`)
 			.then((resp) => resp.json())
 			.then((data) => {
 				setDatos(data);
-				console.log('datos aldair diaz');
+				// console.log('datos aldair diaz');
 				console.log(data);
+				console.log(id)
 			});
 	}, []);
 	// const [citas, setCitas] = useCita([]);
 
-	const [citas, setCitas] = useState([]);
-	useEffect(() => {
-		fetch(`${url}/Historia`)
-			.then((resp) => {
-				return resp.json();
-			})
-			.then((datos) => {
-				console.log('respuesta');
-				console.log(datos);
-				setCitas(datos);
-			});
-	}, []);
+	// const [citas, setCitas] = useState([]);
+	// useEffect(() => {
+	// 	fetch(`${url}/Historia`)
+	// 		.then((resp) => {
+	// 			return resp.json();
+	// 		})
+	// 		.then((datos) => {
+	// 			console.log('respuesta');
+	// 			console.log(datos);
+	// 			setCitas(datos);
+	// 		});
+	// }, []);
 
-	const componentes = [
-		<Antecedentes id={id} key="antecedentes" />,
-		<ExamenFisico id={id} key="examenFisico" />,
-	];
+	// const componentes = [
+	// 	<Antecedentes id={id} key="antecedentes" />,
+	// 	<ExamenFisico id={id} key="examenFisico" />,
+	// ];
 
-	const [componente, setComponente] = useState('antecedentes');
-	const clickEvent = (e) => {
-		setComponente(e.target.innerHTML.toLowerCase());
-	};
+	// const [componente, setComponente] = useState('antecedentes');
+	// const clickEvent = (e) => {
+	// 	setComponente(e.target.innerHTML.toLowerCase());
+	// };
 
 	return (
 		<div>
 			<div className="list">
-				<h2>Historia clínica</h2>
-				<div>
+				{/* <h2>Historia clínica</h2> */}
+				{/* <div>
 					<div className="citas">
 						{citas.map((item) => {
 							return (
@@ -73,15 +77,18 @@ const HistoriasClinicas = ({ id }) => {
 							);
 						})}
 					</div>
-				</div>
+				</div> */}
 				<div className="citas">
 					{datos.map((item) => {
-						console.log(item);
+						console.log('*********')
+						console.log(item.id_Historia);
+						console.log('*********')
 						return (
 							<>
+							
 								{item.id_Historia === id ? (
 									<div key={item._id} className="cita">
-										<h3>Historia</h3>
+									<h3>Historia Clinica</h3>
 										<p>
 											Fecha:{' '}
 											{moment(item.fecha_nac).format(
@@ -109,7 +116,7 @@ const HistoriasClinicas = ({ id }) => {
 						);
 					})}
 				</div>
-				<div className="Botones">
+				{/* <div className="Botones">
 					<button onClick={clickEvent}>Antecedentes</button>
 					<button onClick={clickEvent}>Examen Fisico</button>
 					{componentes.map((item) => (
@@ -121,7 +128,7 @@ const HistoriasClinicas = ({ id }) => {
 							{item}
 						</div>
 					))}
-				</div>
+				</div> */}
 				<div></div>
 			</div>
 		</div>

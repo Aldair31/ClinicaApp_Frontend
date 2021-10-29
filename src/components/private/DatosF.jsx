@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import '../../sass/DatosF.sass';
 import { Link } from 'react-router-dom';
 import FormFiliacion from './extras/FormFiliacion';
+
 const DatosF = ({ usuario }) => {
 	const [datos_af, loading] = useAfiliacion();
 	const { id } = useParams();
@@ -22,7 +23,7 @@ const DatosF = ({ usuario }) => {
 									{rol === 'Doctor' ? (
 										<p>
 											<Link
-												to={`historia-clinica/${id}`}
+												to={`/historia-clinica/${id}`}
 												style={{
 													fontSize: '16px',
 													cursor: 'pointer',
@@ -33,7 +34,7 @@ const DatosF = ({ usuario }) => {
 											</Link>
 											&nbsp;&nbsp;
 											<Link
-												to={`historia-clinica/${id}`}
+												to={`/antecedentes/${id}`}
 												style={{
 													fontSize: '16px',
 													cursor: 'pointer',
@@ -41,6 +42,17 @@ const DatosF = ({ usuario }) => {
 												}}
 											>
 												Ver Antecedentes
+											</Link>
+											&nbsp;&nbsp;
+											<Link
+												to={`/examen-fisico/${id}`}
+												style={{
+													fontSize: '16px',
+													cursor: 'pointer',
+													color: 'crimson',
+												}}
+											>
+												Ver Examen Físico
 											</Link>
 										</p>
 									) : null}
