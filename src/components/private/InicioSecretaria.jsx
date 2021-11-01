@@ -88,8 +88,8 @@ const InicioSecretaria = () => {
 									<strong>-Condición: </strong>
 									<span>
 										{item.condicion === 1
-											? 'Continuador'
-											: 'Nuevo'}
+											? 'Nuevo'
+											: 'Continuador'}
 									</span>
 								</p>
 								<p>

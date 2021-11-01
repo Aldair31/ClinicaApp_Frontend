@@ -78,9 +78,9 @@ const InicioDoctor = () => {
 								<p>
 									<strong>-Condición: </strong>
 									<span>
-										{item.condicion === 1
-											? 'Continuador'
-											: 'Nuevo'}
+										{item.condicion == 1
+											? 'Nuevo'
+											: 'Continuador'}
 									</span>
 								</p>
 								<NavLink to={`/datos-f/${item.id_Historia}`}>
