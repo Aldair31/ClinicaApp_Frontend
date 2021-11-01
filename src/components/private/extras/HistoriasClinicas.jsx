@@ -46,20 +46,6 @@ const HistoriasClinicas = () => {
 
 	return (
 		<div>
-			<p>
-				<button
-					style={{
-						marginTop: '22px',
-						marginBottom: '22px',
-						cursor: 'pointer',
-						color: 'crimson',
-						border: 'none',
-						background: 'transparent'
-					}}
-				>
-					Nueva H. Clínica
-				</button>
-			</p>
 			<div className="list">
 				{/* <h2>Historia clínica</h2> */}
 				{/* <div>

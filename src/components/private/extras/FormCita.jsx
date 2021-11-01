@@ -213,7 +213,7 @@ const FormCita = () => {
 						</div>
 						<div>
 							<label>Fecha</label>
-							<Field name="fecha" type="date" max={getFecha()}></Field>
+							<Field name="fecha" type="date" min={getFecha()}></Field>
 						</div>
 						<ErrorMessage
 							name="fecha"

@@ -23,6 +23,17 @@ const DatosF = ({ usuario }) => {
 									{rol === 'Doctor' ? (
 										<p>
 											<Link
+												to={`/historias-clinicas/${id}`}
+												style={{
+													fontSize: '16px',
+													cursor: 'pointer',
+													color: 'crimson',
+												}}
+											>
+												Ver H. clínicas
+											</Link>
+											&nbsp;&nbsp;
+											<Link
 												to={`/historia-clinica/${id}`}
 												style={{
 													fontSize: '16px',
@@ -30,30 +41,8 @@ const DatosF = ({ usuario }) => {
 													color: 'crimson',
 												}}
 											>
-												Ver H. clínica
-											</Link>
-											&nbsp;&nbsp;
-											<Link
-												to={`/antecedentes/${id}`}
-												style={{
-													fontSize: '16px',
-													cursor: 'pointer',
-													color: 'crimson',
-												}}
-											>
-												Ver Antecedentes
-											</Link>
-											&nbsp;&nbsp;
-											<Link
-												to={`/examen-fisico/${id}`}
-												style={{
-													fontSize: '16px',
-													cursor: 'pointer',
-													color: 'crimson',
-												}}
-											>
-												Ver Examen Físico
-											</Link>
+												Llenar datos
+											</Link>											
 										</p>
 									) : null}
 								</h2>

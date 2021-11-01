@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import Pacientes from './Pacientes';
 import Consultas from './Consultas';
+import HistoriaClinica from './HistoriaClinica';
 import Error404 from '../Error404';
 import Hijo from './Hijo';
 // import Consultas from '../private/Consultas';
@@ -222,16 +223,12 @@ const Dashboard = ({ usuario, logout }) => {
 								component={Consultas}
 							/>
 							<Route
-								path="/historia-clinica/:id"
+								path="/historias-clinicas/:id"
 								component={HistoriasClinicas}
 							/>
 							<Route
-								path="/antecedentes/:id"
-								component={Antecedentes}
-							/>
-							<Route
-								path="/examen-fisico/:id"
-								component={ExamenFisico}
+								path="/historia-clinica/:id"
+								component={HistoriaClinica}
 							/>
 							<Route path="/vacunas" component={Vacunas} />
 							<Route
