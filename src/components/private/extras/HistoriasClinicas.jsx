@@ -90,7 +90,7 @@ const HistoriasClinicas = () => {
 										<h3>Historia Clinica</h3>
 										<p>
 											Fecha:{' '}
-											{moment(item.fecha_nac).format(
+											{moment(item.fecha).format(
 												'DD-MM-YYYY'
 											)}
 										</p>

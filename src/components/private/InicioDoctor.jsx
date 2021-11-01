@@ -41,7 +41,7 @@ const InicioDoctor = () => {
 										),
 										'DD/MM/YYYY',
 
-									).add(1, 'days').calendar()}
+									).add(0, 'days').calendar()}
 								</p>
 								<p>
 									<strong>-DNI del paciente: </strong>
