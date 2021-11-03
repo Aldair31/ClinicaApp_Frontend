@@ -10,6 +10,7 @@ const useCita = () => {
 			})
 			.then((data) => {
 				set_datos_af(data);
+				console.log('citas');
                 console.log(data);
 				setLoading(false);
 				return data;

@@ -33,16 +33,6 @@ const DatosF = ({ usuario }) => {
 												Ver H. clínicas
 											</Link>
 											&nbsp;&nbsp;
-											<Link
-												to={`/historia-clinica/${id}`}
-												style={{
-													fontSize: '16px',
-													cursor: 'pointer',
-													color: 'crimson',
-												}}
-											>
-												Llenar datos
-											</Link>											
 										</p>
 									) : null}
 								</h2>

@@ -89,6 +89,13 @@ const FormCita = () => {
 					console.log('Formulario enviado');
 					console.log(valores);
 					console.log('.------------');
+					// {moment(
+					// 	moment(item.fecha).format(
+					// 		'DD/MM/YYYY'
+					// 	),
+					// 	'DD/MM/YYYY',
+
+					// ).add(0, 'days').calendar()}
 					if (
 						consumirNuevaCita({
 							nombre_paciente: valores.nombre_paciente,
