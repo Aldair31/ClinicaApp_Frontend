@@ -1,120 +1,227 @@
 import React, { useEffect, useState } from 'react';
 import url from '../../keys/backend_keys';
-import { useParams} from 'react-router-dom';
-import FormAntecedentes from './extras/FormAntecedentes';
-import '../../sass/Cita.sass';
+import { useParams } from 'react-router-dom';
+
+import '../../sass/Antecedentes.sass';
 const Antecedentes = () => {
 	const { id } = useParams();
-	const [antecedente, setAntecedente]= useState([]);
-    const [state, setState] = useState(false);
+	const [nuevo, setNuevo] = useState(null);
+	const [antecedentes, setAntecedentes] = useState({});
+	const handleChange = (e) => {
+		setAntecedentes({
+			...antecedentes,
+			[e.target.name]: e.target.value,
+		});
+	};
 	useEffect(() => {
-		fetch(`${url}/Antecedentes`)
+		fetch(`${url}/Antecedentes/${id}`)
 			.then((resp) => resp.json())
 			.then((data) => {
-				setAntecedente(data);
-				console.log(data)
+				console.log('antecedentes');
+				console.log(data);
+				if (data.length > 0) {
+					setNuevo(false);
+					setAntecedentes(data[0])
+				} else {
+					setNuevo(true);
+
+				}
 			});
 	}, []);
-
 	return (
 		<div>
-			<div className="list">
-				<div className="citas">
-					{antecedente.map((item) => {
-						return (
-							<>
-								{item.id_Historia===id? (
-									<div key={item._id} className="cita">
-										
-										<h3>Antecedentes Familiares</h3>
-										<p>Asma Bronquial Familiar: {item.asmaBronquialFam ===true? <span>Si</span> : <span>No</span>}</p>
-                                        <p>Diabetes: {item.diabetes ===true? <span>Si</span> : <span>No</span>}</p>
-                                        <p>Epilepsia: {item.epilepsia ===true? <span>Si</span> : <span>No</span>}</p>
-                                        <p>Otros: {item.otros}</p>
-                                        <h3>Antecedentes Natales</h3>
-                                        <p>Peso al Nacer: {item.peso_al_nacer}</p>
-                                        <p>Tipo de Parto: {item.tipoDeParto}</p>
-                                        <p>Apgar 1': {item.apgar1}</p>
-                                        <p>Apgar 5': {item.apgar5}</p>
-                                        <p>Edad Gestacional: {item.edadGestacional}</p>
-                                        <p>Complicaciones: {item.complicaciones}</p>
-                                        <h3>Antecedentes Patológico</h3>
-                                        <p>Asma Bronquial: {item.asmaBronquialPat ===true? <span>Si</span> : <span>No</span>}</p>
-                                        <p>Nebulización: {item.nebulizacion ===true? <span>Si</span> : <span>No</span>}</p>
-                                        <p>Intervención Quirúrgica: {item.intervencionQuirurgica ===true? <span>Si</span> : <span>No</span>}</p>
-                                        <p>Reacción Adversa a Médicamentos: {item.reaccionAdversaMed}</p>
-                                        <p>Enfermedades Anteriores: {item.enfAnteriores}</p>
-										{/* <p>
-											<Link to={`/datos-antecedentes/${id}`}>
-												<strong>-</strong>
-												<strong
-													style={{
-														textDecoration: 'underline',
-														cursor: 'pointer',
-													}}
-												>
-													Ver más
-												</strong>
-												{item.post}
-											</Link>
-										</p> */}
-                                        <div >
-                                            {state ? (
-                                            <>
-                                            <div>
-                                                <FormAntecedentes  item={item}/>
-                                            </div>
-                                            <div>
-                                                <button
-                                                onClick={() => {
-                                                    setState(false);
-                                                }}
-                                                style={{
-                                                    position: 'absolute',
-                                                    top: '0',
-                                                    right: '0',
-                                                    border: 'none',
-                                                    padding: '18px',
-                                                    cursor: 'pointer',
-                                                }}
-                                                >
-                                                    <i
-                                                        class="fas fa-times"
-                                                        style={{ fontSize: '19px' }}
-                                                    ></i>
-                                                </button>
-                                            </div>
-                                            </>): null}   
-                                        </div>
-                                        <br />
-                                        <div>
-                                            <button
-                                                onClick={() => {
-                                                    setState(true);
-                                                }}
-                                                style={{
-                                                    padding: '9px',
-                                                    color: 'white',
-                                                    border: 'none',
-                                                    background: '#3ec4ab',
-                                                    marginBottom: '11px',
-                                                    borderRadius: '11px',
-                                                    cursor: 'pointer',
-                                                }}
-                                            >
-                                                Ver mas
-                                                
-                                            </button>
-                                            
-                                        </div>
-                                        
-									</div>
-								) : null}
-							</>
-						);
-					})}
-				</div>
-			</div>
+			<h2 className="titulo-hc">Antecedentes del paciente</h2>
+			<form className="cont">
+				<h3>Familiares</h3>
+				<label>Asma Bronquial</label>
+				<select
+					name="asmaBronquialFam"
+					onChange={handleChange}
+					value={antecedentes.asmaBronquialFam}
+				>
+					<option value="1">Sí</option>
+					<option value="2" selected>
+						No
+					</option>
+				</select>
+				{/* <input placeholder="Asma Bronquial" /> */}
+				<label>Diabetes</label>
+				<select
+					name="diabetes"
+					onChange={handleChange}
+					value={antecedentes.diabetes}
+				>
+					<option value="1">Sí</option>
+					<option value="2" selected>
+						No
+					</option>
+				</select>
+				<label>Epilepsia</label>
+				<select
+					name="epilepsia"
+					onChange={handleChange}
+					value={antecedentes.epilepsia}
+				>
+					<option value="1">Sí</option>
+					<option value="2" selected>
+						No
+					</option>
+				</select>
+				<label>Otros</label>
+				<textarea
+					rows="10"
+					cols="50"
+					placeholder="Ingrese otros antecedentes"
+					name="Otros"
+					value={antecedentes.Otros}
+					onChange={handleChange}
+				></textarea>
+				<h3>Natales</h3>
+				<label>Peso al nacer</label>
+				<input
+					placeholder="Peso al nacer"
+					type="number"
+					min="0"
+					name="peso_al_nacer"
+					onChange={handleChange}
+					value={antecedentes.peso_al_nacer}
+				/>
+				<label>Tipo de Parto</label>
+				<select
+					name="tipoDeParto"
+					onChange={handleChange}
+					value={antecedentes.tipoDeParto}
+				>
+					<option value="1">Sí</option>
+					<option value="2" selected>
+						No
+					</option>
+				</select>
+				<label>Apgar1</label>
+				<input
+					placeholder="Apgar1"
+					type="number"
+					name="apgar1"
+					value={antecedentes.apgar1}
+					onChange={handleChange}
+				/>
+				<label>Apgar5</label>
+				<input
+					placeholder="Apgar5"
+					type="number"
+					name="apgar5"
+					onChange={handleChange}
+					value={antecedentes.apgar5}
+				/>
+				<label>Edad Gestacional</label>
+				<input
+				name="edadGestacional"
+					placeholder="Edad Gestacional"
+					value={antecedentes.edadGestacional}
+					onChange={handleChange}
+				/>
+				<label>Complicaciones</label>
+				<input
+					placeholder="Complicaciones"
+					onChange={handleChange}
+					name="complicaciones"
+					value={antecedentes.complicaciones}
+				/>
+				{/* wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww */}
+				<h3>Patológicos</h3>
+				<label>Asma Bronquial</label>
+				{/* <input placeholder="Asma Bronquial" /> */}
+				<select
+					name="asmaBronquialPat"
+					onChange={handleChange}
+					value={antecedentes.asmaBronquialPat}
+				>
+					<option value="1">Sí</option>
+					<option value="2" selected>
+						No
+					</option>
+				</select>
+				<label>Nebulización</label>
+				{/* <input placeholder="Nebulización" /> */}
+				<select
+					name="nebulizacion"
+					onChange={handleChange}
+					value={antecedentes.nebulizacion}
+				>
+					<option value="1">Sí</option>
+					<option value="2" selected>
+						No
+					</option>
+				</select>
+				<label>Intervención Quirúrgica</label>
+				<select
+					name="intervencionQuirurgica"
+					onChange={handleChange}
+
+					value={antecedentes.intervencionQuirurgica}
+				>
+					<option value="1">Sí</option>
+					<option value="2" selected>
+						No
+					</option>
+				</select>
+				<label>Reacción Adversa</label>
+				<select
+					name="reaccionAdversa"
+					onChange={handleChange}
+					value={antecedentes.reaccionAdversaMed}
+				>
+					<option value="1">Sí</option>
+					<option value="2" selected>
+						No
+					</option>
+				</select>
+				<label>Enfermedades Anteriores</label>
+				<input
+					placeholder="Enfermedades anteriores"
+					onChange={handleChange}
+					name="enfAnteriores"
+					value={antecedentes.enfAnteriores}
+				/>
+				<button
+					onClick={(e) => {
+						e.preventDefault();
+						if(nuevo){
+							fetch(`${url}/Antecedentes/new`,{
+								headers: {
+									'Content-Type': 'application/json',
+								},
+								method: 'POST',
+								body: JSON.stringify({
+									...antecedentes,
+									id_Historia: id
+								}),
+							}).then((resp) =>resp.json()).then((data)=>{
+								if(data.ok){
+									alert('datos registrados')
+								}
+							})
+						}
+						else{
+							fetch(`${url}/Antecedentes/${antecedentes._id}`,{
+								headers: {
+									'Content-Type': 'application/json',
+								},
+								method: 'PUT',
+								body: JSON.stringify({
+									...antecedentes
+								}),
+							}).then((resp) =>resp.json()).then((data)=>{
+								if(data.ok){
+									alert('datos actualizados')
+								}
+							})
+						}
+					}}
+				>
+					{nuevo ? 'Crear' : 'Actualizar'}
+				</button>
+			</form>
 		</div>
 	);
 };

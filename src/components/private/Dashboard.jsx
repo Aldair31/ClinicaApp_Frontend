@@ -24,8 +24,7 @@ import DatosF from './DatosF';
 
 import HistoriasClinicas from './extras/HistoriasClinicas'
 import Antecedentes from './Antecedentes';
-import ExamenFisico from './ExamenFisico';
-import FormAntecedentes from './extras/FormAntecedentes';
+
 // DatosF
 // Error404
 const Dashboard = ({ usuario, logout }) => {
@@ -225,6 +224,14 @@ const Dashboard = ({ usuario, logout }) => {
 							<Route
 								path="/historias-clinicas/:id"
 								component={HistoriasClinicas}
+							/>
+							<Route
+								path="/antecedentes/:id"
+								component={Antecedentes}
+							/>
+							<Route
+								path="/vacunas/:id"
+								component={Vacunas}
 							/>
 							<Route
 								path="/historia-clinica/:id"

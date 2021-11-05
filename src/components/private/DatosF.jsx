@@ -5,7 +5,8 @@ import { useParams } from 'react-router-dom';
 import '../../sass/DatosF.sass';
 import { Link } from 'react-router-dom';
 import FormFiliacion from './extras/FormFiliacion';
-
+//MARQUITO QUIERE QUE HAGAS UN SORTEO :V
+//TU PATITA MEMERSON
 const DatosF = ({ usuario }) => {
 	const [datos_af, loading] = useAfiliacion();
 	const { id } = useParams();
@@ -33,6 +34,27 @@ const DatosF = ({ usuario }) => {
 												Ver H. clínicas
 											</Link>
 											&nbsp;&nbsp;
+											<Link
+												to={`/antecedentes/${id}`}
+												style={{
+													fontSize: '16px',
+													cursor: 'pointer',
+													color: 'crimson',
+												}}
+											>
+												Ver antecedentes
+											</Link>
+											&nbsp;&nbsp;
+											<Link
+												to={`/vacunas/${id}`}
+												style={{
+													fontSize: '16px',
+													cursor: 'pointer',
+													color: 'crimson',
+												}}
+											>
+												Ver vacunas
+											</Link>
 										</p>
 									) : null}
 								</h2>
