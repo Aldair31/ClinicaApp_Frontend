@@ -55,6 +55,18 @@ const DatosF = ({ usuario }) => {
 											>
 												Ver vacunas
 											</Link>
+											&nbsp;&nbsp;
+											<Link
+												to={`/graficoDeCrecimiento/${id}`}
+												style={{
+													fontSize: '16px',
+													cursor: 'pointer',
+													color: 'crimson',
+												}}
+											>
+												Ver Gráfico de Crecimiento
+											</Link>
+											
 										</p>
 									) : null}
 								</h2>

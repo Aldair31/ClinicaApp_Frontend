@@ -24,6 +24,7 @@ import DatosF from './DatosF';
 
 import HistoriasClinicas from './extras/HistoriasClinicas'
 import Antecedentes from './Antecedentes';
+import GraficoDeCrecimiento from './GraficoDeCrecimiento';
 
 // DatosF
 // Error404
@@ -232,6 +233,10 @@ const Dashboard = ({ usuario, logout }) => {
 							<Route
 								path="/vacunas/:id"
 								component={Vacunas}
+							/>
+							<Route
+								path="/graficoDeCrecimiento/:id"
+								component={GraficoDeCrecimiento}
 							/>
 							<Route
 								path="/historia-clinica/:id"
