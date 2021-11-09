@@ -25,14 +25,15 @@ const HistoriaClinica = () => {
             <h2 className="titulo-hc">Historia clínica</h2>
 			<form className="cont">
                 <h3>Datos de la H.clínica</h3>
-				<label>Anamnesis *</label>
-                <input placeholder="" value={Hc.anamnesis} name="anamnesis" onChange={handleChange}/>
-                <label>Exámenes auxiliares</label>
-                <input placeholder="Ex. auxiliares" value={Hc.examenesAuxiliares} name="examenesAuxiliares" onChange={handleChange}/>
-                <label>Tratamiento</label>
-                <input placeholder="Tratamiento" value={Hc.tratamiento} name="tratamiento" onChange={handleChange}/>
-                <label>Diagnóstico</label>
-                <input placeholder="Diagnóstico" value={Hc.diagnostico} name="diagnostico" onChange={handleChange}/>
+				<h3>Anamnesis *</h3>
+				<textarea
+					rows="10"
+					cols="50"
+					placeholder="Anámnesis"
+					name="anamnesis"
+					value={Hc.anamnesis}
+					onChange={handleChange}
+				></textarea>
                 <h3>Examen físico</h3>
                 <label>Peso</label>
                 <input placeholder="Peso" type="number" min="0" value={Hc.peso} name="peso" onChange={handleChange}/>
@@ -59,6 +60,33 @@ const HistoriaClinica = () => {
                 <input placeholder="Abdomen" value={Hc.abdomen} name="abdomen" onChange={handleChange}/>
                 <label>Neurológico</label>
                 <input placeholder="Neurológico" value={Hc.neurologico} name="neurologico" onChange={handleChange}/>
+				<h3>Diagnóstico</h3>
+				<textarea
+					rows="10"
+					cols="50"
+					placeholder="Diagnóstico"
+					name="diagnostico"
+					value={Hc.diagnostico}
+					onChange={handleChange}
+				></textarea>
+				<h3>Exámenes auxiliares</h3>
+				<textarea
+					rows="10"
+					cols="50"
+					placeholder="Ex. auxiliares"
+					name="examenesAuxiliares"
+					value={Hc.examenesAuxiliares}
+					onChange={handleChange}
+				></textarea>
+				<h3>Tratamiento</h3>
+				<textarea
+					rows="10"
+					cols="50"
+					placeholder="Tratamiento"
+					name="tratamiento"
+					value={Hc.tratamiento}
+					onChange={handleChange}
+				></textarea>
 				<button onClick={(e)=>{
 					e.preventDefault()
 					fetch(`${url}/HistClinica/${id}`, {

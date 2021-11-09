@@ -161,7 +161,7 @@ const GraficoDeCrecimiento = () => {
 		<>
 			<div className="list">
 				<h2 style={{"margin-bottom": "50px"}}>Gráfico de Crecimiento</h2>
-                <LineChart width={800} height={400} data={data}>
+                <LineChart width={1200} height={400} data={data}>
                     <XAxis dataKey="name" />
                     <YAxis />
                     <CartesianGrid stroke="#eee" strokeDasharray="8 9" />
