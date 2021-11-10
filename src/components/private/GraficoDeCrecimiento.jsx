@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import '../../sass/Dashboard.sass';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid }from 'recharts';
 
@@ -173,4 +173,71 @@ const GraficoDeCrecimiento = () => {
 	);
 };
 
-export default GraficoDeCrecimiento;
+export default GraficoDeCrecimiento;*/
+
+import React from 'react'
+//import '../../sass/Dashboard.sass';
+import { Line} from 'react-chartjs-2'
+
+const BarChart = () => {
+  return (
+    <div>
+      <Line
+        data={
+            {
+                labels: ['1 año', '2 años', '3 años', '4 años', '5 años', '6 años', '7 años', '8 años'],
+                datasets: [
+                    {
+                        label: 'Peso',
+                        data: [12, 12, 12, 12, 12, 12],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Edad',
+                        data: [14, 15, 16, null, null, 9, 10, 12],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1 ,
+                        spanGaps : true
+                    }
+                ]
+            }
+        }
+        height={400}
+        width={600}
+      />
+    </div>
+  )
+}
+
+export default BarChart
