@@ -178,6 +178,7 @@ export default GraficoDeCrecimiento;*/
 import React from 'react'
 //import '../../sass/Dashboard.sass';
 import { Line} from 'react-chartjs-2'
+import { ChartOptions } from 'react-chartjs-2'
 
 const BarChart = () => {
   return (
@@ -185,33 +186,74 @@ const BarChart = () => {
       <Line
         data={
             {
-                labels: ['1 año', '2 años', '3 años', '4 años', '5 años', '6 años', '7 años', '8 años'],
+                labels: ['Nacimiento', '3', '6', '9', '12', '15', '18', '21', '24', '27', '30', '33', '36'],
                 datasets: [
                     {
-                        label: 'Peso',
-                        data: [12, 12, 12, 12, 12, 12],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
+                        label: 'Ideal',
+                        data: [3.6, 6, 7.9, 9.3, 10.3, 11.1, 11.7, 12.2, 12.7, 13.1, 13.5, 13.9, 14.3],
+                        /*backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
                             'rgba(255, 206, 86, 0.2)',
                             'rgba(75, 192, 192, 0.2)',
                             'rgba(153, 102, 255, 0.2)',
                             'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
+                        ],*/
+                   		/*borderColor: [
                             'rgba(255, 99, 132, 1)',
                             'rgba(54, 162, 235, 1)',
                             'rgba(255, 206, 86, 1)',
                             'rgba(75, 192, 192, 1)',
                             'rgba(153, 102, 255, 1)',
                             'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
+                        ],*/
+						borderColor : 'rgba(1, 97, 170, 1)',
+                        borderWidth: 2
                     },
+					//IDEALES MÍNIMOS
+					{
+						label : 'Ideal mínimo',
+						data: [2.4, 4.6, 6.3, 7.5, 8.4, 9.1, 9.6, 10, 10.4, 10.7, 11.1, 11.4, 11.7],
+						borderColor : 'rgba(1, 97, 170, 1)',
+                        borderWidth: 2
+					},
+					{
+						label : 'Ideal mínimo 2',
+						data: [2.8, 5, 6.8, 8, 9, 9.7, 10.2, 10.7, 11.1, 11.4, 11.8, 12.1, 12.5],
+						borderColor : 'rgba(1, 97, 170, 1)',
+                        borderWidth: 1
+					},
+					{
+						label : 'Ideal mínimo 3',
+						data: [3.2, 5.5, 7.3, 8.6, 9.6, 10.3, 10.9, 11.4, 11.8, 12.2, 12.5, 12.9, 13.3],
+						borderColor : 'rgba(1, 97, 170, 1)',
+                        borderWidth: 1
+					},
+					//IDEALES MÁXIMOS
+					{
+						label : 'Ideal máximo',
+						data: [4.5, 7.5, 9.8, 11.5, 12.7, 13.7, 14.4, 15, 15.6, 16.2, 16.7, 17.3, 17.9],
+						borderColor : 'rgba(1, 97, 170, 1)',
+                        borderWidth: 2
+					},
+					{
+						label : 'Ideal máximo 2',
+						data: [4.2, 7, 9.2, 10.7, 11.9, 12.8, 13.5, 14.1, 14.6, 15.1, 15.6, 16.1, 16.6],
+						borderColor : 'rgba(1, 97, 170, 1)',
+                        borderWidth: 1
+					},
+					{
+						label : 'Ideal máximo 3',
+						data: [3.9, 6.5, 8.5, 10, 11.1, 11.9, 12.6, 13.1, 13.6, 14.1, 14.5, 15, 15.5],
+						borderColor : 'rgba(1, 97, 170, 1)',
+                        borderWidth: 1
+					},
+					//DEL PACIENTE
                     {
-                        label: 'Edad',
-                        data: [14, 15, 16, null, null, 9, 10, 12],
-                        backgroundColor: [
+                        label: 'Peso',
+                        data: [4.2, 7, 8, null, null, 10.5, 12, 12.4, null, null, 15, 17, 19],
+                        borderColor : 'rgba(21, 164, 80, 1)',
+						/*backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
                             'rgba(255, 206, 86, 0.2)',
@@ -226,15 +268,48 @@ const BarChart = () => {
                             'rgba(75, 192, 192, 1)',
                             'rgba(153, 102, 255, 1)',
                             'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1 ,
+                        ],*/
+                        borderWidth: 3,
                         spanGaps : true
                     }
-                ]
+                ],
             }
         }
-        height={400}
-        width={600}
+        options = {{
+			plugins : {
+				title : {
+					display : true,
+					text : 'Gráfica de Crecimiento Peso - Edad',
+					color : '#0161AA',
+					font : {
+						size : 20
+					}
+				},
+				legend : {
+					display : false
+				}
+			},
+            scales: {
+                y: {
+                    title : {
+                        display : true,
+                        text : 'PESO (KG)',
+						color : '#0161AA'
+                    },
+					suggestedMin: 2,
+					ticks: {
+						stepSize: 1
+					  }
+                },
+				x: {
+                    title : {
+                        display : true,
+                        text : 'EDAD (MESES)',
+						color : '#0161AA'
+                    }
+                }
+            }
+        }}
       />
     </div>
   )
