@@ -11,8 +11,8 @@ const FormFiliacion = ({ item }) => {
 				initialValues={{
 					nombres_paciente: item.nombres_paciente,
 					dni_paciente: item.dni_paciente,
-					fecha_nac: moment(item.fecha_nac).format('YYYY-MM-DD'),
-					lugar_nac: 'Chiclayo',
+					fecha_nac: /*moment(item.fecha_nac).format('YYYY-MM-DD')*/moment(moment(item.fecha_nac).add(1, 'days').calendar()).format('YYYY-MM-DD'),
+					lugar_nac: item.lugar_nac,
 					direccion: item.direccion,
 					nombre_madre: item.nombre_madre,
 					ocupacion_madre: item.ocupacion_madre,

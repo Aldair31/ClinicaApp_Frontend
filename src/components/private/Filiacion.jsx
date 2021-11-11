@@ -24,22 +24,27 @@ const Filiacion = () => {
 							</p>
 							<p>
 								<strong>-Fecha de nacimiento: </strong>
-								{moment(
+								{/*moment(
 									moment(item.fecha_nac).format(
 										'DD/MM/YYYY'
-									),
-									'DD/MM/YYYY',
-
-								).add(1, 'days').calendar()}
+									)
+									).add(0, 'days').calendar()
+									/*moment(moment(item.fecha_nac).format('DD-MM-YYYY'))*/
+									moment(moment(item.fecha_nac).add(1, 'days').calendar()).format('DD/MM/YYYY')}
 	
 							</p>
 							<p>
 								<strong>-Edad: </strong>
-								{moment(
-									moment(item.fecha_nac).format('ll')
+								{/*moment(
+									moment(item.fecha_nac).format('DD/MM/YYY')
 								)
 									.fromNow()
-									.replace('months ago', 'meses').replace('years ago','años').replace('days ago','días')}
+								.replace('months ago', 'meses').replace('years ago','años').replace('days ago','días')*/
+								//moment(moment().format('DD/MM/YYYY')).diff(moment(moment(item.fecha_nac).add(1, 'days').calendar()).format('DD/MM/YYYY'), "years")
+								//moment(moment().format('L')).diff(moment('11/11/2000'))
+								//moment('2000/11/11')
+								moment().diff(moment(item.fecha_nac).add(1, 'days').calendar(), 'years') + ' años ' + moment().diff(moment(item.fecha_nac).add(1, 'days').calendar(), 'months') % 12 + ' meses'
+								}
 							</p>
 							<p>
 								<Link to={`datos-f/${item._id}`}>

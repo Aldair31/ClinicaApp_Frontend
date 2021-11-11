@@ -26,14 +26,15 @@ const HistoriasClinicas = () => {
 										<h3>Historia Clinica</h3>
 										<p>
 											Fecha:{' '}
-											{moment(
+											{/*moment(
 												moment(item.fecha).format(
 													'DD/MM/YYYY'
 												),
 												'DD/MM/YYYY'
 											)
-												.add(0, 'days')
-												.calendar()}
+												.add(1, 'days')
+												.calendar()*/
+												moment(item.fecha).format('DD/MM/YYYY')}
 										</p>
 										<p>
 											Diagnostico: {item.diagnostico}
