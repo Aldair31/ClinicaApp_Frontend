@@ -3,6 +3,9 @@ import React from 'react';
 import useCita from '../../hooks/useCita';
 import url from '../../keys/backend_keys';
 import '../../sass/Dashboard.sass';
+
+import moment from 'moment';
+
 const InicioSecretaria = () => {
 	let [datos_af, loading, set_datos_af] = useCita();
 	const switchMotivo = (valor) => {
@@ -52,6 +55,18 @@ const InicioSecretaria = () => {
 					<div className="datos_filiacion">
 						{datos_af.map((item) => (
 							<div className="dato_filiacion" key={item._id}>
+								<p>
+									<strong>-Fecha de la cita: </strong>
+									{
+										moment(item.fecha).format('DD/MM/YYYY')
+									}
+								</p>
+								<p>
+									<strong>-Hora de la cita: </strong>
+									{
+										moment(item.fecha).format('LT')
+									}
+								</p>
 								<p>
 									<strong>-DNI del paciente: </strong>
 									{item.DNI}

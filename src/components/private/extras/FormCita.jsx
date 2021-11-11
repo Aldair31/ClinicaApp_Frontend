@@ -28,7 +28,7 @@ const FormCita = () => {
 					telefono: '',
 					fecha_nac: '',
 					motivo: '3',
-					sexo: '2',
+					sexo: '1',
 					hora: '',
 					fecha: '',
 					condicion: '1',
@@ -50,9 +50,11 @@ const FormCita = () => {
 						errores.responsable =
 							'Por favor ingrese el nombre del responsable';
 					} else if (
-						!/^[a-zA-ZÀ-ÿ\s]{1,60}$/.test(valores.responsable)
+						!/^[a-zA-ZÀ-ÿ\s]{1,60}$/.test(
+							valores.responsable
+						)
 					) {
-						errores.nombre =
+						errores.responsable =
 							'EL nombre del responsable sólo puede contener letras y espacios';
 					}
 					if (!valores.dni_paciente) {
@@ -99,14 +101,12 @@ const FormCita = () => {
 					if (
 						consumirNuevaCita({
 							nombre_paciente: valores.nombre_paciente,
-							fecha_nac: valores.fecha_nac,
+							fecha_nac: moment(valores.fecha_nac).format(),
 							fecha: moment(
 								new Date(
 									`${valores.fecha} ${valores.hora}`
 								)
-							)
-								.subtract(5, 'hours')
-								.format(),
+							).format(),
 							sexo: valores.sexo,
 							responsable: valores.responsable,
 							telefono: valores.telefono,

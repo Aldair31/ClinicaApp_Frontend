@@ -35,14 +35,9 @@ const InicioDoctor = () => {
 							<div className="dato_filiacion" key={item._id}>
 								<p>
 									<strong>-Fecha de consulta: </strong>
-									{/*moment(
-										moment(item.fecha).format(
-											'DD/MM/YYYY'
-										),
-										'DD/MM/YYYY',
-
-										).add(0, 'days').calendar()*/
-										moment(item.fecha).format('DD/MM/YYYY')}
+									{
+										moment(item.fecha).format('DD/MM/YYYY')
+									}
 								</p>
 								<p>
 									<strong>-DNI del paciente: </strong>
