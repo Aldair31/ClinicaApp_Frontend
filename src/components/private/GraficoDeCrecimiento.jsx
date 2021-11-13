@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
+import url from '../../keys/backend_keys';
 //import '../../sass/Dashboard.sass';
 import { Line } from 'react-chartjs-2'
-import useHistClinica from '../../hooks/useHistClinica'
+//import useHistClinica from '../../hooks/useHistClinica'
 
 var datos = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
 for (var i = 0; i<6; i++){
@@ -10,6 +12,27 @@ for (var i = 0; i<6; i++){
 
 const GraficoDeCrecimiento = () => {
 	//let [datos_af, loading] = useHistClinica();
+	const [grafica, setGrafica] = useState([]);
+	const { id } = useParams();
+
+	useEffect(() => {
+		let edad = [];
+		let peso = [];
+		fetch(`${url}/HistClinica/${id}`)
+			.then((resp) =>{
+				return resp.json();
+			})
+			
+			.then((data) =>{
+				setGrafica(data),
+				console.log(data)
+				for(const ObjData of data){
+					peso.push(parseInt(ObjData.peso))
+				}
+				console.log(peso)
+			});
+			
+	}, []);
   return (
     <div>
       <Line
