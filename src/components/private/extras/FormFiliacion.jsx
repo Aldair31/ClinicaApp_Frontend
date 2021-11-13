@@ -115,7 +115,7 @@ const FormFiliacion = ({ item }) => {
 						method: 'PUT',
 						body: JSON.stringify({
 							...valores,
-							// fecha_nac: moment(new Date(`${valores.fecha}`)).add(1, 'days').format(),
+							fecha_nac : moment(valores.fecha_nac).format(),
 							id: item._id,
 						}),
 					})
@@ -124,17 +124,17 @@ const FormFiliacion = ({ item }) => {
 							if (data.ok) {
 								alert('Actualizado correctamente');
 								console.log(data);
-								const { evento } = data;
-								console.log(evento);
-								return evento;
+								/*const { evento } = data;
+								console.log(evento);*/
+								return data;
 							}
 						})
 						.then((e) => {		
-							valores.direccion = e.direccion;
+							/*valores.direccion = e.direccion;
 							valores.nombres_paciente = e.nombres_paciente;
 							valores.dni_paciente = e.dni_paciente;
 							valores.lugar_nac = e.lugar_nac;
-							valores.fecha_nac = e.fecha_nac;
+							//valores.fecha_nac = moment(e.fecha_nac).add(5, 'days').calendar();
 							valores.numero_hijo = e.numero_hijo;
 							valores.ocupacion_madre = e.ocupacion_madre;
 							valores.ocupacion_padre = e.ocupacion_padre;
@@ -142,7 +142,7 @@ const FormFiliacion = ({ item }) => {
 							valores.telefono_madre = e.telefono_madre;
 							valores.telefono_padre = e.telefono_padre;
 							valores.nombre_madre = e.nombre_madre;
-							valores.nombre_padre = e.nombre_padre;
+							valores.nombre_padre = e.nombre_padre;*/
 						});
 				}}
 			>

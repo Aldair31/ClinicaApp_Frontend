@@ -9,7 +9,7 @@ const HistoriaClinica = () => {
 		fetch(`${url}/HistClinica/id/${id}`)
 			.then((resp) => resp.json())
 			.then((data)=>{
-				console.log('hist. clniica');
+				console.log('hist.clinica');
 				console.log(data);
 				setHc(data)
 			})

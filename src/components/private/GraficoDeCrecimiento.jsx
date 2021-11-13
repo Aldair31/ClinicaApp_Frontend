@@ -1,8 +1,15 @@
 import React from 'react'
 //import '../../sass/Dashboard.sass';
 import { Line } from 'react-chartjs-2'
+import useHistClinica from '../../hooks/useHistClinica'
 
-const BarChart = () => {
+var datos = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+for (var i = 0; i<6; i++){
+	datos[i] = i+4
+}
+
+const GraficoDeCrecimiento = () => {
+	//let [datos_af, loading] = useHistClinica();
   return (
     <div>
       <Line
@@ -66,8 +73,9 @@ const BarChart = () => {
 					//DEL PACIENTE
                     {
                         label: 'Peso',
-                        data: [4.2, null, null, 7, null, null, 8, null, null, 10.5, null, null, 12, null, null, 12.4, null, null, null, null, null, null, null, null, null, null, 13, null, null, null, null, null, null, 14, null, null, 15],
-                        borderColor : 'rgba(21, 164, 80, 1)',
+                        //data: [4.2, null, null, 7, null, null, 8, null, null, 10.5, null, null, 12, null, null, 12.4, null, null, null, null, null, null, null, null, null, null, 13, null, null, null, null, null, null, 14, null, null, 15],
+                        data : datos,
+						borderColor : 'rgba(21, 164, 80, 1)',
                         borderWidth: 3,
                         spanGaps : true
                     }
@@ -75,9 +83,10 @@ const BarChart = () => {
             }
         }
         options = {{
+			responsive : true,
 			elements : {
 				point : {
-					radius : 0
+					radius : 2
 				}
 			},
 			plugins : {
@@ -93,7 +102,7 @@ const BarChart = () => {
 					display : false
 				},
 				tooltip : {
-					enabled : false
+					enabled : true
 				}
 			},
             scales: {
@@ -122,4 +131,4 @@ const BarChart = () => {
   )
 }
 
-export default BarChart
+export default GraficoDeCrecimiento

@@ -56,6 +56,12 @@ const InicioSecretaria = () => {
 						{datos_af.map((item) => (
 							<div className="dato_filiacion" key={item._id}>
 								<p>
+									<strong>-Fecha de nacimiento: </strong>
+									{
+										moment(item.fecha_nac).format('DD/MM/YYYY')
+									}
+								</p>
+								<p>
 									<strong>-Fecha de la cita: </strong>
 									{
 										moment(item.fecha).format('DD/MM/YYYY')

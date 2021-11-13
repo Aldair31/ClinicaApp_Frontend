@@ -25,10 +25,7 @@ const HistoriasClinicas = () => {
 									<div key={item._id} className="cita">
 										<h3>Historia Clinica</h3>
 										<p>
-											Fecha:{' '}
-											{
-												moment(item.fecha).format('DD/MM/YYYY')
-											}
+											Fecha : {moment(item.fecha).format('DD/MM/YYYY')}
 										</p>
 										<p>
 											Diagnostico: {item.diagnostico}
@@ -37,8 +34,7 @@ const HistoriasClinicas = () => {
 											Tratamiento: {item.tratamiento}
 										</p>
 										<p>
-											Examenes Auxiliares:{' '}
-											{item.examenesAuxiliares}
+											Examenes Auxiliares: {item.examenesAuxiliares}
 										</p>
 										<Link to={`/historia-clinica/${item._id}`}>
 											<p className="ver">
