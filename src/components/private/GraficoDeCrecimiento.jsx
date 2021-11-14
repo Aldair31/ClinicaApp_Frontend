@@ -25,7 +25,7 @@ const GraficoDeCrecimiento = () => {
 	}*/
 
 	for (let item in fechaHistoria){
-		meses[item] = moment(fechaHistoria[item]).diff(moment(fechaNac).format(), 'months')
+		meses[item] = moment(fechaHistoria[item]).diff(moment(fechaNac[0]).format(), 'months')
 	}
 
 	//console.log(moment(fechaHistoria[2]).diff(moment(fechaNac).format(), 'months'))

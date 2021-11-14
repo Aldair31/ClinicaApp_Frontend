@@ -9,7 +9,7 @@ const useHistClinica = () => {
 	const { id } = useParams();
 
 	useEffect(() => {
-		let edad = [];
+		//let edad = [];
 		//let peso = [];
 		fetch(`${url}/HistClinica/idPaciente/${id}`)
 			.then((resp) =>{
