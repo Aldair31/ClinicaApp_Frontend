@@ -1,32 +1,29 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import url from '../keys/backend_keys';
-
-let peso = [];
-
-const useHistClinica = () => {
+const useFiliacionUnica = () => {
 	const [grafica, setGrafica] = useState([]);
 	const { id } = useParams();
 
 	useEffect(() => {
 		let edad = [];
-		//let peso = [];
-		fetch(`${url}/HistClinica/idPaciente/${id}`)
+		let peso = [];
+		fetch(`${url}/Historia/${id}`)
 			.then((resp) =>{
 				return resp.json();
+				//console.log(id)
 			})
 			
 			.then((data) =>{
 				setGrafica(data)
-				//console.log(data)
+				console.log(data)
 				/*for(const ObjData of data){
-					peso.push(parseInt(ObjData.peso))
+					//peso.push(ObjData.fecha_nac)
 				}*/
 				//console.log(peso)
 			});
 			
 	}, []);
-	return grafica
 };
 
-export default useHistClinica;
+export default useFiliacionUnica;

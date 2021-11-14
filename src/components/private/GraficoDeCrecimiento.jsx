@@ -1,40 +1,68 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
-import url from '../../keys/backend_keys';
+import moment from 'moment'
+import React from 'react'
 //import '../../sass/Dashboard.sass';
 import { Line } from 'react-chartjs-2'
-//import useHistClinica from '../../hooks/useHistClinica'
+import useFiliacionUnica from '../../hooks/useFiliacionUnica'
+import useHistClinica from '../../hooks/useHistClinica'
+//import moment from 'moment'
 
 var datos = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
-for (var i = 0; i<6; i++){
-	datos[i] = i+4
-}
+
+//var peso = [4, 5, 6, 8, 15, 16]
+
+
 
 const GraficoDeCrecimiento = () => {
-	//let [datos_af, loading] = useHistClinica();
-	const [grafica, setGrafica] = useState([]);
-	const { id } = useParams();
+	//useHistClinica()
+	let {fechaHistoria, fechaNac, pesoPaciente} = useHistClinica()
+	/*console.log(fechaHistoria)
+	console.log(fechaNac)
+	console.log(pesoPaciente)*/
 
-	useEffect(() => {
-		let edad = [];
-		let peso = [];
-		fetch(`${url}/HistClinica/${id}`)
-			.then((resp) =>{
-				return resp.json();
-			})
-			
-			.then((data) =>{
-				setGrafica(data),
-				console.log(data)
-				for(const ObjData of data){
-					peso.push(parseInt(ObjData.peso))
-				}
-				console.log(peso)
-			});
-			
-	}, []);
+	let meses = [] 
+	/*for(var i = 0; i < fechaHistoria.length; i++){
+		meses[i] = moment(fechaHistoria[i]).diff(moment(fechaNac).format(), 'months')
+	}*/
+
+	for (let item in fechaHistoria){
+		meses[item] = moment(fechaHistoria[item]).diff(moment(fechaNac).format(), 'months')
+	}
+
+	//console.log(moment(fechaHistoria[2]).diff(moment(fechaNac).format(), 'months'))
+
+	//console.log(pesos[2][0])
+
+	for (var i = 0; i<meses.length; i++){
+		//datos[i] = i+4
+		datos[meses[i]] = pesoPaciente[i]
+	}
+
+	//console.log(pesos[0])
+	//let [datos_af, set_datos_af] = useAfiliacion()
+	//let [datos_hc, id] = useHistClinica()
+
+	/*let peso = useHistClinica()
+	let edad = useFiliacionUnica()*/
+
+	/*console.log(
+		peso.map((item) => (
+			///moment(item.fecha_nac).format('DD/MM/YYYY')
+			item
+		))
+	)
+
+	console.log(
+		edad.map((item) => (
+			///moment(item.fecha_nac).format('DD/MM/YYYY')
+			item
+		))
+	)*/
+	
+	//console.log(edad)
+
   return (
     <div>
+		
       <Line
         data={
             {
