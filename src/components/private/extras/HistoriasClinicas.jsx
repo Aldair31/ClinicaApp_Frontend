@@ -41,7 +41,7 @@ const HistoriasClinicas = () => {
 											Fecha : {moment(item.fecha).format('DD/MM/YYYY')}
 										</p>
 										<p>
-											Edad esperada : {moment(item.fecha).diff(fechaNacimiento[0], 'months')} meses
+											Edad esperada : {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).years()} años {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).months()} meses {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).days()} días
 										</p>
 										<p>
 											Diagnostico: {item.diagnostico}
