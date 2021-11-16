@@ -4,9 +4,9 @@ import { Line } from 'react-chartjs-2'
 import useFiliacionUnica from '../../hooks/useFiliacionUnica'
 import useHistClinica from '../../hooks/useHistClinica'
 
-var datos = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
 
 const GraficoDeCrecimiento = () => {
+	var datos = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
 	let {fechaHistoria, fechaNac, pesoPaciente} = useHistClinica()
 
 
@@ -92,7 +92,7 @@ const GraficoDeCrecimiento = () => {
                         label: 'Peso',
                         //data: [4.2, null, null, 7, null, null, 8, null, null, 10.5, null, null, 12, null, null, 12.4, null, null, null, null, null, null, null, null, null, null, 13, null, null, null, null, null, null, 14, null, null, 15],
                         data : datos,
-						borderColor : 'rgba(21, 164, 80, 1)',
+						borderColor : 'red',
                         borderWidth: 3,
                         spanGaps : true
                     }
