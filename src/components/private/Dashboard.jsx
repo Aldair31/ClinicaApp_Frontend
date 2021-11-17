@@ -24,7 +24,8 @@ import DatosF from './DatosF';
 
 import HistoriasClinicas from './extras/HistoriasClinicas'
 import Antecedentes from './Antecedentes';
-import GraficoDeCrecimiento from './GraficoDeCrecimiento';
+import GraficoDeCrecimientoPesoEdadNiño0a36 from './GraficoDeCrecimientoPesoEdadNiño0a36';
+import GraficoDeCrecimientoPesoEdadNiña0a36 from './GraficoDeCrecimientoPesoEdadNiña0a36';
 
 // DatosF
 // Error404
@@ -235,8 +236,8 @@ const Dashboard = ({ usuario, logout }) => {
 								component={Vacunas}
 							/>
 							<Route
-								path="/graficoDeCrecimiento/:id"
-								component={GraficoDeCrecimiento}
+								path="/GraficoDeCrecimientoPesoEdadNiño0a36/:id"
+								component={GraficoDeCrecimientoPesoEdadNiño0a36}
 							/>
 							<Route
 								path="/historia-clinica/:id"

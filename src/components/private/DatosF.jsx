@@ -57,7 +57,7 @@ const DatosF = ({ usuario }) => {
 											</Link>
 											&nbsp;&nbsp;
 											<Link
-												to={`/graficoDeCrecimiento/${id}`}
+												to={`/GraficoDeCrecimientoPesoEdadNiño0a36/${id}`}
 												style={{
 													fontSize: '16px',
 													cursor: 'pointer',

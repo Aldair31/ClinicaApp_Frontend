@@ -1,11 +1,10 @@
 import moment from 'moment'
 import React from 'react'
 import { Line } from 'react-chartjs-2'
-import useFiliacionUnica from '../../hooks/useFiliacionUnica'
 import useHistClinica from '../../hooks/useHistClinica'
 
 
-const GraficoDeCrecimiento = () => {
+const GraficoDeCrecimientoPesoEdadNiño0a36 = () => {
 	var datos = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
 	let {fechaHistoria, fechaNac, pesoPaciente} = useHistClinica()
 
@@ -38,7 +37,7 @@ const GraficoDeCrecimiento = () => {
                     {
                         label: 'Ideal',
                         //data: [3.6, 6, 7.9, 9.3, 10.3, 11.1, 11.7, 12.2, 12.7, 13.1, 13.5, 13.9, 14.3],
-						data : [3.6, null, null, null, null, null, 6, null, null, null, null, null, 7.9, null, null, null, null, null, 9.3, null, null, null, null, null, 10.3, null, null, null, null, null, 11.1, null, null, null, null, null, 11.7, null, null, null, null, null, 12.2, null, null, null, null, null, 12.7, null, null, null, null, null, 13.1, null, null, null, null, null, 13.5, null, null, null, null, null, 13.9, null, null, null, null, null, 14.3, 15],
+						data : [3.6, null, null, null, null, null, 6, null, null, null, null, null, 7.9, null, null, null, null, null, 9.3, null, null, null, null, null, 10.3, null, null, null, null, null, 11.1, null, null, null, null, null, 11.7, null, null, null, null, null, 12.2, null, null, null, null, null, 12.7, null, null, null, null, null, 13.1, null, null, null, null, null, 13.5, null, null, null, null, null, 13.9, null, null, null, null, null, 14.3],
 						borderColor : 'rgba(1, 97, 170, 1)',
                         borderWidth: 2,
 						spanGaps : true
@@ -129,17 +128,21 @@ const GraficoDeCrecimiento = () => {
                         text : 'PESO (KG)',
 						color : '#0161AA'
                     },
-					suggestedMin: 2,
+					suggestedMin: 0,
 					ticks: {
-						stepSize: 1
-					  }
+						stepSize: 1,
+						color : '#0161AA'
+					}
                 },
 				x: {
                     title : {
                         display : true,
                         text : 'EDAD (MESES)',
 						color : '#0161AA'
-                    }
+                    },
+					ticks: {
+						color : '#0161AA'
+					}
                 }
             }
         }}
@@ -148,4 +151,5 @@ const GraficoDeCrecimiento = () => {
   )
 }
 
-export default GraficoDeCrecimiento
+export default GraficoDeCrecimientoPesoEdadNiño0a36 
+
