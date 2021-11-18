@@ -26,6 +26,8 @@ import HistoriasClinicas from './extras/HistoriasClinicas'
 import Antecedentes from './Antecedentes';
 import GraficoDeCrecimientoPesoEdadNiño0a36 from './GraficoDeCrecimientoPesoEdadNiño0a36';
 import GraficoDeCrecimientoPesoEdadNiña0a36 from './GraficoDeCrecimientoPesoEdadNiña0a36';
+import GraficoDeCrecimientoTallaEdadNiño0a36 from './GraficoDeCrecimientoTallaEdadNiño0a36';
+import GraficoDeCrecimientoTallaEdadNiña0a36 from './GraficoDeCrecimientoTallaEdadNiña0a36';
 
 // DatosF
 // Error404

@@ -4,9 +4,9 @@ import { Line } from 'react-chartjs-2'
 import useHistClinica from '../../hooks/useHistClinica'
 
 
-const GraficoDeCrecimientoPesoEdadNiño0a36 = () => {
+const GraficoDeCrecimientoTallaEdadNiño0a36 = () => {
 	var datos = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
-	let {fechaHistoria, fechaNac, pesoPaciente} = useHistClinica()
+	let {fechaHistoria, fechaNac, tallaPaciente} = useHistClinica()
 
 
 	let meses = [] 
@@ -22,7 +22,7 @@ const GraficoDeCrecimientoPesoEdadNiño0a36 = () => {
 	}
 
 	for (var i = 0; i<meses.length; i++){
-		datos[meses[i]] = pesoPaciente[i]
+		datos[meses[i]] = tallaPaciente[i]
 	}
 
   return (
@@ -36,9 +36,8 @@ const GraficoDeCrecimientoPesoEdadNiño0a36 = () => {
 				datasets: [
                     {
                         label: 'Ideal',
-						labels : ['meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses','meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses', 'meses'],
                         //data: [3.6, 6, 7.9, 9.3, 10.3, 11.1, 11.7, 12.2, 12.7, 13.1, 13.5, 13.9, 14.3],
-						data : [3.6, null, null, null, null, null, 6, null, null, null, null, null, 7.9, null, null, null, null, null, 9.3, null, null, null, null, null, 10.3, null, null, null, null, null, 11.1, null, null, null, null, null, 11.7, null, null, null, null, null, 12.2, null, null, null, null, null, 12.7, null, null, null, null, null, 13.1, null, null, null, null, null, 13.5, null, null, null, null, null, 13.9, null, null, null, null, null, 14.3],
+						data : [50, null, null, null, null, null, 61, null, null, null, null, null, 67, null, null, null, null, null, 71.5, null, null, null, null, null, 75.5, null, null, null, null, null, 79, null, null, null, null, null, 82, null, null, null, null, null, 85, null, null, null, null, null, 87, null, null, null, null, null, 89.5, null, null, null, null, null, 92, null, null, null, null, null, 94, null, null, null, null, null, 95.5],
 						borderColor : 'rgba(1, 97, 170, 1)',
                         borderWidth: 2,
 						spanGaps : true
@@ -46,21 +45,21 @@ const GraficoDeCrecimientoPesoEdadNiño0a36 = () => {
 					//IDEALES MÍNIMOS
 					{
 						label : 'Ideal mínimo',
-						data: [2.4, null, null, null, null, null, 4.6, null, null, null, null, null, 6.3, null, null, null, null, null, 7.5, null, null, null, null, null, 8.4, null, null, null, null, null, 9.1, null, null, null, null, null, 9.6, null, null, null, null, null, 10, null, null, null, null, null, 10.4, null, null, null, null, null, 10.7, null, null, null, null, null, 11.1, null, null, null, null, null, 11.4, null, null, null, null, null, 11.7],
+						data: [45, null, null, null, null, null, 56.5, null, null, null, null, null, 62.5, null, null, null, null, null, 67, null, null, null, null, null, 70.5, null, null, null, null, null, 73.5, null, null, null, null, null, 76, null, null, null, null, null, 78.5, null, null, null, null, null, 80.9, null, null, null, null, null, 83, null, null, null, null, null, 85, null, null, null, null, null, 87, null, null, null, null, null, 89],
 						borderColor : 'rgba(1, 97, 170, 1)',
                         borderWidth: 2,
                         spanGaps : true
 					},
 					{
 						label : 'Ideal mínimo 2',
-						data: [2.8, null, null, null, null, null, 5, null, null, null, null, null, 6.8, null, null, null, null, null, 8, null, null, null, null, null, 9, null, null, null, null, null, 9.7, null, null, null, null, null, 10.2, null, null, null, null, null, 10.7, null, null, null, null, null, 11.1, null, null, null, null, null, 11.4, null, null, null, null, null, 11.8, null, null, null, null, null, 12.1, null, null, null, null, null, 12.5],
+						data: [47, null, null, null, null, null, 58, null, null, null, null, null, 64, null, null, null, null, null, 68.4, null, null, null, null, null, 72, null, null, null, null, null, 75, null, null, null, null, null, 78, null, null, null, null, null, 80.5, null, null, null, null, null, 82.9, null, null, null, null, null, 85, null, null, null, null, null, 87, null, null, null, null, null, 89, null, null, null, null, null, 91],
 						borderColor : 'rgba(1, 97, 170, 1)',
                         borderWidth: 1,
                         spanGaps : true
 					},
 					{
 						label : 'Ideal mínimo 3',
-						data: [3.2, null, null, null, null, null, 5.5, null, null, null, null, null, 7.3, null, null, null, null, null, 8.6, null, null, null, null, null, 9.6, null, null, null, null, null, 10.3, null, null, null, null, null, 10.9, null, null, null, null, null, 11.4, null, null, null, null, null, 11.8, null, null, null, null, null, 12.2, null, null, null, null, null, 12.5, null, null, null,null, null, 12.9, null, null, null, null, null, 13.3],
+						data: [48.5, null, null, null, null, null, 59, null, null, null, null, null, 65.2, null, null, null, null, null, 70, null, null, null, null, null, 73.5, null, null, null, null, null, 77, null, null, null, null, null, 79.9, null, null, null, null, null, 82.5, null, null, null, null, null, 85, null, null, null, null, null, 87.2, null, null, null, null, null, 89.4, null, null, null, null, null, 91.4, null, null, null, null, null, 93.2],
 						borderColor : 'rgba(1, 97, 170, 1)',
                         borderWidth: 1,
                         spanGaps : true
@@ -68,28 +67,28 @@ const GraficoDeCrecimientoPesoEdadNiño0a36 = () => {
 					//IDEALES MÁXIMOS
 					{
 						label : 'Ideal máximo',
-						data: [4.5, null, null, null, null, null, 7.5, null, null, null, null, null, 9.8, null, null, null, null, null, 11.5, null, null, null, null, null, 12.7, null, null, null, null, null, 13.7, null, null, null, null, null, 14.4, null, null, null, null, null, 15, null, null, null, null, null, 15.6, null, null, null, null, null, 16.2, null, null, null, null, null, 16.7, null, null, null, null, null, 17.3, null, null, null, null, null, 17.9],
+						data: [55, null, null, null, null, null, 66, null, null, null, null, null, 72.2, null, null, null, null, null, 77, null, null, null, null, null, 81.4, null, null, null, null, null, 85, null, null, null, null, null, 88, null, null, null, null, null, 91, null, null, null, null, null, 94, null, null, null, null, null, 96.5, null, null, null, null, null, 99, null, null, null, null, null, 101.4, null, null, null, null, null, 103.4],
 						borderColor : 'rgba(1, 97, 170, 1)',
                         borderWidth: 2,
                         spanGaps : true
 					},
 					{
 						label : 'Ideal máximo 2',
-						data: [4.2, null, null, null, null, null, 7, null, null, null, null, null, 9.2, null, null, null, null, null, 10.7, null, null, null, null, null, 11.9, null, null, null, null, null, 12.8, null, null, null, null, null, 13.5, null, null, null, null, null, 14.1, null, null, null, null, null, 14.6, null, null, null, null, null, 15.1, null, null, null, null, null, 15.6, null, null, null, null, null, 16.1, null, null, null, null, null, 16.6],
+						data: [53.5, null, null, null, null, null, 64, null, null, null, null, null, 70.5, null, null, null, null, null, 75.4, null, null, null, null, null, 79.5, null, null, null, null, null, 83, null, null, null, null, null, 86, null, null, null, null, null, 89, null, null, null, null, null, 91.8, null, null, null, null, null, 94.2, null, null, null, null, null, 96.8, null, null, null, null, null, 99, null, null, null, null, null, 101],
 						borderColor : 'rgba(1, 97, 170, 1)',
                         borderWidth: 1,
                         spanGaps : true
 					},
 					{
 						label : 'Ideal máximo 3',
-						data: [3.9, null, null, null, null, null, 6.5, null, null, null, null, null, 8.5, null, null, null, null, null, 10, null, null, null, null, null, 11.1, null, null, null, null, null, 11.9, null, null, null, null, null, 12.6, null, null, null, null, null, 13.1, null, null, null, null, null, 13.6, null, null, null, null, null, 14.1, null, null, null, null, null, 14.5, null, null, null, null, null, 15, null, null, null, null, null, 15.5],
+						data: [52, null, null, null, null, null, 62.5, null, null, null, null, null, 68.8, null, null, null, null, null, 73.5, null, null, null, null, null, 77.5, null, null, null, null, null, 81, null, null, null, null, null, 84, null, null, null, null, null, 87, null, null, null, null, null, 89.5, null, null, null, null, null, 92, null, null, null, null, null, 94.2, null, null, null, null, null, 96.5, null, null, null, null, null, 98.5],
 						borderColor : 'rgba(1, 97, 170, 1)',
                         borderWidth: 1,
                         spanGaps : true
 					},
 					//DEL PACIENTE
                     {
-                        label: 'Peso',
+                        label: 'talla',
                         //data: [4.2, null, null, 7, null, null, 8, null, null, 10.5, null, null, 12, null, null, 12.4, null, null, null, null, null, null, null, null, null, null, 13, null, null, null, null, null, null, 14, null, null, 15],
                         data : datos,
 						borderColor : 'red',
@@ -103,14 +102,13 @@ const GraficoDeCrecimientoPesoEdadNiño0a36 = () => {
 			responsive : true,
 			elements : {
 				point : {
-					radius : 2,
-					//backgroundColor : '#0161AA'
+					radius : 2
 				}
 			},
 			plugins : {
 				title : {
 					display : true,
-					text : 'Gráfica de Crecimiento Peso - Edad',
+					text : 'Gráfica de Crecimiento Talla - Edad',
 					color : '#0161AA',
 					font : {
 						size : 20
@@ -127,12 +125,12 @@ const GraficoDeCrecimientoPesoEdadNiño0a36 = () => {
                 y: {
                     title : {
                         display : true,
-                        text : 'PESO (KG)',
+                        text : 'TALLA (CM)',
 						color : '#0161AA'
                     },
-					suggestedMin: 0,
+					suggestedMin: 40,
 					ticks: {
-						stepSize: 1,
+						stepSize: 5,
 						color : '#0161AA'
 					}
                 },
@@ -156,5 +154,4 @@ const GraficoDeCrecimientoPesoEdadNiño0a36 = () => {
   )
 }
 
-export default GraficoDeCrecimientoPesoEdadNiño0a36 
-
+export default GraficoDeCrecimientoTallaEdadNiño0a36
