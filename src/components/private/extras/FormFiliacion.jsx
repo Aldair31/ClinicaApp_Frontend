@@ -12,6 +12,7 @@ const FormFiliacion = ({ item }) => {
 					nombres_paciente: item.nombres_paciente,
 					dni_paciente: item.dni_paciente,
 					fecha_nac: moment(item.fecha_nac).format('YYYY-MM-DD'),
+					sexo : item.sexo,
 					lugar_nac: item.lugar_nac,
 					direccion: item.direccion,
 					nombre_madre: item.nombre_madre,
@@ -196,6 +197,13 @@ const FormFiliacion = ({ item }) => {
 								</div>
 							)}
 						/>
+						<div>
+							<label>Sexo</label>
+							<Field name="sexo" as="select">
+								<option value="2">Mujer</option>
+								<option value="1">Hombre</option>
+							</Field>
+						</div>
 						<div>
 							<label>Lugar de nacimiento</label>
 							<Field type="text" name="lugar_nac"></Field>

@@ -3,9 +3,10 @@ import useCita from '../../hooks/useCita';
 import '../../sass/Dashboard.sass';
 import { useParams} from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import useAfiliacion from '../../hooks/useAfiliacion';
 
 const GraficoDeCrecimiento = () => {
-	let [datos_af, loading, set_datos_af] = useCita();
+	let [datos_af, loading] = useAfiliacion();
 	const { id } = useParams();
 	return (
 		<div>
@@ -15,7 +16,7 @@ const GraficoDeCrecimiento = () => {
 					console.log(item)
 					return (
 						<>
-							{item.id_Historia===id?  (
+							{item._id===id?  (
 								<div key={item._id} className="cita">
 									<div className="dato_filiacion" key={item._id}>
 										

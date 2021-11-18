@@ -88,7 +88,7 @@ const GraficoDeCrecimientoTallaEdadNiño0a36 = () => {
 					},
 					//DEL PACIENTE
                     {
-                        label: 'talla',
+                        label: 'Talla',
                         //data: [4.2, null, null, 7, null, null, 8, null, null, 10.5, null, null, 12, null, null, 12.4, null, null, null, null, null, null, null, null, null, null, 13, null, null, null, null, null, null, 14, null, null, 15],
                         data : datos,
 						borderColor : 'red',

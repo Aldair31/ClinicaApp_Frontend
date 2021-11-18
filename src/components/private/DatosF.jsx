@@ -44,6 +44,7 @@ const DatosF = ({ usuario }) => {
 											>
 												Ver antecedentes
 											</Link>
+											&nbsp;&nbsp;
 											<Link
 												to={`/vacunas/${id}`}
 												style={{
