@@ -24,6 +24,7 @@ import DatosF from './DatosF';
 
 import HistoriasClinicas from './extras/HistoriasClinicas'
 import Antecedentes from './Antecedentes';
+import GraficoDeCrecimiento from './GraficoDeCrecimiento';
 import GraficoDeCrecimientoPesoEdadNiño0a36 from './GraficoDeCrecimientoPesoEdadNiño0a36';
 import GraficoDeCrecimientoPesoEdadNiña0a36 from './GraficoDeCrecimientoPesoEdadNiña0a36';
 import GraficoDeCrecimientoTallaEdadNiño0a36 from './GraficoDeCrecimientoTallaEdadNiño0a36';
@@ -238,8 +239,24 @@ const Dashboard = ({ usuario, logout }) => {
 								component={Vacunas}
 							/>
 							<Route
+								path="/GraficoDeCrecimiento/:id"
+								component={GraficoDeCrecimiento}
+							/>
+							<Route
 								path="/GraficoDeCrecimientoPesoEdadNiño0a36/:id"
 								component={GraficoDeCrecimientoPesoEdadNiño0a36}
+							/>
+							<Route
+								path="/GraficoDeCrecimientoPesoEdadNiña0a36/:id"
+								component={GraficoDeCrecimientoPesoEdadNiña0a36}
+							/>
+							<Route
+								path="/GraficoDeCrecimientoTallaEdadNiño0a36/:id"
+								component={GraficoDeCrecimientoTallaEdadNiño0a36}
+							/>
+							<Route
+								path="/GraficoDeCrecimientoTallaEdadNiña0a36/:id"
+								component={GraficoDeCrecimientoTallaEdadNiña0a36}
 							/>
 							<Route
 								path="/historia-clinica/:id"
@@ -272,6 +289,7 @@ const Dashboard = ({ usuario, logout }) => {
 								path="/hijo/:id"
 								component={Hijo}
 							/>
+							
 							<Error404 component={Error404} />
 						</Switch>
 					</>
