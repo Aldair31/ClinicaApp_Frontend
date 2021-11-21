@@ -39,6 +39,8 @@ const HistoriaClinica = () => {
                 <input placeholder="Peso" type="number" min="0" value={Hc.peso} name="peso" onChange={handleChange}/>
                 <label>Talla</label>
                 <input placeholder="Talla" type="number" min="0" value={Hc.talla} name="talla" onChange={handleChange}/>
+				<label>IMC</label>
+                <input placeholder="IMC" type="text" min="0" readonly="" value={Hc.peso/(Hc.talla*Hc.talla)} name="talla" onChange={handleChange}/>
                 <label>Temperatura</label>
                 <input placeholder="Temperatura" type="number" min="0" value={Hc.temperatura} name="temperatura" onChange={handleChange}/>
                 <label>Apreciación General</label>
