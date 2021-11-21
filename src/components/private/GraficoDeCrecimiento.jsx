@@ -44,6 +44,42 @@ const GraficoDeCrecimiento = () => {
 											>
 												Ver Gráfica Talla - Edad (0-36 meses)
 											</Link>
+											<br></br>
+                                            <br></br>
+											<Link
+												to={`/GraficoDeCrecimientoPesoEdadNiño2a20/${id}`}
+												style={{
+													fontSize: '16px',
+													cursor: 'pointer',
+													color: 'crimson',
+												}}
+											>
+												Ver Gráfica Peso - Edad (2-20 años)
+											</Link>
+											<br></br>
+                                            <br></br>
+											<Link
+												to={`/GraficoDeCrecimientoTallaEdadNiño2a20/${id}`}
+												style={{
+													fontSize: '16px',
+													cursor: 'pointer',
+													color: 'crimson',
+												}}
+											>
+												Ver Gráfica Talla - Edad (2-20 años)
+											</Link>
+											<br></br>
+                                            <br></br>
+											<Link
+												to={`/GraficoDeCrecimientoPesoTallaNiño/${id}`}
+												style={{
+													fontSize: '16px',
+													cursor: 'pointer',
+													color: 'crimson',
+												}}
+											>
+												Ver Gráfica Peso - Talla (2-20 años)
+											</Link>	
 										</p>
                                         
 									) : null}
@@ -72,6 +108,43 @@ const GraficoDeCrecimiento = () => {
 											>
 												Ver Gráfica Talla - Edad (0-36 meses)
 											</Link>
+											<br></br>
+                                            <br></br>
+											<Link
+												to={`/GraficoDeCrecimientoPesoEdadNiña2a20/${id}`}
+												style={{
+													fontSize: '16px',
+													cursor: 'pointer',
+													color: 'crimson',
+												}}
+											>
+												Ver Gráfica Peso - Edad (2-20 años)
+                                                
+											</Link>
+											<br></br>
+                                            <br></br>
+											<Link
+												to={`/GraficoDeCrecimientoTallaEdadNiña2a20/${id}`}
+												style={{
+													fontSize: '16px',
+													cursor: 'pointer',
+													color: 'crimson',
+												}}
+											>
+												Ver Gráfica Talla - Edad (2-20 años)
+											</Link>	
+											<br></br>
+                                            <br></br>
+											<Link
+												to={`/GraficoDeCrecimientoPesoTallaNiña/${id}`}
+												style={{
+													fontSize: '16px',
+													cursor: 'pointer',
+													color: 'crimson',
+												}}
+											>
+												Ver Gráfica Peso - Talla (2-20 años)
+											</Link>	
 										</p>
 									) : null}
 									</div>

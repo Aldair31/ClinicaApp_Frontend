@@ -5,20 +5,27 @@ import useHistClinica from '../../hooks/useHistClinica'
 
 
 const GraficoDeCrecimientoPesoEdadNiña0a36 = () => {
-	var datos = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+	//IMG
+	var img = new Image()
+	img.src = 'https://i.ibb.co/7v8sDB4/Beb-Ni-a.png'
+
+	//DATOS
+	var datos = []
 	let {fechaHistoria, fechaNac, pesoPaciente} = useHistClinica()
 
 
 	let meses = [] 
 
 	for (let item in fechaHistoria){
-		console.log(moment(fechaHistoria[item]).diff(moment(fechaNac[0]).format(), 'days'))
-		if((moment.duration(moment(fechaHistoria[item]).diff(moment(fechaNac[0])))).days() > 15){
-			meses[item] = (Math.round((parseInt(moment(fechaHistoria[item]).diff(moment(fechaNac[0]).format(), 'days') / 15))/2)) * 2
+		if(moment(fechaHistoria[item]).diff(moment(fechaNac[0]).format(), 'months') <= 36){
+			if((moment.duration(moment(fechaHistoria[item]).diff(moment(fechaNac[0])))).days() > 15){
+				meses[item] = moment(fechaHistoria[item]).diff(moment(fechaNac[0]).format(), 'months') * 2 + 2
+			}
+			else{
+				meses[item] = (moment(fechaHistoria[item]).diff(moment(fechaNac[0]).format(), 'months') * 2 + 1)
+			}
 		}
-		else{
-			meses[item] = (Math.round((parseInt(moment(fechaHistoria[item]).diff(moment(fechaNac[0]).format(), 'days') / 15))/2)) * 2 + 1
-		}
+
 	}
 
 	for (var i = 0; i<meses.length; i++){
@@ -32,80 +39,85 @@ const GraficoDeCrecimientoPesoEdadNiña0a36 = () => {
         data={
             {
                 labels: ['Nac', '', '1', '', '2', '', '3', '', '4', '', '5', '', '6', '', '7', '', '8', '', '9', '', '10', '', '11', '', '12', '', '13', '', '14', '', '15', '', '16', '', '17', '', '18', '', '19', '', '20', '', '21', '', '22', '', '23', '', '24', '', '25', '', '26', '', '27', '', '28', '', '29', '', '30', '', '31', '', '32', '', '33', '', '34', '', '35', '', '36'],
-				datasets: [
-                    {
-                        label: 'Ideal',
-						data : [3.4, null, null, null, null, null, 5.5, null, null, null, null, null, 7.2, null, null, null, null, null, 8.5, null, null, null, null, null, 9.5, null, null, null, null, null, 10.3, null, null, null, null, null, 11, null, null, null, null, null, 11.5, null, null, null, null, null, 12, null, null, null, null, null, 12.5, null, null, null, null, null, 13, null, null, null, null, null, 13.4, null, null, null, null, null, 13.9],
-                        borderColor : 'rgba(237, 17, 96, 1)',
-						borderWidth: 2,
-						spanGaps : true
-                    },
-					//IDEALES MÍNIMOS
-					{
-						label : 'Ideal mínimo',
-						data: [2.4, null, null, null, null, null, 4.1, null, null, null, null, null, 5.7, null, null, null, null, null, 6.9, null, null, null, null, null, 7.8, null, null, null, null, null, 8.5, null, null, null, null, null, 9.1, null, null, null, null, null, 9.6, null, null, null, null, null, 10, null, null, null, null, null, 10.4, null, null, null, null, null, 10.7, null, null, null, null, null, 11, null, null, null, null, null, 11.3],
-                        borderColor : 'rgba(237, 17, 96, 1)',
-						borderWidth: 2,
-                        spanGaps : true
-					},
-					{
-						label : 'Ideal mínimo 2',
-						data: [2.8, null, null, null, null, null, 4.6, null, null, null, null, null, 6.2, null, null, null, null, null, 7.4, null, null, null, null, null, 8.3, null, null, null, null, null, 9, null, null, null, null, null, 9.6, null, null, null, null, null, 10.1, null, null, null, null, null, 10.6, null, null, null, null, null, 11, null, null, null, null, null, 11.3, null, null, null, null, null, 11.7, null, null, null, null, null, 12],
-                        borderColor : 'rgba(237, 17, 96, 1)',
-						borderWidth: 1,
-                        spanGaps : true
-					},
-					{
-						label : 'Ideal mínimo 3',
-						data: [3.1, null, null, null, null, null, 5, null, null, null, null, null, 6.6, null, null, null, null, null, 7.9, null, null, null, null, null, 8.8, null, null, null, null, null, 9.6, null, null, null, null, null, 10.2, null, null, null, null, null, 10.8, null, null, null, null, null, 11.2, null, null, null, null, null, 11.7, null, null, null, null, null, 12.1, null, null, null, null, null, 12.4, null, null, null, null, null, 12.8],
-                        borderColor : 'rgba(237, 17, 96, 1)',
-						borderWidth: 1,
-                        spanGaps : true
-					},
-					//IDEALES MÁXIMOS
-					{
-						label : 'Ideal máximo',
-						data: [4.3, null, null, null, null, null, 6.8, null, null, null, null, null, 8.9, null, null, null, null, null, 10.4, null, null, null, null, null, 11.6, null, null, null, null, null, 12.6, null, null, null, null, null, 13.5, null, null, null, null, null, 14.3, null, null, null, null, null, 15, null, null, null, null, null, 15.7, null, null, null, null, null, 16.4, null, null, null, null, null, 17.1, null, null, null, null, null, 17.9],
-                        borderColor : 'rgba(237, 17, 96, 1)',
-						borderWidth: 2,
-                        spanGaps : true
-					},
-					{
-						label : 'Ideal máximo 2',
-						data: [4, null, null, null, null, null, 6.4, null, null, null, null, null, 8.3, null, null, null, null, null, 9.8, null, null, null, null, null, 10.9, null, null, null, null, null, 11.8, null, null, null, null, null, 12.6, null, null, null, null, null, 13.3, null, null, null, null, null, 13.9, null, null, null, null, null, 14.5, null, null, null, null, null, 15.1, null, null, null, null, null, 15.7, null, null, null, null, null, 16.3],
-                        borderColor : 'rgba(237, 17, 96, 1)',
-						borderWidth: 1,
-                        spanGaps : true
-					},
-					{
-						label : 'Ideal máximo 3',
-						data: [3.8, null, null, null, null, null, 6, null, null, null, null, null, 7.8, null, null, null, null, null, 9.2, null, null, null, null, null, 10.2, null, null, null, null, null, 11.1, null, null, null, null, null, 11.8, null, null, null, null, null, 12.4, null, null, null, null, null, 13, null, null, null, null, null, 13.5, null, null, null, null, null, 14.1, null, null, null, null, null, 14.6, null, null, null, null, null, 15.1],
-                        borderColor : 'rgba(237, 17, 96, 1)',
-						borderWidth: 1,
-                        spanGaps : true
-					},
+				datasets: [		
 					//DEL PACIENTE
                     {
                         label: 'Peso',
                         data : datos,
                         borderColor : 'turquoise',
 						borderWidth: 3,
-                        spanGaps : true
-                    }
+                        spanGaps : true,
+						pointStyle : img,
+						pointRadius : 5
+                    },		
+					//IDEALES MÍNIMOS
+                    {
+                        label: 'Ideal mínimo',
+						data : [2.756917,null,3.402293,null,3.997806,null,4.547383,null,5.054539,null,5.5225,null,5.954272,null,6.352668,null,6.720328,null,7.059732,null,7.373212,null,7.662959,null,7.93103,null,8.179356,null,8.409744,null,8.623887,null,8.82337,null,9.009668,null,9.18416,null,9.348127,null,9.50276,null,9.649162,null,9.788355,null,9.921281,null,10.04881,null,10.17173,null,10.29079,null,10.40664,null,10.5199,null,10.63112,null,10.74078,null,10.84935,null,10.95722,null,11.06475,null,11.17225,null,11.28,null,11.33404],
+                        borderColor : 'rgba(237, 17, 96, 1)',
+						borderWidth: 2,
+						spanGaps : true,
+						pointRadius : 0
+                    },
+					{
+						label : 'Ideal mínimo 2',
+						data: [3.101767,null,3.770157,null,4.387042,null,4.955926,null,5.480295,null,5.96351,null,6.408775,null,6.819122,null,7.197414,null,7.546342,null,7.868436,null,8.166069,null,8.44146,null,8.696684,null,8.93368,null,9.154251,null,9.360079,null,9.552723,null,9.73363,null,9.90414,null,10.06549,null,10.21882,null,10.36518,null,10.50553,null,10.64076,null,10.77167,null,10.89899,null,11.02338,null,11.14545,null,11.26575,null,11.38474,null,11.50288,null,11.62054,null,11.73806,null,11.85574,null,11.97384,null,12.03312],
+                        borderColor : 'rgba(237, 17, 96, 1)',
+						borderWidth: 2,
+                        spanGaps : true,
+						pointRadius : 0
+					},
+					{
+						label : 'Ideal mínimo 3',
+						data: [3.437628,null,4.138994,null,4.78482,null,5.379141,null,5.925888,null,6.428828,null,6.891533,null,7.317373,null,7.709516,null,8.070932,null,8.4044,null,8.712513,null,8.997692,null,9.262185,null,9.508085,null,9.737329,null,9.951715,null,10.1529,null,10.34241,null,10.52167,null,10.69196,null,10.85446,null,11.01027,null,11.16037,null,11.30567,null,11.44697,null,11.58501,null,11.72047,null,11.85392,null,11.98592,null,12.11692,null,12.24735,null,12.37757,null,12.50791,null,12.63865,null,12.77001,null,12.836],
+                        borderColor : 'rgba(237, 17, 96, 1)',
+						borderWidth: 1,
+                        spanGaps : true,
+						pointRadius : 0
+					},
+					//IDEAL
+					{
+						label : 'Ideal',
+						data: [3.797528,null,4.544777,null,5.230584,null,5.859961,null,6.437588,null,6.96785,null,7.454854,null,7.902436,null,8.314178,null,8.693418,null,9.043262,null,9.366594,null,9.666089,null,9.944226,null,10.20329,null,10.44541,null,10.67251,null,10.88639,null,11.08868,null,11.2809,null,11.4644,null,11.64043,null,11.81014,null,11.97454,null,12.13456,null,12.29102,null,12.44469,null,12.59622,null,12.74621,null,12.89517,null,13.04357,null,13.19181,null,13.34023,null,13.48913,null,13.63877,null,13.78937,null,13.86507],
+                        borderColor : 'rgba(237, 17, 96, 1)',
+						borderWidth: 1,
+                        spanGaps : true,
+						pointRadius : 0
+					},
+					//IDEALES MÁXIMOS
+					{
+						label : 'Ideal máximo',
+						data: [4.145594,null,4.946766,null,5.680083,null,6.351512,null,6.966524,null,7.53018,null,8.047178,null,8.521877,null,8.958324,null,9.360271,null,9.731193,null,10.07431,null,10.39258,null,10.68874,null,10.96532,null,11.22463,null,11.46878,null,11.69972,null,11.91921,null,12.12887,null,12.33016,null,12.52439,null,12.71277,null,12.89636,null,13.07613,null,13.25293,null,13.42753,null,13.60059,null,13.77271,null,13.9444,null,14.11611,null,14.28822,null,14.46106,null,14.63491,null,14.80998,null,14.98647,null,15.07529],
+                        borderColor : 'rgba(237, 17, 96, 1)',
+						borderWidth: 2,
+                        spanGaps : true,
+						pointRadius : 0
+					},
+					{
+						label : 'Ideal máximo 2',
+						data: [4.450126,null,5.305632,null,6.087641,null,6.80277,null,7.457119,null,8.056331,null,8.605636,null,9.109878,null,9.573546,null,10.00079,null,10.39545,null,10.76106,null,11.10089,null,11.41792,null,11.71491,null,11.99438,null,12.25862,null,12.50974,null,12.74964,null,12.98004,null,13.2025,null,13.41844,null,13.62911,null,13.83564,null,14.03902,null,14.24017,null,14.43984,null,14.63873,null,14.83743,null,15.03646,null,15.23626,null,15.43719,null,15.63957,null,15.84365,null,16.04963,null,16.25767,null,16.3625],
+                        borderColor : 'rgba(237, 17, 96, 1)',
+						borderWidth: 1,
+                        spanGaps : true,
+						pointRadius : 0
+					},
+					{
+						label : 'Ideal máximo 3',
+						data: [4.743582,null,5.657379,null,6.492574,null,7.256166,null,7.95473,null,8.594413,null,9.180938,null,9.719621,null,10.21539,null,10.6728,null,11.09607,null,11.48908,null,11.85539,null,12.19829,null,12.52078,null,12.82561,null,13.11527,null,13.39204,null,13.65799,null,13.91497,null,14.16467,null,14.40858,null,14.64807,null,14.88432,null,15.11839,null,15.35122,null,15.58363,null,15.81632,null,16.0499,null,16.28491,null,16.52176,null,16.76085,null,17.00245,null,17.24681,null,17.49412,null,17.7445,null,17.87089],
+                        borderColor : 'rgba(237, 17, 96, 1)',
+						borderWidth: 1,
+                        spanGaps : true,
+						pointRadius : 0
+					}
                 ],
             }
         }
         options = {{
 			responsive : true,
-			elements : {
-				point : {
-					radius : 2
-				}
-			},
 			plugins : {
 				title : {
 					display : true,
-					text : 'Gráfica de Crecimiento Peso - Edad',
+					text : 'Gráfica de Crecimiento Peso - Edad (0 a 36 meses)',
 					color : '#ED1160',
 					font : {
 						size : 20

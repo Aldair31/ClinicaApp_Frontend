@@ -29,6 +29,11 @@ import GraficoDeCrecimientoPesoEdadNiño0a36 from './GraficoDeCrecimientoPesoEda
 import GraficoDeCrecimientoPesoEdadNiña0a36 from './GraficoDeCrecimientoPesoEdadNiña0a36';
 import GraficoDeCrecimientoTallaEdadNiño0a36 from './GraficoDeCrecimientoTallaEdadNiño0a36';
 import GraficoDeCrecimientoTallaEdadNiña0a36 from './GraficoDeCrecimientoTallaEdadNiña0a36';
+import GraficoDeCrecimientoPesoEdadNiño2a20 from './GraficoDeCrecimientoPesoEdadNiño2a20';
+import GraficoDeCrecimientoTallaEdadNiño2a20 from './GraficoDeCrecimientoTallaEdadNiño2a20';
+import GraficoDeCrecimientoPesoEdadNiña2a20 from './GraficoDeCrecimientoPesoEdadNiña2a20';
+import GraficoDeCrecimientoTallaEdadNiña2a20 from './GraficoDeCrecimientoTallaEdadNiña2a20';
+import GraficoDeCrecimientoPesoTallaNiño from './GraficoDeCrecimientoPesoTallaNiño';
 
 // DatosF
 // Error404
@@ -257,6 +262,26 @@ const Dashboard = ({ usuario, logout }) => {
 							<Route
 								path="/GraficoDeCrecimientoTallaEdadNiña0a36/:id"
 								component={GraficoDeCrecimientoTallaEdadNiña0a36}
+							/>
+							<Route
+								path="/GraficoDeCrecimientoPesoEdadNiño2a20/:id"
+								component={GraficoDeCrecimientoPesoEdadNiño2a20}
+							/>
+							<Route
+								path="/GraficoDeCrecimientoTallaEdadNiño2a20/:id"
+								component={GraficoDeCrecimientoTallaEdadNiño2a20}
+							/>
+							<Route
+								path="/GraficoDeCrecimientoPesoEdadNiña2a20/:id"
+								component={GraficoDeCrecimientoPesoEdadNiña2a20}
+							/>
+							<Route
+								path="/GraficoDeCrecimientoTallaEdadNiña2a20/:id"
+								component={GraficoDeCrecimientoTallaEdadNiña2a20}
+							/>
+							<Route
+								path="/GraficoDeCrecimientoPesoTallaNiño/:id"
+								component={GraficoDeCrecimientoPesoTallaNiño}
 							/>
 							<Route
 								path="/historia-clinica/:id"
