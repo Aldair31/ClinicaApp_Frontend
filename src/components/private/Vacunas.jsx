@@ -160,11 +160,38 @@ const Consultas = (props) => {
 						<div>4 Meses</div>
 						<br />
 						<div>
-							<label>Idem</label>
+							<label>DPT</label>
 							<select
-								name="idem"
+								name="dpt2"
 								onChange={handleChange}
-								value={vacunas.idem}
+								value={vacunas.dpt2}
+							>
+								<option value="2">No</option>
+								<option value="1">Sí</option>
+							</select>
+							<label>Neumococo</label>
+							<select
+								name="neumococo2"
+								onChange={handleChange}
+								value={vacunas.neumococo2}
+							>
+								<option value="2">No</option>
+								<option value="1">Sí</option>
+							</select>
+							<label>Rotavirus</label>
+							<select
+								name="rotavirus2"
+								onChange={handleChange}
+								value={vacunas.rotavirus2}
+							>
+								<option value="2">No</option>
+								<option value="1">Sí</option>
+							</select>
+							<label>Hepatitis B</label>
+							<select
+								name="hepatb3"
+								onChange={handleChange}
+								value={vacunas.hepatb3}
 							>
 								<option value="2">No</option>
 								<option value="1">Sí</option>
@@ -182,11 +209,41 @@ const Consultas = (props) => {
 						<div>6 Meses</div>
 						<br />
 						<div>
-							<label>Idem</label>
-							<select name="idem2" onChange={handleChange}>
+							<label>DPT</label>
+							<select
+								name="dpt3"
+								onChange={handleChange}
+								value={vacunas.dpt3}
+							>
 								<option value="2">No</option>
 								<option value="1">Sí</option>
-								value={vacunas.idem2}
+							</select>
+							<label>Neumococo</label>
+							<select
+								name="neumococo3"
+								onChange={handleChange}
+								value={vacunas.neumococo3}
+							>
+								<option value="2">No</option>
+								<option value="1">Sí</option>
+							</select>
+							<label>Rotavirus</label>
+							<select
+								name="rotavirus3"
+								onChange={handleChange}
+								value={vacunas.rotavirus3}
+							>
+								<option value="2">No</option>
+								<option value="1">Sí</option>
+							</select>
+							<label>Hepatitis B</label>
+							<select
+								name="hepatb4"
+								onChange={handleChange}
+								value={vacunas.hepatb4}
+							>
+								<option value="2">No</option>
+								<option value="1">Sí</option>
 							</select>
 						</div>
 					</div>
@@ -353,9 +410,9 @@ const Consultas = (props) => {
 						<div>
 							<label>DPT</label>
 							<select
-								name="dpt2"
+								name="dpt4"
 								onChange={handleChange}
-								value={vacunas.dpt2}
+								value={vacunas.dpt4}
 							>
 								<option value="2">No</option>
 								<option value="1">Sí</option>
@@ -415,8 +472,8 @@ const Consultas = (props) => {
 						<div>
 							<label>Neumococo</label>
 							<select
-								value={vacunas.neumococo2}
-								name="neumococo2"
+								value={vacunas.neumococo4}
+								name="neumococo4"
 								onChange={handleChange}
 							>
 								<option value="2">No</option>
@@ -445,7 +502,7 @@ const Consultas = (props) => {
 						<br />
 						<div>
 							<label>DPT</label>
-							<select name="dpt3" value={vacunas.dpt3}>
+							<select name="dpt5" value={vacunas.dpt5}>
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>

@@ -9,6 +9,7 @@ function Login() {
 				<div className="imagen_logueo">
 					<img
 						className="img_logueo"
+						//src = "https://i.ibb.co/LnDz8sY/1.png"
 						src="https://i.ibb.co/k4V5DQ4/img-doctora.jpg"
 						alt="Login"
 						width=""

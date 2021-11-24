@@ -65,7 +65,7 @@ const GraficoDeCrecimientoPesoEdadNiño0a36 = () => {
 						label : 'Ideal mínimo 2',
 						data: [3.20951, null, 4.020561, null, 4.754479, null, 5.416803, null, 6.013716, null, 6.551379, null, 7.035656, null, 7.472021, null, 7.865533, null, 8.220839, null, 8.542195, null, 8.833486, null, 9.098246, null, 9.339688, null, 9.560722, null, 9.763982, null, 9.95184, null, 10.12643, null, 10.28968, null, 10.4433, null, 10.58881, null, 10.72759, null, 10.86084, null, 10.98963, null, 11.1149, null, 11.23747, null, 11.35806, null, 11.47728, null, 11.59567, null, 11.71368, null, 11.8317, null, 11.95005, null, 12.069, null, 12.18875, null, 12.30948, null, 12.43132, null, 12.49268],
 						borderColor : 'rgba(1, 97, 170, 1)',
-                        borderWidth: 2,
+                        borderWidth: 1,
                         spanGaps : true,
 						pointRadius : 0
 					},
@@ -82,7 +82,7 @@ const GraficoDeCrecimientoPesoEdadNiño0a36 = () => {
 						label : 'Ideal',
 						data: [4.003106, null, 4.879525, null, 5.672889, null, 6.391392, null, 7.041836, null, 7.630425, null, 8.162951, null, 8.644832, null, 9.08112, null, 9.4765, null, 9.835308, null, 10.16154, null, 10.45885, null, 10.73063, null, 10.97992, null, 11.20956, null, 11.42207, null, 11.61978, null, 11.80478, null, 11.97897, null, 12.14404, null, 12.30154, null, 12.45283, null, 12.59913, null, 12.74154, null, 12.88102, null, 13.01842, null, 13.1545, null, 13.2899, null, 13.42519, null, 13.56088, null, 13.69738, null, 13.83505, null, 13.97418, null, 14.11503, null, 14.2578, null, 14.32994],
 						borderColor : 'rgba(1, 97, 170, 1)',
-                        borderWidth: 1,
+                        borderWidth: 2,
                         spanGaps : true,
 						pointRadius : 0
 					},
@@ -91,7 +91,7 @@ const GraficoDeCrecimientoPesoEdadNiño0a36 = () => {
 						label : 'Ideal máximo',
 						data: [4.387423, null, 5.327328, null, 6.175598, null, 6.942217, null, 7.635323, null, 8.262033, null, 8.828786, null, 9.34149, null, 9.805593, null, 10.22612, null, 10.60772, null, 10.95466, null, 11.27087, null, 11.55996, null, 11.82524, null, 12.06973, null, 12.29617, null, 12.50708, null, 12.70473, null, 12.89117, null, 13.06825, null, 13.23765, null, 13.40086, null, 13.5592, null, 13.71386, null, 13.8659, null, 14.01623, null, 14.16567, null, 14.31493, null, 14.46462, null, 14.61527, null, 14.76732, null, 14.92117, null, 15.07711, null, 15.23541, null, 15.39628, null, 15.47772],
 						borderColor : 'rgba(1, 97, 170, 1)',
-                        borderWidth: 2,
+                        borderWidth: 1,
                         spanGaps : true,
 						pointRadius : 0
 					},
@@ -107,7 +107,7 @@ const GraficoDeCrecimientoPesoEdadNiño0a36 = () => {
 						label : 'Ideal máximo 3',
 						data: [5.032625, null, 6.121929, null, 7.10625, null, 7.993878, null, 8.793444, null, 9.513307, null, 10.16135, null, 10.74492, null, 11.27084, null, 11.74538, null, 12.17436, null, 12.56308, null, 12.91645, null, 13.23893, null, 13.53462, null, 13.80724, null, 14.06019, null, 14.29655, null, 14.51909, null, 14.73034, null, 14.93256, null, 15.12777, null, 15.31777, null, 15.50418, null, 15.68841, null, 15.8717, null, 16.05514, null, 16.23967, null, 16.42609, null, 16.61508, null, 16.8072, null, 17.00291, null, 17.2026, null, 17.40654, null, 17.61495, null, 17.82797, null, 17.93625],
 						borderColor : 'rgba(1, 97, 170, 1)',
-                        borderWidth: 1,
+                        borderWidth: 2,
                         spanGaps : true,
 						pointRadius : 0
 					}

@@ -80,6 +80,18 @@ const GraficoDeCrecimiento = () => {
 											>
 												Ver Gráfica Peso - Talla (2-20 años)
 											</Link>	
+											<br></br>
+                                            <br></br>
+											<Link
+												to={`/GraficoDeCrecimientoIMCNiños2a20/${id}`}
+												style={{
+													fontSize: '16px',
+													cursor: 'pointer',
+													color: 'crimson',
+												}}
+											>
+												Ver Gráfica IMC (2-20 años)
+											</Link>	
 										</p>
                                         
 									) : null}

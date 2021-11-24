@@ -39,10 +39,8 @@ const Antecedentes = () => {
 					onChange={handleChange}
 					value={antecedentes.asmaBronquialFam}
 				>
-					<option value="1">Sí</option>
-					<option value="2" selected>
-						No
-					</option>
+					<option value="true">Sí</option>
+					<option value="false" selected>No</option>
 				</select>
 				{/* <input placeholder="Asma Bronquial" /> */}
 				<label>Diabetes</label>
@@ -51,10 +49,8 @@ const Antecedentes = () => {
 					onChange={handleChange}
 					value={antecedentes.diabetes}
 				>
-					<option value="1">Sí</option>
-					<option value="2" selected>
-						No
-					</option>
+					<option value="true">Sí</option>
+					<option value="false" selected>No</option>
 				</select>
 				<label>Epilepsia</label>
 				<select
@@ -62,10 +58,8 @@ const Antecedentes = () => {
 					onChange={handleChange}
 					value={antecedentes.epilepsia}
 				>
-					<option value="1">Sí</option>
-					<option value="2" selected>
-						No
-					</option>
+					<option value="true">Sí</option>
+					<option value="false" selected>No</option>
 				</select>
 				<label>Otros</label>
 				<textarea
@@ -92,10 +86,8 @@ const Antecedentes = () => {
 					onChange={handleChange}
 					value={antecedentes.tipoDeParto}
 				>
-					<option value="1">Sí</option>
-					<option value="2" selected>
-						No
-					</option>
+					<option value="true">Sí</option>
+					<option value="false" selected>No</option>
 				</select>
 				<label>Apgar1</label>
 				<input
@@ -121,14 +113,25 @@ const Antecedentes = () => {
 					onChange={handleChange}
 				/>
 				<label>Complicaciones</label>
-				<input
-					placeholder="Complicaciones"
-					onChange={handleChange}
+				<textarea
+					rows="5"
+					cols="25"
+					placeholder="Ingrese algunas alergias"
 					name="complicaciones"
 					value={antecedentes.complicaciones}
-				/>
+					onChange={handleChange}
+				></textarea>
 				{/* wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww */}
 				<h3>Patológicos</h3>
+				<label>Alergias</label>
+				<textarea
+					rows="5"
+					cols="25"
+					placeholder="Ingrese algunas alergias"
+					name="alergia"
+					value={antecedentes.alergia}
+					onChange={handleChange}
+				></textarea>
 				<label>Asma Bronquial</label>
 				{/* <input placeholder="Asma Bronquial" /> */}
 				<select
@@ -136,10 +139,8 @@ const Antecedentes = () => {
 					onChange={handleChange}
 					value={antecedentes.asmaBronquialPat}
 				>
-					<option value="1">Sí</option>
-					<option value="2" selected>
-						No
-					</option>
+					<option value="true">Sí</option>
+					<option value="false" selected>No</option>
 				</select>
 				<label>Nebulización</label>
 				{/* <input placeholder="Nebulización" /> */}
@@ -148,10 +149,8 @@ const Antecedentes = () => {
 					onChange={handleChange}
 					value={antecedentes.nebulizacion}
 				>
-					<option value="1">Sí</option>
-					<option value="2" selected>
-						No
-					</option>
+					<option value="true">Sí</option>
+					<option value="false" selected>No</option>
 				</select>
 				<label>Intervención Quirúrgica</label>
 				<select
@@ -160,29 +159,27 @@ const Antecedentes = () => {
 
 					value={antecedentes.intervencionQuirurgica}
 				>
-					<option value="1">Sí</option>
-					<option value="2" selected>
-						No
-					</option>
+					<option value="true">Sí</option>
+					<option value="false" selected>No</option>
 				</select>
 				<label>Reacción Adversa</label>
 				<select
-					name="reaccionAdversa"
+					name="reaccionAdversaMed"
 					onChange={handleChange}
 					value={antecedentes.reaccionAdversaMed}
 				>
-					<option value="1">Sí</option>
-					<option value="2" selected>
-						No
-					</option>
+					<option value="true">Sí</option>
+					<option value="false" selected>No</option>
 				</select>
 				<label>Enfermedades Anteriores</label>
-				<input
-					placeholder="Enfermedades anteriores"
-					onChange={handleChange}
+				<textarea
+					rows="5"
+					cols="25"
+					placeholder="Ingrese algunas alergias"
 					name="enfAnteriores"
 					value={antecedentes.enfAnteriores}
-				/>
+					onChange={handleChange}
+				></textarea>
 				<button
 					onClick={(e) => {
 						e.preventDefault();

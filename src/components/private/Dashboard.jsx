@@ -34,6 +34,7 @@ import GraficoDeCrecimientoTallaEdadNiño2a20 from './GraficoDeCrecimientoTallaE
 import GraficoDeCrecimientoPesoEdadNiña2a20 from './GraficoDeCrecimientoPesoEdadNiña2a20';
 import GraficoDeCrecimientoTallaEdadNiña2a20 from './GraficoDeCrecimientoTallaEdadNiña2a20';
 import GraficoDeCrecimientoPesoTallaNiño from './GraficoDeCrecimientoPesoTallaNiño';
+import GraficoDeCrecimientoIMCNiños2a20 from './GraficoDeCrecimientoIMCNiños2a20';
 
 // DatosF
 // Error404
@@ -282,6 +283,10 @@ const Dashboard = ({ usuario, logout }) => {
 							<Route
 								path="/GraficoDeCrecimientoPesoTallaNiño/:id"
 								component={GraficoDeCrecimientoPesoTallaNiño}
+							/>
+							<Route
+								path="/GraficoDeCrecimientoIMCNiños2a20/:id"
+								component={GraficoDeCrecimientoIMCNiños2a20}
 							/>
 							<Route
 								path="/historia-clinica/:id"

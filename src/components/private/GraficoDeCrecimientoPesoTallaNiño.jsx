@@ -8,18 +8,17 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
 	var datos = []
 	let {fechaHistoria, fechaNac, pesoPaciente, tallaPaciente} = useHistClinica()
 
-
 	let talla = [] 
 
     for (let item in tallaPaciente){
         if(moment(fechaHistoria[item]).diff(moment(fechaNac[0]).format(), 'months') >= 24){
             if(pesoPaciente[item] >= 7 && tallaPaciente[item] >= 77)
-            talla[item] = pesoPaciente[item]
+            talla[item] = tallaPaciente[item]
         }
     }
 
 	for (var i = 0; i<talla.length; i++){
-		datos[talla[i]] = pesoPaciente[i]
+		datos[talla[i]-77] = pesoPaciente[i]
 	}
 
   return (
@@ -27,7 +26,7 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
      <Line
         data={
             {
-                labels: ['', '', '', 80, '', '', '', '', 85,  '', '', '', '', 90,  '', '', '', '', 95, '', '', '', '', 100, '', '', '', '', 105,  '', '', '', '', 110, '', '', '', '', 115, '', '', '', '', 120, '', ''],
+                //labels: ['', '', '', 80, '', '', '', '', 85,  '', '', '', '', 90,  '', '', '', '', 95, '', '', '', '', 100, '', '', '', '', 105,  '', '', '', '', 110, '', '', '', '', 115, '', '', '', '', 120, '', ''],
 				datasets: [
 					//DEL PACIENTE
                     {	
@@ -38,6 +37,23 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
                         spanGaps : true,
 						pointRadius : 3
                     },
+					/*{
+						label : 'Peso',
+						type : 'scatter',
+						data : [
+							{
+								x : 1000,
+								y : 10
+							},
+							{
+								x : 10,
+								y : 15
+							}
+						],
+						showLine : true,
+						borderColor : 'red',
+						borderWidth: 3,
+					},*/
 					//IDEALES MÍNIMOS
                     {
                         label: 'Ideal mínimo',
@@ -51,7 +67,7 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
 						label : 'Ideal mínimo 2',
 						data: [9.350303, 9.455149, 9.663908, 9.871588, 10.0784, 10.28455, 10.49029, 10.69585, 10.90148, 11.10744, 11.314, 11.52142, 11.72999, 11.93997, 12.15166, 12.36532, 12.58125, 12.79973, 13.02103, 13.24543, 13.47321, 13.70463, 13.93996, 14.17946, 14.42339, 14.67197, 14.92545, 15.18406, 15.44799, 15.71744, 15.99258, 16.27355, 16.56048, 16.85344, 17.15247, 17.45759, 17.76873, 18.0858, 18.40867, 18.73715, 19.071, 19.40998, 19.75376, 20.10203, 20.45441, 20.8105],
                         borderColor : 'rgba(1, 97, 170, 1)',
-						borderWidth: 2,
+						borderWidth: 1,
                         spanGaps : true,
 						pointRadius : 0
 					},
@@ -68,7 +84,7 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
 						label : 'Ideal',
 						data: [10.27441, 10.38902, 10.61725, 10.84433, 11.07049, 11.29597, 11.52105, 11.74598, 11.97105, 12.19656, 12.4228, 12.65007, 12.87868, 13.10893, 13.34112, 13.57556, 13.81254, 14.05233, 14.29522, 14.54147, 14.79134, 15.04506, 15.30286, 15.56495, 15.83152, 16.10277, 16.37888, 16.66, 16.94631, 17.23797, 17.53517, 17.83808, 18.14691, 18.46186, 18.78316, 19.11104, 19.44573, 19.78744, 20.13636, 20.49262, 20.85633, 21.2275, 21.6061, 21.99204, 22.38514, 22.78517],
                         borderColor : 'rgba(1, 97, 170, 1)',
-						borderWidth: 1,
+						borderWidth: 2,
                         spanGaps : true,
 						pointRadius : 0
 					},
@@ -85,7 +101,7 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
 						label : 'Ideal máximo 2',
 						data: [11.1669, 11.28916, 11.53276, 11.77537, 12.01729, 12.25883, 12.50033, 12.74214, 12.98464, 13.22819, 13.47318, 13.72002, 13.96909, 14.22081, 14.47557, 14.73378, 14.99583, 15.26211, 15.533, 15.80886, 16.09005, 16.37689, 16.66969, 16.96874, 17.27429, 17.58658, 17.90582, 18.23217, 18.56578, 18.9068, 19.25532, 19.61147, 19.97536, 20.34711, 20.72688, 21.11486, 21.51127, 21.91637, 22.33044, 22.75377, 23.18663, 23.62929, 24.08197, 24.54481, 25.01792, 25.50133],
                         borderColor : 'rgba(1, 97, 170, 1)',
-						borderWidth: 1,
+						borderWidth: 2,
                         spanGaps : true,
 						pointRadius : 0
 					},
