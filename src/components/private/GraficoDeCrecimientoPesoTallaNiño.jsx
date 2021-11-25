@@ -20,13 +20,19 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
 	for (var i = 0; i<talla.length; i++){
 		datos[talla[i]-77] = pesoPaciente[i]
 	}
-
+   const labels= ['', '', '', 80, '', '', '', '', 85,  '', '', '', '', 90,  '', '', '', '', 95, '', '', '', '', 100, '', '', '', '', 105,  '', '', '', '', 110, '', '', '', '', 115, '', '', '', '', 120, '', ''];
   return (
     <div>	
      <Line
         data={
             {
-                //labels: ['', '', '', 80, '', '', '', '', 85,  '', '', '', '', 90,  '', '', '', '', 95, '', '', '', '', 100, '', '', '', '', 105,  '', '', '', '', 110, '', '', '', '', 115, '', '', '', '', 120, '', ''],
+                // labels :labels.map((labels,index)=>{
+				// 	let edades={};
+				// 	edades.labels=labels[index];
+				// 	return edades
+				// }),
+				labels:labels,
+				//labels: ['', '', '', 80, '', '', '', '', 85,  '', '', '', '', 90,  '', '', '', '', 95, '', '', '', '', 100, '', '', '', '', 105,  '', '', '', '', 110, '', '', '', '', 115, '', '', '', '', 120, '', ''],
 				datasets: [
 					//DEL PACIENTE
                     {	
@@ -125,6 +131,7 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
             }
         }
         options = {{
+			// type:'scatter',
 			responsive : true,
 			plugins : {
 				title : {
@@ -156,16 +163,24 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
 					}
                 },
 				x: {
+					// min:80,
+					// max:120,
                     title : {
                         display : true,
                         text : 'TALLA (CM)',
 						color : '#0161AA'
                     },
+					
 					ticks: {
 						color : '#0161AA',
                         autoSkip : false,
                         maxRotation: 0,
-                        minRotation: 0
+                        minRotation: 0,
+						callback: function(values){
+							const valor = this.getLabelForValue(values);
+							// console.log(parseFloat(valor))
+							return valor
+						}
 					}
                 }
             }
