@@ -32,12 +32,7 @@ const Filiacion = () => {
 							</p>
 							<p>
 								<strong>-Edad: </strong>
-								{
-									moment().diff(moment(item.fecha_nac).add(1, 'days').calendar(), 'years') 
-									+ ' años ' + 
-									moment().diff(moment(item.fecha_nac).add(1, 'days').calendar(), 'months') % 12 
-									+ ' meses'
-								}
+								{(moment.duration(moment().diff(moment(item.fecha_nac)))).years()} años {(moment.duration(moment().diff(moment(item.fecha_nac)))).months()} meses {(moment.duration(moment().diff(moment(item.fecha_nac)))).days()} días
 							</p>
 							<p>
 								<Link to={`datos-f/${item._id}`}>

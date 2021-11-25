@@ -8,20 +8,31 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
 	var datos = []
 	let {fechaHistoria, fechaNac, pesoPaciente, tallaPaciente} = useHistClinica()
 
-	let talla = [] 
+	const tallaypeso = [] 
 
-    for (let item in tallaPaciente){
+	for (let item in tallaPaciente){
         if(moment(fechaHistoria[item]).diff(moment(fechaNac[0]).format(), 'months') >= 24){
-            if(pesoPaciente[item] >= 7 && tallaPaciente[item] >= 77)
-            talla[item] = tallaPaciente[item]
+			tallaypeso.push({x:tallaPaciente[item], y:pesoPaciente[item]})
+        }
+    }
+
+	datos = tallaypeso.reverse()
+	console.log(datos)
+    /*for (let item in tallaPaciente){
+        if(moment(fechaHistoria[item]).diff(moment(fechaNac[0]).format(), 'months') >= 24){
+            if(pesoPaciente[item] >= 7 && tallaPaciente[item] >= 77){
+				talla[item] = Math.round(tallaPaciente[item])
+			}
+            
         }
     }
 
 	for (var i = 0; i<talla.length; i++){
 		datos[talla[i]-77] = pesoPaciente[i]
-	}
-   const labels= ['', '', '', 80, '', '', '', '', 85,  '', '', '', '', 90,  '', '', '', '', 95, '', '', '', '', 100, '', '', '', '', 105,  '', '', '', '', 110, '', '', '', '', 115, '', '', '', '', 120, '', ''];
-  return (
+	}*/
+   const labels= ['', '', '', 80, '', '', '', '', 85,  '', '', '', '', 90,  '', '', '', '', 95, '', '', '', '', 100, '', '', '', '', 105,  '', '', '', '', 110, '', '', '', '', 115, '', '', '', '', 120, '', '']
+
+   return (
     <div>	
      <Line
         data={
@@ -31,40 +42,100 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
 				// 	edades.labels=labels[index];
 				// 	return edades
 				// }),
-				labels:labels,
+				//labels:labels.map(v => 'x'),
 				//labels: ['', '', '', 80, '', '', '', '', 85,  '', '', '', '', 90,  '', '', '', '', 95, '', '', '', '', 100, '', '', '', '', 105,  '', '', '', '', 110, '', '', '', '', 115, '', '', '', '', 120, '', ''],
+				//labels : labels.map(v => 'x'),
 				datasets: [
 					//DEL PACIENTE
                     {	
+						type : 'scatter',
+						showLine : true,
                         label: 'Peso',
-                        data : datos,
+                        //data : datos,
+						/*data : [
+							{
+								x : 78.5,
+								y : 9.1
+							}
+						],*/
+						data : datos,
                         borderColor : 'red',
 						borderWidth: 3,
                         spanGaps : true,
 						pointRadius : 3
                     },
-					/*{
+					{
 						label : 'Peso',
 						type : 'scatter',
-						data : [
+						/*data : [
 							{
-								x : 1000,
+								x : 12,
 								y : 10
 							},
 							{
 								x : 10,
 								y : 15
 							}
-						],
+						],*/
 						showLine : true,
 						borderColor : 'red',
 						borderWidth: 3,
-					},*/
+					},
 					//IDEALES MÍNIMOS
                     {
                         label: 'Ideal mínimo',
-						data : [8.972919, 9.073268, 9.273092, 9.471922, 9.669971, 9.867465, 10.06464, 10.26174, 10.45903, 10.65676, 10.85521, 11.05464, 11.25535, 11.45762, 11.66174, 11.86801, 12.07671, 12.28815, 12.50263, 12.72043, 12.94186, 13.16721, 13.39676, 13.63078, 13.86955, 14.11332, 14.36233, 14.61679, 14.87688, 15.14279, 15.41461, 15.69245, 15.97631, 16.2662, 16.56202, 16.86366, 17.17091, 17.48355, 17.80131, 18.12386, 18.45088, 18.78199, 19.11682, 19.45497, 19.79603, 20.13956],
-                        borderColor : 'rgba(1, 97, 170, 1)',
+						data : [
+							{x:77 , y: 8.972919, },
+							{x:78 , y: 9.073268, },
+							{x:79 , y: 9.273092, },
+							{x:80 , y: 9.471922, },
+							{x:81 , y:9.669971, },
+							{x:82 , y:9.867465, },
+							{x:83 , y:10.06464, },
+							{x:84 , y:10.26174, },
+							{x:85 , y:10.45903, },
+							{x:86 , y:10.65676, },
+							{x:87 , y:10.85521, },
+							{x:88 , y:11.05464, },
+							{x:89 , y:11.25535, },
+							{x:90 , y:11.45762, },
+							{x:91 , y:11.66174, },
+							{x:92 , y:11.86801, },
+							{x:93 , y:12.07671, },
+							{x:94 , y:12.28815, },
+							{x:95 , y:12.50263, },
+							{x:96 , y:12.72043, },
+							{x:97 , y:12.94186, },
+							{x:98 , y:13.16721, },
+							{x:99 , y:13.39676, },
+							{x:100 , y:13.63078, },
+							{x:101 , y:13.86955, },
+							{x:102 , y:14.11332, },
+							{x:103 , y:14.36233, },
+							{x:104 , y:14.61679, },
+							{x:105 , y:14.87688, },
+							{x:106 , y:15.14279, },
+							{x:107 , y:15.41461, },
+							{x:108 , y:15.69245, },
+							{x:109 , y:15.97631, },
+							{x:110 , y:16.2662, },
+							{x:111 , y:16.56202, },
+							{x:112 , y:16.86366, },
+							{x:113 , y:17.17091, },
+							{x:114 , y:17.48355, },
+							{x:115 , y:17.80131, },
+							{x:116 , y:18.12386, },
+							{x:117 , y:18.45088, },
+							{x:118 , y:18.78199, },
+							{x:119 , y:19.11682, },
+							{x:120 , y:19.45497, },
+							{x:121 , y:19.79603, },
+							{x:122 , y:20.13956,},
+						],
+                        /*data : [
+							{x : 77,y : 8.972919}, {x : 78,y : 9.073268},
+						],*/
+						borderColor : 'rgba(1, 97, 170, 1)',
 						borderWidth: 2,
 						spanGaps : true,
 						pointRadius : 0
@@ -170,17 +241,20 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
                         text : 'TALLA (CM)',
 						color : '#0161AA'
                     },
-					
+					type : 'linear',
 					ticks: {
 						color : '#0161AA',
                         autoSkip : false,
                         maxRotation: 0,
                         minRotation: 0,
-						callback: function(values){
+						/*callback: function(values){
 							const valor = this.getLabelForValue(values);
 							// console.log(parseFloat(valor))
 							return valor
-						}
+						}*/
+						min : 77,
+						stepSize : 1,
+						max : 120
 					}
                 }
             }
