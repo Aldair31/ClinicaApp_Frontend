@@ -156,7 +156,7 @@ const GraficoDeCrecimiento = () => {
 												}}
 											>
 												Ver Gráfica Peso - Talla (2-20 años)
-											</Link>	
+											</Link>
 											<br></br>
                                             <br></br>
 											<Link
