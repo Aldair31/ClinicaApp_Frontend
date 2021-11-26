@@ -516,7 +516,10 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
 					suggestedMin: 8,
 					ticks: {
 						stepSize: 1,
-						color : '#0161AA'
+						color : '#0161AA',
+						font : {
+                            size : 10
+                        }
 					}
                 },
 				x: {
@@ -531,7 +534,10 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
                         autoSkip : false,
                         maxRotation: 0,
                         minRotation: 0,
-						stepSize : 1
+						stepSize : 1,
+						font : {
+                            size : 10
+                        }
 					}
                 }
             }

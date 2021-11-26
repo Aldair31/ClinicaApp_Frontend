@@ -501,6 +501,7 @@ const GraficoDeCrecimientoPesoTallaNiña = () => {
 				tooltip : {
 					enabled : true
 				}
+                
 			},
             scales: {
                 y: {
@@ -516,7 +517,10 @@ const GraficoDeCrecimientoPesoTallaNiña = () => {
 					suggestedMin: 8,
 					ticks: {
 						stepSize: 1,
-						color : '#ED1160'
+						color : '#ED1160',
+                        font : {
+                            size : 10
+                        }
 					}
                 },
 				x: {
@@ -531,8 +535,12 @@ const GraficoDeCrecimientoPesoTallaNiña = () => {
                         autoSkip : false,
                         maxRotation: 0,
                         minRotation: 0,
-						stepSize : 1
-					}
+						stepSize : 1,
+                        font : {
+                            size : 10
+                        }
+					},
+                    
                 }
             }
         }}

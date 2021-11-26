@@ -5,6 +5,7 @@ import '../../sass/Dashboard.sass'
 import InicioSecretaria from './InicioSecretaria';
 import InicioDoctor from './InicioDoctor';
 import InicioApoderado from './InicioApoderado';
+
 const InitScreen = ({usuario, logout}) => {
 	return (
 		<>
