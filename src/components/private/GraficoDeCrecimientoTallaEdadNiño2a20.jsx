@@ -37,12 +37,12 @@ const GraficoDeCrecimientoTallaEdadNiño2a20 = () => {
 				datasets: [
 					//DEL PACIENTE
                     {
-                        label: 'Peso',
+                        label: 'Talla',
                         data : datos,
                         borderColor : 'red',
 						borderWidth: 3,
                         spanGaps : true,
-						pointRadius : 3
+						pointRadius : 2
                     },
 					//IDEALES MÍNIMOS
                     {
