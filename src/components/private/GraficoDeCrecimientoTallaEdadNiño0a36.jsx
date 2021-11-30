@@ -6,8 +6,8 @@ import useHistClinica from '../../hooks/useHistClinica'
 
 const GraficoDeCrecimientoTallaEdadNiño0a36 = () => {
 	//IMG
-	var img = new Image()
-	img.src = 'https://i.ibb.co/PhTX54W/Beb-Ni-o.png'
+	/*var img = new Image()
+	img.src = 'https://i.ibb.co/PhTX54W/Beb-Ni-o.png'*/
 
 	//DATOS
 	var datos = []
@@ -49,7 +49,7 @@ const GraficoDeCrecimientoTallaEdadNiño0a36 = () => {
 						borderColor : 'red',
                         borderWidth: 3,
                         spanGaps : true,
-						pointStyle : img,
+						//pointStyle : img,
 						pointRadius : 5
                     },
 					//IDEALES MÍNIMOS

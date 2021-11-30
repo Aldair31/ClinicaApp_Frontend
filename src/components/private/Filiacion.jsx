@@ -23,16 +23,16 @@ const Filiacion = () => {
 								<strong>-Nombres del paciente: </strong>
 								{item.nombres_paciente}
 							</p>
-							<p>
+							{/* <p>
 								<strong>-Fecha de nacimiento: </strong>
 								{
 									moment(item.fecha_nac).format('DD/MM/YYYY')
 								}
 	
-							</p>
+							</p> */}
 							<p>
 								<strong>-Edad: </strong>
-								{(moment.duration(moment().diff(moment(item.fecha_nac)))).years()} años {(moment.duration(moment().diff(moment(item.fecha_nac)))).months()} meses {(moment.duration(moment().diff(moment(item.fecha_nac)))).days()} días
+								{(moment.duration(moment().diff(moment(item.fecha_nac)))).years()} a {(moment.duration(moment().diff(moment(item.fecha_nac)))).months()} m {(moment.duration(moment().diff(moment(item.fecha_nac)))).days()} d
 							</p>
 							<p>
 								<Link to={`datos-f/${item._id}`}>

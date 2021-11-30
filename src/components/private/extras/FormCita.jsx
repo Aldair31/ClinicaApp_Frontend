@@ -14,7 +14,7 @@ const FormCita = () => {
 			alert(resultado.msg);
 			return false;
 		} else {
-			alert('Registro exitoso');
+			alert('Cita Registrada');
 			return true;
 		}
 	};
@@ -26,9 +26,9 @@ const FormCita = () => {
 					dni_paciente: '',
 					responsable: '',
 					telefono: '',
-					fecha_nac: '',
+					//fecha_nac: '',
 					motivo: '3',
-					sexo: '1',
+					//sexo: '1',
 					hora: '',
 					fecha: '',
 					condicion: '1',
@@ -71,10 +71,10 @@ const FormCita = () => {
 						errores.telefono =
 							'El teléfono sólo puede contener 9 números.';
 					}
-					if ('' === valores.fecha_nac) {
+					/*if ('' === valores.fecha_nac) {
 						errores.fecha_nac =
 							'Por favor, ingrese una fecha de nacimiento';
-					}
+					}*/
 					if ('' === valores.fecha) {
 						errores.fecha =
 							'Por favor, ingrese una fecha de la cita';
@@ -87,7 +87,7 @@ const FormCita = () => {
 				}}
 				onSubmit={(valores, { resetForm }) => {
 					// resetForm();
-					alert('enviadoo');
+					//alert('Cita registrada');
 					console.log('Formulario enviado');
 					console.log(valores);
 					console.log('.------------');
@@ -101,13 +101,13 @@ const FormCita = () => {
 					if (
 						consumirNuevaCita({
 							nombre_paciente: valores.nombre_paciente,
-							fecha_nac: moment(valores.fecha_nac).format(),
+							//fecha_nac: moment(valores.fecha_nac).format(),
 							fecha: moment(
 								new Date(
 									`${valores.fecha} ${valores.hora}`
 								)
 							).format(),
-							sexo: valores.sexo,
+							//sexo: valores.sexo,
 							responsable: valores.responsable,
 							telefono: valores.telefono,
 							motivo: valores.motivo,
@@ -139,7 +139,7 @@ const FormCita = () => {
 								</div>
 							)}
 						/>
-						<div>
+						{/* <div>
 							<label>Fecha de nacimiento</label>
 							<Field name="fecha_nac" type="date" max={getFecha()}></Field>
 						</div>
@@ -160,7 +160,7 @@ const FormCita = () => {
 								<option value="2">Mujer</option>
 								<option value="1">Hombre</option>
 							</Field>
-						</div>
+						</div> */}
 						<div>
 							<label>DNI Paciente</label>
 							<Field type="text" name="dni_paciente"></Field>

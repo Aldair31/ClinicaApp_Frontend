@@ -26,8 +26,8 @@ const GraficoDeCrecimientoIMCNiños2a20 = () => {
 	for (var i = 0; i<meses.length; i++){
 		
 		datos[meses[i]] = Math.round(pesoPaciente[i]/(Math.pow(tallaPaciente[i],2)/10000)*1000)/1000
-		console.log('**************')
-		console.log(Math.round(pesoPaciente[i]/(Math.pow(tallaPaciente[i],2)/10000)*1000)/1000)
+		/*console.log('**************')
+		console.log(Math.round(pesoPaciente[i]/(Math.pow(tallaPaciente[i],2)/10000)*1000)/1000)*/
 	}
 
   return (

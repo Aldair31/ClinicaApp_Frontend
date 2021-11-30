@@ -20,6 +20,7 @@ const HistoriaClinica = () => {
 			[e.target.name]: e.target.value
 		})
 	}
+	console.log("****", Hc)
 	return (
 		<div >
             <h2 className="titulo-hc">Historia clínica</h2>
@@ -40,7 +41,7 @@ const HistoriaClinica = () => {
                 <label>Talla</label>
                 <input placeholder="Talla" type="number" min="0" value={Hc.talla} name="talla" onChange={handleChange}/>
 				<label>IMC</label>
-                <input placeholder="IMC" type="text" min="0" readonly="" value={Hc.peso/((Hc.talla/100)*(Hc.talla/100))} name="talla" onChange={handleChange}/>
+                <input placeholder="IMC" type="text" min="0" readonly="" value={Math.round((Hc.peso/(Math.pow((Hc.talla/100),2)))*1000)/1000} name="IMC" onChange={handleChange}/>
                 <label>Temperatura</label>
                 <input placeholder="Temperatura" type="number" min="0" value={Hc.temperatura} name="temperatura" onChange={handleChange}/>
                 <label>Apreciación General</label>

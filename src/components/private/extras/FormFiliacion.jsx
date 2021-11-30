@@ -4,14 +4,39 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import url from '../../../keys/backend_keys';
 import getFecha from '../../../functions/fecha';
 // import getFecha  from '../../../functions/fecha';
+import { useEffect,useState } from 'react';
+import { useParams } from 'react-router';
 const FormFiliacion = ({ item }) => {
+	let fechaNac = ''
+	if(item.fecha_nac != null){
+		fechaNac = moment(item.fecha_nac).format('YYYY-MM-DD')
+	}
+	/*const [Hc, setHc] = useState({})
+	let { id } = useParams();
+	useEffect(() => {
+		fetch(`${url}/Historia/${id}`)
+			.then((resp) => resp.json())
+			.then((data)=>{
+				console.log('hist.clinica');
+				console.log(data);
+				console.log(id)
+				setHc(data)
+			})
+	}, []);
+	const handleChange = (e)=>{
+		setHc({
+			...Hc,
+			[e.target.name]: e.target.value
+		})
+	}*/
 	return (
 		<>
 			<Formik
 				initialValues={{
 					nombres_paciente: item.nombres_paciente,
 					dni_paciente: item.dni_paciente,
-					fecha_nac: moment(item.fecha_nac).format('YYYY-MM-DD'),
+					fecha_nac: fechaNac,
+					//edad : item.edad,
 					sexo : item.sexo,
 					lugar_nac: item.lugar_nac,
 					direccion: item.direccion,
@@ -49,7 +74,7 @@ const FormFiliacion = ({ item }) => {
 						errores.fecha_nac =
 							'Por favor, ingrese una fecha de nacimiento';
 					}
-					if ('' === valores.lugar_nac) {
+					/*if ('' === valores.lugar_nac) {
 						errores.lugar_nac =
 							'Por favor, ingrese un lugar de nacimiento';
 					}
@@ -104,7 +129,7 @@ const FormFiliacion = ({ item }) => {
 					if (!valores.referencia) {
 						errores.referencia =
 							'Por favor ingrese el nombre de referencia';
-					}
+					}*/
 					return errores;
 				}}
 				onSubmit={(valores, { resetForm }) => {
@@ -198,6 +223,11 @@ const FormFiliacion = ({ item }) => {
 							)}
 						/>
 						<div>
+							<label>Edad</label>
+                			<input type="text" name="edad" value={(moment.duration(moment().diff(moment(item.fecha_nac)))).years() + ' años ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).months() + ' meses ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).days() + ' días'} readOnly>
+							</input>
+						</div>
+						<div>
 							<label>Sexo</label>
 							<Field name="sexo" as="select">
 								<option value="2">Mujer</option>
@@ -286,6 +316,21 @@ const FormFiliacion = ({ item }) => {
 							)}
 						/>
 						<div>
+							<label>Nombre padre</label>
+							<Field type="text" name="nombre_padre"></Field>
+						</div>
+						<ErrorMessage
+							name="nombre_padre"
+							component={() => (
+								<div className="msj_error_login">
+									<span>
+										<i className="fas fa-times-circle"></i>
+									</span>
+									<span>{errors.nombre_padre}</span>
+								</div>
+							)}
+						/>
+						<div>
 							<label>Ocupación padre</label>
 							<Field
 								type="text"
@@ -318,21 +363,6 @@ const FormFiliacion = ({ item }) => {
 										<i className="fas fa-times-circle"></i>
 									</span>
 									<span>{errors.telefono_padre}</span>
-								</div>
-							)}
-						/>
-						<div>
-							<label>Nombre padre</label>
-							<Field type="text" name="nombre_padre"></Field>
-						</div>
-						<ErrorMessage
-							name="nombre_padre"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.nombre_padre}</span>
 								</div>
 							)}
 						/>
