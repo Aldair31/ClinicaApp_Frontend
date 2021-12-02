@@ -7,19 +7,19 @@ import getFecha from '../../../functions/fecha';
 import { useEffect,useState } from 'react';
 import { useParams } from 'react-router';
 const FormFiliacion = ({ item }) => {
-	let fechaNac = ''
+	/*let fechaNac = ''
 	if(item.fecha_nac != null){
 		fechaNac = moment(item.fecha_nac).format('YYYY-MM-DD')
-	}
-	/*const [Hc, setHc] = useState({})
+	}*/
+	const [Hc, setHc] = useState({})
 	let { id } = useParams();
 	useEffect(() => {
-		fetch(`${url}/Historia/${id}`)
+		fetch(`${url}/Historia/id/${id}`)
 			.then((resp) => resp.json())
 			.then((data)=>{
-				console.log('hist.clinica');
+				/*console.log('hist.clinica');
 				console.log(data);
-				console.log(id)
+				console.log(id)*/
 				setHc(data)
 			})
 	}, []);
@@ -28,15 +28,23 @@ const FormFiliacion = ({ item }) => {
 			...Hc,
 			[e.target.name]: e.target.value
 		})
-	}*/
+		//setHc(e.target.value)
+	}
+	console.log("Fecha:", moment(Hc.fecha_nac).format('DD/MM/YYYY'))
 	return (
+		// <div>
+		// 	<label>Edad</label>
+		// 	<input type="text" value={(moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' años ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' meses ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' días'} name="Edad" onChange={handleChange} />
+		// 	<label>Fecha de Nacimiento</label>
+		// 	<input type="date" value={moment(Hc.fecha_nac).format('YYYY-MM-DD')} name="fecha_nac" onChange={handleChange} />
+		// </div>
 		<>
 			<Formik
 				initialValues={{
 					nombres_paciente: item.nombres_paciente,
 					dni_paciente: item.dni_paciente,
-					fecha_nac: fechaNac,
-					//edad : item.edad,
+					fecha_nac: moment(item.fecha_nac).format('YYYY-MM-DD'),
+					//edad : (moment.duration(moment().diff(moment(item.fecha_nac)))).years() + ' años ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).months() + ' meses ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).days() + ' días',
 					sexo : item.sexo,
 					lugar_nac: item.lugar_nac,
 					direccion: item.direccion,
@@ -132,48 +140,55 @@ const FormFiliacion = ({ item }) => {
 					}*/
 					return errores;
 				}}
-				onSubmit={(valores, { resetForm }) => {
-					// resetForm();
-					fetch(`${url}/Historia/${item._id}`, {
-						headers: {
-							'Content-Type': 'application/json',
-						},
-						method: 'PUT',
-						body: JSON.stringify({
-							...valores,
-							fecha_nac : moment(valores.fecha_nac).format(),
-							id: item._id,
-						}),
-					})
-						.then((resp) => resp.json())
-						.then((data) => {
-							if (data.ok) {
-								alert('Actualizado correctamente');
-								console.log(data);
-								/*const { evento } = data;
-								console.log(evento);*/
-								return data;
-							}
-						})
-						.then((e) => {		
-							/*valores.direccion = e.direccion;
-							valores.nombres_paciente = e.nombres_paciente;
-							valores.dni_paciente = e.dni_paciente;
-							valores.lugar_nac = e.lugar_nac;
-							//valores.fecha_nac = moment(e.fecha_nac).add(5, 'days').calendar();
-							valores.numero_hijo = e.numero_hijo;
-							valores.ocupacion_madre = e.ocupacion_madre;
-							valores.ocupacion_padre = e.ocupacion_padre;
-							valores.referencia = e.referencia;
-							valores.telefono_madre = e.telefono_madre;
-							valores.telefono_padre = e.telefono_padre;
-							valores.nombre_madre = e.nombre_madre;
-							valores.nombre_padre = e.nombre_padre;*/
-						});
-				}}
+				// onSubmit={(valores, { resetForm }) => {
+				// 	// resetForm();
+				// 	fetch(`${url}/Historia/${item._id}`, {
+				// 		headers: {
+				// 			'Content-Type': 'application/json',
+				// 		},
+				// 		method: 'PUT',
+				// 		body: JSON.stringify({
+				// 			...valores,
+				// 			fecha_nac : moment(valores.fecha_nac).format(),
+				// 			id: item._id,
+				// 		}),
+				// 	})
+				// 		.then((resp) => resp.json())
+				// 		.then((data) => {
+				// 			if (data.ok) {
+				// 				alert('Actualizado correctamente');
+				// 				console.log(data);
+				// 				/*const { evento } = data;
+				// 				console.log(evento);*/
+				// 				return data;
+				// 			}
+				// 		})
+				// 		.then((e) => {		
+				// 			/*valores.direccion = e.direccion;
+				// 			valores.nombres_paciente = e.nombres_paciente;
+				// 			valores.dni_paciente = e.dni_paciente;
+				// 			valores.lugar_nac = e.lugar_nac;
+				// 			//valores.fecha_nac = moment(e.fecha_nac).add(5, 'days').calendar();
+				// 			valores.numero_hijo = e.numero_hijo;
+				// 			valores.ocupacion_madre = e.ocupacion_madre;
+				// 			valores.ocupacion_padre = e.ocupacion_padre;
+				// 			valores.referencia = e.referencia;
+				// 			valores.telefono_madre = e.telefono_madre;
+				// 			valores.telefono_padre = e.telefono_padre;
+				// 			valores.nombre_madre = e.nombre_madre;
+				// 			valores.nombre_padre = e.nombre_padre;*/
+				// 		});
+				// }}
 			>
 				{({ errors }) => (
 					<Form>
+						<label>Edad</label>
+            			{/* <input readonly="" name="fecha_nac" onChange={handleChange}/> */}
+						<Field 
+							type="text"
+							name = "edad"
+							value={(moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' años ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' meses ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' días'}
+						></Field>
 						<div>
 							<label>Nombre</label>
 							<Field
@@ -209,7 +224,14 @@ const FormFiliacion = ({ item }) => {
 						/>
 						<div>
 							<label>Fecha de nacimiento</label>
-							<Field type="date" name="fecha_nac" max={getFecha()}></Field>
+							<input 
+							type="date" 
+							name="fecha_nac" 
+							max={getFecha()}
+							//value={(moment(Hc.fecha_nac).add(5, 'hours')).format('YYYY-MM-DD')}
+							value={moment(Hc.fecha_nac).format('YYYY-MM-DD')}
+							onChange={handleChange}
+							></input>
 						</div>
 						<ErrorMessage
 							name="fecha_nac"
@@ -400,9 +422,35 @@ const FormFiliacion = ({ item }) => {
 								</div>
 							)}
 						/>
-						<button type="submit" className="actualizar">
+						{/* <button type="submit" className="actualizar">
 							Actualizar
-						</button>
+						</button> */}
+						<button onClick={(e)=>{
+							e.preventDefault()
+							fetch(`${url}/Historia/${id}`, {
+								headers: {
+								'Content-Type': 'application/json',
+							},
+							method: 'PUT',
+							body: JSON.stringify({
+								...Hc,
+								fecha_nac : moment(Hc.fecha_nac).format()
+							}),
+							})
+							.then((resp) => resp.json())
+							.then((datos) => {
+								console.log(datos);
+								if(datos.ok){
+									alert('datos actualizados')
+								}
+							})
+							.catch((err) => {
+								console.log(err);
+								// rej(err);
+							});
+						}}>
+					Actualizar
+				</button>
 					</Form>
 				)}
 			</Formik>

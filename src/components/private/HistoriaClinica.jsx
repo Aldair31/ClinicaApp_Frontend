@@ -9,8 +9,8 @@ const HistoriaClinica = () => {
 		fetch(`${url}/HistClinica/id/${id}`)
 			.then((resp) => resp.json())
 			.then((data)=>{
-				console.log('hist.clinica');
-				console.log(data);
+				/*console.log('hist.clinica');
+				console.log(data);*/
 				setHc(data)
 			})
 	}, []);
@@ -20,7 +20,6 @@ const HistoriaClinica = () => {
 			[e.target.name]: e.target.value
 		})
 	}
-	console.log("****", Hc)
 	return (
 		<div >
             <h2 className="titulo-hc">Historia clínica</h2>
