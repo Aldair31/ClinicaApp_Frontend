@@ -7,10 +7,10 @@ import getFecha from '../../../functions/fecha';
 import { useEffect,useState } from 'react';
 import { useParams } from 'react-router';
 const FormFiliacion = ({ item }) => {
-	/*let fechaNac = ''
+	let fechaNac = ''
 	if(item.fecha_nac != null){
 		fechaNac = moment(item.fecha_nac).format('YYYY-MM-DD')
-	}*/
+	}
 	const [Hc, setHc] = useState({})
 	let { id } = useParams();
 	useEffect(() => {
@@ -43,7 +43,8 @@ const FormFiliacion = ({ item }) => {
 				initialValues={{
 					nombres_paciente: item.nombres_paciente,
 					dni_paciente: item.dni_paciente,
-					fecha_nac: moment(item.fecha_nac).format('YYYY-MM-DD'),
+					fecha_nac: fechaNac,
+					// fecha_nac: moment(item.fecha_nac).format('YYYY-MM-DD'),
 					//edad : (moment.duration(moment().diff(moment(item.fecha_nac)))).years() + ' años ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).months() + ' meses ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).days() + ' días',
 					sexo : item.sexo,
 					lugar_nac: item.lugar_nac,
@@ -182,13 +183,7 @@ const FormFiliacion = ({ item }) => {
 			>
 				{({ errors }) => (
 					<Form>
-						<label>Edad</label>
-            			{/* <input readonly="" name="fecha_nac" onChange={handleChange}/> */}
-						<Field 
-							type="text"
-							name = "edad"
-							value={(moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' años ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' meses ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' días'}
-						></Field>
+						
 						<div>
 							<label>Nombre</label>
 							<Field
@@ -244,11 +239,18 @@ const FormFiliacion = ({ item }) => {
 								</div>
 							)}
 						/>
-						<div>
+						{/* <div>
 							<label>Edad</label>
                 			<input type="text" name="edad" value={(moment.duration(moment().diff(moment(item.fecha_nac)))).years() + ' años ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).months() + ' meses ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).days() + ' días'} readOnly>
 							</input>
-						</div>
+						</div> */}
+						<label>Edad</label>
+            			{/* <input readonly="" name="fecha_nac" onChange={handleChange}/> */}
+						<Field 
+							type="text"
+							name = "edad"
+							value={(moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' años ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' meses ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' días'}
+						></Field>
 						<div>
 							<label>Sexo</label>
 							<Field name="sexo" as="select">
@@ -425,7 +427,7 @@ const FormFiliacion = ({ item }) => {
 						{/* <button type="submit" className="actualizar">
 							Actualizar
 						</button> */}
-						<button onClick={(e)=>{
+						<button className='actualizar' onClick={(e)=>{
 							e.preventDefault()
 							fetch(`${url}/Historia/${id}`, {
 								headers: {
@@ -434,7 +436,7 @@ const FormFiliacion = ({ item }) => {
 							method: 'PUT',
 							body: JSON.stringify({
 								...Hc,
-								fecha_nac : moment(Hc.fecha_nac).format()
+								fecha_nac : moment(Hc.fecha_nac).format('YYYY-MM-DD')
 							}),
 							})
 							.then((resp) => resp.json())

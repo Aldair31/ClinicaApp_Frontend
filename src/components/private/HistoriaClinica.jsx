@@ -9,8 +9,8 @@ const HistoriaClinica = () => {
 		fetch(`${url}/HistClinica/id/${id}`)
 			.then((resp) => resp.json())
 			.then((data)=>{
-				/*console.log('hist.clinica');
-				console.log(data);*/
+				console.log('hist.clinica');
+				console.log(data);
 				setHc(data)
 			})
 	}, []);
@@ -27,7 +27,7 @@ const HistoriaClinica = () => {
                 <h3>Datos de la H.clínica</h3>
 				<h3>Anamnesis *</h3>
 				<textarea
-					rows="10"
+					rows="3"
 					cols="50"
 					placeholder="Anámnesis"
 					name="anamnesis"
@@ -35,36 +35,65 @@ const HistoriaClinica = () => {
 					onChange={handleChange}
 				></textarea>
                 <h3>Examen físico</h3>
-                <label>Peso</label>
-                <input placeholder="Peso" type="number" min="0" value={Hc.peso} name="peso" onChange={handleChange}/>
-                <label>Talla</label>
-                <input placeholder="Talla" type="number" min="0" value={Hc.talla} name="talla" onChange={handleChange}/>
-				<label>IMC</label>
-                <input placeholder="IMC" type="text" min="0" readonly="" value={Math.round((Hc.peso/(Math.pow((Hc.talla/100),2)))*1000)/1000} name="IMC" onChange={handleChange}/>
-                <label>Temperatura</label>
-                <input placeholder="Temperatura" type="number" min="0" value={Hc.temperatura} name="temperatura" onChange={handleChange}/>
-                <label>Apreciación General</label>
-                <input placeholder="Apreciación General" value={Hc.apreciancionG} name="apreciancionG" onChange={handleChange}/>
-                <label>Aparato CV</label>
-                <input placeholder="Aparato CV" value={Hc.aparatoCV} name="aparatoCV" onChange={handleChange}/>
-                <label>Abdomen</label>
-                <input placeholder="Abdomen" value={Hc.abdomen} name="abdomen" onChange={handleChange}/>
-                {/* wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww */}
-                <label>TCSC</label>
-                <input placeholder="TCSC" value={Hc.tcsc} name="tcsc" onChange={handleChange}/>
-                <label>Orofaringe</label>
-                <input placeholder="Orofaringe" value={Hc.orofaringe} name="orofaringe" onChange={handleChange}/>
+				<div className='fila1'>
+					<label>Peso (kg)</label>
+					<input id='fila2' placeholder="Peso" type="number" min="0" value={Hc.peso} name="peso" onChange={handleChange}/>
+					<label id='f2'>Talla (cm)</label>
+					<input placeholder="Talla" type="number" min="0" value={Hc.talla} name="talla" onChange={handleChange}/>
+					
+				</div>
+				<div className="fila1">
+					<label>IMC (kg/m2)</label>
+					<input id='fila3' placeholder="IMC" type="text" min="0" readonly="" value={Math.round((Hc.peso/(Math.pow((Hc.talla/100),2)))*1000)/1000} name="imc" onChange={handleChange}/>
+					<label id='f3'>PC (cm)</label>
+					<input placeholder="PC" type="number" min="0" value={Hc.pc} name="pc" onChange={handleChange}/>
+				</div>
+
+				<div className='fila1'>
+					<label>FR (Resp/min)</label>
+					<input id='fila4' placeholder="FR" type="number" min="0" value={Hc.fr} name="fr" onChange={handleChange}/>
+					<label id='f4'>FC (latidos/min)</label>
+					<input placeholder="FC" type="number" min="0" value={Hc.fc} name="fc" onChange={handleChange}/>
+					
+				</div>
+				<div className="fila1">
+					<label>Sat.O2 (%)</label>
+					<input id='fila5' placeholder="Sat.O2" type="number" min="0" value={Hc.saturacion} name="saturacion" onChange={handleChange}/>
+					<label id='f5'>T° (°C)</label>
+					<input placeholder="T°" type="number" min="0" value={Hc.temperatura} name="temperatura" onChange={handleChange} />
+				</div>
+				
+               
+                {/* <label>Temperatura</label>
+                <input placeholder="Temperatura" type="number" min="0" value={Hc.temperatura} name="temperatura" onChange={handleChange}/> */}
+                <div style={{marginTop:'25px'}}>
+				<label>Apreciación General</label>
+                <textarea rows="3" cols="50" placeholder="Apreciación General" value={Hc.apreciancionG} name="apreciancionG" onChange={handleChange}/>
+				</div>
+				<label>Piel y TCSC</label>
+                <textarea rows="3" cols="50" placeholder="TCSC" value={Hc.tcsc} name="tcsc" onChange={handleChange}/>
+				<label>Orofaringe</label>
+                <textarea rows="3" cols="50" placeholder="Orofaringe" value={Hc.orofaringe} name="orofaringe" onChange={handleChange}/>
+				<label>Oidos</label>
+                <textarea rows="3" cols="50" placeholder="Aparato Resp." value={Hc.aparatoResp} name="aparatoResp" onChange={handleChange}/>
+				<label>Aparato CV</label>
+                <textarea rows="3" cols="50" placeholder="Aparato CV" value={Hc.aparatoCV} name="aparatoCV" onChange={handleChange}/>
                 <label>Aparato resp.</label>
-                <input placeholder="Aparato Resp." value={Hc.aparatoResp} name="aparatoResp" onChange={handleChange}/>
+                <textarea rows="3" cols="50" placeholder="Aparato Resp." value={Hc.aparatoResp} name="aparatoResp" onChange={handleChange}/>
+				<label>Abdomen</label>
+                <textarea rows="3" cols="50" placeholder="Abdomen" value={Hc.abdomen} name="abdomen" onChange={handleChange}/>
+                {/* wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww */}
+                
+                
+               
                 <label>Aparato GU.</label>
-                <input placeholder="Aparato GU" value={Hc.aparatoGU} name="aparatoGU" onChange={handleChange}/>
-                <label>Abdomen</label>
-                <input placeholder="Abdomen" value={Hc.abdomen} name="abdomen" onChange={handleChange}/>
+                <textarea rows="3" cols="50" placeholder="Aparato GU" value={Hc.aparatoGU} name="aparatoGU" onChange={handleChange}/>
+               
                 <label>Neurológico</label>
-                <input placeholder="Neurológico" value={Hc.neurologico} name="neurologico" onChange={handleChange}/>
+                <textarea rows="3" cols="50" placeholder="Neurológico" value={Hc.neurologico} name="neurologico" onChange={handleChange}/>
 				<h3>Diagnóstico</h3>
 				<textarea
-					rows="10"
+					rows="3"
 					cols="50"
 					placeholder="Diagnóstico"
 					name="diagnostico"
@@ -73,7 +102,7 @@ const HistoriaClinica = () => {
 				></textarea>
 				<h3>Exámenes auxiliares</h3>
 				<textarea
-					rows="10"
+					rows="3"
 					cols="50"
 					placeholder="Ex. auxiliares"
 					name="examenesAuxiliares"
@@ -82,7 +111,7 @@ const HistoriaClinica = () => {
 				></textarea>
 				<h3>Tratamiento</h3>
 				<textarea
-					rows="10"
+					rows="3"
 					cols="50"
 					placeholder="Tratamiento"
 					name="tratamiento"
