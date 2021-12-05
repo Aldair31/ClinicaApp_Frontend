@@ -489,7 +489,7 @@ const GraficoDeCrecimientoPesoTallaNiña = () => {
 			plugins : {
 				title : {
 					display : true,
-					text : 'Gráfica de Crecimiento Peso - Talla (2 a 20 años)',
+					text : 'Gráfica de Crecimiento Peso - Talla (>7 kg y 77 cm)',
 					color : '#ED1160',
 					font : {
 						size : 20

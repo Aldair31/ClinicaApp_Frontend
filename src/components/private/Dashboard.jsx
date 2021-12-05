@@ -25,20 +25,25 @@ import DatosF from './DatosF';
 import HistoriasClinicas from './extras/HistoriasClinicas'
 import Antecedentes from './Antecedentes';
 import GraficoDeCrecimiento from './GraficoDeCrecimiento';
+//PARA NIÑOS
 import GraficoDeCrecimientoPesoEdadNiño0a36 from './GraficoDeCrecimientoPesoEdadNiño0a36';
-import GraficoDeCrecimientoPesoEdadNiña0a36 from './GraficoDeCrecimientoPesoEdadNiña0a36';
 import GraficoDeCrecimientoTallaEdadNiño0a36 from './GraficoDeCrecimientoTallaEdadNiño0a36';
-import GraficoDeCrecimientoTallaEdadNiña0a36 from './GraficoDeCrecimientoTallaEdadNiña0a36';
+import GraficoDeCrecimientoPCNiño0a36 from './GraficoDeCrecimientoPCNiño0a36';
+import GraficoDeCrecimientoPesoTallaNiño0a36 from './GraficoDeCrecimientoPesoTallaNiño0a36';
 import GraficoDeCrecimientoPesoEdadNiño2a20 from './GraficoDeCrecimientoPesoEdadNiño2a20';
 import GraficoDeCrecimientoTallaEdadNiño2a20 from './GraficoDeCrecimientoTallaEdadNiño2a20';
+import GraficoDeCrecimientoPesoTallaNiño from './GraficoDeCrecimientoPesoTallaNiño';
+import GraficoDeCrecimientoIMCNiños2a20 from './GraficoDeCrecimientoIMCNiños2a20';
+//PARA ÑINAS
+import GraficoDeCrecimientoPesoEdadNiña0a36 from './GraficoDeCrecimientoPesoEdadNiña0a36';
+import GraficoDeCrecimientoTallaEdadNiña0a36 from './GraficoDeCrecimientoTallaEdadNiña0a36';
+import GraficoDeCrecimientoPCNiña0a36 from './GraficoDeCrecimientoPCNiña0a36';
+import GraficoDeCrecimientoPesoTallaNiña0a36 from './GraficoDeCrecimientoPesoTallaNiña0a36';
 import GraficoDeCrecimientoPesoEdadNiña2a20 from './GraficoDeCrecimientoPesoEdadNiña2a20';
 import GraficoDeCrecimientoTallaEdadNiña2a20 from './GraficoDeCrecimientoTallaEdadNiña2a20';
-import GraficoDeCrecimientoPesoTallaNiño from './GraficoDeCrecimientoPesoTallaNiño';
 import GraficoDeCrecimientoPesoTallaNiña from './GraficoDeCrecimientoPesoTallaNiña';
-import GraficoDeCrecimientoIMCNiños2a20 from './GraficoDeCrecimientoIMCNiños2a20';
 import GraficoDeCrecimientoIMCNiñas2a20 from './GraficoDeCrecimientoIMCNiñas2a20';
-// DatosF
-// Error404
+
 const Dashboard = ({ usuario, logout }) => {
 	console.log(usuario);
 	return (
@@ -264,6 +269,22 @@ const Dashboard = ({ usuario, logout }) => {
 							<Route
 								path="/GraficoDeCrecimientoTallaEdadNiña0a36/:id"
 								component={GraficoDeCrecimientoTallaEdadNiña0a36}
+							/>
+							<Route
+								path="/GraficoDeCrecimientoPesoTallaNiño0a36/:id"
+								component={GraficoDeCrecimientoPesoTallaNiño0a36}
+							/>
+							<Route
+								path="/GraficoDeCrecimientoPesoTallaNiña0a36/:id"
+								component={GraficoDeCrecimientoPesoTallaNiña0a36}
+							/>
+							<Route
+								path="/GraficoDeCrecimientoPCNiño0a36/:id"
+								component={GraficoDeCrecimientoPCNiño0a36}
+							/>
+							<Route
+								path="/GraficoDeCrecimientoPCNiña0a36/:id"
+								component={GraficoDeCrecimientoPCNiña0a36}
 							/>
 							<Route
 								path="/GraficoDeCrecimientoPesoEdadNiño2a20/:id"
