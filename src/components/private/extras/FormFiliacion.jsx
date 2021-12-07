@@ -43,7 +43,7 @@ const FormFiliacion = ({ item }) => {
 				initialValues={{
 					nombres_paciente: item.nombres_paciente,
 					dni_paciente: item.dni_paciente,
-					fecha_nac: fechaNac,
+					//fecha_nac: fechaNac,
 					// fecha_nac: moment(item.fecha_nac).format('YYYY-MM-DD'),
 					//edad : (moment.duration(moment().diff(moment(item.fecha_nac)))).years() + ' años ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).months() + ' meses ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).days() + ' días',
 					sexo : item.sexo,
@@ -186,10 +186,7 @@ const FormFiliacion = ({ item }) => {
 						
 						<div>
 							<label>Nombre</label>
-							<Field
-								type="text"
-								name="nombres_paciente"
-							></Field>
+							<Field type="text" name="nombres_paciente" value={Hc.nombres_paciente} onChange={handleChange}></Field>
 						</div>
 						<ErrorMessage
 							name="nombres_paciente"
@@ -204,7 +201,7 @@ const FormFiliacion = ({ item }) => {
 						/>
 						<div>
 							<label>DNI</label>
-							<Field type="text" name="dni_paciente"></Field>
+							<Field type="text" name="dni_paciente" value={Hc.dni_paciente} onChange={handleChange}></Field>
 						</div>
 						<ErrorMessage
 							name="dni_paciente"
@@ -253,14 +250,14 @@ const FormFiliacion = ({ item }) => {
 						></Field>
 						<div>
 							<label>Sexo</label>
-							<Field name="sexo" as="select">
+							<Field name="sexo" as="select" value={Hc.sexo} onChange={handleChange}>
 								<option value="2">Mujer</option>
 								<option value="1">Hombre</option>
 							</Field>
 						</div>
 						<div>
 							<label>Lugar de nacimiento</label>
-							<Field type="text" name="lugar_nac"></Field>
+							<Field type="text" name="lugar_nac" value={Hc.lugar_nac} onChange={handleChange}></Field>
 						</div>
 						<ErrorMessage
 							name="lugar_nac"
@@ -275,7 +272,7 @@ const FormFiliacion = ({ item }) => {
 						/>
 						<div>
 							<label>Dirección</label>
-							<Field type="text" name="direccion"></Field>
+							<Field type="text" name="direccion" value={Hc.direccion} onChange={handleChange}></Field>
 						</div>
 						<ErrorMessage
 							name="direccion"
@@ -290,7 +287,7 @@ const FormFiliacion = ({ item }) => {
 						/>
 						<div>
 							<label>Nombre madre</label>
-							<Field type="text" name="nombre_madre"></Field>
+							<Field type="text" name="nombre_madre" value={Hc.nombre_madre} onChange={handleChange}></Field>
 						</div>
 						<ErrorMessage
 							name="nombre_madre"
@@ -308,6 +305,7 @@ const FormFiliacion = ({ item }) => {
 							<Field
 								type="text"
 								name="ocupacion_madre"
+								value={Hc.ocupacion_madre} onChange={handleChange}
 							></Field>
 						</div>
 						<ErrorMessage
@@ -326,6 +324,7 @@ const FormFiliacion = ({ item }) => {
 							<Field
 								type="text"
 								name="telefono_madre"
+								value={Hc.telefono_madre} onChange={handleChange}
 							></Field>
 						</div>
 						<ErrorMessage
@@ -341,7 +340,7 @@ const FormFiliacion = ({ item }) => {
 						/>
 						<div>
 							<label>Nombre padre</label>
-							<Field type="text" name="nombre_padre"></Field>
+							<Field type="text" name="nombre_padre" value={Hc.nombre_padre} onChange={handleChange}></Field>
 						</div>
 						<ErrorMessage
 							name="nombre_padre"
@@ -359,6 +358,7 @@ const FormFiliacion = ({ item }) => {
 							<Field
 								type="text"
 								name="ocupacion_padre"
+								value={Hc.ocupacion_padre} onChange={handleChange}
 							></Field>
 						</div>
 						<ErrorMessage
@@ -377,6 +377,7 @@ const FormFiliacion = ({ item }) => {
 							<Field
 								type="text"
 								name="telefono_padre"
+								value={Hc.telefono_padre} onChange={handleChange}
 							></Field>
 						</div>
 						<ErrorMessage
@@ -392,7 +393,7 @@ const FormFiliacion = ({ item }) => {
 						/>
 						<div>
 							<label>Referencia</label>
-							<Field type="text" name="referencia"></Field>
+							<Field type="text" name="referencia" value={Hc.referencia} onChange={handleChange}></Field>
 						</div>
 						<ErrorMessage
 							name="referencia"
@@ -411,6 +412,7 @@ const FormFiliacion = ({ item }) => {
 								type="number"
 								name="numero_hijo"
 								min="1"
+								value={Hc.numero_hijo} onChange={handleChange}
 							></Field>
 						</div>
 						<ErrorMessage
@@ -436,7 +438,8 @@ const FormFiliacion = ({ item }) => {
 							method: 'PUT',
 							body: JSON.stringify({
 								...Hc,
-								fecha_nac : moment(Hc.fecha_nac).format('YYYY-MM-DD')
+								fecha_nac : moment(Hc.fecha_nac).format()
+								//fecha_nac : (moment(Hc.fecha_nac).add(5, 'hours')).format('YYYY-MM-DD')
 							}),
 							})
 							.then((resp) => resp.json())
