@@ -20,6 +20,7 @@ const HistoriaClinica = () => {
 			[e.target.name]: e.target.value
 		})
 	}
+	Hc.imc = Math.round((Hc.peso/(Math.pow((Hc.talla/100),2)))*1000)/1000
 	return (
 		<div >
             <h2 className="titulo-hc">Historia clínica</h2>
@@ -44,7 +45,7 @@ const HistoriaClinica = () => {
 				</div>
 				<div className="fila1">
 					<label>IMC (kg/m2)</label>
-					<input id='fila3' placeholder="IMC" type="text" min="0" readonly="" value={Math.round((Hc.peso/(Math.pow((Hc.talla/100),2)))*1000)/1000} name="imc" onChange={handleChange}/>
+					<input id='fila3' placeholder="IMC" type="text" min="0" readonly="" value={Hc.imc} name="imc" onChange={handleChange}/>
 					<label id='f3'>PC (cm)</label>
 					<input placeholder="PC" type="number" min="0" value={Hc.pc} name="pc" onChange={handleChange}/>
 				</div>
@@ -68,14 +69,14 @@ const HistoriaClinica = () => {
                 <input placeholder="Temperatura" type="number" min="0" value={Hc.temperatura} name="temperatura" onChange={handleChange}/> */}
                 <div style={{marginTop:'25px'}}>
 				<label>Apreciación General</label>
-                <textarea rows="3" cols="50" placeholder="Apreciación General" value={Hc.apreciancionG} name="apreciancionG" onChange={handleChange}/>
+                <textarea rows="3" cols="50" placeholder="Apreciación General" value={Hc.apreciacionG} name="apreciacionG" onChange={handleChange}/>
 				</div>
 				<label>Piel y TCSC</label>
                 <textarea rows="3" cols="50" placeholder="TCSC" value={Hc.tcsc} name="tcsc" onChange={handleChange}/>
 				<label>Orofaringe</label>
                 <textarea rows="3" cols="50" placeholder="Orofaringe" value={Hc.orofaringe} name="orofaringe" onChange={handleChange}/>
 				<label>Oidos</label>
-                <textarea rows="3" cols="50" placeholder="Aparato Resp." value={Hc.aparatoResp} name="aparatoResp" onChange={handleChange}/>
+                <textarea rows="3" cols="50" placeholder="Oídos" value={Hc.oidos} name="oidos" onChange={handleChange}/>
 				<label>Aparato CV</label>
                 <textarea rows="3" cols="50" placeholder="Aparato CV" value={Hc.aparatoCV} name="aparatoCV" onChange={handleChange}/>
                 <label>Aparato resp.</label>

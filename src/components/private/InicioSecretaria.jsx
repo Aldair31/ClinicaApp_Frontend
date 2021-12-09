@@ -5,6 +5,7 @@ import moment from 'moment';
 import FullCalendar from '@fullcalendar/react'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid';// a plugin!
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
+import useReserva from '../../hooks/useReserva';
 // import 'react-calendar/dist/Calendar.css'
 // import MostrarCita from './MostrarCita';
 
@@ -18,29 +19,41 @@ const InicioSecretaria =  () => {
     //     })
     // }
     console.log(value)
-	const onDelete = (id) => {
-		fetch(`${url}/Cita/${id}`, {
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			method: 'DELETE',
-		})
-			.then((resp) => {
-				return resp.json();
-			})
-			.then((data) => {
-				alert(data.msg);
-			})
-			.then(() => {
-				set_datos_af(datos_af.filter((item) => item._id !== id));
-			});
-	};
+	// const onDelete = (id) => {
+	// 	fetch(`${url}/Cita/${id}`, {
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 		},
+	// 		method: 'DELETE',
+	// 	})
+	// 		.then((resp) => {
+	// 			return resp.json();
+	// 		})
+	// 		.then((data) => {
+	// 			alert(data.msg);
+	// 		})
+	// 		.then(() => {
+	// 			set_datos_af(datos_af.filter((item) => item._id !== id));
+	// 		});
+	// };
     const handleDateClick = (arg) => { // bind with an arrow function
         // alert(arg.dateStr);
         if(arg.dateStr){
             setState(true)
         }
     }
+
+    //PARA REGISTRAR RESERVA
+    
+
+    //PARA CONSUMIR DATOS DE RESERVA
+    let {Nombre, Fecha} = useReserva();
+    let NombreYFecha = []
+
+    for (let item in Nombre){
+        NombreYFecha.push({title:Nombre[item], date:Fecha[item]})
+    }
+    //console.log(moment(Fecha[0]).format('LLL'))
     const Modal = () => {
         return (
             
@@ -147,15 +160,12 @@ const InicioSecretaria =  () => {
                     month: 'Mes',
                 }}
                 // 
-                events={[
-                    { title: '13:58 - diego', date: '2021-12-01T10:30:00'},
-                    { title: 'event 2', date: '2021-12-01T10:32:00' },
-                    { title: '13:58', date: '2021-12-01T10:33:00' },
-                    { title: 'event 2', date: '2021-12-04' },
-                    { title: '13:58', date: '2021-12-03' },
-                    { title: 'event 2', date: '2021-12-04' },
-                    { title: 'event 2', date: '2021-11-10' }
-                    ]}
+                eventTimeFormat ={{
+                    hour12: true,
+                    hour: 'numeric',
+                    minute: '2-digit'
+                }}
+                events={NombreYFecha}
                 editable= {true}
                 selectable={true}
                 select={handleDateClick}

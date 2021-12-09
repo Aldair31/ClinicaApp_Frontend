@@ -31,6 +31,7 @@ const FormFiliacion = ({ item }) => {
 		//setHc(e.target.value)
 	}
 	console.log("Fecha:", moment(Hc.fecha_nac).format('DD/MM/YYYY'))
+	Hc.edad = (moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' años ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' meses ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' días'
 	return (
 		// <div>
 		// 	<label>Edad</label>
@@ -246,7 +247,7 @@ const FormFiliacion = ({ item }) => {
 						<Field 
 							type="text"
 							name = "edad"
-							value={(moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' años ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' meses ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' días'}
+							value={Hc.edad}
 						></Field>
 						<div>
 							<label>Sexo</label>

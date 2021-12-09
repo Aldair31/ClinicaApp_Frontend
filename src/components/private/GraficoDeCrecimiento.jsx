@@ -110,7 +110,7 @@ const GraficoDeCrecimiento = () => {
                                             <br></br>
 											<h3>Mayores a 7kg y 77cm</h3>
 											<Link
-												to={`/GraficoDeCrecimientoPesoTallaNiña/${id}`}
+												to={`/GraficoDeCrecimientoPesoTallaNiño/${id}`}
 												style={{
 													fontSize: '16px',
 													cursor: 'pointer',

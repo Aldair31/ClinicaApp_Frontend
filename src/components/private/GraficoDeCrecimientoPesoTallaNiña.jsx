@@ -30,7 +30,7 @@ const GraficoDeCrecimientoPesoTallaNiña = () => {
 						showLine : true,
                         label: 'Peso',
 						data : datos,
-                        borderColor : 'red',
+                        borderColor : 'turquoise',
 						borderWidth: 3,
                         spanGaps : true,
 						pointRadius : 3
