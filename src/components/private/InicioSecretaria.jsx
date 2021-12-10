@@ -6,13 +6,18 @@ import FullCalendar from '@fullcalendar/react'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid';// a plugin!
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
 import useReserva from '../../hooks/useReserva';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import getFecha from '../../functions/fecha'
+// import { set } from 'react-hook-form';
+// import { Formik, Form, Field, ErrorMessage } from 'formik';
 // import 'react-calendar/dist/Calendar.css'
 // import MostrarCita from './MostrarCita';
+
 
 const InicioSecretaria =  () => {
     const [state, setState] = useState(false);
     const [value, onChange] = useState(new Date());
-
+    // const [form, setForm] = useState(false)
     // const mostrar = () =>{
     //     onChange({
     //         showDate: true
@@ -37,26 +42,27 @@ const InicioSecretaria =  () => {
 	// 		});
 	// };
     const handleDateClick = (arg) => { // bind with an arrow function
-        // alert(arg.dateStr);
         if(arg.dateStr){
             setState(true)
         }
     }
-
-    //PARA REGISTRAR RESERVA
-    
-
-    //PARA CONSUMIR DATOS DE RESERVA
     let {Nombre, Fecha} = useReserva();
     let NombreYFecha = []
 
     for (let item in Nombre){
-        NombreYFecha.push({title:Nombre[item], date:Fecha[item]})
+        NombreYFecha.push({title:Nombre[item], start:Fecha[item], end:moment(moment(Fecha[item]).add(30,'minutes')).format()})
     }
-    //console.log(moment(Fecha[0]).format('LLL'))
+
     const Modal = () => {
+        const [reservas, setReservas] = useState({});
+        const handleChange = (e) => {
+            setReservas({
+                ...reservas,
+                [e.target.name]: e.target.value,
+            });
+            console.log(reservas)
+        };
         return (
-            
             <div
                 style={{
                     background: '#00000039',
@@ -71,50 +77,76 @@ const InicioSecretaria =  () => {
                     alignItems: 'center',
                 }}
             >
-                <form
+               <form
                     style={{
                         background: '#ffffff',
                         padding: '2px',
                         borderRadius: '6px',
                     }}
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                        
-                    }}
                 >
                     <div className='calendario'>
                         <h3>
-                            REGISTRAR RESERVA PARA {moment(value.dateStr).format('DD/MM/YYYY')}
+                            REGISTRO DE RESERVA
+                            {/* {moment(value.dateStr).format('DD/MM/YYYY')} */}
                         </h3>
                         <div className='formularioModal'>
                         <p>
                             <label>Paciente:  </label>
                             <input
                                 type='text'
-                                name='paciente'
+                                name='nombre_paciente'
                                 placeholder="Paciente"
-                               
+                                onChange={handleChange}
+                                value={reservas.nombre_paciente}
                             />
+                        </p>
+                        <p>
+							<label>Fecha</label>
+							<input name="fecha" type="date" min={getFecha()} onChange={handleChange}
+                                value={reservas.fecha}/>
                         </p>
                         <p>
                             <label>Hora:  </label>
                             <input
                                 type='time'
                                 name='hora'
-                                placeholder="Paciente"
-                                
-                                
-                                className='hora'
-                                
+                                onChange={handleChange}
+                                value={reservas.hora}
                             />
                         </p>
                         <p>
-                            <button>Aceptar</button>
+                            <button 
+                            onClick={(e) => {
+                                e.preventDefault();
+                                fetch(`${url}/Reserva/new`,{
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    method: 'POST',
+                                    body: JSON.stringify({
+                                        reservas,
+                                        nombre_paciente:reservas.nombre_paciente,
+                                        fecha: moment(
+                                            new Date(
+                                                `${reservas.fecha} ${reservas.hora}`
+                                            )
+                                        ).format(),
+                                    }),
+                                }).then((resp) =>resp.json()).then((data)=>{
+                                        console.log(data)
+                                        if(data.ok){
+                                            alert('Se Registró la Reserva correctamente')
+                                        }
+                                        else{
+                                            alert('Ya existe una Reserva a esa hora')
+
+                                        }
+                                    })
+                            }}
+                            >Aceptar</button>
                         </p> 
                         </div>
-                        
                     </div>
-                    
                     <br />
                 </form>
                 <button
@@ -141,49 +173,72 @@ const InicioSecretaria =  () => {
 
     return (
         <>
-        {state && <Modal/>}
-                
+            {state && <Modal/>}
+            <div style={{position:'absolute',marginLeft:'40%', top: '82px'}}>
+                <button
+                    onClick={() => {
+                        setState(true);
+                    }}
+                    style={{
+                        
+                        padding: '9px',
+                        color: 'white',
+                        border: 'none',
+                        background: '#0091E1',
+                        marginBottom: '11px',
+                        borderRadius: '11px',
+                        cursor: 'pointer',
+                    }}
+                >
+                    <i class="fas fa-plus"></i>
+                    
+                </button>
+            </div>
             <div style={{ width:'90%', marginTop:'15px'}}>
-            <FullCalendar
-                plugins={[ dayGridPlugin, interactionPlugin]}
-                locale='es'
-                height='85vh'
-                initialView="dayGridMonth"
-                // ref={calendarRef}
-                headerToolbar={{
-                    right:'today prev,next',
-                    center:'title',
-                    left:'dayGridMonth',
-                }}
-                buttonText={{
-                    today: 'Hoy',
-                    month: 'Mes',
-                }}
-                // 
-                eventTimeFormat ={{
-                    hour12: true,
-                    hour: 'numeric',
-                    minute: '2-digit'
-                }}
-                events={NombreYFecha}
-                editable= {true}
-                selectable={true}
-                select={handleDateClick}
-                dateClick={[handleDateClick,onChange]}
-                dayMaxEventRows={ true} // for all non-TimeGrid views
-                view={{
-                    timeGrid: {
-                    dayMaxEventRows: 10 // adjust to 6 only for timeGridWeek/timeGridDay
-                    }
-                }}
-                eventClick={(info)=>{
-                    console.log('click', info)
-                }}
-                eventRemove={true}
-                onChange={onChange}
-                value={value}
-                // showNonCurrentDates={false}
-            />
+                <FullCalendar
+                    plugins={[ timeGridPlugin, interactionPlugin]}
+                    locale='es'
+                    height='85vh'
+                    initialView="timeGridWeek"
+                    headerToolbar={{
+                        right:'today prev,next',
+                        center:'title',
+                        left:'timeGridWeek',
+                    }}
+                    slotMinTime= '09:00:00'
+                    slotMaxTime = '21:30:00'
+                    slotDuration= '00:30:00'
+                    slotLabelInterval= '00:30:00'
+                    allDaySlot= {false}
+                    buttonText={{
+                        today: 'Hoy',
+                        month: 'Mes',
+                        week:'Semana'
+                    }}
+                    eventTimeFormat ={{
+                        hour12: true,
+                        hour: 'numeric',
+                        minute: '2-digit'
+                    }}
+                    displayEventEnd={false}
+                    displayEventTime={false}
+                    events={NombreYFecha}
+                    editable= {true}
+                    select={handleDateClick}
+                    dateClick={onChange}
+                    dayMaxEventRows={ true} // for all non-TimeGrid views
+                    view={{
+                        timeGrid: {
+                        dayMaxEventRows: 10 // adjust to 6 only for timeGridWeek/timeGridDay
+                        }
+                    }}
+                    eventClick={(info)=>{
+                        console.log('click', info)
+                    }}
+                    eventRemove={true}
+                    onChange={onChange}
+                    value={value}
+                />
             </div>
         </>
     )   
