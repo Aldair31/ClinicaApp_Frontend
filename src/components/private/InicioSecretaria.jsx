@@ -174,7 +174,7 @@ const InicioSecretaria =  () => {
     return (
         <>
             {state && <Modal/>}
-            <div style={{position:'absolute',marginLeft:'40%', top: '82px'}}>
+            {/* <div style={{position:'absolute',marginLeft:'60%', top: '82px'}}>
                 <button
                     onClick={() => {
                         setState(true);
@@ -193,7 +193,7 @@ const InicioSecretaria =  () => {
                     <i class="fas fa-plus"></i>
                     
                 </button>
-            </div>
+            </div> */}
             <div style={{ width:'90%', marginTop:'15px'}}>
                 <FullCalendar
                     plugins={[ timeGridPlugin, interactionPlugin]}
@@ -203,7 +203,7 @@ const InicioSecretaria =  () => {
                     headerToolbar={{
                         right:'today,prevYear,nextYear',
                         center:'title',
-                        left:'prev,timeGridWeek,next',
+                        left:'prev,next AgregarReserva',
                     }}
                     slotMinTime= '09:00:00'
                     slotMaxTime = '21:30:00'
@@ -234,6 +234,15 @@ const InicioSecretaria =  () => {
                     }}
                     eventClick={(info)=>{
                         console.log('click', info)
+                    }}
+                    customButtons={{
+                        AgregarReserva:{
+                            text:'+',
+                            click: function() {
+                                setState(true);
+                            }
+                            // icon:'left-single-arrow'
+                        }
                     }}
                     eventRemove={true}
                     onChange={onChange}
