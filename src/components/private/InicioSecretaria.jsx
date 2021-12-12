@@ -201,9 +201,9 @@ const InicioSecretaria =  () => {
                     height='85vh'
                     initialView="timeGridWeek"
                     headerToolbar={{
-                        right:'today prev,next',
+                        right:'today,prevYear,nextYear',
                         center:'title',
-                        left:'timeGridWeek',
+                        left:'prev,timeGridWeek,next',
                     }}
                     slotMinTime= '09:00:00'
                     slotMaxTime = '21:30:00'

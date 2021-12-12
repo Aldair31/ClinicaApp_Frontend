@@ -1,17 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import '../../sass/Dashboard.sass';
+import '../../sass/Vacunas.sass';
 import url from '../../keys/backend_keys';
+import moment from 'moment';
+
+import { useParams } from 'react-router';
 const Consultas = (props) => {
 	const [tiene, setTiene] = useState(false);
-	const [vacunas, setVacunas] = useState({
-		bcg: 1,
-	});
+	const [vacunas, setVacunas] = useState({});
 	const handleChange = (e) => {
 		setVacunas({
 			...vacunas,
 			[e.target.name]: e.target.value,
 		});
 	};
+	// let vacunabcg
+	// if(vacunas.fechabcg!=null){
+	// 	vacunabcg = moment(moment(vacunas.fechabcg).add(5, 'hours')).format('YYYY-MM-DD')
+	// }
+
+	let Dvacunas=[]
+	let { id } = useParams();
+	/*for(let i=0; i<vacunas.length; i++){
+		if(typeof(vacunas[i])=='date'){
+			Dvacunas[i]=vacunas[i]
+		}
+	}*/
+	for(let item in vacunas){
+		if(vacunas[item]!=id){
+			if(vacunas[item]!=vacunas._id){
+				if(typeof(vacunas[item])==='string'){
+					Dvacunas[item]=moment(moment(vacunas[item]).add(5, 'hours')).format('YYYY-MM-DD')
+				}
+			}
+		}
+	}
+	console.log("****", Dvacunas.fechahepatb)
 	useEffect(() => {
 		console.log('solicitando vacunas');
 		fetch(`${url}/Vacuna/${props.match.params.id}`)
@@ -25,7 +49,7 @@ const Consultas = (props) => {
 			});
 	}, []);
 	const handleClick = (e) => {
-		alert('click');
+		//alert('click');
 		e.preventDefault();
 		if (tiene) {
 			fetch(`${url}/Vacuna/${vacunas._id}`, {
@@ -69,17 +93,10 @@ const Consultas = (props) => {
 			<div className="list">
 				<h2>Listado de Vacunas</h2>
 				<form className="cont">
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>Recién nacido</div>
+					<div className='vacunas'>
+						<div className='title'>RECIÉN NACIDO</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>BCG</label>
 							<select
 								name="bcg"
@@ -89,6 +106,8 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							{console.log("FECHITA", vacunas.fechahepatb)}
+							<input name="fechabcg" onChange={handleChange} value={Dvacunas.fechabcg} type="date"></input>
 							<label>Hepatitis B</label>
 							<select
 								name="hepatb"
@@ -98,19 +117,13 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechahepatb" onChange={handleChange} value={Dvacunas.fechahepatb} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>2 meses</div>
+					<div className='vacunas'>
+						<div className='title'>2 MESES</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>DPT</label>
 							<select
 								name="dpt"
@@ -120,6 +133,7 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechadpt" onChange={handleChange} value={Dvacunas.fechadpt} type="date"></input>
 							<label>Neumococo</label>
 							<select
 								name="neumococo"
@@ -129,6 +143,9 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechaneumococo" onChange={handleChange} value={Dvacunas.fechaneumococo} type="date"></input>
+						</div>
+						<div className='vacunasM'>
 							<label>Rotavirus</label>
 							<select
 								name="rotavirus"
@@ -138,6 +155,7 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fecharotavirus" onChange={handleChange} value={Dvacunas.fecharotavirus} type="date"></input>
 							<label>Hepatitis B</label>
 							<select
 								name="hepatb2"
@@ -147,19 +165,13 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechahepatb2" onChange={handleChange} value={Dvacunas.fechahepatb2} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>4 Meses</div>
+					<div className='vacunas'>
+						<div className='title'>4 MESES</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>DPT</label>
 							<select
 								name="dpt2"
@@ -169,6 +181,7 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechadpt2" onChange={handleChange} value={Dvacunas.fechadpt2} type="date"></input>
 							<label>Neumococo</label>
 							<select
 								name="neumococo2"
@@ -178,6 +191,9 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechaneumococo2" onChange={handleChange} value={Dvacunas.fechaneumococo2} type="date"></input>
+						</div>
+						<div className='vacunasM'>
 							<label>Rotavirus</label>
 							<select
 								name="rotavirus2"
@@ -187,6 +203,7 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fecharotavirus2" onChange={handleChange} value={Dvacunas.fecharotavirus2} type="date"></input>
 							<label>Hepatitis B</label>
 							<select
 								name="hepatb3"
@@ -196,19 +213,13 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechahepatb3" onChange={handleChange} value={Dvacunas.fechahepatb3} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>6 Meses</div>
+					<div className='vacunas'>
+						<div className='title'>6 MESES</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>DPT</label>
 							<select
 								name="dpt3"
@@ -218,6 +229,7 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechadpt3" onChange={handleChange} value={Dvacunas.fechadpt3} type="date"></input>
 							<label>Neumococo</label>
 							<select
 								name="neumococo3"
@@ -227,6 +239,9 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechaneumococo3" onChange={handleChange} value={Dvacunas.fechaneumococo3} type="date"></input>
+						</div>
+						<div className='vacunasM'>
 							<label>Rotavirus</label>
 							<select
 								name="rotavirus3"
@@ -236,6 +251,7 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fecharotavirus3" onChange={handleChange} value={Dvacunas.fecharotavirus3} type="date"></input>
 							<label>Hepatitis B</label>
 							<select
 								name="hepatb4"
@@ -245,19 +261,13 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechahepatb4" onChange={handleChange} value={Dvacunas.fechahepatb4} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>7 Meses</div>
+					<div className='vacunas'>
+						<div className='title'>7 MESES</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>Influenza</label>
 							<select
 								name="influenza"
@@ -267,19 +277,13 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechainfluenza" onChange={handleChange} value={Dvacunas.fechainfluenza} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>8 Meses</div>
+					<div className='vacunas'>
+						<div className='title'>8 MESES</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>Influenza</label>
 							<select
 								name="influenza2"
@@ -289,19 +293,13 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechainfluenza2" onChange={handleChange} value={Dvacunas.fechainfluenza2} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>9 Meses</div>
+					<div className='vacunas'>
+						<div className='title'>9 MESES</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>Meningococo</label>
 							<select
 								name="meningococo"
@@ -311,19 +309,13 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechameningococo" onChange={handleChange} value={Dvacunas.fechameningococo} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>1 Año</div>
+					<div className='vacunas'>
+						<div className='title'>1 AÑO</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>SPR</label>
 							<select
 								name="spr"
@@ -333,6 +325,7 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechaspr" onChange={handleChange} value={Dvacunas.fechaspr} type="date"></input>
 							<label>Varicela</label>
 							<select
 								name="varicela"
@@ -342,6 +335,9 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechavaricela" onChange={handleChange} value={Dvacunas.fechavaricela} type="date"></input>
+							</div>
+							<div className='vacunasM'>
 							<label>Meningococo</label>
 							<select
 								value={vacunas.hepata}
@@ -351,19 +347,13 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechameningococo2" onChange={handleChange} value={Dvacunas.fechameningococo2} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>1 Año y 1 Mes</div>
+					<div className='vacunas'>
+						<div className='title'>1 AÑO y 1 MES</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>Hepatitis A</label>
 							<select
 								name="hepata"
@@ -373,19 +363,13 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechahepata" onChange={handleChange} value={Dvacunas.fechahepata} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>1 Año y 3 Meses</div>
+					<div className='vacunas'>
+						<div className='title'>1 AÑO y 3 MESES</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>Fiebre Amarila</label>
 							<select
 								name="famarilla"
@@ -395,19 +379,13 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechafamarilla" onChange={handleChange} value={Dvacunas.fechafamarilla} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>1 Año y 6 Meses</div>
+					<div className='vacunas'>
+						<div className='title'>1 AÑO y 6 MESES</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>DPT</label>
 							<select
 								name="dpt4"
@@ -417,6 +395,7 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechadpt4" onChange={handleChange} value={Dvacunas.fechadpt4} type="date"></input>
 							<label>SPR</label>
 							<select
 								name="spr2"
@@ -426,6 +405,9 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechaspr2" onChange={handleChange} value={Dvacunas.fechaspr2} type="date"></input>
+							</div>
+							<div className='vacunasM'>
 							<label>Varicela</label>
 							<select
 								value={vacunas.varicela2}
@@ -435,19 +417,13 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechavaricela2" onChange={handleChange} value={Dvacunas.fechavaricela2} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>1 Año y 7 Meses</div>
+					<div className='vacunas'>
+						<div className='title'>1 AÑO y 7 MESES</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>Hepatitis A</label>
 							<select
 								name="hepata2"
@@ -457,19 +433,13 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechahepata2" onChange={handleChange} value={Dvacunas.fechahepata2} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>2 Años</div>
+					<div className='vacunas'>
+						<div className='title'>2 AÑOs</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>Neumococo</label>
 							<select
 								value={vacunas.neumococo4}
@@ -479,6 +449,7 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechaneumococo4" onChange={handleChange} value={Dvacunas.fechaneumococo4} type="date"></input>
 							<label>Influenza</label>
 							<select
 								value={vacunas.influenza3}
@@ -488,24 +459,19 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechainfluenza3" onChange={handleChange} value={Dvacunas.fechainfluenza3} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>4 Años</div>
+					<div className='vacunas'>
+						<div className='title'>4 AÑOS</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>DPT</label>
 							<select name="dpt5" value={vacunas.dpt5}>
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechadpt5" onChange={handleChange} value={Dvacunas.fechadpt5} type="date"></input>
 							<label>SPR</label>
 							<select
 								name="spr3"
@@ -515,19 +481,13 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechaspr3" onChange={handleChange} value={Dvacunas.fechaspr3} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>9 Años</div>
+					<div className='vacunas'>
+						<div className='title'>9 AÑOS</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>Papilomavirus</label>
 							<select
 								value={vacunas.papilomavirus}
@@ -537,19 +497,13 @@ const Consultas = (props) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechapapilomavirus" onChange={handleChange} value={Dvacunas.fechapapilomavirus} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
-						<div>9 Años y 6 Meses</div>
+					<div className='vacunas'>
+						<div className='title'>9 AÑOS y 6 MESES</div>
 						<br />
-						<div>
+						<div className='vacunasM'>
 							<label>Papilomavirus</label>
 							<select
 								value={vacunas.papilomavirus2}
@@ -559,25 +513,23 @@ const Consultas = (props) => {
 								<option value="2">No </option>
 								<option value="1">Sí</option>
 							</select>
+							<input name="fechapapilomavirus2" onChange={handleChange} value={Dvacunas.fechapapilomavirus2} type="date"></input>
 						</div>
 					</div>
-					<div
-						style={{
-							border: '2px solid #383838',
-							padding: '10px',
-							borderRadius: '8px',
-							marginBottom: '12px',
-						}}
-					>
+					<div className='vacunas'>
+						<div className='title'>OTROS</div>
 						<div>
-							<label>Otros</label>
 							<textarea
+								style={{
+									resize: 'none',
+									width: '100%'
+								}}
 								value={vacunas.otros}
 								onChange={handleChange}
 								name="otros"
 								id=""
-								cols="30"
-								rows="10"
+								cols="20"
+								rows="3"
 							></textarea>
 						</div>
 					</div>
