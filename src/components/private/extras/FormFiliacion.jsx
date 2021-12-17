@@ -6,6 +6,8 @@ import getFecha from '../../../functions/fecha';
 // import getFecha  from '../../../functions/fecha';
 import { useEffect,useState } from 'react';
 import { useParams } from 'react-router';
+
+import '../../../sass/Filiacion.sass'
 const FormFiliacion = ({ item }) => {
 	let fechaNac = ''
 	if(item.fecha_nac != null){
@@ -31,7 +33,7 @@ const FormFiliacion = ({ item }) => {
 		//setHc(e.target.value)
 	}
 	console.log("Fecha:", moment(Hc.fecha_nac).format('DD/MM/YYYY'))
-	Hc.edad = (moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' años ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' meses ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' días'
+	Hc.edad = (moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' a ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' m ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' d'
 	return (
 		// <div>
 		// 	<label>Edad</label>
@@ -184,279 +186,315 @@ const FormFiliacion = ({ item }) => {
 			>
 				{({ errors }) => (
 					<Form>
+						<div className='fila'>
+							<div className='primero'>
+								<div>
+									<label>Nombre</label>
+									<Field className='mayus' type="text" name="nombres_paciente" value={Hc.nombres_paciente} onChange={handleChange}></Field>
+								</div>
+								<ErrorMessage
+									name="nombres_paciente"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.nombres_paciente}</span>
+										</div>
+									)}
+								/>
+							</div>
+							<div className='segundo'>
+								<div>
+									<label>DNI</label>
+									<Field type="text" name="dni_paciente" value={Hc.dni_paciente} onChange={handleChange}></Field>
+								</div>
+								<ErrorMessage
+									name="dni_paciente"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.dni_paciente}</span>
+										</div>
+									)}
+								/>
+							</div>
+						</div>
+						<div className='fila2'>
+						<div className='primero'>
+								<div>
+									<label>Fecha de nacimiento</label>
+									<input 
+									type="date" 
+									name="fecha_nac" 
+									max={getFecha()}
+									//value={(moment(Hc.fecha_nac).add(5, 'hours')).format('YYYY-MM-DD')}
+									value={moment(Hc.fecha_nac).format('YYYY-MM-DD')}
+									onChange={handleChange}
+									></input>
+								</div>
+								<ErrorMessage
+									name="fecha_nac"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.fecha_nac}</span>
+										</div>
+									)}
+								/>
+							</div>
+							<div className='segundo'>
+								<label>Edad</label>
+								{/* <input readonly="" name="fecha_nac" onChange={handleChange}/> */}
+								<Field 
+									type="text"
+									name = "edad"
+									value={Hc.edad}
+								></Field>
+							</div>
+							<div className='tercero'>
+									<label>Sexo</label>
+									<Field style={{height:'55%'}} className='mayus' name="sexo" as="select" value={Hc.sexo} onChange={handleChange}>
+										<option value="2">Mujer</option>
+										<option value="1">Hombre</option>
+									</Field>
+								</div>
+						</div>
+						<div className='fila'>
+							<div className='primero'>
+								<div>
+									<label>Dirección</label>
+									<Field className='mayus' type="text" name="direccion" value={Hc.direccion} onChange={handleChange}></Field>
+								</div>
+								<ErrorMessage
+									name="direccion"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.direccion}</span>
+										</div>
+									)}
+								/>
+							</div>
+							<div className='segundo'>
+								<div>
+									<label>Lugar de nacimiento</label>
+									<Field className='mayus' type="text" name="lugar_nac" value={Hc.lugar_nac} onChange={handleChange}></Field>
+								</div>
+								<ErrorMessage
+									name="lugar_nac"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.lugar_nac}</span>
+										</div>
+									)}
+							/>
+							</div>
+						</div>
+						<div className='fila3'>
+							<div className='primero'>
+								<div>
+									<label>Nombre madre</label>
+									<Field className='mayus' type="text" name="nombre_madre" value={Hc.nombre_madre} onChange={handleChange}></Field>
+								</div>
+								<ErrorMessage
+									name="nombre_madre"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.nombre_madre}</span>
+										</div>
+									)}
+								/>
+							</div>
+							<div className='segundo'>
+								<div>
+									<label>Teléfono madre</label>
+									<Field
+										type="text"
+										name="telefono_madre"
+										value={Hc.telefono_madre} onChange={handleChange}
+									></Field>
+								</div>
+								<ErrorMessage
+									name="telefono_madre"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.telefono_madre}</span>
+										</div>
+									)}
+								/>
+							</div>
+							<div className='tercero'>
+								<div>
+									<label>Ocupación madre</label>
+									<Field
+										className='mayus'
+										type="text"
+										name="ocupacion_madre"
+										value={Hc.ocupacion_madre} onChange={handleChange}
+									></Field>
+								</div>
+								<ErrorMessage
+									name="ocupacion_madre"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.ocupacion_madre}</span>
+										</div>
+									)}
+								/>
+							</div>
+						</div>
+						<div className='fila3'>
+							<div className='primero'>
+								<div>
+									<label>Nombre padre</label>
+									<Field className='mayus' type="text" name="nombre_padre" value={Hc.nombre_padre} onChange={handleChange}></Field>
+								</div>
+								<ErrorMessage
+									name="nombre_padre"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.nombre_padre}</span>
+										</div>
+									)}
+								/>
+							</div>
+							<div className='segundo'>
+								<div>
+									<label>Teléfono padre</label>
+									<Field
+										type="text"
+										name="telefono_padre"
+										value={Hc.telefono_padre} onChange={handleChange}
+									></Field>
+								</div>
+								<ErrorMessage
+									name="telefono_padre"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.telefono_padre}</span>
+										</div>
+									)}
+								/>
+							</div>
+							<div className='tercero'>
+								<div>
+									<label>Ocupación padre</label>
+									<Field
+										className='mayus'
+										type="text"
+										name="ocupacion_padre"
+										value={Hc.ocupacion_padre} onChange={handleChange}
+									></Field>
+								</div>
+								<ErrorMessage
+									name="ocupacion_padre"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.ocupacion_padre}</span>
+										</div>
+									)}
+								/>
+							</div>
+						</div>
+						<div className='fila3'>
+							<div className='primero'>
+								<div>
+									<label>Referencia</label>
+									<Field className='mayus' type="text" name="referencia" value={Hc.referencia} onChange={handleChange}></Field>
+								</div>
+								<ErrorMessage
+									name="referencia"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.referencia}</span>
+										</div>
+									)}
+								/>
+							</div>
+							<div className='segundo'>
+								<div>
+									<label>Num. hijo</label>
+									<Field
+										type="number"
+										name="numero_hijo"
+										min="1"
+										value={Hc.numero_hijo} onChange={handleChange}
+									></Field>
+								</div>
+								<ErrorMessage
+									name="numero_hijo"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.numero_hijo}</span>
+										</div>
+									)}
+								/>
+							</div>
+						</div>
+						<div style={{display:'flex', justifyContent:'space-between'}}>
+							<button className='actualizar' onClick={(e)=>{
+								e.preventDefault()
+								fetch(`${url}/Historia/${id}`, {
+									headers: {
+									'Content-Type': 'application/json',
+								},
+								method: 'PUT',
+								body: JSON.stringify({
+									...Hc,
+									fecha_nac : moment(Hc.fecha_nac).format()
+									//fecha_nac : (moment(Hc.fecha_nac).add(5, 'hours')).format('YYYY-MM-DD')
+								}),
+								})
+								.then((resp) => resp.json())
+								.then((datos) => {
+									console.log(datos);
+									if(datos.ok){
+										alert('datos actualizados')
+									}
+								})
+								.catch((err) => {
+									console.log(err);
+									// rej(err);
+								});
+							}}>
+								Actualizar
+							</button>
+						</div>
 						
-						<div>
-							<label>Nombre</label>
-							<Field type="text" name="nombres_paciente" value={Hc.nombres_paciente} onChange={handleChange}></Field>
-						</div>
-						<ErrorMessage
-							name="nombres_paciente"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.nombres_paciente}</span>
-								</div>
-							)}
-						/>
-						<div>
-							<label>DNI</label>
-							<Field type="text" name="dni_paciente" value={Hc.dni_paciente} onChange={handleChange}></Field>
-						</div>
-						<ErrorMessage
-							name="dni_paciente"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.dni_paciente}</span>
-								</div>
-							)}
-						/>
-						<div>
-							<label>Fecha de nacimiento</label>
-							<input 
-							type="date" 
-							name="fecha_nac" 
-							max={getFecha()}
-							//value={(moment(Hc.fecha_nac).add(5, 'hours')).format('YYYY-MM-DD')}
-							value={moment(Hc.fecha_nac).format('YYYY-MM-DD')}
-							onChange={handleChange}
-							></input>
-						</div>
-						<ErrorMessage
-							name="fecha_nac"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.fecha_nac}</span>
-								</div>
-							)}
-						/>
-						{/* <div>
-							<label>Edad</label>
-                			<input type="text" name="edad" value={(moment.duration(moment().diff(moment(item.fecha_nac)))).years() + ' años ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).months() + ' meses ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).days() + ' días'} readOnly>
-							</input>
-						</div> */}
-						<label>Edad</label>
-            			{/* <input readonly="" name="fecha_nac" onChange={handleChange}/> */}
-						<Field 
-							type="text"
-							name = "edad"
-							value={Hc.edad}
-						></Field>
-						<div>
-							<label>Sexo</label>
-							<Field name="sexo" as="select" value={Hc.sexo} onChange={handleChange}>
-								<option value="2">Mujer</option>
-								<option value="1">Hombre</option>
-							</Field>
-						</div>
-						<div>
-							<label>Lugar de nacimiento</label>
-							<Field type="text" name="lugar_nac" value={Hc.lugar_nac} onChange={handleChange}></Field>
-						</div>
-						<ErrorMessage
-							name="lugar_nac"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.lugar_nac}</span>
-								</div>
-							)}
-						/>
-						<div>
-							<label>Dirección</label>
-							<Field type="text" name="direccion" value={Hc.direccion} onChange={handleChange}></Field>
-						</div>
-						<ErrorMessage
-							name="direccion"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.direccion}</span>
-								</div>
-							)}
-						/>
-						<div>
-							<label>Nombre madre</label>
-							<Field type="text" name="nombre_madre" value={Hc.nombre_madre} onChange={handleChange}></Field>
-						</div>
-						<ErrorMessage
-							name="nombre_madre"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.nombre_madre}</span>
-								</div>
-							)}
-						/>
-						<div>
-							<label>Ocupación madre</label>
-							<Field
-								type="text"
-								name="ocupacion_madre"
-								value={Hc.ocupacion_madre} onChange={handleChange}
-							></Field>
-						</div>
-						<ErrorMessage
-							name="ocupacion_madre"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.ocupacion_madre}</span>
-								</div>
-							)}
-						/>
-						<div>
-							<label>Teléfono madre</label>
-							<Field
-								type="text"
-								name="telefono_madre"
-								value={Hc.telefono_madre} onChange={handleChange}
-							></Field>
-						</div>
-						<ErrorMessage
-							name="telefono_madre"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.telefono_madre}</span>
-								</div>
-							)}
-						/>
-						<div>
-							<label>Nombre padre</label>
-							<Field type="text" name="nombre_padre" value={Hc.nombre_padre} onChange={handleChange}></Field>
-						</div>
-						<ErrorMessage
-							name="nombre_padre"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.nombre_padre}</span>
-								</div>
-							)}
-						/>
-						<div>
-							<label>Ocupación padre</label>
-							<Field
-								type="text"
-								name="ocupacion_padre"
-								value={Hc.ocupacion_padre} onChange={handleChange}
-							></Field>
-						</div>
-						<ErrorMessage
-							name="ocupacion_padre"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.ocupacion_padre}</span>
-								</div>
-							)}
-						/>
-						<div>
-							<label>Teléfono padre</label>
-							<Field
-								type="text"
-								name="telefono_padre"
-								value={Hc.telefono_padre} onChange={handleChange}
-							></Field>
-						</div>
-						<ErrorMessage
-							name="telefono_padre"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.telefono_padre}</span>
-								</div>
-							)}
-						/>
-						<div>
-							<label>Referencia</label>
-							<Field type="text" name="referencia" value={Hc.referencia} onChange={handleChange}></Field>
-						</div>
-						<ErrorMessage
-							name="referencia"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.referencia}</span>
-								</div>
-							)}
-						/>
-						<div>
-							<label>Num. hijo</label>
-							<Field
-								type="number"
-								name="numero_hijo"
-								min="1"
-								value={Hc.numero_hijo} onChange={handleChange}
-							></Field>
-						</div>
-						<ErrorMessage
-							name="numero_hijo"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.numero_hijo}</span>
-								</div>
-							)}
-						/>
-						{/* <button type="submit" className="actualizar">
-							Actualizar
-						</button> */}
-						<button className='actualizar' onClick={(e)=>{
-							e.preventDefault()
-							fetch(`${url}/Historia/${id}`, {
-								headers: {
-								'Content-Type': 'application/json',
-							},
-							method: 'PUT',
-							body: JSON.stringify({
-								...Hc,
-								fecha_nac : moment(Hc.fecha_nac).format()
-								//fecha_nac : (moment(Hc.fecha_nac).add(5, 'hours')).format('YYYY-MM-DD')
-							}),
-							})
-							.then((resp) => resp.json())
-							.then((datos) => {
-								console.log(datos);
-								if(datos.ok){
-									alert('datos actualizados')
-								}
-							})
-							.catch((err) => {
-								console.log(err);
-								// rej(err);
-							});
-						}}>
-					Actualizar
-				</button>
 					</Form>
 				)}
 			</Formik>

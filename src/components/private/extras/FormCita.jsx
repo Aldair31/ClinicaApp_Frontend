@@ -39,7 +39,7 @@ const FormCita = () => {
 						errores.nombre_paciente =
 							'Por favor ingrese su nombre';
 					} else if (
-						!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(
+						!/^[a-zA-ZÀ-ÿ\s]{1,60}$/.test(
 							valores.nombre_paciente
 						)
 					) {
@@ -66,7 +66,7 @@ const FormCita = () => {
 							'El DNI sólo puede contener 8 números.';
 					}
 					if (!valores.telefono) {
-						errores.telefono = 'Por favor ingrese el teléfono';
+						errores.telefono = 'Ingrese el teléfono';
 					} else if (!/^[0-9]{9,9}$/.test(valores.telefono)) {
 						errores.telefono =
 							'El teléfono sólo puede contener 9 números.';
@@ -77,11 +77,11 @@ const FormCita = () => {
 					}*/
 					if ('' === valores.fecha) {
 						errores.fecha =
-							'Por favor, ingrese una fecha de la cita';
+							'Por favor, ingrese una fecha';
 					}
 					if ('' === valores.hora) {
 						errores.hora =
-							'Por favor, ingrese una hora de la cita';
+							'Ingrese una hora';
 					}
 					return errores;
 				}}
@@ -120,143 +120,150 @@ const FormCita = () => {
 				}}
 			>
 				{({ errors }) => (
-					<Form className="formulario">
-						<div>
-							<label>Nombre del paciente</label>
-							<Field
-								type="text"
-								name="nombre_paciente"
-							></Field>
-						</div>
-						<ErrorMessage
-							name="nombre_paciente"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.nombre_paciente}</span>
+					<Form style={{height:'90%'}}>
+						<div style={{display:'grid', gridTemplateColumns:'repeat(2,1fr)', justifyContent:'space-between' , width:'100%'}}>
+							<div>
+								<div>
+									<label><b>Nombre del paciente</b></label>
+									<Field
+										style={{width:'125%', textTransform:'uppercase'}}
+										type="text"
+										name="nombre_paciente"
+									></Field>
 								</div>
-							)}
-						/>
-						{/* <div>
-							<label>Fecha de nacimiento</label>
-							<Field name="fecha_nac" type="date" max={getFecha()}></Field>
-						</div>
-						<ErrorMessage
-							name="fecha_nac"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.fecha_nac}</span>
+								<ErrorMessage
+									name="nombre_paciente"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.nombre_paciente}</span>
+										</div>
+									)}
+								/>
+							</div>
+							<div>
+								<div>
+									<label style={{marginLeft:'150px'}}><b>DNI Paciente</b></label>
+									<Field type="text" name="dni_paciente" style={{marginLeft:'150px', width:'61%'}}></Field>
 								</div>
-							)}
-						/>
-						<div>
-							<label>Sexo</label>
-							<Field name="sexo" as="select">
-								<option value="2">Mujer</option>
-								<option value="1">Hombre</option>
-							</Field>
-						</div> */}
-						<div>
-							<label>DNI Paciente</label>
-							<Field type="text" name="dni_paciente"></Field>
-						</div>
-						<ErrorMessage
-							name="dni_paciente"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.dni_paciente}</span>
+								<div style={{marginLeft:'150px'}}>
+									<ErrorMessage
+										name="dni_paciente"
+										component={() => (
+											<div className="msj_error_login">
+												<span>
+													<i className="fas fa-times-circle"></i>
+												</span>
+												<span>{errors.dni_paciente}</span>
+											</div>
+										)}
+									/>
 								</div>
-							)}
-						/>
-						<div>
-							<label>Responsable</label>
-							<Field type="text" name="responsable"></Field>
+							</div>
 						</div>
-						<ErrorMessage
-							name="responsable"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.responsable}</span>
+						<div style={{display:'grid', gridTemplateColumns:'repeat(2,1fr)', justifyContent:'space-between' , width:'100%'}}>
+							<div>
+								<div>
+									<label><b>Responsable</b></label>
+									<Field type="text" name="responsable" style={{width:'125%', textTransform:'uppercase'}}></Field>
 								</div>
-							)}
-						/>
-						<div>
-							<label>Teléfono</label>
-							<Field type="text" name="telefono"></Field>
-						</div>
-						<ErrorMessage
-							name="telefono"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.telefono}</span>
+								<ErrorMessage
+									name="responsable"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.responsable}</span>
+										</div>
+									)}
+								/>
+							</div>
+							<div>
+								<div>
+									<label style={{marginLeft:'150px'}}><b>Teléfono</b></label>
+									<Field type="text" name="telefono" style={{marginLeft:'150px', width:'61%'}}></Field>
 								</div>
-							)}
-						/>
-						<div>
-							<label>Motivo</label>
-							<Field name="motivo" as="select">
-								<option value="1">Vacuna</option>
-								<option value="2">
-									Consulta pediátrica
-								</option>
-								<option value="3">
-									Control de crecimiento
-								</option>
-							</Field>
-						</div>
-						<div>
-							<label>Fecha</label>
-							<Field name="fecha" type="date" min={getFecha()}></Field>
-						</div>
-						<ErrorMessage
-							name="fecha"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.fecha}</span>
+								<div style={{marginLeft:'150px'}}>
+									<ErrorMessage
+										name="telefono"
+										component={() => (
+											<div className="msj_error_login">
+												<span>
+													<i className="fas fa-times-circle"></i>
+												</span>
+												<span>{errors.telefono}</span>
+											</div>
+										)}
+									/>
 								</div>
-							)}
-						/>
-						<div>
-							<label>Hora</label>
-							<Field name="hora" type="time"></Field>
+							</div>
 						</div>
-						<ErrorMessage
-							name="hora"
-							component={() => (
-								<div className="msj_error_login">
-									<span>
-										<i className="fas fa-times-circle"></i>
-									</span>
-									<span>{errors.hora}</span>
+						<div style={{display:'grid', gridTemplateColumns:'repeat(2,1fr)', width:'100%'}}>
+							<div>
+								<div>
+									<label><b>Fecha</b></label>
+									<Field name="fecha" type="date" min={getFecha()} style={{width:'125%'}}></Field>
 								</div>
-							)}
-						/>
-						<div>
-							<label>Condición</label>
-							<Field name="condicion" as="select">
-								<option value="1">Nuevo</option>
-								<option value="2">Continuador</option>
-							</Field>
+								<div>
+									<ErrorMessage
+										name="fecha"
+										component={() => (
+											<div className="msj_error_login">
+												<span>
+													<i className="fas fa-times-circle"></i>
+												</span>
+												<span>{errors.fecha}</span>
+											</div>
+										)}
+									/>
+								</div>
+							</div>
+							<div style={{marginLeft:'150px'}}>
+								<div>
+									<label><b>Hora</b></label>
+									<Field name="hora" type="time" style={{width:'100%'}}></Field>
+								</div>
+								<div>
+									<ErrorMessage
+										name="hora"
+										component={() => (
+											<div className="msj_error_login">
+												<span>
+													<i className="fas fa-times-circle"></i>
+												</span>
+												<span>{errors.hora}</span>
+											</div>
+										)}
+									/>
+								</div>
+							</div>
+						</div>	
+						<div style={{display:'grid', gridTemplateColumns:'repeat(2,1fr)', width:'100%'}}>
+							<div>
+								<label><b>Motivo</b></label>
+								<Field name="motivo" as="select" style={{width:'125%'}}>
+									<option value="1">Vacuna</option>
+									<option value="2">
+										Consulta pediátrica
+									</option>
+									<option value="3">
+										Control de crecimiento
+									</option>
+								</Field>
+							</div>
+							<div style={{marginLeft:'150px'}}>
+								<label><b>Condición</b></label>
+								<Field name="condicion" as="select" style={{width:'100%'}}>
+									<option value="1">Nuevo</option>
+									<option value="2">Continuador</option>
+								</Field>
+							</div>
 						</div>
-						<div>
-							<button type="submit" className="agregar">
+						<div style={{display:'flex', justifyContent:'center'}}>
+							<button type="submit" className="agregar" style={{width:'20%'}}>
 								Agregar
 							</button>
 						</div>

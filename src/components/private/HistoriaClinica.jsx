@@ -34,6 +34,7 @@ const HistoriaClinica = () => {
 					name="anamnesis"
 					value={Hc.anamnesis}
 					onChange={handleChange}
+					style={{resize:'none'}}
 				></textarea>
                 <h3>Examen físico</h3>
 				<div className='fila1'>
@@ -69,29 +70,29 @@ const HistoriaClinica = () => {
                 <input placeholder="Temperatura" type="number" min="0" value={Hc.temperatura} name="temperatura" onChange={handleChange}/> */}
                 <div style={{marginTop:'25px'}}>
 				<label>Apreciación General</label>
-                <textarea rows="3" cols="50" placeholder="Apreciación General" value={Hc.apreciacionG} name="apreciacionG" onChange={handleChange}/>
+                <textarea rows="3" cols="50" placeholder="Apreciación General" value={Hc.apreciacionG} name="apreciacionG" onChange={handleChange} style={{resize:'none'}}/>
 				</div>
 				<label>Piel y TCSC</label>
-                <textarea rows="3" cols="50" placeholder="TCSC" value={Hc.tcsc} name="tcsc" onChange={handleChange}/>
+                <textarea rows="3" cols="50" placeholder="TCSC" value={Hc.tcsc} name="tcsc" onChange={handleChange} style={{resize:'none'}}/>
 				<label>Orofaringe</label>
-                <textarea rows="3" cols="50" placeholder="Orofaringe" value={Hc.orofaringe} name="orofaringe" onChange={handleChange}/>
+                <textarea rows="3" cols="50" placeholder="Orofaringe" value={Hc.orofaringe} name="orofaringe" onChange={handleChange} style={{resize:'none'}}/>
 				<label>Oidos</label>
-                <textarea rows="3" cols="50" placeholder="Oídos" value={Hc.oidos} name="oidos" onChange={handleChange}/>
+                <textarea rows="3" cols="50" placeholder="Oídos" value={Hc.oidos} name="oidos" onChange={handleChange} style={{resize:'none'}}/>
 				<label>Aparato CV</label>
-                <textarea rows="3" cols="50" placeholder="Aparato CV" value={Hc.aparatoCV} name="aparatoCV" onChange={handleChange}/>
+                <textarea rows="3" cols="50" placeholder="Aparato CV" value={Hc.aparatoCV} name="aparatoCV" onChange={handleChange} style={{resize:'none'}}/>
                 <label>Aparato resp.</label>
-                <textarea rows="3" cols="50" placeholder="Aparato Resp." value={Hc.aparatoResp} name="aparatoResp" onChange={handleChange}/>
+                <textarea rows="3" cols="50" placeholder="Aparato Resp." value={Hc.aparatoResp} name="aparatoResp" onChange={handleChange} style={{resize:'none'}}/>
 				<label>Abdomen</label>
-                <textarea rows="3" cols="50" placeholder="Abdomen" value={Hc.abdomen} name="abdomen" onChange={handleChange}/>
+                <textarea rows="3" cols="50" placeholder="Abdomen" value={Hc.abdomen} name="abdomen" onChange={handleChange} style={{resize:'none'}}/>
                 {/* wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww */}
                 
                 
                
                 <label>Aparato GU.</label>
-                <textarea rows="3" cols="50" placeholder="Aparato GU" value={Hc.aparatoGU} name="aparatoGU" onChange={handleChange}/>
+                <textarea rows="3" cols="50" placeholder="Aparato GU" value={Hc.aparatoGU} name="aparatoGU" onChange={handleChange} style={{resize:'none'}}/>
                
                 <label>Neurológico</label>
-                <textarea rows="3" cols="50" placeholder="Neurológico" value={Hc.neurologico} name="neurologico" onChange={handleChange}/>
+                <textarea rows="3" cols="50" placeholder="Neurológico" value={Hc.neurologico} name="neurologico" onChange={handleChange} style={{resize:'none'}}/>
 				<h3>Diagnóstico</h3>
 				<textarea
 					rows="3"
@@ -100,6 +101,7 @@ const HistoriaClinica = () => {
 					name="diagnostico"
 					value={Hc.diagnostico}
 					onChange={handleChange}
+					style={{resize:'none'}}
 				></textarea>
 				<h3>Exámenes auxiliares</h3>
 				<textarea
@@ -109,6 +111,7 @@ const HistoriaClinica = () => {
 					name="examenesAuxiliares"
 					value={Hc.examenesAuxiliares}
 					onChange={handleChange}
+					style={{resize:'none'}}
 				></textarea>
 				<h3>Tratamiento</h3>
 				<textarea
@@ -118,6 +121,7 @@ const HistoriaClinica = () => {
 					name="tratamiento"
 					value={Hc.tratamiento}
 					onChange={handleChange}
+					style={{resize:'none'}}
 				></textarea>
 				<button onClick={(e)=>{
 					e.preventDefault()

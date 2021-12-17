@@ -67,8 +67,8 @@ const Hijos = ({ match }) => {
 					}}
 				>
 					<br />
-					<p>
-						<label>DNI: Sólo 8 dígitos numéricos</label>
+					<p style={{textAlign:'center'}}>
+						<b>Ingrese N° de DNI</b>
 					</p>
 					<br />
 					<p>
@@ -78,12 +78,14 @@ const Hijos = ({ match }) => {
 							pattern="^[0-9]{8,8}$"
 							style={{
 								padding: '5px',
+								border:'2px solid',
+								borderRadius:'6px'
 							}}
 						/>
 					</p>
 					<br />
-					<p>
-						<button>Aceptar</button>
+					<p style={{textAlign:'center'}}>
+						<button style={{backgroundColor:'#0194E1', border:'2px solid', padding:'5px', borderRadius:'6px'}}>Aceptar</button>
 					</p>
 					<br />
 				</form>
@@ -136,30 +138,28 @@ const Hijos = ({ match }) => {
 				<br />
 				<>
 					{usuario.hijos && (
-						<div style={{ display: 'flex' }}>
+						<div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)'}}>
 							{usuario.hijos.map((item) => (
 								<div
 									style={{
 										padding: '11px',
 										background: '#f4f4f4',
-										width: '42%',
 										borderRadius: '11px',
 										marginRight: '10px',
+										marginBottom:'10%',
+										width:'90%'
 									}}
 								>
 									<br />
 									<div>
-										Referencia: {item.referencia}
+										<b>Referencia:</b> {item.referencia}
 									</div>
 									<br />
 									<div>
-										Nombre: {item.nombres_paciente}
+										<b>Nombre:</b> {item.nombres_paciente}
 									</div>
 									<br />
-									<div>DNI: {item.dni_paciente}</div>
-									<br />
-									<div>Madre: {item.nombre_madre}</div>
-									<br />
+									<div><b>DNI:</b> {item.dni_paciente}</div>
 								</div>
 							))}
 						</div>

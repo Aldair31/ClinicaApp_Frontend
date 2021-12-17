@@ -5,9 +5,12 @@ import FormCita from './extras/FormCita';
 const NuevaCita = () => {
 	return (
 		<>
-			<div className="nuevaCita">
-				<div><h2>Nueva cita</h2> </div>
-				<FormCita/>
+			<div>
+				<div style={{marginBottom:'20px', marginTop:'20px' , position:'absolute'}}><h2>Nueva cita</h2> </div>
+				<div className="nuevaCita">
+					
+					<FormCita/>
+				</div>
 			</div>
 		</>
 	);

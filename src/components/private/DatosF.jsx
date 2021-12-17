@@ -19,10 +19,10 @@ const DatosF = ({ usuario }) => {
 						.filter((item) => item._id === id)
 						.map((item) => (
 							<>
-								<h2>
+								<h2 style={{marginLeft:'5%'}}>
 									Datos de filiación&nbsp;&nbsp;
 									{rol === 'Doctor' ? (
-										<p>
+										<p style={{display:'flex', justifyContent:'space-between', width:'87%', marginTop:'7px'}}>
 											<Link
 												to={`/historias-clinicas/${id}`}
 												style={{
@@ -37,7 +37,7 @@ const DatosF = ({ usuario }) => {
 											<Link
 												to={`/antecedentes/${id}`}
 												style={{
-													fontSize: '16px',
+													fontSize: '17px',
 													cursor: 'pointer',
 													color: 'crimson',
 												}}
@@ -48,7 +48,7 @@ const DatosF = ({ usuario }) => {
 											<Link
 												to={`/vacunas/${id}`}
 												style={{
-													fontSize: '16px',
+													fontSize: '17px',
 													cursor: 'pointer',
 													color: 'crimson',
 												}}
@@ -59,7 +59,7 @@ const DatosF = ({ usuario }) => {
 											<Link
 												to={`/GraficoDeCrecimiento/${id}`}
 												style={{
-													fontSize: '16px',
+													fontSize: '17px',
 													cursor: 'pointer',
 													color: 'crimson',
 												}}

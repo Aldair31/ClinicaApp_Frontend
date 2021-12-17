@@ -39,8 +39,9 @@ const Antecedentes = () => {
 					onChange={handleChange}
 					value={antecedentes.asmaBronquialFam}
 				>
+					<option value="" selected>-- Seleccione --</option>
 					<option value="true">Sí</option>
-					<option value="false" selected>No</option>
+					<option value="false">No</option>
 				</select>
 				{/* <input placeholder="Asma Bronquial" /> */}
 				<label>Diabetes</label>
@@ -49,8 +50,9 @@ const Antecedentes = () => {
 					onChange={handleChange}
 					value={antecedentes.diabetes}
 				>
+					<option value="" selected>-- Seleccione --</option>
 					<option value="true">Sí</option>
-					<option value="false" selected>No</option>
+					<option value="false">No</option>
 				</select>
 				<label>Epilepsia</label>
 				<select
@@ -58,8 +60,9 @@ const Antecedentes = () => {
 					onChange={handleChange}
 					value={antecedentes.epilepsia}
 				>
+					<option value="" selected>-- Seleccione --</option>
 					<option value="true">Sí</option>
-					<option value="false" selected>No</option>
+					<option value="false">No</option>
 				</select>
 				<label>Otros</label>
 				<textarea
@@ -69,6 +72,7 @@ const Antecedentes = () => {
 					name="Otros"
 					value={antecedentes.Otros}
 					onChange={handleChange}
+					style={{resize:'none'}}
 				></textarea>
 				<h3>Natales</h3>
 				<label>Peso al nacer</label>
@@ -86,8 +90,9 @@ const Antecedentes = () => {
 					onChange={handleChange}
 					value={antecedentes.tipoDeParto}
 				>
-					<option value="true">Sí</option>
-					<option value="false" selected>No</option>
+					<option value="" selected>-- Seleccione --</option>
+					<option value="1">Vaginal</option>
+					<option value="2">Cesárea</option>
 				</select>
 				<label>Apgar1</label>
 				<input
@@ -120,6 +125,7 @@ const Antecedentes = () => {
 					name="complicaciones"
 					value={antecedentes.complicaciones}
 					onChange={handleChange}
+					style={{resize:'none'}}
 				></textarea>
 				{/* wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww */}
 				<h3>Patológicos</h3>
@@ -131,6 +137,7 @@ const Antecedentes = () => {
 					name="alergia"
 					value={antecedentes.alergia}
 					onChange={handleChange}
+					style={{resize:'none'}}
 				></textarea>
 				<label>Asma Bronquial</label>
 				{/* <input placeholder="Asma Bronquial" /> */}
@@ -139,8 +146,9 @@ const Antecedentes = () => {
 					onChange={handleChange}
 					value={antecedentes.asmaBronquialPat}
 				>
+					<option value="" selected>-- Seleccione --</option>
 					<option value="true">Sí</option>
-					<option value="false" selected>No</option>
+					<option value="false">No</option>
 				</select>
 				<label>Nebulización</label>
 				{/* <input placeholder="Nebulización" /> */}
@@ -149,8 +157,9 @@ const Antecedentes = () => {
 					onChange={handleChange}
 					value={antecedentes.nebulizacion}
 				>
+					<option value="" selected>-- Seleccione --</option>
 					<option value="true">Sí</option>
-					<option value="false" selected>No</option>
+					<option value="false">No</option>
 				</select>
 				<label>Intervención Quirúrgica</label>
 				<select
@@ -159,8 +168,9 @@ const Antecedentes = () => {
 
 					value={antecedentes.intervencionQuirurgica}
 				>
+					<option value="" selected>-- Seleccione --</option>
 					<option value="true">Sí</option>
-					<option value="false" selected>No</option>
+					<option value="false">No</option>
 				</select>
 				<label>Reacción Adversa</label>
 				<select
@@ -168,8 +178,9 @@ const Antecedentes = () => {
 					onChange={handleChange}
 					value={antecedentes.reaccionAdversaMed}
 				>
+					<option value="" selected>-- Seleccione --</option>
 					<option value="true">Sí</option>
-					<option value="false" selected>No</option>
+					<option value="false">No</option>
 				</select>
 				<label>Enfermedades Anteriores</label>
 				<textarea
@@ -179,6 +190,7 @@ const Antecedentes = () => {
 					name="enfAnteriores"
 					value={antecedentes.enfAnteriores}
 					onChange={handleChange}
+					style={{resize:'none'}}
 				></textarea>
 				<button
 					onClick={(e) => {
