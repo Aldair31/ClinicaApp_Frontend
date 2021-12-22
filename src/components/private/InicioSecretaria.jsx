@@ -51,7 +51,10 @@ const InicioSecretaria =  () => {
 
     for (let item in Nombre){
         NombreYFecha.push({title:Nombre[item], start:Fecha[item], end:moment(moment(Fecha[item]).add(30,'minutes')).format()})
+        
     }
+    
+
 
     const Modal = () => {
         const [reservas, setReservas] = useState({});
@@ -62,6 +65,11 @@ const InicioSecretaria =  () => {
             });
             console.log(reservas)
         };
+        const handleAdd=(NombreYFecha)=>{
+            const eventos ={
+
+            }
+        }
         return (
             <div
                 style={{
@@ -136,6 +144,7 @@ const InicioSecretaria =  () => {
                                         console.log(data)
                                         if(data.ok){
                                             alert('Se Registró la Reserva correctamente')
+                                            // console.log(data) 
                                         }
                                         else{
                                             alert('Ya existe una Reserva a esa hora')
@@ -223,6 +232,8 @@ const InicioSecretaria =  () => {
                     displayEventEnd={false}
                     displayEventTime={false}
                     events={NombreYFecha}
+                    // eventContent={NombreYFecha}
+                    // eventContent={NombreYFecha}
                     editable= {true}
                     select={handleDateClick}
                     dateClick={onChange}

@@ -14,7 +14,8 @@ const FormFiliacion = ({ item }) => {
 		fechaNac = moment(item.fecha_nac).format('YYYY-MM-DD')
 	}
 	const [Hc, setHc] = useState({})
-	let { id } = useParams();
+	// let { id } = useParams();
+	let  id  = item;
 	useEffect(() => {
 		fetch(`${url}/Historia/id/${id}`)
 			.then((resp) => resp.json())
@@ -61,28 +62,28 @@ const FormFiliacion = ({ item }) => {
 					numero_hijo: item.numero_hijo,
 					referencia: item.referencia,
 				}}
-				validate={(valores) => {
+				validate={() => {
 					let errores = {};
-					if (!valores.nombres_paciente) {
+					if (!Hc.nombres_paciente) {
 						errores.nombres_paciente =
 							'Por favor ingrese su nombre';
 					} else if (
 						!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(
-							valores.nombres_paciente
+							Hc.nombres_paciente
 						)
 					) {
 						errores.nombres_paciente =
 							'El nombre sólo puede contener letras y espacios';
 					}
-					if (!valores.dni_paciente) {
+					if (!Hc.dni_paciente) {
 						errores.dni_paciente = 'Por favor ingrese el DNI';
 					} else if (
-						!/^[0-9]{8,8}$/.test(valores.dni_paciente)
+						!/^[0-9]{8,8}$/.test(Hc.dni_paciente)
 					) {
 						errores.dni_paciente =
 							'El DNI sólo puede contener 8 números.';
 					}
-					if ('' === valores.fecha_nac) {
+					if ('' === Hc.fecha_nac) {
 						errores.fecha_nac =
 							'Por favor, ingrese una fecha de nacimiento';
 					}
@@ -144,45 +145,45 @@ const FormFiliacion = ({ item }) => {
 					}*/
 					return errores;
 				}}
-				// onSubmit={(valores, { resetForm }) => {
-				// 	// resetForm();
-				// 	fetch(`${url}/Historia/${item._id}`, {
-				// 		headers: {
-				// 			'Content-Type': 'application/json',
-				// 		},
-				// 		method: 'PUT',
-				// 		body: JSON.stringify({
-				// 			...valores,
-				// 			fecha_nac : moment(valores.fecha_nac).format(),
-				// 			id: item._id,
-				// 		}),
-				// 	})
-				// 		.then((resp) => resp.json())
-				// 		.then((data) => {
-				// 			if (data.ok) {
-				// 				alert('Actualizado correctamente');
-				// 				console.log(data);
-				// 				/*const { evento } = data;
-				// 				console.log(evento);*/
-				// 				return data;
-				// 			}
-				// 		})
-				// 		.then((e) => {		
-				// 			/*valores.direccion = e.direccion;
-				// 			valores.nombres_paciente = e.nombres_paciente;
-				// 			valores.dni_paciente = e.dni_paciente;
-				// 			valores.lugar_nac = e.lugar_nac;
-				// 			//valores.fecha_nac = moment(e.fecha_nac).add(5, 'days').calendar();
-				// 			valores.numero_hijo = e.numero_hijo;
-				// 			valores.ocupacion_madre = e.ocupacion_madre;
-				// 			valores.ocupacion_padre = e.ocupacion_padre;
-				// 			valores.referencia = e.referencia;
-				// 			valores.telefono_madre = e.telefono_madre;
-				// 			valores.telefono_padre = e.telefono_padre;
-				// 			valores.nombre_madre = e.nombre_madre;
-				// 			valores.nombre_padre = e.nombre_padre;*/
-				// 		});
-				// }}
+			// 	onSubmit={(valores, { resetForm }) => {
+			// 		// resetForm();
+			// 		fetch(`${url}/Historia/${item._id}`, {
+			// 			headers: {
+			// 				'Content-Type': 'application/json',
+			// 			},
+			// 			method: 'PUT',
+			// 			body: JSON.stringify({
+			// 				...valores,
+			// 				fecha_nac : moment(valores.fecha_nac).format(),
+			// 				id: item._id,
+			// 			}),
+			// 		})
+			// 			.then((resp) => resp.json())
+			// 			.then((data) => {
+			// 				if (data.ok) {
+			// 					alert('Actualizado correctamente');
+			// 					console.log(data);
+			// 					/*const { evento } = data;
+			// 					console.log(evento);*/
+			// 					return data;
+			// 				}
+			// 			})
+			// 			.then((e) => {		
+			// 				/*valores.direccion = e.direccion;
+			// 				valores.nombres_paciente = e.nombres_paciente;
+			// 				valores.dni_paciente = e.dni_paciente;
+			// 				valores.lugar_nac = e.lugar_nac;
+			// 				//valores.fecha_nac = moment(e.fecha_nac).add(5, 'days').calendar();
+			// 				valores.numero_hijo = e.numero_hijo;
+			// 				valores.ocupacion_madre = e.ocupacion_madre;
+			// 				valores.ocupacion_padre = e.ocupacion_padre;
+			// 				valores.referencia = e.referencia;
+			// 				valores.telefono_madre = e.telefono_madre;
+			// 				valores.telefono_padre = e.telefono_padre;
+			// 				valores.nombre_madre = e.nombre_madre;
+			// 				valores.nombre_padre = e.nombre_padre;*/
+			// 			});
+			// 	}}
 			>
 				{({ errors }) => (
 					<Form>
@@ -226,7 +227,7 @@ const FormFiliacion = ({ item }) => {
 						<div className='primero'>
 								<div>
 									<label>Fecha de nacimiento</label>
-									<input 
+									<input style={{height:'6.3vh'}}
 									type="date" 
 									name="fecha_nac" 
 									max={getFecha()}
@@ -258,7 +259,7 @@ const FormFiliacion = ({ item }) => {
 							</div>
 							<div className='tercero'>
 									<label>Sexo</label>
-									<Field style={{height:'55%'}} className='mayus' name="sexo" as="select" value={Hc.sexo} onChange={handleChange}>
+									<Field style={{height:'6.1vh'}} className='mayus' name="sexo" as="select" value={Hc.sexo} onChange={handleChange}>
 										<option value="2">Mujer</option>
 										<option value="1">Hombre</option>
 									</Field>
@@ -466,7 +467,8 @@ const FormFiliacion = ({ item }) => {
 							</div>
 						</div>
 						<div style={{display:'flex', justifyContent:'space-between'}}>
-							<button className='actualizar' onClick={(e)=>{
+							<button className='actualizar' 
+							onClick={(e)=>{
 								e.preventDefault()
 								fetch(`${url}/Historia/${id}`, {
 									headers: {
@@ -475,6 +477,7 @@ const FormFiliacion = ({ item }) => {
 								method: 'PUT',
 								body: JSON.stringify({
 									...Hc,
+
 									fecha_nac : moment(Hc.fecha_nac).format()
 									//fecha_nac : (moment(Hc.fecha_nac).add(5, 'hours')).format('YYYY-MM-DD')
 								}),
@@ -490,7 +493,8 @@ const FormFiliacion = ({ item }) => {
 									console.log(err);
 									// rej(err);
 								});
-							}}>
+							}}
+							>
 								Actualizar
 							</button>
 						</div>

@@ -5,7 +5,7 @@ import url from '../../keys/backend_keys';
 import moment from 'moment';
 
 import { useParams } from 'react-router';
-const Consultas = (props) => {
+const Vacunas = ({id}) => {
 	const [tiene, setTiene] = useState(false);
 	const [vacunas, setVacunas] = useState({});
 	const handleChange = (e) => {
@@ -20,7 +20,7 @@ const Consultas = (props) => {
 	// }
 
 	let Dvacunas=[]
-	let { id } = useParams();
+	// let { id } = useParams();
 	/*for(let i=0; i<vacunas.length; i++){
 		if(typeof(vacunas[i])=='date'){
 			Dvacunas[i]=vacunas[i]
@@ -38,7 +38,7 @@ const Consultas = (props) => {
 	console.log("****", Dvacunas.fechahepatb)
 	useEffect(() => {
 		console.log('solicitando vacunas');
-		fetch(`${url}/Vacuna/${props.match.params.id}`)
+		fetch(`${url}/Vacuna/${id}`)
 			.then((resp) => resp.json())
 			.then((data) => {
 				if (data.length > 0) {
@@ -74,7 +74,7 @@ const Consultas = (props) => {
 				method: 'POST',
 				body: JSON.stringify({
 					...vacunas,
-					id_Historia: props.match.params.id,
+					id_Historia: id,
 				}),
 			})
 				.then((resp) => resp.json())
@@ -92,7 +92,7 @@ const Consultas = (props) => {
 		<>
 			<div className="list">
 				<h2>Listado de Vacunas</h2>
-				<form className="cont" style={{width:'95%'}}>
+				<form className="contVacuna" style={{width:'95%'}}>
 					<div className='vacunas'>
 						<div className='title'>RECIÉN NACIDO</div>
 						<br />
@@ -120,12 +120,12 @@ const Consultas = (props) => {
 							<input name="fechabcg" id='fecha' disabled='true' onChange={handleChange} value={Dvacunas.fechabcg} type="date"></input>
 							<label>Hepatitis B</label>
 							<select
-								id='hepatb'
+								id='select2'
 								name="hepatb"
-								onChange={handleChange}
 								value={vacunas.hepatb}
+								onChange={handleChange}
 								onClick={function(){
-									let hepatb= document.getElementById('hepatb')
+									let hepatb= document.getElementById('select2')
 									if(hepatb.value==1){
 										document.getElementById('fecha2').disabled=false
 									}
@@ -148,8 +148,8 @@ const Consultas = (props) => {
 							<select
 								id='dpt'
 								name="dpt"
-								onChange={handleChange}
 								value={vacunas.dpt}
+								onChange={handleChange}
 								onClick={function(){
 									let dpt= document.getElementById('dpt')
 									if(dpt.value==1){
@@ -324,8 +324,8 @@ const Consultas = (props) => {
 							<select
 								id='dpt3'
 								name="dpt3"
-								onChange={handleChange}
 								value={vacunas.dpt3}
+								onChange={handleChange}
 								onClick={function(){
 									let dpt3= document.getElementById('dpt3')
 									if(dpt3.value==1){
@@ -464,8 +464,8 @@ const Consultas = (props) => {
 							<select
 								id='meningococo'
 								name="meningococo"
+								value={vacunas.meningococo}
 								onChange={handleChange}
-								value={vacunas.meningoco}
 								onClick={function(){
 									let meningococo= document.getElementById('meningococo')
 									if(meningococo.value==1){
@@ -747,7 +747,8 @@ const Consultas = (props) => {
 						<br />
 						<div className='vacunasM'>
 							<label>DPT</label>
-							<select id='dpt5' name="dpt5" value={vacunas.dpt5} onClick={function(){
+							<select id='dpt5' name="dpt5" value={vacunas.dpt5} onChange={handleChange}
+							onClick={function(){
 									let dpt5= document.getElementById('dpt5')
 									if(dpt5.value==1){
 										document.getElementById('fecha29').disabled=false
@@ -865,4 +866,4 @@ const Consultas = (props) => {
 	);
 };
 
-export default Consultas;
+export default Vacunas;

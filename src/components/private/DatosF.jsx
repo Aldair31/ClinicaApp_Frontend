@@ -3,8 +3,9 @@ import useAfiliacion from '../../hooks/useAfiliacion';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import '../../sass/DatosF.sass';
-import { Link } from 'react-router-dom';
+import { BrowserRouter, Link,Switch, Route } from 'react-router-dom';
 import FormFiliacion from './extras/FormFiliacion';
+import Antecedentes from './Antecedentes';
 //MARQUITO QUIERE QUE HAGAS UN SORTEO :V
 //TU PATITA MEMERSON
 const DatosF = ({ usuario }) => {
@@ -26,7 +27,7 @@ const DatosF = ({ usuario }) => {
 											<Link
 												to={`/historias-clinicas/${id}`}
 												style={{
-													fontSize: '16px',
+													fontSize: '14px',
 													cursor: 'pointer',
 													color: 'crimson',
 												}}
@@ -37,18 +38,19 @@ const DatosF = ({ usuario }) => {
 											<Link
 												to={`/antecedentes/${id}`}
 												style={{
-													fontSize: '17px',
+													fontSize: '14px',
 													cursor: 'pointer',
 													color: 'crimson',
 												}}
 											>
 												Ver antecedentes
 											</Link>
+											
 											&nbsp;&nbsp;
 											<Link
 												to={`/vacunas/${id}`}
 												style={{
-													fontSize: '17px',
+													fontSize: '14px',
 													cursor: 'pointer',
 													color: 'crimson',
 												}}
@@ -59,7 +61,7 @@ const DatosF = ({ usuario }) => {
 											<Link
 												to={`/GraficoDeCrecimiento/${id}`}
 												style={{
-													fontSize: '17px',
+													fontSize: '14px',
 													cursor: 'pointer',
 													color: 'crimson',
 												}}
@@ -70,11 +72,29 @@ const DatosF = ({ usuario }) => {
 										</p>
 									) : null}
 								</h2>
-								<FormFiliacion item={item} />
+								<FormFiliacion item={id} />
+								{/* <BrowserRouter>
+								<Switch>
+										<Route path="/antecedentes/:id">
+											
+											<Antecedentes id={item._id}/>
+											
+							
+										</Route>
+									</Switch>
+								</BrowserRouter> */}
+									
+								
+								
+								
 							</>
 						))}
 				</div>
 			) : null}
+			<>
+			
+								
+			</>
 		</div>
 	);
 };

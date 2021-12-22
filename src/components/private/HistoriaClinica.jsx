@@ -1,9 +1,22 @@
 import React, { useEffect,useState } from 'react';
 import url from '../../keys/backend_keys';
 import { useParams } from 'react-router';
-import '../../sass/HistoriaClinica.sass'
+import '../../sass/HistoriaClinica.sass';
+import Antecedentes from './Antecedentes';
+import { Link, Switch, Route} from 'react-router-dom';
+import FormFiliacion from './extras/FormFiliacion';
+import Vacunas from './Vacunas'
+import '../../sass/Cita.sass';
+import '../../sass/DatosF.sass';
+import moment from 'moment';
+import useHistClinica from '../../hooks/useHistClinica'
+import { isPropsEqual } from '@fullcalendar/react';
+
+// import '../../sass/Antecedentes.sass';
 const HistoriaClinica = () => {
 	const [Hc, setHc] = useState({})
+	
+
 	let { id } = useParams();
 	useEffect(() => {
 		fetch(`${url}/HistClinica/id/${id}`)
@@ -21,11 +34,417 @@ const HistoriaClinica = () => {
 		})
 	}
 	Hc.imc = Math.round((Hc.peso/(Math.pow((Hc.talla/100),2)))*1000)/1000
+	
+	const NombreYFecha=()=>{
+		let {fechaHistoria, fechaNac, pesoPaciente} = useHistClinica()
+		const [datos, setDatos] = useState([]);
+		useEffect(() => {
+			fetch(`${url}/HistClinica/${id}`)
+				.then((resp) => resp.json())
+				.then((data) => setDatos(data));
+		}, []);
+		for (let item in fechaNac){
+			fechaNacimiento[item] = moment(fechaNac[0]).format()
+		}
+		<div>
+			<div className="list">
+				<div className="citas">
+					{datos.map((item) => {
+						return (
+							<>
+								{item.id_Historia === id ? (
+									<div key={item._id} className="cita">
+										<h3>Historia Clinica</h3>
+										<p>
+											Fecha : {moment(item.fecha).format('DD/MM/YYYY')}
+										</p>
+										<p>
+											Edad de consulta : {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).years()} a {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).months()} m {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).days()} d
+										</p>
+										<p>
+											Diagnostico: {item.diagnostico}
+										</p>
+										<p>
+											Tratamiento: {item.tratamiento}
+										</p>
+										<p>
+											Examenes Auxiliares: {item.examenesAuxiliares}
+										</p>
+										{/* <Link to={`/historia-clinica/${item._id}`}>
+											<p className="ver">
+												Ver
+											</p>
+										</Link> */}
+									</div>
+								) : null}
+							</>
+						);
+					})}
+				</div>
+			</div>
+		</div>
+	}
+
+	const ModalAntecedente = () => {
+		// {location}
+		// const { state = {} } = location;
+ 		// const { modal } = state;
+        const [estado, setEstado] = useState(false);
+        return (
+            <>
+			{/* <div className={modal ? "modal" : undefined}>
+				{modal && <Link to="/">Close</Link>}
+				<div>
+					Bienvenido
+				</div>
+			</div> */}
+				<div >
+					{estado ? (
+					<>
+					<div
+					 style={{
+						background: '#00000039',
+						position: 'absolute',
+						top: '0',
+						left: '0',
+						height: '100vh',
+						width: '100%',
+						zIndex:'2',
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center',
+					}}>
+						<div style={{
+						width:'65%',
+                        background: '#ffffff',
+                        padding: '0.5px',
+                        borderRadius: '6px',
+                    }}>
+						<div style={{width:'110%', marginLeft:'2.75%', marginBottom:'2.75%'}}>
+							<Antecedentes id={Hc.id_Historia}/>
+						</div>
+						
+						{/* <FormFiliacion/> */}
+						</div>
+						
+					
+						<button
+						onClick={() => {
+							setEstado(false);
+						}}
+						style={{
+							position: 'absolute',
+							top: '0',
+							right: '0',
+							border: 'none',
+							padding: '18px',
+							cursor: 'pointer',
+						}}
+						>
+							<i
+								class="fas fa-times"
+								style={{ fontSize: '19px' }}
+							></i>
+						</button>
+					</div>
+					</>): null}   
+				</div>
+				{/* <br /> */}
+				<div>
+					<button
+						onClick={() => {
+							setEstado(true);
+						}}
+						style={{
+							border:'0',
+							fontSize: '14px',
+							cursor: 'pointer',
+							color: 'crimson',
+							backgroundColor:'transparent',
+							textDecoration:'underline',
+							
+						}}
+					>
+						<strong>VER ANTECEDENTES</strong>
+						
+						
+					</button>
+					
+				</div>
+			</>
+        );
+    }
+	const ModalFiliación = () => {
+		// {location}
+		// const { state = {} } = location;
+ 		// const { modal } = state;
+        const [modal, setModal] = useState(false);
+        return (
+            <>
+			{/* <div className={modal ? "modal" : undefined}>
+				{modal && <Link to="/">Close</Link>}
+				<div>
+					Bienvenido
+				</div>
+			</div> */}
+				<div >
+					{modal ? (
+					<>
+					<div
+					 style={{
+						background: '#00000039',
+						position: 'absolute',
+						top: '0',
+						left: '0',
+						height: '100vh',
+						width: '100%',
+						zIndex:'2',
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center',
+					}}>
+						<div style={{
+						width:'80%',
+                        background: '#ffffff',
+                        padding: '15px',
+                        borderRadius: '6px',
+						
+                    }}>
+						<h3 style={{textAlign:'center', marginBottom:'20px',fontSize: '25px'}}>DATOS DE FILIACIÓN</h3>
+						<div className="datos_h_af" style={{width:'100%', height:'100vh', marginTop:'0px'}}>
+							
+							<div style={{}}>
+								<FormFiliacion item={Hc.id_Historia}/>
+							</div>
+							
+					
+						</div>
+
+						
+						{/* <FormFiliacion/> */}
+						</div>
+						
+					
+						<button
+						onClick={() => {
+							setModal(false);
+						}}
+						style={{
+							position: 'absolute',
+							top: '0',
+							right: '0',
+							border: 'none',
+							padding: '18px',
+							cursor: 'pointer',
+						}}
+						>
+							<i
+								class="fas fa-times"
+								style={{ fontSize: '19px' }}
+							></i>
+						</button>
+					</div>
+					</>): null}   
+				</div>
+				{/* &nbsp;&nbsp; */}
+				{/* <br /> */}
+				<div>
+					<button
+						onClick={() => {
+							setModal(true);
+						}}
+						style={{
+							border:'0',
+							fontSize: '14px',
+							cursor: 'pointer',
+							color: 'crimson',
+							backgroundColor:'transparent',
+							textDecoration:'underline'
+						}}
+					>
+						<strong>VER FILIACIÓN</strong> 
+						
+					</button>
+					
+				</div>
+			</>
+        );
+    }
+	const ModalVacuna = () => {
+        const [modal, setModal] = useState(false);
+        return (
+            <>
+			
+				<div >
+					{modal ? (
+					<>
+					<div
+					 style={{
+						background: '#00000039',
+						position: 'absolute',
+						top: '0',
+						left: '0',
+						height: '100vh',
+						width: '100%',
+						zIndex:'2',
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center',
+					}}>
+						<div style={{
+						width:'82%',
+                        background: '#ffffff',
+                        padding: '4px',
+                        borderRadius: '6px',
+                    }}>
+						<div style={{width:'98%', marginLeft:'3.5%'}}>
+							<Vacunas id={Hc.id_Historia}/>
+						</div>
+						
+						{/* <FormFiliacion item={Hc.id_Historia}/> */}
+						{/* <FormFiliacion/> */}
+						</div>
+						
+					
+						<button
+						onClick={() => {
+							setModal(false);
+						}}
+						style={{
+							position: 'absolute',
+							top: '0',
+							right: '0',
+							border: 'none',
+							padding: '18px',
+							cursor: 'pointer',
+						}}
+						>
+							<i
+								class="fas fa-times"
+								style={{ fontSize: '19px' }}
+							></i>
+						</button>
+					</div>
+					</>): null}   
+				</div>
+
+				{/* <br /> */}
+				<div>
+					<button
+						onClick={() => {
+							setModal(true);
+						}}
+						style={{
+							border:'0',
+							fontSize: '14px',
+							cursor: 'pointer',
+							color: 'crimson',
+							backgroundColor:'transparent',
+							textDecoration:'underline'
+						}}
+					>
+						<strong>VER VACUNA</strong> 
+						
+					</button>
+					
+				</div>
+			</>
+        );
+    }
 	return (
-		<div >
+		<div>
             <h2 className="titulo-hc">Historia clínica</h2>
+			
+			<div style={{backgroundColor:'#f4f4f4',padding:'10px', width:'90%'}}>
+					<div style={{ maxWidth:'85%',display:'flex', justifyContent:'space-around'}}>
+					<div><ModalFiliación/></div>
+					<div><ModalAntecedente/></div>
+					<div><ModalVacuna/></div>
+					</div>
+					
+					
+					
+					
+				</div>
+			
+			
 			<form className="cont">
-                <h3>Datos de la H.clínica</h3>
+				<div>
+					<div>
+						<label>Paciente: </label>
+						<p> </p>
+					</div>
+					<div>
+						<label>Edad de Consulta:
+							
+						</label>
+						{/* <p>
+							{(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).years()} a {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).months()} m {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).days()} d
+						</p> */}
+					</div>
+					{/* <NombreYFecha/> */}
+				</div>
+                {/* <h3>Datos de la H.clínica</h3> */}
+				
+				{/* <Link
+				to={{
+					pathname: `/antecedentes/${Hc.id_Historia}`,
+					state: { modal: true },
+				}}
+				className="link"
+				>
+				View Photo
+				</Link>
+				<Switch>
+					<Route path='/antecedentes/:Hc.id_Historia' component={Modal} />
+				</Switch> */}
+				
+					{/* <Link
+						to={`/historias-clinicas/${id}`}
+						style={{
+							fontSize: '16px',
+							cursor: 'pointer',
+							color: 'crimson',
+						}}
+					>
+						Ver H. clínicas
+					</Link>
+					&nbsp;&nbsp; */}
+					{/* <Link
+						to={`/antecedentes/${Hc.id_Historia}`}
+						style={{
+							fontSize: '17px',
+							cursor: 'pointer',
+							color: 'crimson',
+						}}
+					>
+						Ver antecedentes
+					</Link>
+					&nbsp;&nbsp; */}
+					{/* <Link
+						to={`/vacunas/${id}`}
+						style={{
+							fontSize: '17px',
+							cursor: 'pointer',
+							color: 'crimson',
+						}}
+					>
+						Ver vacunas
+					</Link> */}
+					{/* &nbsp;&nbsp;
+					<Link
+						to={`/GraficoDeCrecimiento/${id}`}
+						style={{
+							fontSize: '17px',
+							cursor: 'pointer',
+							color: 'crimson',
+						}}
+					>
+						Ver Gráfico de Crecimiento
+					</Link> */}
+				
+				{/* <br />
+				<br /> */}
 				<h3>Anamnesis *</h3>
 				<textarea
 					rows="3"

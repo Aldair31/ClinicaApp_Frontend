@@ -43,6 +43,9 @@ import GraficoDeCrecimientoPesoEdadNiña2a20 from './GraficoDeCrecimientoPesoEda
 import GraficoDeCrecimientoTallaEdadNiña2a20 from './GraficoDeCrecimientoTallaEdadNiña2a20';
 import GraficoDeCrecimientoPesoTallaNiña from './GraficoDeCrecimientoPesoTallaNiña';
 import GraficoDeCrecimientoIMCNiñas2a20 from './GraficoDeCrecimientoIMCNiñas2a20';
+import DatosAntecedentes from './DatosAntecedentes';
+import DatosVacunas from './DatosVacunas';
+
 
 const Dashboard = ({ usuario, logout }) => {
 	console.log(usuario);
@@ -242,14 +245,11 @@ const Dashboard = ({ usuario, logout }) => {
 								path="/historias-clinicas/:id"
 								component={HistoriasClinicas}
 							/>
-							<Route
-								path="/antecedentes/:id"
-								component={Antecedentes}
-							/>
-							<Route
+							
+							{/* <Route
 								path="/vacunas/:id"
 								component={Vacunas}
-							/>
+							/> */}
 							<Route
 								path="/GraficoDeCrecimiento/:id"
 								component={GraficoDeCrecimiento}
@@ -322,7 +322,7 @@ const Dashboard = ({ usuario, logout }) => {
 								path="/historia-clinica/:id"
 								component={HistoriaClinica}
 							/>
-							<Route path="/vacunas" component={Vacunas} />
+							<Route path="/vacunas/:id" component={DatosVacunas} />
 							<Route
 								path="/nueva-cita"
 								component={NuevaCita}
@@ -340,7 +340,9 @@ const Dashboard = ({ usuario, logout }) => {
 								component={DatosF}
 							/>
 							<Route path="/hijos/:id" component={Hijos} />
-
+						
+							<Route path="/antecedentes/:id" component={DatosAntecedentes}/>
+										
 							<Route
 								path="/mis-hijos"
 								component={MisHijos}
@@ -349,7 +351,7 @@ const Dashboard = ({ usuario, logout }) => {
 								path="/hijo/:id"
 								component={Hijo}
 							/>
-							
+						
 							<Error404 component={Error404} />
 						</Switch>
 					</>
