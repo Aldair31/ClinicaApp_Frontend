@@ -46,6 +46,8 @@ import GraficoDeCrecimientoIMCNiñas2a20 from './GraficoDeCrecimientoIMCNiñas2a
 import DatosAntecedentes from './DatosAntecedentes';
 import DatosVacunas from './DatosVacunas';
 
+//RECETA
+import FormRecetas from './extras/FormRecetas';
 
 const Dashboard = ({ usuario, logout }) => {
 	console.log(usuario);
@@ -350,6 +352,10 @@ const Dashboard = ({ usuario, logout }) => {
 							<Route
 								path="/hijo/:id"
 								component={Hijo}
+							/>
+							<Route
+								path="/agregar-receta/:id"
+								component={FormRecetas}
 							/>
 						
 							<Error404 component={Error404} />

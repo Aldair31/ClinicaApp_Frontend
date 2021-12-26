@@ -10,7 +10,6 @@ import '../../sass/Cita.sass';
 import '../../sass/DatosF.sass';
 import moment from 'moment';
 import useHistClinica from '../../hooks/useHistClinica'
-import { isPropsEqual } from '@fullcalendar/react';
 
 // import '../../sass/Antecedentes.sass';
 const HistoriaClinica = () => {
@@ -22,8 +21,6 @@ const HistoriaClinica = () => {
 		fetch(`${url}/HistClinica/id/${id}`)
 			.then((resp) => resp.json())
 			.then((data)=>{
-				console.log('hist.clinica');
-				console.log(data);
 				setHc(data)
 			})
 	}, []);
@@ -34,56 +31,23 @@ const HistoriaClinica = () => {
 		})
 	}
 	Hc.imc = Math.round((Hc.peso/(Math.pow((Hc.talla/100),2)))*1000)/1000
-	
-	const NombreYFecha=()=>{
-		let {fechaHistoria, fechaNac, pesoPaciente} = useHistClinica()
-		const [datos, setDatos] = useState([]);
-		useEffect(() => {
-			fetch(`${url}/HistClinica/${id}`)
-				.then((resp) => resp.json())
-				.then((data) => setDatos(data));
-		}, []);
-		for (let item in fechaNac){
-			fechaNacimiento[item] = moment(fechaNac[0]).format()
-		}
-		<div>
-			<div className="list">
-				<div className="citas">
-					{datos.map((item) => {
-						return (
-							<>
-								{item.id_Historia === id ? (
-									<div key={item._id} className="cita">
-										<h3>Historia Clinica</h3>
-										<p>
-											Fecha : {moment(item.fecha).format('DD/MM/YYYY')}
-										</p>
-										<p>
-											Edad de consulta : {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).years()} a {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).months()} m {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).days()} d
-										</p>
-										<p>
-											Diagnostico: {item.diagnostico}
-										</p>
-										<p>
-											Tratamiento: {item.tratamiento}
-										</p>
-										<p>
-											Examenes Auxiliares: {item.examenesAuxiliares}
-										</p>
-										{/* <Link to={`/historia-clinica/${item._id}`}>
-											<p className="ver">
-												Ver
-											</p>
-										</Link> */}
-									</div>
-								) : null}
-							</>
-						);
-					})}
-				</div>
-			</div>
-		</div>
-	}
+
+	//EDAD CONSULTA
+	const [datos, setGrafica] = useState([]);
+
+	useEffect(() => {
+		fetch(`${url}/HistClinica/idPaciente/id/${id}`)
+			.then((resp) =>{
+				return resp.json();
+			})
+			
+			.then((data) =>{
+				setGrafica(data)
+			});
+			
+	}, []);
+
+	console.log("DATASASOS: ", datos.nombres_paciente)
 
 	const ModalAntecedente = () => {
 		// {location}
@@ -157,7 +121,7 @@ const HistoriaClinica = () => {
 						}}
 						style={{
 							border:'0',
-							fontSize: '14px',
+							fontSize: '16px',
 							cursor: 'pointer',
 							color: 'crimson',
 							backgroundColor:'transparent',
@@ -255,7 +219,7 @@ const HistoriaClinica = () => {
 						}}
 						style={{
 							border:'0',
-							fontSize: '14px',
+							fontSize: '16px',
 							cursor: 'pointer',
 							color: 'crimson',
 							backgroundColor:'transparent',
@@ -336,7 +300,7 @@ const HistoriaClinica = () => {
 						}}
 						style={{
 							border:'0',
-							fontSize: '14px',
+							fontSize: '16px',
 							cursor: 'pointer',
 							color: 'crimson',
 							backgroundColor:'transparent',
@@ -348,6 +312,19 @@ const HistoriaClinica = () => {
 					</button>
 					
 				</div>
+
+				<div>
+					<Link 
+						to={`/agregar-receta/${id}`}
+						style={{
+							fontSize: '16px',
+							cursor: 'pointer',
+							color: 'crimson',
+						}}
+					>
+						AGREGAR RECETA
+					</Link>
+				</div>
 			</>
         );
     }
@@ -356,26 +333,24 @@ const HistoriaClinica = () => {
             <h2 className="titulo-hc">Historia clínica</h2>
 			
 			<div style={{backgroundColor:'#f4f4f4',padding:'10px', width:'90%'}}>
-					<div style={{ maxWidth:'85%',display:'flex', justifyContent:'space-around'}}>
+				<div style={{ maxWidth:'88%',display:'flex', justifyContent:'space-around', marginLeft:'3%', marginTop:'10px'}}>
 					<div><ModalFiliación/></div>
 					<div><ModalAntecedente/></div>
 					<div><ModalVacuna/></div>
-					</div>
-					
-					
-					
-					
 				</div>
+			</div>
 			
 			
 			<form className="cont">
-				<div>
+				<div className='NombreEdad'>
 					<div>
-						<label>Paciente: </label>
-						<p> </p>
+						<label><b>Paciente: </b> {datos.nombres_paciente}</label>
 					</div>
+					{/* <div>
+						<label><b>Referencia: </b> {datos.referencia}</label>
+					</div> */}
 					<div>
-						<label>Edad de Consulta:
+						<label><b>Edad de Consulta: </b>{(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).years()} a {(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).months()} m {(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).days()} d
 							
 						</label>
 						{/* <p>

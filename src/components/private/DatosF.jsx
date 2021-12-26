@@ -23,11 +23,11 @@ const DatosF = ({ usuario }) => {
 								<h2 style={{marginLeft:'5%'}}>
 									Datos de filiación&nbsp;&nbsp;
 									{rol === 'Doctor' ? (
-										<p style={{display:'flex', justifyContent:'space-between', width:'87%', marginTop:'7px'}}>
+										<p style={{display:'flex', justifyContent:'space-between', width:'87%', marginTop:'7px', marginLeft:'3%'}}>
 											<Link
 												to={`/historias-clinicas/${id}`}
 												style={{
-													fontSize: '14px',
+													fontSize: '16px',
 													cursor: 'pointer',
 													color: 'crimson',
 												}}
@@ -38,7 +38,7 @@ const DatosF = ({ usuario }) => {
 											<Link
 												to={`/antecedentes/${id}`}
 												style={{
-													fontSize: '14px',
+													fontSize: '16px',
 													cursor: 'pointer',
 													color: 'crimson',
 												}}
@@ -50,7 +50,7 @@ const DatosF = ({ usuario }) => {
 											<Link
 												to={`/vacunas/${id}`}
 												style={{
-													fontSize: '14px',
+													fontSize: '16px',
 													cursor: 'pointer',
 													color: 'crimson',
 												}}
@@ -61,7 +61,7 @@ const DatosF = ({ usuario }) => {
 											<Link
 												to={`/GraficoDeCrecimiento/${id}`}
 												style={{
-													fontSize: '14px',
+													fontSize: '16px',
 													cursor: 'pointer',
 													color: 'crimson',
 												}}

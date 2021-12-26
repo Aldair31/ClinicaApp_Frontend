@@ -249,7 +249,7 @@ const FormFiliacion = ({ item }) => {
 								/>
 							</div>
 							<div className='segundo'>
-								<label>Edad</label>
+								<label>Edad Actual</label>
 								{/* <input readonly="" name="fecha_nac" onChange={handleChange}/> */}
 								<Field 
 									type="text"
