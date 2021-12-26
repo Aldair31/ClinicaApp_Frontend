@@ -232,8 +232,10 @@ const FormRecetas = () => {
                         ))}
                     </tbody>
                 </Table>
-                <div>
-                    <button onClick={DocReceta}>Mostrar Receta</button>
+                <div className='contenedor-re' style={{backgroundColor:'#fff'}}>
+                    <button onClick={DocReceta}>
+                            Mostrar Receta
+                        </button>
                 </div>
                 {/* <div>
                     <DocReceta  item={id}/>

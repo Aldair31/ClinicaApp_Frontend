@@ -313,18 +313,7 @@ const HistoriaClinica = () => {
 					
 				</div>
 
-				<div>
-					<Link 
-						to={`/agregar-receta/${id}`}
-						style={{
-							fontSize: '16px',
-							cursor: 'pointer',
-							color: 'crimson',
-						}}
-					>
-						AGREGAR RECETA
-					</Link>
-				</div>
+				
 			</>
         );
     }
@@ -337,6 +326,19 @@ const HistoriaClinica = () => {
 					<div><ModalFiliación/></div>
 					<div><ModalAntecedente/></div>
 					<div><ModalVacuna/></div>
+					<div>
+					<Link 
+						to={`/agregar-receta/${id}`}
+						style={{
+							fontSize: '16px',
+							cursor: 'pointer',
+							color: 'crimson',
+
+						}}
+					>
+						<b>AGREGAR RECETA</b>
+					</Link>
+				</div>
 				</div>
 			</div>
 			
