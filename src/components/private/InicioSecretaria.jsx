@@ -1,4 +1,4 @@
-import React, { useState }from 'react';
+import React, { useEffect, useState }from 'react';
 import '../../sass/Calendario.sass';
 import url from '../../keys/backend_keys';
 import moment from 'moment';
@@ -15,6 +15,7 @@ import getFecha from '../../functions/fecha'
 
 
 const InicioSecretaria =  () => {
+    // console.log("FECHAAAAAAAA: ", moment('Wed Dec 29 2021 17:00:00 GMT-0500 (hora estándar de Perú)').format())
     const [state, setState] = useState(false);
     const [value, onChange] = useState(new Date());
     // const [form, setForm] = useState(false)
@@ -46,15 +47,65 @@ const InicioSecretaria =  () => {
             setState(true)
         }
     }
-    let {Nombre, Fecha} = useReserva();
+
+    //PARA OBTENER TODOS LAS RESERVAS
+    const [res, setRes] = useState({});
+
+	useEffect(() => {
+		fetch(`${url}/Reserva`)
+			.then((resp) =>{
+				return resp.json();
+			})
+			.then((data) =>{
+				setRes(data)
+			});
+			
+	}, []);
+
+    const handleChangeRes = (e)=>{
+		setRes({
+			...res,
+			[e.target.name]: e.target.value
+		})
+	}
+
     let NombreYFecha = []
-
-    for (let item in Nombre){
-        NombreYFecha.push({title:Nombre[item], start:Fecha[item], end:moment(moment(Fecha[item]).add(30,'minutes')).format()})
-        
+    for (let item in res){
+        NombreYFecha.push({title:res[item].nombre_paciente, start:res[item].fecha, end:moment(moment(res[item].fecha).add(30,'minutes')).format()})
     }
-    
 
+    
+    const Datos = (str) => {
+        let data = []
+        for (let item in res){
+            if(moment(res[item].fecha).format() == str){
+                data = res[item]
+            }
+        }
+        return data
+    }
+
+    // const eliminarRes = () => {
+    //     let datosRes = []
+    //     if(data){
+    //         datosRes = data
+    //     }
+    //     fetch(`${url}/Reserva/${datosRes._id}`, {
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         method: 'DELETE',
+    //     })
+    //         .then((resp) => {
+    //             return resp.json();
+    //         })
+    //         .then((data) => {
+    //             alert(data.msg);
+    //         })
+    //         .then(() => {
+    //             setRes(res.filter((item) => item._id !== datosRes._id));
+    //         });
+    // }
 
     const Modal = () => {
         const [reservas, setReservas] = useState({});
@@ -63,13 +114,7 @@ const InicioSecretaria =  () => {
                 ...reservas,
                 [e.target.name]: e.target.value,
             });
-            console.log(reservas)
         };
-        const handleAdd=(NombreYFecha)=>{
-            const eventos ={
-
-            }
-        }
         return (
             <div
                 style={{
@@ -141,10 +186,20 @@ const InicioSecretaria =  () => {
                                         ).format(),
                                     }),
                                 }).then((resp) =>resp.json()).then((data)=>{
-                                        console.log(data)
                                         if(data.ok){
                                             alert('Se Registró la Reserva correctamente')
-                                            // console.log(data) 
+                                            setRes([
+                                                ...res,
+                                                {
+                                                    _id:data.reserva._id ,
+                                                    nombre_paciente:reservas.nombre_paciente,
+                                                    fecha: moment(
+                                                        new Date(
+                                                            `${reservas.fecha} ${reservas.hora}`
+                                                        )
+                                                    ).format(),
+                                                },
+                                            ]);
                                         }
                                         else{
                                             alert('Ya existe una Reserva a esa hora')
@@ -234,7 +289,7 @@ const InicioSecretaria =  () => {
                     events={NombreYFecha}
                     // eventContent={NombreYFecha}
                     // eventContent={NombreYFecha}
-                    editable= {true}
+                    editable= {false}
                     select={handleDateClick}
                     dateClick={onChange}
                     dayMaxEventRows={ true} // for all non-TimeGrid views
@@ -244,8 +299,31 @@ const InicioSecretaria =  () => {
                         }
                     }}
                     eventClick={(info)=>{
-                        console.log('click', info)
-                    }}
+                        console.log('click', moment(info.event.start).format())
+                        // Datos(moment(moment(info.event.start).add(5, 'hours')).format())
+                        // if(Datos(moment(info.event.start).format())){
+                        //     eliminarRes()
+                        // }
+                        let dataRes = Datos(moment(info.event.start).format())
+                        if(dataRes){
+                            	fetch(`${url}/Reserva/${dataRes._id}`, {
+                            		headers: {
+                            			'Content-Type': 'application/json',
+                            		},
+                            		method: 'DELETE',
+                            	})
+                            		.then((resp) => {
+                            			return resp.json();
+                            		})
+                            		.then((data) => {
+                            			alert(data.msg);
+                            		})
+                            		.then(() => {
+                            			setRes(res.filter((item) => item._id !== dataRes._id));
+                            		});
+                            };
+                        }
+                    }
                     customButtons={{
                         AgregarReserva:{
                             text:'+',
