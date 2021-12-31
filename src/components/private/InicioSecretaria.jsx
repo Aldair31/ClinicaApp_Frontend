@@ -18,6 +18,7 @@ const InicioSecretaria =  () => {
     // console.log("FECHAAAAAAAA: ", moment('Wed Dec 29 2021 17:00:00 GMT-0500 (hora estándar de Perú)').format())
     const [state, setState] = useState(false);
     const [value, onChange] = useState(new Date());
+    const [eliminar, setEliminar]= useState(false)
     // const [form, setForm] = useState(false)
     // const mostrar = () =>{
     //     onChange({
@@ -107,6 +108,108 @@ const InicioSecretaria =  () => {
     //         });
     // }
 
+    const eliminarEvento = (info)=>{
+        if(info.event.start){
+            console.log(info.event.start)
+            setEliminar(true)
+        }
+    }   
+
+    const ModalEliminar = ()=>{
+        return (
+            <>
+                <div
+                    style={{
+                        background: '#00000039',
+                        position: 'absolute',
+                        top: '0',
+                        left: '0',
+                        height: '100vh',
+                        width: '100%',
+                        zIndex:'2',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                <form
+                        style={{
+                            background: '#ffffff',
+                            padding: '2px',
+                            borderRadius: '6px',
+                        }}
+                        onSubmit={(e) => {
+                            
+                            e.preventDefault();
+                            let dataRes = Datos(moment(value.event.start).format())
+                            if(dataRes){
+                                fetch(`${url}/Reserva/${dataRes._id}`, {
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                    },
+                                    method: 'DELETE',
+                                })
+                                    .then((resp) => {
+                                        return resp.json();
+                                    })
+                                    .then((data) => {
+                                        alert(data.msg);
+                                    })
+                                    .then(() => {
+                                        setRes(res.filter((item) => item._id !== dataRes._id));
+                                    });
+                                    setEliminar(false)
+                            };
+                        
+                        }}
+                    >
+                        <div className='calendarioEliminar'>
+                            {/* <h3>
+                                ELIMINAR RESERVA
+                                {moment(value.dateStr).format('DD/MM/YYYY')}
+                            </h3> */}
+                            <div className='formularioModalEliminar'>
+                                <p className='textoEliminar'>
+                                    <b>¿DESEA ELIMINAR RESERVA?</b>
+                                </p>
+                                <div className='eliminar'>
+                                    <button type='submit'> 
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                    <button onClick={() => {
+                                        setEliminar(false);
+                                    }}>
+                                        <i class="fas fa-window-close"></i>
+                                    </button>
+                                </div> 
+                            </div>
+                        </div>
+                        <br />
+                    </form>
+                    {/* <button
+                        onClick={() => {
+                            setEliminar(false);
+                        }}
+                        style={{
+                            position: 'absolute',
+                            top: '0',
+                            right: '0',
+                            border: 'none',
+                            padding: '18px',
+                            cursor: 'pointer',
+                        }}
+                    >
+                        <i
+                            class="fas fa-times"
+                            style={{ fontSize: '19px' }}
+                        ></i>
+                    </button> */}
+                    
+                </div>
+            </>
+        )
+    }
+
     const Modal = () => {
         const [reservas, setReservas] = useState({});
         const handleChange = (e) => {
@@ -171,41 +274,56 @@ const InicioSecretaria =  () => {
                             <button 
                             onClick={(e) => {
                                 e.preventDefault();
-                                fetch(`${url}/Reserva/new`,{
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                    method: 'POST',
-                                    body: JSON.stringify({
-                                        reservas,
-                                        nombre_paciente:reservas.nombre_paciente,
-                                        fecha: moment(
-                                            new Date(
-                                                `${reservas.fecha} ${reservas.hora}`
-                                            )
-                                        ).format(),
-                                    }),
-                                }).then((resp) =>resp.json()).then((data)=>{
-                                        if(data.ok){
-                                            alert('Se Registró la Reserva correctamente')
-                                            setRes([
-                                                ...res,
-                                                {
-                                                    _id:data.reserva._id ,
-                                                    nombre_paciente:reservas.nombre_paciente,
-                                                    fecha: moment(
-                                                        new Date(
-                                                            `${reservas.fecha} ${reservas.hora}`
-                                                        )
-                                                    ).format(),
-                                                },
-                                            ]);
-                                        }
-                                        else{
-                                            alert('Ya existe una Reserva a esa hora')
-
-                                        }
-                                    })
+                                if (reservas.hora == '13:00' || reservas.hora == '13:30' || reservas.hora == '14:00' || reservas.hora == '14:30' || reservas.hora == '15:00' || reservas.hora == '15:30'){
+                                    alert('Registre una reserva a otra hora ') 
+                                }
+                                else{
+                                    fetch(`${url}/Reserva/new`,{
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                        },
+                                        method: 'POST',
+                                        body: JSON.stringify({
+                                            reservas,
+                                            nombre_paciente:reservas.nombre_paciente,
+                                            fecha: moment(
+                                                new Date(
+                                                    `${reservas.fecha} ${reservas.hora}`
+                                                )
+                                            ).format(),
+                                        }),
+                                    }).then((resp) =>resp.json()).then((data)=>{
+                                            if(data.ok){
+                                                    console.log(data.reserva.fecha)
+                                                    alert('Se Registró la Reserva correctamente')
+                                                    setRes([
+                                                        ...res,
+                                                        {
+                                                            _id:data.reserva._id ,
+                                                            nombre_paciente:reservas.nombre_paciente,
+                                                            fecha: moment(
+                                                                new Date(
+                                                                    `${reservas.fecha} ${reservas.hora}`
+                                                                )
+                                                            ).format(),
+                                                        },
+                                                    ]);
+                                                    console.log(reservas.hora)
+                                                    console.log(data)
+                                                    
+                                                    
+                                                    // console.log(moment('13:00').format('HH:mm'))
+                                                }
+                                                else{
+                                                    alert('Ya existe una Reserva a esa hora')
+                                                    
+        
+                                                }
+                                            
+                                            
+                                        })
+                                }
+                                
                             }}
                             >Aceptar</button>
                         </p> 
@@ -235,9 +353,12 @@ const InicioSecretaria =  () => {
         );
     }
 
+
     return (
         <>
             {state && <Modal/>}
+            {eliminar && <ModalEliminar/>}
+            {/* {eliminar && <Eliminar/>} */}
             {/* <div style={{position:'absolute',marginLeft:'60%', top: '82px'}}>
                 <button
                     onClick={() => {
@@ -258,8 +379,9 @@ const InicioSecretaria =  () => {
                     
                 </button>
             </div> */}
-            <div style={{ width:'90%', marginTop:'15px'}}>
+            <div className='tablaCalendario' style={{ width:'90%', marginTop:'15px'}}>
                 <FullCalendar
+                    
                     plugins={[ timeGridPlugin, interactionPlugin]}
                     locale='es'
                     height='85vh'
@@ -298,32 +420,16 @@ const InicioSecretaria =  () => {
                         dayMaxEventRows: 10 // adjust to 6 only for timeGridWeek/timeGridDay
                         }
                     }}
-                    eventClick={(info)=>{
-                        console.log('click', moment(info.event.start).format())
+                    eventClick={[eliminarEvento,onChange]
+                        // (info)=>{
+                        // console.log('click', moment(info.event.start).format())
                         // Datos(moment(moment(info.event.start).add(5, 'hours')).format())
                         // if(Datos(moment(info.event.start).format())){
                         //     eliminarRes()
                         // }
-                        let dataRes = Datos(moment(info.event.start).format())
-                        if(dataRes){
-                            	fetch(`${url}/Reserva/${dataRes._id}`, {
-                            		headers: {
-                            			'Content-Type': 'application/json',
-                            		},
-                            		method: 'DELETE',
-                            	})
-                            		.then((resp) => {
-                            			return resp.json();
-                            		})
-                            		.then((data) => {
-                            			alert(data.msg);
-                            		})
-                            		.then(() => {
-                            			setRes(res.filter((item) => item._id !== dataRes._id));
-                            		});
-                            };
+                        
                         }
-                    }
+                    
                     customButtons={{
                         AgregarReserva:{
                             text:'+',

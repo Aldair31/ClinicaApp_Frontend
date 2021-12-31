@@ -23,6 +23,7 @@ import useReceta from '../../../hooks/useReceta';
 
 const FormRecetas = () => {
     //PARA OBTENER DATOS DE RECETA
+    const [state, setState]= useState(false)
     const [Re, setRe] = useState({})
 	let { id } = useParams();
 	useEffect(() => {
@@ -183,17 +184,17 @@ const FormRecetas = () => {
         //LÍNEAS MITAD
         doc.setLineWidth(0.5).setLineDash([1, 1], 0).setDrawColor('black').line(107, 0, 107, 840);
 
-        // if(str=='show'){
+        // if(str=='imprimir'){
         //     doc.output('dataurlnewwindow', 'Receta.pdf')
         // }
-        // if(str=='save'){
+        // if(str=='guardar'){
         //     doc.save("Receta.pdf")
         // }
         doc.output('dataurlnewwindow', 'Receta.pdf')
     }
     
     return (
-        <div>
+        <div className='contenedorReceta'>
             {/* <Formik
                 initialValues={{
 					cantidad: '',
@@ -285,6 +286,9 @@ const FormRecetas = () => {
                                     .then((datos) => {
                                         if(datos.ok){
                                             alert('Medicamento agregado')
+                                            setRecetas({cantidad: '',
+                                                nombreMedicina: '',
+                                                indicaciones:''})
                                             setRe([
                                                 ...Re,
                                                 {
@@ -301,6 +305,7 @@ const FormRecetas = () => {
                                         console.log(err);
                                         // rej(err);
                                     });
+                                    
                             }}
                         >
                             AGREGAR
@@ -310,18 +315,19 @@ const FormRecetas = () => {
                 <div className='titulo-re'>
                     <h3>TABLA DE MEDICAMENTOS</h3>
                 </div>
-                <Table>
+                <div>   
+                <Table className='tabla'>
                     <thead>
                         <tr>
                             <th>CANTIDAD</th>
                             <th>MEDICAMENTO</th>
                             <th>INDICACIÓN</th>
-                            <th>ELIMINAR</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {Datos.map((item) => (
-                            <tr>
+                            <tr className='tablaReceta'>
                                 <td style={{textTransform: 'uppercase'}}>{item.cantidad}</td>
                                 <td style={{textTransform: 'uppercase'}}>{item.nombreMedicina}</td>
                                 <td style={{textTransform: 'uppercase'}}>{item.indicaciones}</td>
@@ -375,12 +381,21 @@ const FormRecetas = () => {
                         ))}
                     </tbody>
                 </Table>
-                <div>
-                    <button onClick={DocReceta}>Mostrar Receta</button>
                 </div>
-                <div>
-                    <button onClick={DocReceta}>Descargar Receta</button>
+                
+                <div className='botonesReceta'>
+                    <div>
+                        <button onClick={DocReceta}>MOSTRAR RECETA</button>
+                    </div>
+                    <div>
+                        <button onClick={DocReceta}>DESCARGAR RECETA</button>
+                    </div>
+                    <div>
+                        <button onClick={DocReceta}>IMPRIMIR RECETA</button>
+                    </div>
                 </div>
+
+                
         </div>
     )
 }
