@@ -30,10 +30,15 @@ const Hijos = ({ match }) => {
                         console.log('es voluntario');
                         console.log(datos);
                         console.log('es voluntario');
-						setUsuario({
-							...usuario,
-							hijos: [...usuario.hijos, datos.evento],
-						});
+						if(datos.ok){
+							setUsuario({
+								...usuario,
+								hijos: [...usuario.hijos, datos.evento],
+							});
+							alert('Agregado correctamente')
+						}else{
+							alert('Datos incorrectos')
+						}
 					});
 			});
 	};

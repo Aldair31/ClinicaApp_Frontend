@@ -78,7 +78,7 @@ const Antecedentes = ({id}) => {
 				
 				<label>Otros</label>
 				<textarea
-					rows="10"
+					rows="3"
 					cols="50"
 					placeholder="Ingrese otros antecedentes"
 					name="Otros"
@@ -146,7 +146,7 @@ const Antecedentes = ({id}) => {
 				
 				<label>Complicaciones</label>
 				<textarea
-					rows="5"
+					rows="3"
 					cols="25"
 					placeholder="Ingrese algunas alergias"
 					name="complicaciones"
@@ -158,7 +158,7 @@ const Antecedentes = ({id}) => {
 				<h3>Patológicos</h3>
 				<label>Alergias</label>
 				<textarea
-					rows="5"
+					rows="3"
 					cols="25"
 					placeholder="Ingrese algunas alergias"
 					name="alergia"
@@ -226,7 +226,7 @@ const Antecedentes = ({id}) => {
 				
 				<label>Enfermedades Anteriores</label>
 				<textarea
-					rows="5"
+					rows="3"
 					cols="25"
 					placeholder="Ingrese algunas alergias"
 					name="enfAnteriores"

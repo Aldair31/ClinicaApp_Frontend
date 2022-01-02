@@ -33,8 +33,8 @@ const FormFiliacion = ({ item }) => {
 		})
 		//setHc(e.target.value)
 	}
-	console.log("Fecha:", moment(Hc.fecha_nac).format('DD/MM/YYYY'))
-	Hc.edad = (moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' a ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' m ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' d'
+	console.log("Edad:", Hc.edad)
+	// Hc.edad = (moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' a ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' m ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' d'
 	return (
 		// <div>
 		// 	<label>Edad</label>
@@ -50,7 +50,7 @@ const FormFiliacion = ({ item }) => {
 					//fecha_nac: fechaNac,
 					// fecha_nac: moment(item.fecha_nac).format('YYYY-MM-DD'),
 					//edad : (moment.duration(moment().diff(moment(item.fecha_nac)))).years() + ' años ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).months() + ' meses ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).days() + ' días',
-					sexo : item.sexo,
+					sexo : '1',
 					lugar_nac: item.lugar_nac,
 					direccion: item.direccion,
 					nombre_madre: item.nombre_madre,
@@ -254,14 +254,15 @@ const FormFiliacion = ({ item }) => {
 								<Field 
 									type="text"
 									name = "edad"
-									value={Hc.edad}
+									value={Hc.edad = (moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' a ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' m ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' d'}
 								></Field>
 							</div>
 							<div className='tercero'>
 									<label>Sexo</label>
 									<Field style={{height:'6.1vh'}} className='mayus' name="sexo" as="select" value={Hc.sexo} onChange={handleChange}>
-										<option value="2">Mujer</option>
+										<option>-- Seleccione --</option>
 										<option value="1">Hombre</option>
+										<option value="2">Mujer</option>
 									</Field>
 								</div>
 						</div>
@@ -478,8 +479,9 @@ const FormFiliacion = ({ item }) => {
 								body: JSON.stringify({
 									...Hc,
 
-									fecha_nac : moment(Hc.fecha_nac).format()
+									fecha_nac : moment(Hc.fecha_nac).format(),
 									//fecha_nac : (moment(Hc.fecha_nac).add(5, 'hours')).format('YYYY-MM-DD')
+									edad: (moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' a ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' m ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' d'
 								}),
 								})
 								.then((resp) => resp.json())

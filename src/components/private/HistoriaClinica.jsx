@@ -336,7 +336,7 @@ const HistoriaClinica = () => {
 
 						}}
 					>
-						<b>AGREGAR RECETA</b>
+						<b>RECETA</b>
 					</Link>
 				</div>
 				</div>
