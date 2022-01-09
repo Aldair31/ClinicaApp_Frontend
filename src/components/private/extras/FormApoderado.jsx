@@ -108,7 +108,7 @@ const FormApoderado = (usuario) => {
 							}}
 						>
 							<i
-								class="fas fa-cloud-upload-alt"
+								className="fas fa-cloud-upload-alt"
 								style={{
 									fontSize: '28px',
 									cursor: 'pointer',

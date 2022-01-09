@@ -170,7 +170,7 @@ const GraficoDeCrecimiento = () => {
 													color: 'crimson',
 												}}
 											>
-												Ver Gráfica PC - Edad (0-36 meses)
+												Ver Gráfica PC - Edad
 											</Link>
 											<br></br>
                                             <br></br>

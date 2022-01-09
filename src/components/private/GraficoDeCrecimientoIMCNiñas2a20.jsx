@@ -31,7 +31,7 @@ const GraficoDeCrecimientoIMCNiñas2a20 = () => {
 	}
 
   return (
-    <div>
+    <div style={{maxWidth: '99%', height: '80vh'}}>
 		
       <Line
         data={
@@ -127,6 +127,7 @@ const GraficoDeCrecimientoIMCNiñas2a20 = () => {
         }
         options = {{
 			responsive : true,
+			maintainAspectRatio: false,
 			plugins : {
 				title : {
 					display : true,

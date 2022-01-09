@@ -174,12 +174,12 @@ const InicioSecretaria =  () => {
                                 </p>
                                 <div className='eliminar'>
                                     <button type='submit'> 
-                                        <i class="fas fa-trash-alt"></i>
+                                        <i className="fas fa-trash-alt"></i>
                                     </button>
                                     <button onClick={() => {
                                         setEliminar(false);
                                     }}>
-                                        <i class="fas fa-window-close"></i>
+                                        <i className="fas fa-window-close"></i>
                                     </button>
                                 </div> 
                             </div>
@@ -200,7 +200,7 @@ const InicioSecretaria =  () => {
                         }}
                     >
                         <i
-                            class="fas fa-times"
+                            className="fas fa-times"
                             style={{ fontSize: '19px' }}
                         ></i>
                     </button> */}
@@ -351,7 +351,7 @@ const InicioSecretaria =  () => {
                     }}
                 >
                     <i
-                        class="fas fa-times"
+                        className="fas fa-times"
                         style={{ fontSize: '19px' }}
                     ></i>
                 </button>
@@ -381,7 +381,7 @@ const InicioSecretaria =  () => {
                         cursor: 'pointer',
                     }}
                 >
-                    <i class="fas fa-plus"></i>
+                    <i className="fas fa-plus"></i>
                     
                 </button>
             </div> */}
@@ -390,7 +390,7 @@ const InicioSecretaria =  () => {
                     
                     plugins={[ timeGridPlugin, interactionPlugin]}
                     locale='es'
-                    height='85vh'
+                    height='72.2vh'
                     initialView="timeGridWeek"
                     headerToolbar={{
                         right:'today,prevYear,nextYear',

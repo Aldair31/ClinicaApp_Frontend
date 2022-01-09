@@ -106,7 +106,7 @@ const HistoriaClinica = () => {
 						}}
 						>
 							<i
-								class="fas fa-times"
+								className="fas fa-times"
 								style={{ fontSize: '19px' }}
 							></i>
 						</button>
@@ -203,7 +203,7 @@ const HistoriaClinica = () => {
 						}}
 						>
 							<i
-								class="fas fa-times"
+								className="fas fa-times"
 								style={{ fontSize: '19px' }}
 							></i>
 						</button>
@@ -284,7 +284,7 @@ const HistoriaClinica = () => {
 						}}
 						>
 							<i
-								class="fas fa-times"
+								className="fas fa-times"
 								style={{ fontSize: '19px' }}
 							></i>
 						</button>

@@ -31,7 +31,7 @@ const GraficoDeCrecimientoPCNiño0a36 = () => {
 	}
 
   return (
-    <div>
+    <div style={{maxWidth: '99%', height: '80vh'}}>
 		
       <Line
         data={
@@ -111,6 +111,7 @@ const GraficoDeCrecimientoPCNiño0a36 = () => {
         }
         options = {{
 			responsive : true,
+			maintainAspectRatio: false,
 			plugins : {
 				title : {
 					display : true,

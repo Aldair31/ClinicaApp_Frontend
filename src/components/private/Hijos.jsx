@@ -108,7 +108,7 @@ const Hijos = ({ match }) => {
 					}}
 				>
 					<i
-						class="fas fa-times"
+						className="fas fa-times"
 						style={{ fontSize: '19px' }}
 					></i>
 				</button>

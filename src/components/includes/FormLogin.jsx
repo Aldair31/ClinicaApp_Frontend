@@ -11,7 +11,7 @@ const FormLogin = ({usuario,logearUsuario}) => {
 		if(resultado.ok){
 			console.log('Ok (y)');
 			logearUsuario(resultado)
-			console.log(resultado);
+			console.log("RESULTADO: ", resultado);
 		}
 		else{
 			console.log('No ok :(');

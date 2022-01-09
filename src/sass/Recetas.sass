@@ -17,12 +17,12 @@
     h3
         font-size: 20px
     .proxCita
-        width: 47%
-        label
+        width: 51%
         input
             text-align: center
-            width: 40%
+            border-radius: 2px
             border: 1px solid #50B4A1
+            margin-left: 2%
 
 .contenedor-re
     
@@ -68,6 +68,12 @@
         background: #379e8b
         color: #FFF
 
+.listPacientes
+    width: 100%
+    overflow-y: scroll
+    h2
+        margin-bottom: 16px
+        margin-top: 24px
 
 .tabla
     max-width: 900px
@@ -88,11 +94,11 @@
     color: #fff
 
 
-.tabla th, td
+.tabla th,.tabla td
     // display: inline-table !important
     // width: 20%
     // max-width: 20%
-    max-height: 50%
+    // max-height: 100%
     border: 1px solid rgb(201, 201, 201)
     padding: 10px
 	
@@ -113,11 +119,16 @@
     margin-bottom: 2%
     button
         padding: 10px
-        background-color:#50B4A1
-        color: #fff
-        cursor: pointer
+        background-color: #50B4A1
+        color: #FFF
         border: none
-        border-radius: 5px  
-        &:hover
-            background: #379e8b
-            color: #FFF
+        border-radius: 5px
+    .notDisabled
+        button
+            &:hover
+                cursor: pointer
+                background: #379e8b
+                color: #FFF
+    .Disabled
+        button
+            background-color: #a0dfd4

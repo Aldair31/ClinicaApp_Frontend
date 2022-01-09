@@ -19,7 +19,7 @@ const GraficoDeCrecimientoPesoTallaNiña = () => {
 	datos = tallaypeso.reverse()
 
    return (
-    <div>	
+    <div style={{maxWidth: '99%', height: '80vh'}}>	
      <Line
         data={
             {
@@ -486,6 +486,7 @@ const GraficoDeCrecimientoPesoTallaNiña = () => {
         }
         options = {{
 			responsive : true,
+			maintainAspectRatio: false,
 			plugins : {
 				title : {
 					display : true,
