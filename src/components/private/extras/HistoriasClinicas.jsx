@@ -56,11 +56,6 @@ const HistoriasClinicas = () => {
                     }}
 				>
 					<div className='contenedorFormModal'>
-						{/* <div className='tituloModal'>
-							<h3>
-								NUEVA HISTORIA CLÍNICA
-							</h3>
-						</div> */}
 						<h3>
 							NUEVA HISTORIA CLÍNICA
 						</h3>
@@ -71,7 +66,6 @@ const HistoriasClinicas = () => {
 									type="date"
 									name='fecha'
 									onChange={handleChangeNuevo}
-									// value={moment(nuevaHistClinica.fecha).format('YYYY-MM-DD')}
 									value={nuevaHistClinica.fecha}
 								></input>
 							</p>
@@ -81,7 +75,6 @@ const HistoriasClinicas = () => {
 									type='time'
 									name='hora'
 									onChange={handleChangeNuevo}
-									// value={moment(nuevaHistClinica.hora).format('HH:mm')}
 									value={nuevaHistClinica.hora}
 								/>
 							</p>
@@ -89,42 +82,44 @@ const HistoriasClinicas = () => {
 								<button
 									onClick={(e) => {
 										e.preventDefault();
-										fetch(`${url}/HistClinica/new`, {
-											headers: {
-												'Content-Type': 'application/json',
-											},
-											method: 'POST',
-											body: JSON.stringify({
-												nuevaHistClinica,
-												fecha: moment(
-													new Date(
-														`${nuevaHistClinica.fecha} ${nuevaHistClinica.hora}`
-													)
-												).format(),
-												id_Historia: id,
-											}),
-										})
-										.then((resp) => resp.json())
-										.then((data) => {
-											if(data.ok){
-												alert('Se Registró la Historia Clínica Correctamente')
-												setDatos([
-													...datos,
-													{
-														_id:data.histClinica._id ,
-														fecha: moment(
-															new Date(
-																`${nuevaHistClinica.fecha} ${nuevaHistClinica.hora}`
-															)
-														).format(),
-														id_Historia: id,
-													}
-												])
-											}
-											else{
-												alert("Por favor, asegurese de completar los campos")
-											}
-										})
+										if(nuevaHistClinica.fecha != undefined && nuevaHistClinica.hora != undefined){
+											fetch(`${url}/HistClinica/new`, {
+												headers: {
+													'Content-Type': 'application/json',
+												},
+												method: 'POST',
+												body: JSON.stringify({
+													nuevaHistClinica,
+													fecha: moment(
+														new Date(
+															`${nuevaHistClinica.fecha} ${nuevaHistClinica.hora}`
+														)
+													).format(),
+													id_Historia: id,
+												}),
+											})
+											.then((resp) => resp.json())
+											.then((data) => {
+												if(data.ok){
+													alert('Se Registró la Historia Clínica Correctamente')
+													setDatos([
+														...datos,
+														{
+															_id:data.histClinica._id ,
+															fecha: moment(
+																new Date(
+																	`${nuevaHistClinica.fecha} ${nuevaHistClinica.hora}`
+																)
+															).format(),
+															id_Historia: id,
+														}
+													])
+												}
+											})
+										}
+										else{
+											alert("Por favor, asegurese de completar los campos")
+										}
 									}}
 								>AGREGAR</button>
 							</p>
