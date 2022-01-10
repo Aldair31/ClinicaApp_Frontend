@@ -321,24 +321,40 @@ const HistoriaClinica = () => {
 		<div>
             <h2 className="titulo-hc">Historia clínica</h2>
 			
-			<div style={{backgroundColor:'#f4f4f4',padding:'10px', width:'90%'}}>
-				<div style={{ maxWidth:'88%',display:'flex', justifyContent:'space-around', marginLeft:'3%', marginTop:'10px'}}>
+			<div className='enlaces'>
+				<div className='linkFila1'>
 					<div><ModalFiliación/></div>
 					<div><ModalAntecedente/></div>
 					<div><ModalVacuna/></div>
-					<div>
-					<Link 
-						to={`/agregar-receta/${id}`}
-						style={{
-							fontSize: '16px',
-							cursor: 'pointer',
-							color: 'crimson',
-
-						}}
-					>
-						<b>RECETA</b>
-					</Link>
+					
 				</div>
+				<div className='linkFila2'>
+					<div>
+						<Link
+							to={`/GraficoDeCrecimiento/${Hc.id_Historia}`}
+							style={{
+								fontSize: '16px',
+								cursor: 'pointer',
+								color: 'crimson',
+							}}
+						>
+							<b>VER GRÁFICOS</b>
+						</Link>
+					</div>
+					{/* <GraficoDeCrecimiento/> */}
+					<div>
+						<Link 
+							to={`/agregar-receta/${id}`}
+							style={{
+								fontSize: '16px',
+								cursor: 'pointer',
+								color: 'crimson',
+								marginLeft:'50%'
+							}}
+						>
+							<b>RECETA</b>
+						</Link>
+					</div>
 				</div>
 			</div>
 			
