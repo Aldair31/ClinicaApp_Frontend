@@ -189,7 +189,7 @@ const FormRecetas = () => {
         ]
     
         let paciente = [
-            [Hc.historia.nombres_paciente]
+            [(Hc.historia.nombres_paciente).toUpperCase()]
         ]
 
         //TABLA DATOS PACIENTE
@@ -211,7 +211,7 @@ const FormRecetas = () => {
         doc.autoTable({
             body: paciente,
             theme: 'plain',
-            styles:{fontSize: 12, lineColor:[6, 137, 229]},
+            styles:{font: 'courier', fontSize: 14, fontStyle: 'bold'},
             startY: 50,
             margin:{left: 10},
             columnStyles:{
@@ -228,6 +228,7 @@ const FormRecetas = () => {
             theme:'plain',
             styles:{fontSize: 12, lineColor:[200, 83, 100], textColor:[0,0,0], halign: 'left', font: 'courier', cellPadding:2}, //, fillColor: [166, 193, 200]
             startY:65,
+            rowPageBreak: 'avoid',
             margin:{left:2},
             columnStyles: {
                 0: {cellWidth:107.5},

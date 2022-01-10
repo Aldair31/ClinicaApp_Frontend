@@ -15,34 +15,9 @@ import getFecha from '../../functions/fecha'
 
 
 const InicioSecretaria =  () => {
-    // console.log("FECHAAAAAAAA: ", moment('Wed Dec 29 2021 17:00:00 GMT-0500 (hora estándar de Perú)').format())
     const [state, setState] = useState(false);
     const [value, onChange] = useState(new Date());
     const [eliminar, setEliminar]= useState(false)
-    // const [form, setForm] = useState(false)
-    // const mostrar = () =>{
-    //     onChange({
-    //         showDate: true
-    //     })
-    // }
-    console.log(value)
-	// const onDelete = (id) => {
-	// 	fetch(`${url}/Cita/${id}`, {
-	// 		headers: {
-	// 			'Content-Type': 'application/json',
-	// 		},
-	// 		method: 'DELETE',
-	// 	})
-	// 		.then((resp) => {
-	// 			return resp.json();
-	// 		})
-	// 		.then((data) => {
-	// 			alert(data.msg);
-	// 		})
-	// 		.then(() => {
-	// 			set_datos_af(datos_af.filter((item) => item._id !== id));
-	// 		});
-	// };
     const handleDateClick = (arg) => { // bind with an arrow function
         if(arg.dateStr){
             setState(true)
@@ -86,28 +61,6 @@ const InicioSecretaria =  () => {
         return data
     }
 
-    // const eliminarRes = () => {
-    //     let datosRes = []
-    //     if(data){
-    //         datosRes = data
-    //     }
-    //     fetch(`${url}/Reserva/${datosRes._id}`, {
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         method: 'DELETE',
-    //     })
-    //         .then((resp) => {
-    //             return resp.json();
-    //         })
-    //         .then((data) => {
-    //             alert(data.msg);
-    //         })
-    //         .then(() => {
-    //             setRes(res.filter((item) => item._id !== datosRes._id));
-    //         });
-    // }
-
     const eliminarEvento = (info)=>{
         if(info.event.start){
             console.log(info.event.start)
@@ -133,78 +86,55 @@ const InicioSecretaria =  () => {
                     }}
                 >
                 <form
-                        style={{
-                            background: '#ffffff',
-                            padding: '2px',
-                            borderRadius: '6px',
-                        }}
-                        onSubmit={(e) => {
-                            
-                            e.preventDefault();
-                            let dataRes = Datos(moment(value.event.start).format())
-                            if(dataRes){
-                                fetch(`${url}/Reserva/${dataRes._id}`, {
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                    method: 'DELETE',
-                                })
-                                    .then((resp) => {
-                                        return resp.json();
-                                    })
-                                    .then((data) => {
-                                        alert(data.msg);
-                                    })
-                                    .then(() => {
-                                        setRes(res.filter((item) => item._id !== dataRes._id));
-                                    });
-                                    setEliminar(false)
-                            };
+                    style={{
+                        background: '#ffffff',
+                        padding: '2px',
+                        borderRadius: '6px',
+                    }}
+                    onSubmit={(e) => {
                         
-                        }}
-                    >
-                        <div className='calendarioEliminar'>
-                            {/* <h3>
-                                ELIMINAR RESERVA
-                                {moment(value.dateStr).format('DD/MM/YYYY')}
-                            </h3> */}
-                            <div className='formularioModalEliminar'>
-                                <p className='textoEliminar'>
-                                    <b>¿DESEA ELIMINAR RESERVA?</b>
-                                </p>
-                                <div className='eliminar'>
-                                    <button type='submit'> 
-                                        <i className="fas fa-trash-alt"></i>
-                                    </button>
-                                    <button onClick={() => {
-                                        setEliminar(false);
-                                    }}>
-                                        <i className="fas fa-window-close"></i>
-                                    </button>
-                                </div> 
-                            </div>
-                        </div>
-                        <br />
-                    </form>
-                    {/* <button
-                        onClick={() => {
-                            setEliminar(false);
-                        }}
-                        style={{
-                            position: 'absolute',
-                            top: '0',
-                            right: '0',
-                            border: 'none',
-                            padding: '18px',
-                            cursor: 'pointer',
-                        }}
-                    >
-                        <i
-                            className="fas fa-times"
-                            style={{ fontSize: '19px' }}
-                        ></i>
-                    </button> */}
+                        e.preventDefault();
+                        let dataRes = Datos(moment(value.event.start).format())
+                        if(dataRes){
+                            fetch(`${url}/Reserva/${dataRes._id}`, {
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                method: 'DELETE',
+                            })
+                                .then((resp) => {
+                                    return resp.json();
+                                })
+                                .then((data) => {
+                                    alert(data.msg);
+                                })
+                                .then(() => {
+                                    setRes(res.filter((item) => item._id !== dataRes._id));
+                                });
+                                setEliminar(false)
+                        };
                     
+                    }}
+                >
+                    <div className='calendarioEliminar'>
+                        <div className='formularioModalEliminar'>
+                            <p className='textoEliminar'>
+                                <b>¿DESEA ELIMINAR RESERVA?</b>
+                            </p>
+                            <div className='eliminar'>
+                                <button type='submit'> 
+                                    <i className="fas fa-trash-alt"></i>
+                                </button>
+                                <button onClick={() => {
+                                    setEliminar(false);
+                                }}>
+                                    <i className="fas fa-window-close"></i>
+                                </button>
+                            </div> 
+                        </div>
+                    </div>
+                    <br />
+                </form>
                 </div>
             </>
         )

@@ -348,19 +348,15 @@ const HistoriaClinica = () => {
 					<div>
 						<label><b>Paciente: </b> {datos.nombres_paciente}</label>
 					</div>
-					{/* <div>
-						<label><b>Referencia: </b> {datos.referencia}</label>
-					</div> */}
 					<div>
 						<label><b>Edad de Consulta: </b>{(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).years()} a {(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).months()} m {(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).days()} d
-							
 						</label>
-						{/* <p>
-							{(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).years()} a {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).months()} m {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).days()} d
-						</p> */}
 					</div>
-					{/* <NombreYFecha/> */}
 				</div>
+				<div className='NombreEdad'>
+					<label><b>Referencia: </b> {datos.referencia}</label>
+				</div>
+				<br></br>
                 {/* <h3>Datos de la H.clínica</h3> */}
 				
 				{/* <Link
