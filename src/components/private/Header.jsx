@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Header = ({usuario}) => {
-	console.log(usuario)
+const Header = () => {
+	// console.log("USUARIO HEADER: ", usuario)
 	return (
 		<>
 			<div className="header_dashboard">

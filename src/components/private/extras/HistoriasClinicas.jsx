@@ -24,6 +24,17 @@ const HistoriasClinicas = () => {
 		fechaNacimiento[item] = moment(fechaNac[0]).format()
 	}
 
+	const nuevosDatos = datos.slice().sort(function(a, b) {
+		// if(moment(moment(a.fecha).format('DD/MM/YYYY')).isBefore(moment(b.fecha).format('DD/MM/YYYY'))){
+		if(moment(a.fecha).format('DD/MM/YYYY') > moment(b.fecha).format('DD/MM/YYYY')){
+			return 1
+		} else{
+			return -1
+		}
+	})
+	console.log('NUEVOS DATOS: ', nuevosDatos)
+	console.log('DATOS: ', datos)
+
 	const ModalNuevaHistClinica = () => {
 		const [nuevaHistClinica, setnuevaHistClinica] = useState({})
 		const handleChangeNuevo = (e) => {
@@ -69,7 +80,7 @@ const HistoriasClinicas = () => {
 									value={nuevaHistClinica.fecha}
 								></input>
 							</p>
-							<p>
+							{/* <p>
 								<label>Hora  </label>
 								<input
 									type='time'
@@ -77,45 +88,52 @@ const HistoriasClinicas = () => {
 									onChange={handleChangeNuevo}
 									value={nuevaHistClinica.hora}
 								/>
-							</p>
+							</p> */}
 							<p>
 								<button
 									onClick={(e) => {
 										e.preventDefault();
-										if(nuevaHistClinica.fecha != undefined && nuevaHistClinica.hora != undefined){
-											fetch(`${url}/HistClinica/new`, {
-												headers: {
-													'Content-Type': 'application/json',
-												},
-												method: 'POST',
-												body: JSON.stringify({
-													nuevaHistClinica,
-													fecha: moment(
-														new Date(
-															`${nuevaHistClinica.fecha} ${nuevaHistClinica.hora}`
-														)
-													).format(),
-													id_Historia: id,
-												}),
-											})
-											.then((resp) => resp.json())
-											.then((data) => {
-												if(data.ok){
-													alert('Se Registró la Historia Clínica Correctamente')
-													setDatos([
-														...datos,
-														{
-															_id:data.histClinica._id ,
-															fecha: moment(
-																new Date(
-																	`${nuevaHistClinica.fecha} ${nuevaHistClinica.hora}`
-																)
-															).format(),
-															id_Historia: id,
-														}
-													])
-												}
-											})
+										if(nuevaHistClinica.fecha != undefined){
+											if(!moment(moment(nuevaHistClinica.fecha).format('DD/MM/YYYY')).isBefore(moment(fechaNacimiento[0]).format('DD/MM/YYYY'))){
+												fetch(`${url}/HistClinica/new`, {
+													headers: {
+														'Content-Type': 'application/json',
+														'x-access-token': JSON.parse(window.localStorage.getItem('TOKEN')).token
+													},
+													method: 'POST',
+													body: JSON.stringify({
+														nuevaHistClinica,
+														// fecha: moment(
+														// 	new Date(
+														// 		`${nuevaHistClinica.fecha} ${nuevaHistClinica.hora}`
+														// 	)
+														// ).format(),
+														fecha: moment(nuevaHistClinica.fecha),
+														id_Historia: id,
+													}),
+												})
+												.then((resp) => resp.json())
+												.then((data) => {
+													if(data.ok){
+														alert('Se Registró la Historia Clínica Correctamente')
+														setDatos([
+															...nuevosDatos,
+															{
+																_id:data.histClinica._id ,
+																// fecha: moment(
+																// 	new Date(
+																// 		`${nuevaHistClinica.fecha} ${nuevaHistClinica.hora}`
+																// 	)
+																// ).format(),
+																fecha: moment(nuevaHistClinica.fecha),
+																id_Historia: id,
+															}
+														])
+													}
+												})
+											} else {
+												alert("La fecha ingresada es anterior a la fecha de nacimiento")
+											}
 										}
 										else{
 											alert("Por favor, asegurese de completar los campos")
@@ -161,7 +179,7 @@ const HistoriasClinicas = () => {
 				</h2>
 				{form && <ModalNuevaHistClinica/>}
 				<div className="citas">
-					{datos.map((item) => {
+					{nuevosDatos.map((item) => {
 						return (
 							<>
 								{item.id_Historia === id ? (

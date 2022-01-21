@@ -8,149 +8,180 @@ import fondoReceta from '../../../img/FondoReceta.jpg'
 import { jsPDF } from "jspdf"
 import 'jspdf-autotable'
 
-import {
-    Table,
-    Button,
-    Container,
-    Modal,
-    ModalHeader,
-    ModalBody,
-    FormGroup,
-    ModalFooter,
-} from "reactstrap";
+import {Table} from "reactstrap";
 
 const FormRecetas = () => {
-    //PARA OBTENER DATOS DE RECETA
-    const [Re, setRe] = useState({})
-	let { id } = useParams();
-	useEffect(() => {
-		fetch(`${url}/Receta/idHistClinica/${id}`)
-			.then((resp) => resp.json())
-			.then((data)=>{
-				setRe(data)
-			})
-	}, []);
+    //ESTADO PARA SABER SI HAY MEDICAMENTOS EN UNA RECETA Y HABILITAR BOTONES PARA ACCIONES DE DOCUMENTO (MOSTRAR, DESCARGAR E IMPRIMIR)
+    const [BtnAcitve, setBtnActive] = useState(false)
 
-    const [Hc, setHc] = useState({})
+    //PARA OBTENER DATOS DE MEDICAMENTOS (CANTIDAD, MEDICAMENTOS, INDICACIONES) EN RECETA
+    const [Re, setRe] = useState([])
+	let { id } = useParams();
     useEffect(() => {
-        fetch(`${url}/Receta/datosRe/${id}`)
-            .then((respHc) => respHc.json())
-            .then((dataHc)=>{
-                setHc(dataHc)
-            })
+        fetch(`${url}/Receta/idHistClinica/receta/${id}`)
+        .then((resp) => resp.json())
+        .then((data) => {
+            setRe(data)
+            if(data.length>0){
+                setBtnActive(true)
+            }
+        })
     }, [])
 
+    console.log("REC: ", Re)
+
     //PARA REGISTRAR DATOS DE RECETA
-    const [Recetas, setRecetas] = useState([]);
-	const handleChangeRe = (e) => {
-        setRecetas({
-            ...Recetas,
+    const [MedicamentoReceta, setMedicamentoReceta] = useState([]);
+    const handleChangeMed = (e) => {
+        setMedicamentoReceta({
+            ...MedicamentoReceta,
             [e.target.name]: e.target.value,
         });
     };
-
-    //PARA MOSTRAR DATOS
-    let Datos = []
-    let cont=0
-    for(let item in Re){
-        cont++
-        Datos.push(Re[item])
-    }
-    //PARA DOC RECETA
-    let a = []
-    for (let i=0; i<cont; i++){
-        a.push([(i+1) + '. ' + (Datos[i].nombreMedicina).toUpperCase() + ' (' + (Datos[i].cantidad).toUpperCase() + ')', (i+1) + '. ' + (Datos[i].nombreMedicina).toUpperCase() + ': ' + (Datos[i].indicaciones).toUpperCase()])
-    }
     
-    let datosHist = [];
-    let datosHistClinica = []
-    for(let item in Hc){
-        if(item=='histClinica'){
-            datosHistClinica = Hc[item]
-        }
-        if(item=='historia'){
-            datosHist = Hc[item]
-        }
-    }
-
-    //PARA OBTENER DATOS DE RECETA TOTAL
-    const [tiene, setTiene] = useState(false) // --> Para saber si tiene o no fecha
-    const [isActive, setActive] = useState(false); // --> Para saber si se presionó o no el botón y poder activar los de Receta
-
-    const [ReTotal, setReTotal] = useState({})
-    const handleChangeReTotal = (e) => {
-		setReTotal({
-			...ReTotal,
-			[e.target.name]: e.target.value
-		})
-	}
-
-    useEffect(() => {
-        fetch(`${url}/RecetaTotal/idHistClinica/${id}`)
-            .then((resp) => resp.json())
-            .then((data)=>{
-                if (data.length > 0) {
-					setReTotal(data[0]);
-					setTiene(!tiene);
-                    setActive(!isActive)
-				}
-            })
-    }, [])
-
-    //GRABANDO DATOS DE RECETA TOTAL
-    const handleClick = (e) => {
-        e.preventDefault()
-        if (tiene) {
-			fetch(`${url}/RecetaTotal/${ReTotal._id}`, {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'PUT',
-				// body: JSON.stringify(ReTotal),
-                body: JSON.stringify({
-					...ReTotal,
-                    fechaProx: moment(ReTotal.fechaProx).format(),
-				}),
-			})
-				.then((resp) => resp.json())
-				.then((data) => {
-					if (data.ok) {
-						alert('Datos actualizados');
-					}
-				});
-		} else {
-			if(ReTotal.fechaProx!=undefined){
-                fetch(`${url}/RecetaTotal/new`, {
+    //ESTADO PARA SABER SI SE VA A ACTUALIZAR Y CAMBIAR EL NOMBRE DEL BOTÓN
+    const [isActive, setActive] = useState(false); 
+    
+    //PETICIÓN POST/UPDATE PARA REGISTRAR MEDICAMENTO
+    const AgregarMedicamento = (dato) => {
+        if((MedicamentoReceta.cantidad!=undefined && MedicamentoReceta.cantidad!='') && (MedicamentoReceta.nombreMedicina!=undefined && MedicamentoReceta.nombreMedicina!='') && (MedicamentoReceta.indicaciones!=undefined && MedicamentoReceta.indicaciones!='')){
+            if(isActive){
+                fetch(`${url}/MedicamentoReceta/${dato._id}`, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: 'PUT',
+                    body: JSON.stringify({
+                        ...MedicamentoReceta,
+                        cantidad: MedicamentoReceta.cantidad,
+                        nombreMedicina: MedicamentoReceta.nombreMedicina,
+                        indicaciones: MedicamentoReceta.indicaciones,
+                    })
+                })
+                .then((resp) => resp.json())
+                .then((data) => {
+                    if(data.ok){
+                        alert('Medicamento actualizado')
+                        setMedicamentoReceta({
+                            cantidad: '',
+                            nombreMedicina: '',
+                            indicaciones: ''
+                        })
+                        setRe([
+                            Re.map((datos) => {
+                                if(datos._id == dato._id){
+                                    datos.cantidad = MedicamentoReceta.cantidad
+                                    datos.nombreMedicina = MedicamentoReceta.nombreMedicina
+                                    datos.indicaciones = MedicamentoReceta.indicaciones
+                                }
+                            })
+                        ])
+                        setRe([
+                            ...Re
+                        ])
+                        setActive(!isActive)
+                    }
+                })
+            } else {
+                fetch(`${url}/MedicamentoReceta/new`, {
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     method: 'POST',
                     body: JSON.stringify({
-                        ...ReTotal,
-                        fechaProx: moment(ReTotal.fechaProx).format(),
-                        id_HistClinica: id
+                        ...MedicamentoReceta,
+                        id_Receta: id
                     }),
                 })
-                    .then((resp) => resp.json())
-                    .then((data) => {
-                        if (data.ok) {
-                            setTiene(!tiene)
-                            setActive(!isActive)
-                            setReTotal({
-                                ...ReTotal,
-                                _id: data.recetaT._id,
-                                fechaProx: moment(ReTotal.fechaProx).format(),
-                                id_HistClinica: id
-                            })
-                            alert('Datos registrados');
-                        }
-                    });
-            } else {
-                alert("Debe ingresar la fecha de próxima cita")
+                .then((resp) => resp.json())
+                .then((datos) => {
+                    if(datos.ok){
+                        alert('Medicamento agregado')
+                        setMedicamentoReceta({cantidad: '',
+                        nombreMedicina: '',
+                        indicaciones:''})
+                        setRe([
+                            ...Re,
+                            {
+                                _id: datos.medicamentoReceta._id,
+                                cantidad: MedicamentoReceta.cantidad,
+                                nombreMedicina: MedicamentoReceta.nombreMedicina,
+                                indicaciones: MedicamentoReceta.indicaciones,
+                            },
+                        ])
+                        setBtnActive(true)
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
             }
-		}
+        } else {
+            alert('Por favor, asegurese de completar todos los campos')
+        }
     }
 
+    //ESTADO PARA SABER SI ESTÁ REGISTRANDO O ACTUALIZANDO LA FECHA DE PRÓXIMA CITA
+    const [Fecha, setFecha] = useState(false)
+
+    //OBTENIENDO DATOS DE RECETA
+    const [Receta, setReceta] = useState({})
+    useEffect(() => {
+        fetch(`${url}/Receta/${id}`)
+        .then((resp) => resp.json())
+        .then((data) => {
+            setReceta(data)
+            if(data.fechaProx){
+                setFecha(true)
+            }
+            console.log("DATA DATITA: ", data)
+        })
+    }, [])
+
+    const handleChangeRe = (e) => {
+        setReceta({
+            ...Receta,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    console.log("DATOS RECETA: ", Receta)
+    //ACTUALIZANDO FECHA DE PRÓXIMA CITA EN RECETA
+    const handleClick = (e) => {
+        e.preventDefault()
+        fetch(`${url}/Receta/${Receta._id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: 'PUT',
+            body: JSON.stringify({
+                ...Receta,
+                fechaProx: moment(Receta.fechaProx).format(),
+            }),
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
+                if (data.ok) {
+                    alert('Fecha actualizada');
+                }
+                if(!Fecha){
+                    setFecha(true)
+                }
+            });
+    }
+
+    //OBTENIENDO DATOS DE HISTORIA E HISTORIA CLÍNICA
+    const [Hc, setHc] = useState({})
+    useEffect(() => {
+        fetch(`${url}/Receta/datos/${id}`)
+            .then((respHc) => respHc.json())
+            .then((dataHc)=>{
+                setHc(dataHc)
+            })
+    }, [])
+    
+
+    //GENERANDO DOCUMENTO PDF
     const DocReceta = () => {
         var doc = new jsPDF('p', 'mm', [242, 208])
 
@@ -158,40 +189,39 @@ const FormRecetas = () => {
 
         var fechaHist = new Image()
         fechaHist.src = 'https://i.ibb.co/M1j5RKq/fechapgn.png'
+
+        //PARA FECHAS EN EL FOOTER
         doc.addImage(fechaHist, 'JPG', 2, 228)
         doc.addImage(fechaHist, 'JPG', 106, 228)
 
         //PARA FECHA DE HISTORIA
         //DÍA
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(6, 229.5, 'DÍA');
-        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(6.5, 234.5, moment(datosHistClinica.fecha).format('DD'));
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(6.5, 234.5, moment(Hc.histClinica.fecha).format('DD'));
         //MES
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(14.4, 229.5, 'MES');
-        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(16, 234.5, moment(datosHistClinica.fecha).format('MM'));
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(16, 234.5, moment(Hc.histClinica.fecha).format('MM'));
         //AÑO
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(23.5, 229.5, 'AÑO');
-        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(23.3, 234.5, moment(datosHistClinica.fecha).format('YYYY'));
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(23.3, 234.5, moment(Hc.histClinica.fecha).format('YYYY'));
 
         //PARA PRÓXIMA FECHA
         doc.setFont(undefined, 'bold').setFontSize(10).setTextColor('black').text(109.5, 226, 'PRÓXIMA CITA');
         //DÍA
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(110, 229.5, 'DÍA');
-        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(110.5, 234.5, ReTotal.fechaProx!=undefined?moment(ReTotal.fechaProx).format('DD'):'');
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(110.5, 234.5, Receta.fechaProx!=undefined?moment(Receta.fechaProx).format('DD'):'');
         //MES
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(118.4, 229.5, 'MES');
-        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(120, 234.5, ReTotal.fechaProx!=undefined?moment(ReTotal.fechaProx).format('MM'):'');
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(120, 234.5, Receta.fechaProx!=undefined?moment(Receta.fechaProx).format('MM'):'');
         //AÑO
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(127.5, 229.5, 'AÑO');
-        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(127.3, 234.5, ReTotal.fechaProx!=undefined?moment(ReTotal.fechaProx).format('YYYY'):'');
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(127.3, 234.5, Receta.fechaProx!=undefined?moment(Receta.fechaProx).format('YYYY'):'');
 
+        //OBTENIENDO DATOS DE ENCABEZADO RECETA (EDAD, PESO, TALLA, PC)
         let datos = [
             [((moment.duration(moment(Hc.histClinica.fecha).diff(moment(Hc.historia.fecha_nac)))).years() + 'a ' + (moment.duration(moment(Hc.histClinica.fecha).diff(moment(Hc.historia.fecha_nac)))).months() + 'm ' + (moment.duration(moment(Hc.histClinica.fecha).diff(moment(Hc.historia.fecha_nac)))).days() + 'd'), Hc.histClinica.peso!=undefined?Hc.histClinica.peso + ' kg':'', Hc.histClinica.talla!=undefined?Hc.histClinica.talla + ' cm':'', Hc.histClinica.pc!=undefined?Hc.histClinica.pc + ' cm':'']
         ]
-    
-        let paciente = [
-            [(Hc.historia.nombres_paciente).toUpperCase()]
-        ]
-
+        
         //TABLA DATOS PACIENTE
         doc.autoTable({
             body: datos,
@@ -206,14 +236,19 @@ const FormRecetas = () => {
                 3: {cellWidth:21}
             }
         })
-
+    
+        //OBTENIENDO NOMBRE DE PACIENTE
+        let paciente = [
+            [(Hc.historia.nombres_paciente).toUpperCase()]
+        ]
+        
         //TABLA NOMBRE PACIENTE
         doc.autoTable({
             body: paciente,
             theme: 'plain',
-            styles:{font: 'courier', fontSize: 14, fontStyle: 'bold'},
-            startY: 50,
-            margin:{left: 10},
+            styles:{font: 'courier', fontSize: 12, fontStyle: 'bold'},
+            startY: 51,
+            margin:{left: 8},
             columnStyles:{
                 0: {cellWidth:100}
             }
@@ -222,9 +257,15 @@ const FormRecetas = () => {
         //LÍNEAS MITAD
         doc.setLineWidth(0.5).setLineDash([1, 1], 0).setDrawColor('black').line(104, 0, 104, 840);
 
+        //OBTENIENDO CANTIDAD, MEDICAMENTO E INDICACIONES
+        let datosMedic = []
+        for (let i = 0; i < Re.length; i++) {
+            datosMedic.push([(i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ' (' + (Re[i].cantidad).toUpperCase() + ')', (i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ': ' + (Re[i].indicaciones).toUpperCase()])
+        }
+
         //TABLA MEDICAMENTOS
         doc.autoTable({
-            body: a,
+            body: datosMedic,
             theme:'plain',
             styles:{fontSize: 12, lineColor:[200, 83, 100], textColor:[0,0,0], halign: 'left', font: 'courier', cellPadding:2}, //, fillColor: [166, 193, 200]
             startY:65,
@@ -240,24 +281,27 @@ const FormRecetas = () => {
     }
 
     const mostrarDoc = () => {
-        var doc = new jsPDF('p', 'mm', [232, 208])
+        var doc = new jsPDF('p', 'mm', [242, 208])
         doc = DocReceta()
         doc.output('dataurlnewwindow', 'Receta.pdf')
     }
     
     const guardarDoc = () => {
-        var doc = new jsPDF('p', 'mm', [232, 208])
+        var doc = new jsPDF('p', 'mm', [242, 208])
         doc = DocReceta()
         doc.save('Receta.pdf')
     }
 
     const imprimirDoc = () => {
-        var doc = new jsPDF('p', 'mm', [232, 208])
+        var doc = new jsPDF('p', 'mm', [242, 208])
         doc = DocReceta()
         doc.autoPrint()
         doc.output('dataurlnewwindow', 'Receta.pdf')
     }
-    
+
+    //PARA PODER PASAR EL ITEM DEL MAP DE DATOS Y EDITAR
+    const [dataItem, setDataItem] = useState({})
+
     return (
         <div className='contenedorReceta'>
             <div className='titulo-re'>
@@ -267,11 +311,11 @@ const FormRecetas = () => {
                     <div className='fila1-re'>
                         <div className='cantidad-re'>
                             <label>CANTIDAD</label>
-                            <input placeholder="CANTIDAD" type="text" name="cantidad" id='cantidad' value={Recetas.cantidad} onChange={handleChangeRe}/>
+                            <input placeholder="CANTIDAD" type="text" name="cantidad" id='cantidad' value={MedicamentoReceta.cantidad} onChange={handleChangeMed}/>
                         </div>
                         <div className='medicamento-re'>
                             <label>MEDICAMENTO</label>
-                            <input placeholder="MEDICAMENTO" type="text" name="nombreMedicina" id='medicamento' value={Recetas.nombreMedicina} onChange={handleChangeRe}/>
+                            <input placeholder="MEDICAMENTO" type="text" name="nombreMedicina" id='medicamento' value={MedicamentoReceta.nombreMedicina} onChange={handleChangeMed}/>
                         </div>
                     </div>
                     <div className='fila2-re'>
@@ -283,57 +327,27 @@ const FormRecetas = () => {
                             cols="50"
                             name="indicaciones"
                             id='indicaciones'
-                            value={Recetas.indicaciones}
-                            onChange={handleChangeRe}
+                            value={MedicamentoReceta.indicaciones}
+                            onChange={handleChangeMed}
                         />
                     </div>
-                    {console.log("AEA: ", Recetas.cantidad)}
-                    <button
-                        onClick={(e)=>{
-                            e.preventDefault()
-                            console.log(Recetas.cantidad)
-                            if((Recetas.cantidad!=undefined && Recetas.cantidad!='') && (Recetas.nombreMedicina!=undefined && Recetas.nombreMedicina!='') && (Recetas.indicaciones!=undefined && Recetas.indicaciones!='')){
-                                fetch(`${url}/Receta/new`, {
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                    },
-                                    method: 'POST',
-                                    body: JSON.stringify({
-                                        ...Recetas,
-                                        id_HistClinica: id
-                                    }),
-                                })
-                                    .then((resp) => resp.json())
-                                    .then((datos) => {
-                                        if(datos.ok){
-                                            alert('Medicamento agregado')
-                                            setRecetas({cantidad: '',
-                                                nombreMedicina: '',
-                                                indicaciones:''})
-                                            setRe([
-                                                ...Re,
-                                                {
-                                                    _id: datos.receta._id,
-                                                    cantidad: Recetas.cantidad,
-                                                    nombreMedicina: Recetas.nombreMedicina,
-                                                    indicaciones: Recetas.indicaciones,
-                                                },
-                                            ]);
-                                        }
-                                    })
-                                    .catch((err) => {
-                                        console.log(err);
-                                    });
-                            } else {
-                                alert('Por favor, asegurese de completar todos los campos')
-                            }
-                                
-                        }}
-                    >
-                        AGREGAR
-                    </button>
+                    {console.log("AEA: ", MedicamentoReceta.cantidad)}
+                    <button onClick={() => AgregarMedicamento(dataItem)}>{isActive ? 'ACTUALIZAR MEDICAMENTO' : 'AGREGAR'}</button>
             </div>
-
+            <div className={isActive ? 'buttonEnabled': 'buttonDisabled'}>
+                <button 
+                    disabled={isActive?false:true} 
+                    onClick={() => {
+                        setActive(!isActive)
+                        setMedicamentoReceta({
+                            cantidad: '',
+                            nombreMedicina: '',
+                            indicaciones: ''
+                        })
+                    }}>
+                    <i className="fas fa-times"></i>
+                </button>
+            </div>
             <div className='titulo-re'>
                 <h3>TABLA DE MEDICAMENTOS</h3>
                 <div className='proxCita'>
@@ -341,9 +355,9 @@ const FormRecetas = () => {
                     <input 
                         type="date" 
                         name='fechaProx' 
-                        onChange={handleChangeReTotal} 
-                        value={ReTotal.fechaProx!=undefined?moment(ReTotal.fechaProx).format('YYYY-MM-DD'):''}
-                        disabled={Re.length!=0?false:true}
+                        onChange={handleChangeRe} 
+                        value={Receta.fechaProx!=undefined?moment(Receta.fechaProx).format('YYYY-MM-DD'):''}
+                        disabled={Receta.length!=0?false:true}
                     ></input>
                 </div>
             </div>
@@ -355,10 +369,11 @@ const FormRecetas = () => {
                             <th>MEDICAMENTO</th>
                             <th>INDICACIÓN</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {Datos.map((item) => (
+                        {Re.map((item) => (
                             <tr className='tablaReceta'>
                                 <td style={{textTransform: 'uppercase'}}>{item.cantidad}</td>
                                 <td style={{textTransform: 'uppercase'}}>{item.nombreMedicina}</td>
@@ -368,9 +383,13 @@ const FormRecetas = () => {
                                         style={{backgroundColor: 'transparent', border: 'none', cursor: 'pointer'}}
                                         onClick={(e)=>{
                                             e.preventDefault()
+                                            if(Re.length - 1 == 0){
+                                                setBtnActive(false)
+                                            }
+                                            console.log(Re.length - 1)
                                             var rpta = window.confirm("¿Desea eliminar este medicamento?")
                                             if(rpta){
-                                                fetch(`${url}/Receta/${item._id}`, {
+                                                fetch(`${url}/MedicamentoReceta/${item._id}`, {
                                                     headers: {
                                                         'Content-Type': 'application/json',
                                                     },
@@ -392,6 +411,25 @@ const FormRecetas = () => {
                                         <i className="fas fa-trash-alt"></i>
                                     </button>
                                 </td>
+                                <td>
+                                    <button 
+                                        style={{backgroundColor: 'transparent', border: 'none', cursor: 'pointer'}}
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            setMedicamentoReceta({
+                                                cantidad: item.cantidad,
+                                                nombreMedicina: item.nombreMedicina,
+                                                indicaciones: item.indicaciones
+                                            })
+                                            if(!isActive){
+                                                setActive(!isActive)
+                                            }
+                                            setDataItem(item)
+                                        }}
+                                        >
+                                        <i class="fas fa-pen"></i>
+                                    </button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -404,17 +442,17 @@ const FormRecetas = () => {
                         onClick={handleClick}
                         disabled={Re.length!=0?false:true}
                     >
-                        {isActive ? 'ACTUALIZAR RECETA' : 'GRABAR RECETA'}
+                        {Fecha ? 'ACTUALIZAR FECHA' : 'GRABAR FECHA'}
                     </button>
                 </div>
-                <div className={isActive ? 'notDisabled': 'Disabled'}>
-                    <button id='mostrarRe' onClick={mostrarDoc} disabled={isActive?false:true}>MOSTRAR RECETA</button>
+                <div className={BtnAcitve && Fecha ? 'notDisabled': 'Disabled'}>
+                    <button id='mostrarRe' onClick={mostrarDoc} disabled={BtnAcitve && Fecha?false:true}>MOSTRAR RECETA</button>
                 </div>
-                <div className={isActive ? 'notDisabled': 'Disabled'}>
-                    <button id='descargarRe' onClick={guardarDoc} disabled={isActive?false:true}>DESCARGAR RECETA</button>
+                <div className={BtnAcitve && Fecha ? 'notDisabled': 'Disabled'}>
+                    <button id='descargarRe' onClick={guardarDoc} disabled={BtnAcitve && Fecha?false:true}>DESCARGAR RECETA</button>
                 </div>
-                <div className={isActive ? 'notDisabled': 'Disabled'}>
-                    <button id='imprimirRe' onClick={imprimirDoc} disabled={isActive?false:true}>IMPRIMIR RECETA</button>
+                <div className={BtnAcitve && Fecha ? 'notDisabled': 'Disabled'}>
+                    <button id='imprimirRe' onClick={imprimirDoc} disabled={BtnAcitve && Fecha?false:true}>IMPRIMIR RECETA</button>
                 </div>
             </div>
         </div>

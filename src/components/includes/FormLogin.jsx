@@ -1,26 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import consumLogin from '../../functions/login';
 import './../../sass/Login.sass';
 
 const FormLogin = ({usuario,logearUsuario}) => {
+	// const [Token, setToken] = useState({})
 	const consumirLogin = async (body) => {
 		let resultado = await consumLogin(body);
-		console.log('Resultado');
+		// console.log('Resultado');
 		if(resultado.ok){
-			console.log('Ok (y)');
+			// setToken(resultado)
+			// console.log('Ok (y)');
 			logearUsuario(resultado)
+			localStorage.setItem('TOKEN', JSON.stringify(resultado))
+			console.log("TOKEN: ", window.localStorage.getItem('TOKEN'))
 			console.log("RESULTADO: ", resultado);
 		}
 		else{
-			console.log('No ok :(');
-			console.log(resultado);
+			// console.log('No ok :(');
+			// console.log(resultado);
 			alert('Ha ingresado datos inválidos')
 		}
 	};
+
+	useEffect(() => {
+		const usuarioLogeadoJson = window.localStorage.getItem('TOKEN')
+		if(usuarioLogeadoJson) {
+			const usuarioLogeado = JSON.parse(window.localStorage.getItem('TOKEN'))
+			logearUsuario(usuarioLogeado)
+		}
+	}, [])
+	
 	return (
 		<>
+			{/* {console.log("ESTO ES EL TOKEN: ", Token)} */}
 			<Formik
 				initialValues={{
 					dni: '',
@@ -47,8 +61,8 @@ const FormLogin = ({usuario,logearUsuario}) => {
 				}}
 				onSubmit={(valores, { resetForm }) => {
 					resetForm();
-					console.log('Formulario enviado');
-					console.log(valores);
+					// console.log('Formulario enviado');
+					// console.log(valores);
 					consumirLogin(valores);
 				}}
 			>

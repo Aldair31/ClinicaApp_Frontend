@@ -57,40 +57,6 @@ const Consultas = () => {
 					</input>
 				</div>
 				<div style={{marginTop:'20px', marginLeft: '-3%'}}>
-					{/* <Container>
-						<Table className='tabla'>
-							<thead>
-								<tr>
-									<th>DNI</th>
-									<th>NOMBRE</th>
-									<th>REFERENCIA</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								{citas.filter(buscarTermino(termino.toUpperCase())).sort().map((item) => (
-									<tr className='tablaReceta'>
-										<td style={{textTransform: 'uppercase'}}>{item.dni_paciente}</td>
-										<td style={{textTransform: 'uppercase'}}>{item.nombres_paciente}</td>
-										<td style={{textTransform: 'uppercase'}}>{item.referencia}</td>
-										<td>
-											<Link to={`datos-f/${item._id}`}>
-												<strong
-													style={{
-														textDecoration: 'underline',
-														cursor: 'pointer',
-													}}
-												>
-													Ver más
-												</strong>
-												{item.post}
-											</Link>
-										</td>
-									</tr>
-								))}
-							</tbody>
-						</Table>
-					</Container> */}
 					<table className='tabla'>
 						<thead>
 							<tr>

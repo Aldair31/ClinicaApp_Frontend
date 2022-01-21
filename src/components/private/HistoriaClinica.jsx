@@ -3,7 +3,7 @@ import url from '../../keys/backend_keys';
 import { useParams } from 'react-router';
 import '../../sass/HistoriaClinica.sass';
 import Antecedentes from './Antecedentes';
-import { Link, Switch, Route} from 'react-router-dom';
+import { Link, Switch, Route, useHistory} from 'react-router-dom';
 import FormFiliacion from './extras/FormFiliacion';
 import Vacunas from './Vacunas'
 import '../../sass/Cita.sass';
@@ -238,7 +238,6 @@ const HistoriaClinica = () => {
         const [modal, setModal] = useState(false);
         return (
             <>
-			
 				<div >
 					{modal ? (
 					<>
@@ -317,16 +316,51 @@ const HistoriaClinica = () => {
 			</>
         );
     }
+
+	const [Orden, setOrden] = useState({})
+	const history = useHistory()
+	const NuevaOrden = () => {
+		fetch(`${url}/Orden/new`, {
+			headers: {
+				'Content-Type' : 'application/json'
+			},
+			method: 'POST',
+			body: JSON.stringify({
+				fecha: moment().format(),
+				// fecha: moment().format('DD-MM-YYYY HH:mm'),
+				id_HistClinica: id
+
+			})
+		})
+		.then((resp) => resp.json())
+		.then((data) => {
+			if(data.ok){
+				setOrden({
+					...Orden,
+					_id: data.orden._id,
+					fecha: moment().format(),
+					// fecha: moment().format('DD-MM-YYYY HH:mm'),
+					id_HistClinica: id
+				})
+			}
+			console.log("DATA: ", data)
+			// window.location.href = `/agregar-orden/${data.orden._id}`
+			history.push(`/agregar-orden/${data.orden._id}`)
+		})
+	}
+
 	return (
 		<div>
-            <h2 className="titulo-hc">Historia clínica</h2>
+            <div className='encabezadoHC'>
+				<h2 className="titulo-hc">Historia clínica</h2>
+			</div>
+			<br></br>
 			
 			<div className='enlaces'>
 				<div className='linkFila1'>
 					<div><ModalFiliación/></div>
 					<div><ModalAntecedente/></div>
 					<div><ModalVacuna/></div>
-					
 				</div>
 				<div className='linkFila2'>
 					<div>
@@ -344,15 +378,28 @@ const HistoriaClinica = () => {
 					{/* <GraficoDeCrecimiento/> */}
 					<div>
 						<Link 
-							to={`/agregar-receta/${id}`}
+							to={`/lista-receta/${id}`}
 							style={{
 								fontSize: '16px',
 								cursor: 'pointer',
 								color: 'crimson',
-								marginLeft:'50%'
+								// marginLeft:'50%'
 							}}
 						>
 							<b>RECETA</b>
+						</Link>
+					</div>
+					<div>
+						<Link
+							to={`/lista-orden/${id}`}
+							style={{
+								fontSize: '16px',
+								cursor: 'pointer',
+								color: 'crimson',
+								// marginLeft:'50%'
+							}}
+						>
+							<b>ORDEN</b>
 						</Link>
 					</div>
 				</div>

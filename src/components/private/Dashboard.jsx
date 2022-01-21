@@ -48,6 +48,11 @@ import DatosVacunas from './DatosVacunas';
 
 //RECETA
 import FormRecetas from './extras/FormRecetas';
+import ListaReceta from './ListaReceta'
+
+//ORDEN
+import FormOrden from './extras/FormOrden'
+import ListaOrden from './ListaOrden'
 
 const Dashboard = ({ usuario, logout }) => {
 	console.log(usuario);
@@ -215,6 +220,7 @@ const Dashboard = ({ usuario, logout }) => {
 									className="item"
 									onClick={() => {
 										logout();
+										window.localStorage.removeItem('TOKEN')
 									}}
 								>
 									<svg
@@ -356,6 +362,18 @@ const Dashboard = ({ usuario, logout }) => {
 							<Route
 								path="/agregar-receta/:id"
 								component={FormRecetas}
+							/>
+							<Route
+								path="/lista-receta/:id"
+								component={ListaReceta}
+							/>
+							<Route
+								path="/agregar-orden/:id"
+								component={FormOrden}
+							/>
+							<Route
+								path="/lista-orden/:id"
+								component={ListaOrden}
 							/>
 						
 							<Error404 component={Error404} />

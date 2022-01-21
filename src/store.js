@@ -15,7 +15,7 @@ const reducerUsuario = (state = initialState, action) => {
 				responsables: action.responsables
 			};
 		case 'LOGIN_OK':
-			console.log(action);
+			console.log("ACTION: ", action);
 			return {
 				...state,
 				usuario: {

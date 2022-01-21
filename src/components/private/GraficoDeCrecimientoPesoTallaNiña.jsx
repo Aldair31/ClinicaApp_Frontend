@@ -11,9 +11,9 @@ const GraficoDeCrecimientoPesoTallaNiña = () => {
 	const tallaypeso = [] 
 
 	for (let item in tallaPaciente){
-        if(moment(fechaHistoria[item]).diff(moment(fechaNac[0]).format(), 'months') >= 24){
+		if (pesoPaciente[item]>=7 && tallaPaciente[item]>77) {
 			tallaypeso.push({x:tallaPaciente[item], y:pesoPaciente[item]})
-        }
+		}
     }
 
 	datos = tallaypeso.reverse()
