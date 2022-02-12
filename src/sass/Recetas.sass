@@ -9,35 +9,40 @@
     border-radius: 10px
     
 .titulo-re
+    width: 83.5%
     display: flex
     justify-content: space-between
     margin-top: 20px
     margin-bottom: -10px
     margin-left: 3%
-    h3
-        font-size: 20px
-    span
-        text-decoration: underline
-        cursor: pointer
-        margin: 5px 10px 25px 10px
-        font-weight: 400
-        font-size: 16px
-        color: crimson
-        &:hover
-            font-weight: 600
-        i
-            font-size: 25px
-            margin-top: -10px
-            color: #15AABF
+    // h3
+    //     font-size: 20px
+    // span
+    //     text-decoration: underline
+    //     cursor: pointer
+    //     margin: 5px 10px 25px 10px
+    //     font-weight: 400
+    //     font-size: 16px
+    //     color: crimson
+    //     &:hover
+    //         font-weight: 600
+    //     i
+    //         font-size: 25px
+    //         margin-top: -10px
+    //         color: #15AABF
     .proxCita
-        width: 51%
-        label
-            text-align: right
+        display: flex
+        gap: 8px
+        // label
+        //     text-align: right
         input
-            text-align: center
+            margin-top: -4%
+            margin-bottom: 5%
             border-radius: 2px
             border: 1px solid #50B4A1
-            margin-left: 2%
+            text-align: center
+            
+        //     margin-left: 2%
 
 .contenedor-re
     
@@ -90,18 +95,24 @@
         margin-bottom: 16px
         margin-top: 24px
 
+.contenedor_tabla 
+    width: 90%
+    overflow-y: scroll
+    margin-right: 10%
+    max-height: 30vh
+
 .tabla
     max-width: 900px
 
 .tabla
    
     margin-left: 3%
-    width: 83.5%
+    width: 95.5%
     // max-width: 900px
     border-collapse: collapse
     text-align: center
     // height: 30vh
-    overflow-y: scroll
+    // overflow-y: scroll
     // tbody
     //     .tablaReceta
     //         display: flow
@@ -121,16 +132,22 @@
     //         width: 100%
 
 .tabla thead
+    
     background-color:#50B4A1
     border-bottom: 3px solid #35495E
     color: #fff
 
+// .tabla thead th tr 
+    
+//     &:nth-of-type(0)
+//         position: fixed
 
 .tabla th,.tabla td
     // display: inline-table !important
     // width: 20%
     // max-width: 20%
     // max-height: 100%
+    
     border: 1px solid rgb(201, 201, 201)
     padding: 10px
 	
@@ -164,6 +181,24 @@
     .Disabled
         button
             background-color: #a0dfd4
+.titulo_receta
+    display: flex
+    margin-top: 20px
+    margin-bottom: -30px
+    margin-left: 3%
+    span
+        color: crimson
+        margin: 5px 10px 25px 10px
+        font-weight: 400
+        font-size: 16px
+        i
+            margin-top: -10px
+            font-size: 25px
+            cursor: pointer
+            color: #15AABF
+            &:hover
+                font-weight: 600
+
 
 .ModalReceta
     padding: 10px

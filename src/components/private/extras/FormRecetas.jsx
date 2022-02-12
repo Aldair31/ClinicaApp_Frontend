@@ -361,7 +361,7 @@ const FormRecetas = () => {
                     ></input>
                 </div>
             </div>
-            <div>   
+            <div className='contenedor_tabla'>   
                 <Table className='tabla'>
                     <thead>
                         <tr>
