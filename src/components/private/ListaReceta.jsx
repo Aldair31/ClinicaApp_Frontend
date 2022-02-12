@@ -52,12 +52,61 @@ const ListaReceta = () => {
         })
     }
 
+    //MODAL DE CONFIRMACIÓN PARA CREAR
+    const ModalConfirmación = () => {
+        return (
+            <>
+                <div
+                    style={{
+                        background: '#00000039',
+                        position: 'absolute',
+                        top: '0',
+                        left: '0',
+                        height: '100vh',
+                        width: '100%',
+                        zIndex:'2',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <form
+                         style={{
+                            background: '#ffffff',
+                            padding: '2px',
+                            borderRadius: '6px',
+                        }}
+                    >
+                        <div className="ModalReceta">
+                            <h3>¿DESEA CREAR UNA NUEVA RECETA?</h3>
+                            <div className="ListaBotones">
+                                <button onClick={(e) => {
+                                    e.preventDefault()
+                                    NuevaReceta()
+                                }}>
+                                    SÍ
+                                </button>
+                                <button onClick={() => {setForm(false)}}>NO</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </>
+        )
+    }
+
+    const [form, setForm] = useState(false);
+	const onForm = () => {
+		setForm(!form);
+	};
+    
     return (
         <div className="contenedorReceta">
             <div className='titulo-re'>
                 <h3>RECETAS MÉDICAS</h3>
-				<span onClick={NuevaReceta}><i class="fas fa-file-medical"></i></span>
+				<span onClick={onForm}><i class="fas fa-file-medical"></i></span>
 			</div>
+            {form && <ModalConfirmación/>}
             <div className='contenedor-re'>
                 {Datos.map((item) => {
                     return(

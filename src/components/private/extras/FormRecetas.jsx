@@ -270,7 +270,7 @@ const FormRecetas = () => {
             styles:{fontSize: 12, lineColor:[200, 83, 100], textColor:[0,0,0], halign: 'left', font: 'courier', cellPadding:2}, //, fillColor: [166, 193, 200]
             startY:65,
             rowPageBreak: 'avoid',
-            margin:{left:2},
+            margin:{left:2, bottom: 40},
             columnStyles: {
                 0: {cellWidth:107.5},
                 1: {cellWidth:100},

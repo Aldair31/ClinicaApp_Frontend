@@ -150,8 +150,8 @@ const FormOrden = () => {
             theme:'plain',
             styles:{fontSize: 12, lineColor:[200, 83, 100], textColor:[0,0,0], halign: 'left', font: 'courier', cellPadding:2},
             startY:65,
-            // rowPageBreak: 'avoid',
-            margin:{left:2},
+            rowPageBreak: 'avoid',
+            margin:{left:2, bottom: 40},
             columnStyles: {
                 0: {cellWidth:104}
             }
