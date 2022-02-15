@@ -22,7 +22,7 @@ h3
     padding-bottom: 28px
     width: 90%
     border-radius: 9px
-    max-height: 435px
+    max-height: 60vh
     overflow-y: scroll
 .cont input,.cont select,.cont textarea,.cont button
     border: 2px solid #222222
@@ -43,6 +43,19 @@ h3
         background: #50B4A1
         color: #FFF
 
+.cont 
+    padding-left: 8%
+.cont textarea
+    width: 88%
+
+.cont button
+    width: 88%
+
+.cont select 
+    width: 90%
+.cont input
+    width: 90%
+
 .fila1
     display: grid
     grid-template-columns: repeat(4,1fr)
@@ -51,6 +64,7 @@ h3
 
     label   
         padding-top:24px
+        // padding-left: 65px
 
 .NombreEdad
     width: 88%
@@ -106,3 +120,34 @@ h3
         display: flex
         justify-content: space-around
         // column-gap: 24%
+
+.ScrollTable
+    overflow-y: auto
+    height: 60vh
+    margin-right: 15%
+    table
+        table-layout: fixed
+        border-collapse: collapse  
+        width: 95.5%
+        border-collapse: collapse
+        text-align: center
+        thead
+            position: sticky
+            top: 0
+            text-align: center
+            background-color:#50B4A1
+            color: #fff
+            tr th
+                padding: 8px 15px
+                border: 1px solid rgb(201, 201, 201)
+                background: #50B4A1
+        tbody tr td
+            text-align: center
+            padding: 8px 15px
+            border: 1px solid rgb(201, 201, 201)
+    
+textarea
+    text-transform: uppercase
+
+td
+    text-transform: uppercase

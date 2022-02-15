@@ -9,6 +9,12 @@ const GraficoDeCrecimientoPesoTallaNiño0a36 = () => {
 	let {fechaHistoria, fechaNac, pesoPaciente, tallaPaciente} = useHistClinica()
 
 	const tallaypeso = [] 
+	
+	//ORDENANDO DE MENOR A MAYOR
+	if(tallaPaciente!=undefined)
+	    tallaPaciente.sort(function(a, b){return a - b})
+    if(pesoPaciente!=undefined)
+	    pesoPaciente.sort(function(a, b){return a - b})
 
 	for (let item in tallaPaciente){
         if(moment(fechaHistoria[item]).diff(moment(fechaNac[0]).format(), 'months') <= 36){

@@ -9,9 +9,15 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
 	let {fechaHistoria, fechaNac, pesoPaciente, tallaPaciente} = useHistClinica()
 
 	const tallaypeso = [] 
+	
+	//ORDENANDO DE MENOR A MAYOR
+	if(tallaPaciente!=undefined)
+	    tallaPaciente.sort(function(a, b){return a - b})
+    if(pesoPaciente!=undefined)
+	    pesoPaciente.sort(function(a, b){return a - b})
 
 	for (let item in tallaPaciente){
-		if (pesoPaciente[item]>=7 && tallaPaciente[item]>77) {
+		if ((pesoPaciente[item]>=7 && pesoPaciente[item]<=31) && (tallaPaciente[item]>=77 && tallaPaciente[item]<=122)) {
 			tallaypeso.push({x:tallaPaciente[item], y:pesoPaciente[item]})
 		}
     }
@@ -20,7 +26,6 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
 
    return (
     <div style={{maxWidth: '99%', height: '80vh'}}>	
-	{console.log("HOLA PSSSSSSSSSS GILASASASO")}
      <Line
         data={
             {

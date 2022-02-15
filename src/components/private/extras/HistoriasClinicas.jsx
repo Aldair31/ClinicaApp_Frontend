@@ -24,14 +24,8 @@ const HistoriasClinicas = () => {
 		fechaNacimiento[item] = moment(fechaNac[0]).format()
 	}
 
-	const nuevosDatos = datos.slice().sort(function(a, b) {
-		// if(moment(moment(a.fecha).format('DD/MM/YYYY')).isBefore(moment(b.fecha).format('DD/MM/YYYY'))){
-		if(moment(a.fecha).format('DD/MM/YYYY') > moment(b.fecha).format('DD/MM/YYYY')){
-			return 1
-		} else{
-			return -1
-		}
-	})
+	const nuevosDatos = datos.slice().sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
+
 	console.log('NUEVOS DATOS: ', nuevosDatos)
 	console.log('DATOS: ', datos)
 
@@ -80,34 +74,21 @@ const HistoriasClinicas = () => {
 									value={nuevaHistClinica.fecha}
 								></input>
 							</p>
-							{/* <p>
-								<label>Hora  </label>
-								<input
-									type='time'
-									name='hora'
-									onChange={handleChangeNuevo}
-									value={nuevaHistClinica.hora}
-								/>
-							</p> */}
 							<p>
 								<button
 									onClick={(e) => {
 										e.preventDefault();
 										if(nuevaHistClinica.fecha != undefined){
-											if(!moment(moment(nuevaHistClinica.fecha).format('DD/MM/YYYY')).isBefore(moment(fechaNacimiento[0]).format('DD/MM/YYYY'))){
+											// if(!moment(moment(nuevaHistClinica.fecha).format('DD-MM-YYYY')).isBefore(moment(fechaNacimiento[0]).format('DD-MM-YYYY'))){
+											if(new Date(moment(nuevaHistClinica.fecha).format()).getTime()>=new Date(moment(fechaNacimiento[0]).format()).getTime()) {
 												fetch(`${url}/HistClinica/new`, {
 													headers: {
 														'Content-Type': 'application/json',
-														'x-access-token': JSON.parse(window.localStorage.getItem('TOKEN')).token
+														// 'x-access-token': JSON.parse(window.localStorage.getItem('TOKEN')).token
 													},
 													method: 'POST',
 													body: JSON.stringify({
 														nuevaHistClinica,
-														// fecha: moment(
-														// 	new Date(
-														// 		`${nuevaHistClinica.fecha} ${nuevaHistClinica.hora}`
-														// 	)
-														// ).format(),
 														fecha: moment(nuevaHistClinica.fecha),
 														id_Historia: id,
 													}),
@@ -120,11 +101,6 @@ const HistoriasClinicas = () => {
 															...nuevosDatos,
 															{
 																_id:data.histClinica._id ,
-																// fecha: moment(
-																// 	new Date(
-																// 		`${nuevaHistClinica.fecha} ${nuevaHistClinica.hora}`
-																// 	)
-																// ).format(),
 																fecha: moment(nuevaHistClinica.fecha),
 																id_Historia: id,
 															}
@@ -171,6 +147,57 @@ const HistoriasClinicas = () => {
 		setForm(!form);
 	};
 
+	//ESTADO PARA SABER SI SE VA A ELIMINAR
+	const [BtnAcitve, setBtnActive] = useState(false)
+
+	//MODAL DE CONFIRMACIÓN PARA CREAR
+    const ModalConfirmación = () => {
+        return (
+            <>
+                <div
+                    style={{
+                        background: '#00000039',
+                        position: 'absolute',
+                        top: '0',
+                        left: '0',
+                        height: '100vh',
+                        width: '100%',
+                        zIndex:'2',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                >
+                    <form
+                         style={{
+                            background: '#ffffff',
+                            padding: '2px',
+                            borderRadius: '6px',
+                        }}
+                    >
+                        <div className="ModalReceta">
+                            <h3>¿Está seguro que desea eliminar la Historia Clínica?</h3>
+                            <div className="ListaBotones">
+                                <button onClick={(e) => {
+                                    e.preventDefault()
+                                    setBtnActive(true)
+                                }}>
+                                    SÍ
+                                </button>
+                                <button onClick={() => {setFormConfirmacion(false)}}>NO</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </>
+        )
+    }
+
+	const [formConfirmacion, setFormConfirmacion] = useState(false);
+	const onFormConfirmacion = () => {
+		setFormConfirmacion(!formConfirmacion);
+	};
+
 	return (
 		<div>
 			<div className="list">
@@ -178,38 +205,69 @@ const HistoriasClinicas = () => {
 					<span onClick={onForm}>Agregar Nueva Historia Clínica</span>
 				</h2>
 				{form && <ModalNuevaHistClinica/>}
-				<div className="citas">
-					{nuevosDatos.map((item) => {
-						return (
-							<>
-								{item.id_Historia === id ? (
-									<div key={item._id} className="cita">
-										<h3>Historia Clinica</h3>
-										<p>
-											Fecha : {moment(item.fecha).format('DD/MM/YYYY')}
-										</p>
-										<p>
-											Edad de consulta : {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).years()} a {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).months()} m {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).days()} d
-										</p>
-										<p>
-											Diagnostico: {item.diagnostico}
-										</p>
-										<p>
-											Tratamiento: {item.tratamiento}
-										</p>
-										<p>
-											Examenes Auxiliares: {item.examenesAuxiliares}
-										</p>
+				<div className='ScrollTable'>
+					<table>
+						<thead>
+							<tr>
+								<th>FECHA</th>
+								<th>EDAD DE CONSULTA</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{nuevosDatos.map((item) => (
+								<tr>
+									<td style={{textTransform: 'uppercase'}}>{moment(item.fecha).format('DD/MM/YYYY')}</td>
+									<td style={{textTransform: 'uppercase'}}>{(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).years()} AÑOS {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).months()} MESES {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).days()} DÍAS</td>
+									<td>
+										<button
+											style={{backgroundColor: 'transparent', border: 'none', cursor: 'pointer'}}
+											// onClick={onFormConfirmacion}
+											onClick={(e) => {
+												e.preventDefault()
+												var rpta = window.confirm("¿Está seguro de eliminar la Historia Clínica?")
+												if(rpta){
+													fetch(`${url}/HistClinica/${item._id}`, {
+														headers: {
+															'Content-Type': 'application/json'
+														},
+														method: 'DELETE'
+													})
+													.then((resp) => resp.json())
+													.then((data) => {
+														if(data.ok){
+															alert('Historia Clínica eliminada')
+															setDatos(datos.filter((datos) => datos._id != item._id))
+														}
+													})
+													.catch((err) => {
+														console.log(err);
+													});
+												}
+											}}
+										>
+											<i className="fas fa-trash-alt" style={{color: 'red'}}></i>
+											{formConfirmacion && <ModalConfirmación/>}
+										</button>
+									</td>
+									<td>
 										<Link to={`/historia-clinica/${item._id}`}>
-											<p className="ver">
-												Ver
-											</p>
+											<strong
+												style={{
+													textDecoration: 'underline',
+													cursor: 'pointer',
+												}}
+											>
+												<i className="fas fa-external-link-alt"></i>
+											</strong>
+											{item.post}
 										</Link>
-									</div>
-								) : null}
-							</>
-						);
-					})}
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

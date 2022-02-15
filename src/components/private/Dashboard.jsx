@@ -86,7 +86,7 @@ const Dashboard = ({ usuario, logout }) => {
 									<div className="itemLong">
 										<NavLink
 											className="item"
-											to="/consultas"
+											to="/pacientes"
 										>
 											<svg
 												xmlns="http://www.w3.org/2000/svg"
@@ -241,12 +241,12 @@ const Dashboard = ({ usuario, logout }) => {
 							<Route path="/" exact component={InitScreen} />
 
 							<Route
-								path="/pacientes"
+								path="/pacientess"
 								component={Pacientes}
 							/>
 
 							<Route
-								path="/consultas"
+								path="/pacientes"
 								component={Consultas}
 							/>
 							<Route
@@ -341,7 +341,7 @@ const Dashboard = ({ usuario, logout }) => {
 							/>
 							<Route
 								path="/filiacion"
-								component={Filiacion}
+								component={Consultas}
 							/>
 							<Route
 								path="/datos-f/:id"

@@ -408,13 +408,11 @@ const HistoriaClinica = () => {
 			
 			<form className="cont">
 				<div className='NombreEdad'>
-					<div>
-						<label><b>Paciente: </b> {datos.nombres_paciente}</label>
-					</div>
-					<div>
-						<label><b>Edad de Consulta: </b>{(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).years()} a {(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).months()} m {(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).days()} d
-						</label>
-					</div>
+					<label><b>Paciente: </b> {datos.nombres_paciente}</label>
+				</div>
+				<div className='NombreEdad'>
+					<label><b>Edad de Consulta: </b>{(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).years()} a {(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).months()} m {(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).days()} d
+					</label>
 				</div>
 				<div className='NombreEdad'>
 					<label><b>Referencia: </b> {datos.referencia}</label>
@@ -545,7 +543,8 @@ const HistoriaClinica = () => {
                
                 <label>Aparato GU.</label>
                 <textarea rows="3" cols="50" placeholder="Aparato GU" value={Hc.aparatoGU} name="aparatoGU" onChange={handleChange} style={{resize:'none'}}/>
-               
+				<label>Locomotor</label>
+                <textarea rows="3" cols="50" placeholder="Locomotor" value={Hc.locomotor} name="locomotor" onChange={handleChange} style={{resize:'none'}}/>
                 <label>Neurológico</label>
                 <textarea rows="3" cols="50" placeholder="Neurológico" value={Hc.neurologico} name="neurologico" onChange={handleChange} style={{resize:'none'}}/>
 				<h3>Diagnóstico</h3>

@@ -40,7 +40,7 @@ const Consultas = () => {
 			<div className="listPacientes">
 				<h2>Listado de Pacientes</h2>
 				<div 
-					style={{border:'2px solid #aba7a7', borderRadius: '10px', padding:'5px 0', width:'45%'}}
+					style={{border:'2px solid #aba7a7', borderRadius: '10px', padding:'5px 0', width:'45%', marginBottom:'20px'}}
 				>
 					<i 
 						className="fas fa-search" 
@@ -56,8 +56,8 @@ const Consultas = () => {
 					>
 					</input>
 				</div>
-				<div style={{marginTop:'20px', marginLeft: '-3%'}}>
-					<table className='tabla'>
+				<div className='ScrollTable'>
+					<table>
 						<thead>
 							<tr>
 								<th>DNI</th>
@@ -68,7 +68,7 @@ const Consultas = () => {
 						</thead>
 						<tbody>
 							{citas.filter(buscarTermino(termino.toUpperCase())).sort().map((item) => (
-								<tr className='tablaReceta'>
+								<tr>
 									<td style={{textTransform: 'uppercase'}}>{item.dni_paciente}</td>
 									<td style={{textTransform: 'uppercase'}}>{item.nombres_paciente}</td>
 									<td style={{textTransform: 'uppercase'}}>{item.referencia}</td>
@@ -90,31 +90,6 @@ const Consultas = () => {
 						</tbody>
 					</table>
 				</div>
-				{/* <div className="citas">
-					{citas.filter(buscarTermino(termino.toUpperCase())).map((item) => {
-						return (
-							<div key={item._id} className="cita">
-								<p>Dirección: {item.direccion}</p>
-								<p><b>-DNI:</b> {item.dni_paciente}</p>
-								<p style={{textTransform:'uppercase'}}><b>-Nombre:</b> {item.nombres_paciente}</p>
-								<p style={{textTransform:'uppercase'}}><b>-Referencia:</b> {item.referencia}</p>
-								<p>
-									<Link to={`datos-f/${item._id}`}>
-										<strong
-											style={{
-												textDecoration: 'underline',
-												cursor: 'pointer',
-											}}
-										>
-											-Ver más
-										</strong>
-										{item.post}
-									</Link>
-								</p>
-							</div>
-						);
-					})}
-				</div> */}
 			</div>
 		</>
 	);

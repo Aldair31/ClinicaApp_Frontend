@@ -30,8 +30,8 @@ const Antecedentes = ({id}) => {
 	}, []);
 	return (
 		<div style={{width:'95%'}}>
-			<h2 className="titulo-hc">Antecedentes del paciente</h2>
-			<form className="cont">
+			<h2 className="titulo-ant">Antecedentes del paciente</h2>
+			<form className="cont-ant">
 				<h3>Familiares</h3>
 				<div className='row1'>
 					<div>
@@ -148,7 +148,7 @@ const Antecedentes = ({id}) => {
 				<textarea
 					rows="3"
 					cols="25"
-					placeholder="Ingrese algunas alergias"
+					placeholder="Ingrese algunas complicaciones"
 					name="complicaciones"
 					value={antecedentes.complicaciones}
 					onChange={handleChange}
@@ -228,7 +228,7 @@ const Antecedentes = ({id}) => {
 				<textarea
 					rows="3"
 					cols="25"
-					placeholder="Ingrese algunas alergias"
+					placeholder="Ingrese algunas enfermedades"
 					name="enfAnteriores"
 					value={antecedentes.enfAnteriores}
 					onChange={handleChange}
