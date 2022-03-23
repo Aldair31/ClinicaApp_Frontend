@@ -1,0 +1,83 @@
+.mainDesarrolloIntegral
+    background-color: green
+    // width: 70%
+    max-width: 30vw
+    margin: 20px auto
+    overflow: hidden
+    .contenedorDesarrolloIntegral
+        // position: relative
+        background: #0194E1
+        // width: 90%
+        height: 50vh
+        padding: 40px 40px
+
+        .botones_ant_sig
+            // padding-left: -40px
+            margin-left: -30px
+            column-gap: 360px
+            // width: 20%
+            // margin: 0
+            display: grid
+            grid-template-columns: repeat(2, 1fr)
+            // margin: auto
+            // gap: 20px
+            position: absolute
+            z-index: 10
+            margin-top: -130px
+            justify-content: center
+            align-item: center
+            button
+                background: transparent
+                border: none
+                // color: #FFF
+                color:#000
+                font-size: 25px
+                cursor: pointer
+                display: block
+                margin: auto
+                align-items: center
+        // margin: auto
+        .contenedorSlideshow
+            // background-color: blue
+            background: #FFF
+            // width: 90%
+            display: flex
+            flex-wrap: nowrap
+            // margin: auto
+            // justify-content: center
+            // align-items: center
+            // padding-top: 20px
+            .slideDesarrollo
+                min-width: 120%
+                padding: 10px 60px
+                // width: 80%
+                position: relative
+                overflow: hidden
+                transition: .3s ease all
+                z-index: 10
+                
+                img
+                    // display: block
+                    // margin: auto
+                    width: 200px
+                    height: 200px
+                    vertical-align: top
+
+
+// SlideDesarrollo
+//     min-width: 120%
+//     padding: 10px 60px
+//     // width: 80%
+//     position: relative
+//     overflow: hidden
+//     transition: .3s ease all
+//     z-index: 10
+
+@media screen and (max-width: 900px)
+    .mainDesarrolloIntegral
+         max-width: 80vw
+         .contenedorDesarrolloIntegral 
+             padding: 20px 10px
+             height: 40vh
+
+            

@@ -35,7 +35,7 @@
             font-size: 28px
             margin-left: -20px
 .contenedor_dashboard
-    height: 90vh
+    height: 80vh
     margin-top: 10vh
     display: grid
     grid-template-columns: auto 1fr
@@ -137,3 +137,46 @@
                         align-items: center
                         svg
                             cursor: pointer
+
+@media screen and (max-width: 900px)
+    .btn_ops
+        display: block
+        position: absolute
+        margin-left: 90%
+        margin-top: -14.5%
+        .ops
+            background-color: transparent
+            border: none
+            i
+                font-size: 22px
+    .contenedor_dashboard
+        .menu_cont
+            // padding: 22px
+            .sidebar 
+                display: none
+            .sidebarOpen
+                position: fixed
+                z-index: 5
+                opacity: 1
+                margin-left: 54%
+                // background: red
+                margin-top: -5%
+                // padding-left: 20px
+                // width: 
+                // height: 20vh
+                .menu
+                    margin-top: -15%
+                    background-color: #f4f4f4
+                    height: 40vh
+                    // padding: 28px
+                    // padding: 20px
+                    margin-left: 0px
+                    .itemLong
+                        // justify-content: center
+                        // align-content: center
+                        // align-items: center
+                        .item
+                            margin-top: 15px
+                            margin-bottom: 15px
+        
+

@@ -1,28 +1,45 @@
 .Contenedor_logueo
-    width: 80%
+    // width: 80%
+    width: 100%
     height: 90vh
-    display: grid
-    max-width: 1000px
-    margin: auto
-    grid-template-row: 2fr 3fr
-    justify-content: center
-    align-items: center
     margin-top: 10vh
+    display: flex
+    flex-direction: column
+    justify-content: center
+    gap: 30px
+    // display: flex
+    // flex-direction: row
+    // height: 90vh
+    // display: grid
+    // max-width: 1000px
+    // margin: auto
+    // grid-template-rows: repeat(2, 1fr)
+    // grid-template-row: 2fr 3fr
+    
+    // justify-content: center
+    // align-items: center
+    // margin-top: 10vh
     .exito
         text-align: center
         color: #0194E1
     .imagen_logueo
-        margin-top: -7% 
+        // margin-top: -7% 
         img
+            display: block
+            justify-content: center
+            align-items: center
+            margin: auto
             max-width: 500px      
             // border-radius: 180px
     .formulario
-        margin-top: -9%
+        // margin-top: -9%
         // max-width: 6px
         // width: 70%
         .logueo
-            max-width: 350px
+            display: block
             margin: auto
+            max-width: 350px
+            // margin: auto
             background-color: #F0FBFE
             border: 2px solid #0194E1
             // max-height: 420px
@@ -75,3 +92,13 @@
                 display: block
                 // max-width: 240px
                 margin:15px auto
+
+@media screen and (max-width: 900px) 
+    .Contenedor_logueo
+        margin-top: 2vh
+        .imagen_logueo
+            // margin-top: 1%
+            img
+                max-width: 360px
+        .formulario
+           

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../../sass/Galeria.sass';
 import FormFoto from './extras/FormFoto';
 import url from '../../keys/backend_keys';
+import {Link} from 'react-router-dom';
 
 const Hijo = (props) => {
 	const [form, setForm] = useState(false);
@@ -80,6 +81,20 @@ const Hijo = (props) => {
 				♥
 			</p>
 			<br />
+			<p style={{ marginBottom: '16px' }}>
+				<div>
+					<Link
+						to={`/DesarrolloIntegral/${id}`}
+						style={{
+							fontSize: '16px',
+							cursor: 'pointer',
+							color: 'crimson',
+						}}
+					>
+						<b>Ver Desarrollo Integral</b>
+					</Link>
+				</div>
+			</p>
 			<p style={{ marginBottom: '16px' }}>
 				<strong
 					style={{ cursor: 'pointer', color: '#50B4A1' }}
