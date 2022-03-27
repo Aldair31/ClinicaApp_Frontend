@@ -4,14 +4,19 @@ import img2 from '../../img/img2.jpg';
 import img3 from '../../img/img3.jpg';
 import img4 from '../../img/img4.jpg';
 import img5 from '../../img/img5.jpg';
+
+
 import '../../sass/DesarrolloIntegral.sass';
 
-const SlideDesarrollo = () =>{
+const SlideDesarrollo = ({children}) =>{
+    // {children}
+    
     return(
         // <div className='contenedorDesarrolloIntegral'>
         //     <div className='contenedorSlideshow'>
                 <div className='slideDesarrollo'>
-                    {/* {children} */}
+                    {children}
+                    {/* hola */}
                 {/* <img src={img1} alt=""/> */}
                 {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.</p>  */}
                 </div>
@@ -109,16 +114,17 @@ const PresentacionDesarrolloIntegral = ({children}) =>{
                 {/* Contenedor Principal */}
                 <div className='contenedorDesarrolloIntegral'>
                     <div className='contenedorSlideshow' ref={slideshow}>
-                        {/* {children} */}
-                        {/* <SlideDesarrollo>
-                            {children}
-                        </SlideDesarrollo> */}
+
+                        {children}
+                        {/* <SlideDesarrollo children={children}> */}
+                            {/* {children} */}
+                        {/* </SlideDesarrollo> */}
                         
-                        <div className='slideDesarrollo'>
-                            {children}
+                        {/* <div className='slideDesarrollo'>
+                            {children} */}
                             {/* <img src={img1} alt=""/>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.</p>  */}
-                        </div>
+                        {/* </div> */}
                         {/* <div className='slideDesarrollo'>
                             <img src={img2} alt=""/> 
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, asperiores.</p> 

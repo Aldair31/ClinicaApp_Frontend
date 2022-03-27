@@ -2,7 +2,7 @@ import moment from 'moment'
 import React from 'react'
 import { Line } from 'react-chartjs-2'
 import useHistClinica from '../../hooks/useHistClinica'
-
+import RedireccionAGraficos from './RedireccionAGraficos'
 
 const GraficoDeCrecimientoPesoEdadNiña2a20 = () => {
 	var datos = []
@@ -154,6 +154,9 @@ const GraficoDeCrecimientoPesoEdadNiña2a20 = () => {
             }
         }}
       />
+	  <div>
+		  <RedireccionAGraficos/>
+	  </div>
     </div>
   )
 }

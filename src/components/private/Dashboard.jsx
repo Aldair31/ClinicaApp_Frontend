@@ -245,150 +245,153 @@ const Dashboard = ({ usuario, logout }) => {
 						</div>
 					</div>
 					<>
-						<Switch>
-							<Route path="/" exact component={InitScreen} />
+						<div onClick={()=>{setOpen(false)}}>
+							<Switch>
+								<Route path="/" exact component={InitScreen} />
 
-							<Route
-								path="/pacientess"
-								component={Pacientes}
-							/>
+								<Route
+									path="/pacientess"
+									component={Pacientes}
+								/>
 
-							<Route
-								path="/pacientes"
-								component={Consultas}
-							/>
-							<Route
-								path="/historias-clinicas/:id"
-								component={HistoriasClinicas}
-							/>
+								<Route
+									path="/pacientes"
+									component={Consultas}
+								/>
+								<Route
+									path="/historias-clinicas/:id"
+									component={HistoriasClinicas}
+								/>
+								
+								{/* <Route
+									path="/vacunas/:id"
+									component={Vacunas}
+								/> */}
+								<Route
+									path="/GraficoDeCrecimiento/:id"
+									component={GraficoDeCrecimiento}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoPesoEdadNiño0a36/:id"
+									component={GraficoDeCrecimientoPesoEdadNiño0a36}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoPesoEdadNiña0a36/:id"
+									component={GraficoDeCrecimientoPesoEdadNiña0a36}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoTallaEdadNiño0a36/:id"
+									component={GraficoDeCrecimientoTallaEdadNiño0a36}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoTallaEdadNiña0a36/:id"
+									component={GraficoDeCrecimientoTallaEdadNiña0a36}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoPesoTallaNiño0a36/:id"
+									component={GraficoDeCrecimientoPesoTallaNiño0a36}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoPesoTallaNiña0a36/:id"
+									component={GraficoDeCrecimientoPesoTallaNiña0a36}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoPCNiño0a36/:id"
+									component={GraficoDeCrecimientoPCNiño0a36}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoPCNiña0a36/:id"
+									component={GraficoDeCrecimientoPCNiña0a36}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoPesoEdadNiño2a20/:id"
+									component={GraficoDeCrecimientoPesoEdadNiño2a20}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoTallaEdadNiño2a20/:id"
+									component={GraficoDeCrecimientoTallaEdadNiño2a20}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoPesoEdadNiña2a20/:id"
+									component={GraficoDeCrecimientoPesoEdadNiña2a20}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoTallaEdadNiña2a20/:id"
+									component={GraficoDeCrecimientoTallaEdadNiña2a20}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoPesoTallaNiño/:id"
+									component={GraficoDeCrecimientoPesoTallaNiño}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoPesoTallaNiña/:id"
+									component={GraficoDeCrecimientoPesoTallaNiña}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoIMCNiños2a20/:id"
+									component={GraficoDeCrecimientoIMCNiños2a20}
+								/>
+								<Route
+									path="/GraficoDeCrecimientoIMCNiñas2a20/:id"
+									component={GraficoDeCrecimientoIMCNiñas2a20}
+								/>
+								<Route
+									path="/historia-clinica/:id"
+									component={HistoriaClinica}
+								/>
+								<Route path="/vacunas/:id" component={DatosVacunas} />
+								<Route
+									path="/nueva-cita"
+									component={NuevaCita}
+								/>
+								<Route
+									path="/responsables"
+									component={Responsables}
+								/>
+								<Route
+									path="/filiacion"
+									component={Consultas}
+								/>
+								<Route
+									path="/datos-f/:id"
+									component={DatosF}
+								/>
+								<Route path="/hijos/:id" component={Hijos} />
 							
-							{/* <Route
-								path="/vacunas/:id"
-								component={Vacunas}
-							/> */}
-							<Route
-								path="/GraficoDeCrecimiento/:id"
-								component={GraficoDeCrecimiento}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoPesoEdadNiño0a36/:id"
-								component={GraficoDeCrecimientoPesoEdadNiño0a36}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoPesoEdadNiña0a36/:id"
-								component={GraficoDeCrecimientoPesoEdadNiña0a36}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoTallaEdadNiño0a36/:id"
-								component={GraficoDeCrecimientoTallaEdadNiño0a36}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoTallaEdadNiña0a36/:id"
-								component={GraficoDeCrecimientoTallaEdadNiña0a36}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoPesoTallaNiño0a36/:id"
-								component={GraficoDeCrecimientoPesoTallaNiño0a36}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoPesoTallaNiña0a36/:id"
-								component={GraficoDeCrecimientoPesoTallaNiña0a36}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoPCNiño0a36/:id"
-								component={GraficoDeCrecimientoPCNiño0a36}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoPCNiña0a36/:id"
-								component={GraficoDeCrecimientoPCNiña0a36}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoPesoEdadNiño2a20/:id"
-								component={GraficoDeCrecimientoPesoEdadNiño2a20}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoTallaEdadNiño2a20/:id"
-								component={GraficoDeCrecimientoTallaEdadNiño2a20}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoPesoEdadNiña2a20/:id"
-								component={GraficoDeCrecimientoPesoEdadNiña2a20}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoTallaEdadNiña2a20/:id"
-								component={GraficoDeCrecimientoTallaEdadNiña2a20}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoPesoTallaNiño/:id"
-								component={GraficoDeCrecimientoPesoTallaNiño}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoPesoTallaNiña/:id"
-								component={GraficoDeCrecimientoPesoTallaNiña}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoIMCNiños2a20/:id"
-								component={GraficoDeCrecimientoIMCNiños2a20}
-							/>
-							<Route
-								path="/GraficoDeCrecimientoIMCNiñas2a20/:id"
-								component={GraficoDeCrecimientoIMCNiñas2a20}
-							/>
-							<Route
-								path="/historia-clinica/:id"
-								component={HistoriaClinica}
-							/>
-							<Route path="/vacunas/:id" component={DatosVacunas} />
-							<Route
-								path="/nueva-cita"
-								component={NuevaCita}
-							/>
-							<Route
-								path="/responsables"
-								component={Responsables}
-							/>
-							<Route
-								path="/filiacion"
-								component={Consultas}
-							/>
-							<Route
-								path="/datos-f/:id"
-								component={DatosF}
-							/>
-							<Route path="/hijos/:id" component={Hijos} />
+								<Route path="/antecedentes/:id" component={DatosAntecedentes}/>
+											
+								<Route
+									path="/mis-hijos"
+									component={MisHijos}
+								/>
+								<Route
+									path="/hijo/:id"
+									component={Hijo}
+								/>
+								<Route
+									path="/agregar-receta/:id"
+									component={FormRecetas}
+								/>
+								<Route
+									path="/lista-receta/:id"
+									component={ListaReceta}
+								/>
+								<Route
+									path="/agregar-orden/:id"
+									component={FormOrden}
+								/>
+								<Route
+									path="/lista-orden/:id"
+									component={ListaOrden}
+								/>
+								<Route
+									path="/DesarrolloIntegral/:id"
+									component={DesarrolloIntegral}
+								/>
+								<Error404 component={Error404} />
+							</Switch>
+						</div>
 						
-							<Route path="/antecedentes/:id" component={DatosAntecedentes}/>
-										
-							<Route
-								path="/mis-hijos"
-								component={MisHijos}
-							/>
-							<Route
-								path="/hijo/:id"
-								component={Hijo}
-							/>
-							<Route
-								path="/agregar-receta/:id"
-								component={FormRecetas}
-							/>
-							<Route
-								path="/lista-receta/:id"
-								component={ListaReceta}
-							/>
-							<Route
-								path="/agregar-orden/:id"
-								component={FormOrden}
-							/>
-							<Route
-								path="/lista-orden/:id"
-								component={ListaOrden}
-							/>
-							<Route
-								path="/DesarrolloIntegral/:id"
-								component={DesarrolloIntegral}
-							/>
-							<Error404 component={Error404} />
-						</Switch>
 					</>
 				</div>
 			</BrowserRouter>

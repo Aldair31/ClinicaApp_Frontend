@@ -24,6 +24,7 @@ const MisHijos = ({ usuario }) => {
 							borderRadius: '12px',
 							maxWidth: '430px',
 							background: '#F4F4F4',
+							textTransform:'uppercase'
 						}}
 					>
 						<Link to={`/hijo/${item._id}`}>{item.nombres_paciente}</Link>

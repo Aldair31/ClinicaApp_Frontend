@@ -2,13 +2,17 @@ import React, { useState, useEffect } from 'react';
 import '../../sass/Galeria.sass';
 import FormFoto from './extras/FormFoto';
 import url from '../../keys/backend_keys';
-import {Link} from 'react-router-dom';
+import {Link, useHistory } from 'react-router-dom';
+import '../../sass/Redirecciones.sass'
 
 const Hijo = (props) => {
 	const [form, setForm] = useState(false);
 	const [fotos, setFotos] = useState([]);
 	const [modal, setModal] = useState(false);
 	const [idFoto, setIdFoto] = useState(null);
+	const history = useHistory()
+
+
 
 	const id = props.match.params.id;
 	useEffect(() => {
@@ -91,11 +95,26 @@ const Hijo = (props) => {
 							color: 'crimson',
 						}}
 					>
-						<b>Ver Desarrollo Integral</b>
+						<b>Ver Desarrollo Integral del Niño</b>
 					</Link>
 				</div>
 			</p>
 			<p style={{ marginBottom: '16px' }}>
+				<div>
+				<Link
+					to={`/GraficoDeCrecimiento/${id}`}
+					style={{
+						fontSize: '16px',
+						cursor: 'pointer',
+						color: 'crimson',
+					}}
+				>
+					<b>Ver Gráfico de Crecimiento</b>
+				</Link>
+				</div>
+			</p>
+			
+			{/* <p style={{ marginBottom: '16px' }}>
 				<strong
 					style={{ cursor: 'pointer', color: '#50B4A1' }}
 					onClick={() => {
@@ -105,7 +124,7 @@ const Hijo = (props) => {
 				>
 					Nueva foto
 				</strong>
-			</p>
+			</p> */}
 			<section>
 				{
 					<div className="galeria">
@@ -134,6 +153,11 @@ const Hijo = (props) => {
 					</div>
 				}
 			</section>
+			<div className='boton_Redireccion'>
+				<button onClick={()=>{history.push(`/mis-hijos`)}}>
+					<i class="fas fa-angle-left"></i>
+				</button>	
+			</div>
 		</div>
 	);
 };

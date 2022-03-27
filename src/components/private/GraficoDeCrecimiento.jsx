@@ -1,24 +1,26 @@
 import React from 'react'
 import useCita from '../../hooks/useCita';
-import '../../sass/Dashboard.sass';
-import { useParams} from 'react-router-dom';
+import '../../sass/GraficoDeCrecimiento.sass';
+import { useParams, useHistory} from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import useAfiliacion from '../../hooks/useAfiliacion';
+import { connect } from 'react-redux';
 
-const GraficoDeCrecimiento = () => {
+const GraficoDeCrecimiento = ({usuario}) => {
 	let [datos_af, loading] = useAfiliacion();
 	const { id } = useParams();
+	const history = useHistory()
 	return (
 		<div>
-			<div className="datos_filiacion">
+			<div className="datos_Graficos">
 				{datos_af.map((item) => {
 					console.log("**")
 					console.log(item)
 					return (
 						<>
 							{item._id===id?  (
-								<div key={item._id} className="cita">
-									<div className="dato_filiacion" key={item._id}>
+								<div key={item._id}>
+									<div className="dato_Graficos" key={item._id}>
 										
 									{item.sexo === 1 ? (
 										<p>
@@ -232,8 +234,23 @@ const GraficoDeCrecimiento = () => {
 					);
 				})}	
 			</div>
+			{usuario.rol === 'Apoderado' ?
+			(
+				<>
+					<div className='boton_Redireccion'>
+						<button onClick={()=>{history.push(`/hijo/${id}`)}}>
+							<i class="fas fa-angle-left"></i>
+						</button>
+					</div>
+				</>
+			):null}
 		</div>
 	)
 }
 
-export default GraficoDeCrecimiento
+const mapStateToProps = (state) => ({
+	usuario: state.usuario,
+});
+
+export default connect(mapStateToProps)(GraficoDeCrecimiento);
+// export default GraficoDeCrecimiento
