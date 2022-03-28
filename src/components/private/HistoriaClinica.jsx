@@ -411,6 +411,10 @@ const HistoriaClinica = () => {
 					<label><b>Paciente: </b> {datos.nombres_paciente}</label>
 				</div>
 				<div className='NombreEdad'>
+					<label><b>Fecha de Consulta: </b>{moment(Hc.fecha).format('DD/MM/YYYY')}
+					</label>
+				</div>
+				<div className='NombreEdad'>
 					<label><b>Edad de Consulta: </b>{(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).years()} a {(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).months()} m {(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).days()} d
 					</label>
 				</div>

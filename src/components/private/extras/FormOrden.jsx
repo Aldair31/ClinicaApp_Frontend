@@ -5,7 +5,7 @@ import {jsPDF} from 'jspdf'
 import 'jspdf-autotable'
 import '../../../sass/Orden.sass'
 import FondoOrden from '../../../img/FondoOrden.jpg'
-
+import moment from 'moment';
 const FormOrden = () => {
     //ESTADO PARA SABER SI HAY MEDICAMENTOS EN UNA RECETA Y HABILITAR BOTONES PARA ACCIONES DE DOCUMENTO (MOSTRAR, DESCARGAR E IMPRIMIR)
     const [BtnAcitve, setBtnActive] = useState(false)
@@ -115,15 +115,33 @@ const FormOrden = () => {
             setHistoria(data)
         })
     }, [])
+
+    // console.log('DATOS HISTORIA',Historia)
     
     const DocOrden = () => {
         var doc = new jsPDF('p', 'mm', [242, 104])
 
         doc.addImage(FondoOrden, 'JPG', 0, 0)
 
+        var fechaHist = new Image()
+        fechaHist.src = 'https://i.ibb.co/M1j5RKq/fechapgn.png'
+        
+        doc.addImage(fechaHist, 'JPG', 2, 228)
+        doc.addImage(fechaHist, 'JPG', 106, 228)
+        
+
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(6, 229.5, 'DÍA');
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(6.5, 234.5, moment(Historia.histClinica.fecha).format('DD'));
+        
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(14.4, 229.5, 'MES');
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(16, 234.5, moment(Historia.histClinica.fecha).format('MM'));
+        
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(23.5, 229.5, 'AÑO');
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(23.3, 234.5, moment(Historia.histClinica.fecha).format('YYYY'));
+
         //OBTENIENDO NOMBRE DE PACIENTE
         let nombrePac = [
-            [(Historia.nombres_paciente).toUpperCase()]
+            [(Historia.historia.nombres_paciente).toUpperCase()]
         ]
 
         //TABLA PARA NOMBRE DE PACIENTE
