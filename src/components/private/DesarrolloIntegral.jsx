@@ -460,12 +460,6 @@ const DesarrolloIntegral = () => {
                             </p> */}
                             {/* <br /> */}
                             {DesarrolloNiñoMeses(item.fecha_nac)}
-                           
-                            <p>
-                                {/* <br /> */}
-                                {/* <br /> */}
-                            </p>
-                            
                             <div className='boton_Redireccion'>
                                 <button onClick={()=>{history.push(`/hijo/${id}`)}}>
                                     <i class="fas fa-angle-left"></i>

@@ -339,7 +339,7 @@ const Vacunas = ({id}) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
-							<input name="dpt3" id='fecha11' disabled='true' onChange={handleChange} value={Dvacunas.fechadpt3} type="date"></input>
+							<input name="fechadpt3" id='fecha11' disabled='true' onChange={handleChange} value={Dvacunas.fechadpt3} type="date"></input>
 							<label>Neumococo</label>
 							<select
 								id='neumococo3'
@@ -531,7 +531,7 @@ const Vacunas = ({id}) => {
 							<label>Meningococo</label>
 							<select
 								id='meningococo2'
-								value={vacunas.hepata}
+								value={vacunas.meningococo2}
 								name="meningococo2"
 								onChange={handleChange}
 								onClick={function(){

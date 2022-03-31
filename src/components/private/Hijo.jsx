@@ -81,8 +81,7 @@ const Hijo = (props) => {
 			<h2 style={{ marginTop: '19px' }}>Hijo</h2>
 			<br />
 			<p>
-				Agrega fotos de tu niño y observa su crecimiento progresivo
-				♥
+				Observa mi crecimiento progresivo
 			</p>
 			<br />
 			<p style={{ marginBottom: '16px' }}>
@@ -110,6 +109,20 @@ const Hijo = (props) => {
 					}}
 				>
 					<b>Ver Gráfico de Crecimiento</b>
+				</Link>
+				</div>
+			</p>
+			<p style={{ marginBottom: '16px' }}>
+				<div>
+				<Link
+					to={`/CartillaVacunacion/${id}`}
+					style={{
+						fontSize: '16px',
+						cursor: 'pointer',
+						color: 'crimson',
+					}}
+				>
+					<b>Ver Cartilla de Vacunación</b>
 				</Link>
 				</div>
 			</p>

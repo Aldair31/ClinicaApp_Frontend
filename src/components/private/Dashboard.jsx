@@ -43,9 +43,11 @@ import GraficoDeCrecimientoPesoEdadNiña2a20 from './GraficoDeCrecimientoPesoEda
 import GraficoDeCrecimientoTallaEdadNiña2a20 from './GraficoDeCrecimientoTallaEdadNiña2a20';
 import GraficoDeCrecimientoPesoTallaNiña from './GraficoDeCrecimientoPesoTallaNiña';
 import GraficoDeCrecimientoIMCNiñas2a20 from './GraficoDeCrecimientoIMCNiñas2a20';
+
 import DatosAntecedentes from './DatosAntecedentes';
 import DatosVacunas from './DatosVacunas';
 import DesarrolloIntegral from './DesarrolloIntegral';
+import CartillaVacunacion from './CartillaVacunacion';
 //RECETA
 import FormRecetas from './extras/FormRecetas';
 import ListaReceta from './ListaReceta'
@@ -387,6 +389,10 @@ const Dashboard = ({ usuario, logout }) => {
 								<Route
 									path="/DesarrolloIntegral/:id"
 									component={DesarrolloIntegral}
+								/>
+								<Route
+									path="/CartillaVacunacion/:id" 
+									component={CartillaVacunacion}
 								/>
 								<Error404 component={Error404} />
 							</Switch>
