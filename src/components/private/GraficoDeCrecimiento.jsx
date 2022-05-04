@@ -11,8 +11,8 @@ const GraficoDeCrecimiento = ({usuario}) => {
 	const { id } = useParams();
 	const history = useHistory()
 	return (
-		<div>
-			<div className="datos_Graficos">
+		<div className='contenedorRedireccion'>
+			<div className="datos_Graficos" style={{gridColumn: '1/5'}}>
 				{datos_af.map((item) => {
 					console.log("**")
 					console.log(item)
@@ -236,13 +236,12 @@ const GraficoDeCrecimiento = ({usuario}) => {
 			</div>
 			{usuario.rol === 'Apoderado' ?
 			(
-				<>
-					<div className='boton_Redireccion'>
-						<button onClick={()=>{history.push(`/hijo/${id}`)}}>
-							<i class="fas fa-angle-left"></i>
-						</button>
-					</div>
-				</>
+				<div style={{marginTop: '2.5%'}}>
+					<button className='cta' onClick={()=>{history.push(`/hijo/${id}`)}}>
+						<span>Regresar</span>
+						<i className="fa-solid fa-arrow-left"></i>
+					</button>
+				</div>
 			):null}
 		</div>
 	)

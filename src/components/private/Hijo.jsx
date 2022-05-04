@@ -12,7 +12,17 @@ const Hijo = (props) => {
 	const [idFoto, setIdFoto] = useState(null);
 	const history = useHistory()
 
+	//OBTENER DATOS PACIENTE
+	const [datosPac, setDatosPac] = useState([])
+	useEffect(() => {
+		fetch(`${url}/Historia/id/${id}`)
+			.then((resp) => resp.json())
+			.then((datos) => {
+				setDatosPac(datos);
+			})
+	}, [])
 
+	console.log("Asa: ", datosPac)
 
 	const id = props.match.params.id;
 	useEffect(() => {
@@ -68,8 +78,8 @@ const Hijo = (props) => {
 		);
 	};
 	return (
-		<div>
-			{modal && <Modal url={`${url}/Fotos/album/${idFoto}`} />}
+		<div className='contenedorRedireccion'>
+			{/* {modal && <Modal url={`${url}/Fotos/album/${idFoto}`} />}
 			{form && (
 				<FormFoto
 					id={props.match.params.id}
@@ -77,99 +87,77 @@ const Hijo = (props) => {
 					setFotos={setFotos}
 					foto={fotos}
 				/>
-			)}
-			<h2 style={{ marginTop: '19px' }}>Hijo</h2>
-			<br />
-			<p>
-				Observa mi crecimiento progresivo
-			</p>
-			<br />
-			<p style={{ marginBottom: '16px' }}>
-				<div>
-					<Link
-						to={`/DesarrolloIntegral/${id}`}
-						style={{
-							fontSize: '16px',
-							cursor: 'pointer',
-							color: 'crimson',
-						}}
-					>
-						<b>Ver Desarrollo Integral del Niño</b>
-					</Link>
-				</div>
-			</p>
-			<p style={{ marginBottom: '16px' }}>
-				<div>
-				<Link
-					to={`/GraficoDeCrecimiento/${id}`}
-					style={{
-						fontSize: '16px',
-						cursor: 'pointer',
-						color: 'crimson',
-					}}
-				>
-					<b>Ver Gráfico de Crecimiento</b>
-				</Link>
-				</div>
-			</p>
-			<p style={{ marginBottom: '16px' }}>
-				<div>
-				<Link
-					to={`/CartillaVacunacion/${id}`}
-					style={{
-						fontSize: '16px',
-						cursor: 'pointer',
-						color: 'crimson',
-					}}
-				>
-					<b>Ver Cartilla de Vacunación</b>
-				</Link>
-				</div>
-			</p>
-			
-			{/* <p style={{ marginBottom: '16px' }}>
-				<strong
-					style={{ cursor: 'pointer', color: '#50B4A1' }}
-					onClick={() => {
-						setForm(true);
-						setIdFoto()
-					}}
-				>
-					Nueva foto
-				</strong>
-			</p> */}
-			<section>
-				{
-					<div className="galeria">
-						{fotos.map((item) => (
-							<div
-								key={item.nombre}
-								clave={item.nombre}
-								onClick={(e) => {
-									setModal(true);
-									console.log(e.target);
-									setIdFoto(
-										e.target.getAttribute('clave')
-									);
-								}}
-							>
-								<img
-									className="foto"
-									width="100%"
-									height="200px"
-									clave={item.nombre}
-									alt=""
-									src={`${url}/Fotos/album/${item.nombre}`}
-								/>
-							</div>
-						))}
+			)} */}
+			<div style={{gridColumn: '1/5'}}>
+
+				<h2 style={{ marginTop: '19px', textTransform: 'uppercase' }}>{datosPac.nombres_paciente}</h2>
+				<br />
+				<p>
+					Observa mi crecimiento progresivo
+				</p>
+				<br />
+				<div className='contenedor-card'>
+					<div className="card-redireccion">
+						<div className="card-img-redireccion"></div>
+						<div className="card-info-redireccion">
+							<p className="text-body-redireccion">En este apartado puedes ver las acciones que debe realizar tu niño.</p>
+							<Link to={`/DesarrolloIntegral/${id}`} className="text-title-redireccion">Desarrollo Integral</Link>
+						</div>
 					</div>
-				}
-			</section>
-			<div className='boton_Redireccion'>
+					<div className="card-redireccion">
+						<div className="card-img-redireccion"></div>
+						<div className="card-info-redireccion">
+							<p className="text-body-redireccion">En este apartado puedes ver los gráficos de crecimiento de tu niño.</p>
+							<Link to={`/GraficoDeCrecimiento/${id}`} className="text-title-redireccion">Gráficos</Link>
+						</div>
+					</div>
+					<div className="card-redireccion">
+						<div className="card-img-redireccion"></div>
+						<div className="card-info-redireccion">
+							<p className="text-body-redireccion">En este apartado puedes ver las vacunas que tiene tu niño.</p>
+							<Link to={`/CartillaVacunacion/${id}`} className="text-title-redireccion">Vacunas</Link>
+						</div>
+					</div>
+				</div>
+				{/* <section>
+					{
+						<div className="galeria">
+							{fotos.map((item) => (
+								<div
+									key={item.nombre}
+									clave={item.nombre}
+									onClick={(e) => {
+										setModal(true);
+										console.log(e.target);
+										setIdFoto(
+											e.target.getAttribute('clave')
+										);
+									}}
+								>
+									<img
+										className="foto"
+										width="100%"
+										height="200px"
+										clave={item.nombre}
+										alt=""
+										src={`${url}/Fotos/album/${item.nombre}`}
+									/>
+								</div>
+							))}
+						</div>
+					}
+				</section> */}
+			</div>
+			{/* <div className='boton_Redireccion'>
 				<button onClick={()=>{history.push(`/mis-hijos`)}}>
-					<i class="fas fa-angle-left"></i>
+					<i className="fas fa-angle-left"></i>
 				</button>	
+			</div> */}
+			<div style={{marginTop: '2.5%'}}>
+				<button className='cta' onClick={()=>{history.push(`/mis-hijos`)}}>
+					<span>Regresar</span>
+					<i className="fa-solid fa-arrow-left"></i>
+				</button>
 			</div>
 		</div>
 	);

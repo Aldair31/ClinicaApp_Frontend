@@ -430,52 +430,56 @@ const DesarrolloIntegral = () => {
     return (
         <div style={{height: '80vh'}}>
             {loading !== null ? (
-                <div className="datosDesarrolloIntegral">
-                    {datos_af.filter((item) => item._id === id)
-						.map((item) => (
-                        console.log(item),
-                        <div className='datosDesarrollo' key={item._id}>
-                            <p className='pacienteDatosDesarrollo'>
-                                <strong>{item.nombres_paciente}</strong>
-                                
-                            </p>
-                            <br />
-                            <h3 className='tituloDatosDesarrollo'>
-                                <strong>DESARROLLO INTEGRAL DEL NIÑO</strong>
-                            </h3>
-                            <p className='edadDatosDesarrollo'>
-                                <strong>
-                                    (Edad:  {(moment.duration(moment().diff(moment(item.fecha_nac)))).years()} a {(moment.duration(moment().diff(moment(item.fecha_nac)))).months()} m {(moment.duration(moment().diff(moment(item.fecha_nac)))).days()} d)
-                                </strong>
-                            </p>
-                            <br />
-                            {/* <p>
-                            https://www.saludarequipa.gob.pe/archivos/cred/NORMATIVA%20CRED.pdf
-                            <br />
-                            https://aprendiendoconjulia.com/wp-content/uploads/2014/05/desarrollo_psicomotriz-1024x614.jpg
-                            <br />
-                            https://www.hospitalsjl.gob.pe/ArchivosDescarga/Campana/
-                            SomosLecheros/MaterialesComunicacion/PDF/CredParedA1.pdf
+                <div className='contenedorRedireccion'>
+                    <div className="datosDesarrolloIntegral" style={{gridColumn: '1/5'}}>
+                        {datos_af.filter((item) => item._id === id)
+                            .map((item) => (
+                            console.log(item),
+                            <div className='datosDesarrollo' key={item._id}>
+                                <p className='pacienteDatosDesarrollo'>
+                                    <strong>{item.nombres_paciente}</strong>
+                                    
+                                </p>
+                                <br />
+                                <h3 className='tituloDatosDesarrollo'>
+                                    <strong>DESARROLLO INTEGRAL DEL NIÑO</strong>
+                                </h3>
+                                <p className='edadDatosDesarrollo'>
+                                    <strong>
+                                        (Edad:  {(moment.duration(moment().diff(moment(item.fecha_nac)))).years()} a {(moment.duration(moment().diff(moment(item.fecha_nac)))).months()} m {(moment.duration(moment().diff(moment(item.fecha_nac)))).days()} d)
+                                    </strong>
+                                </p>
+                                <br />
+                                {/* <p>
+                                https://www.saludarequipa.gob.pe/archivos/cred/NORMATIVA%20CRED.pdf
+                                <br />
+                                https://aprendiendoconjulia.com/wp-content/uploads/2014/05/desarrollo_psicomotriz-1024x614.jpg
+                                <br />
+                                https://www.hospitalsjl.gob.pe/ArchivosDescarga/Campana/
+                                SomosLecheros/MaterialesComunicacion/PDF/CredParedA1.pdf
 
-                            </p> */}
-                            {/* <br /> */}
-                            {DesarrolloNiñoMeses(item.fecha_nac)}
-                            <div className='boton_Redireccion'>
-                                <button onClick={()=>{history.push(`/hijo/${id}`)}}>
-                                    <i class="fas fa-angle-left"></i>
-                                </button>	
+                                </p> */}
+                                {/* <br /> */}
+                                {DesarrolloNiñoMeses(item.fecha_nac)}
+                                {/* <div className='boton_Redireccion'>
+                                    <button onClick={()=>{history.push(`/hijo/${id}`)}}>
+                                        <i class="fas fa-angle-left"></i>
+                                    </button>	
+                                </div> */}
+                                
+                                
                             </div>
                             
-                            
-                        </div>
-                        
-                    ))}
+                        ))}
+                    </div>
+                    <div style={{marginTop: '2.5%'}}>
+                        <button className='cta' onClick={()=>{history.push(`/hijo/${id}`)}}>
+                            <span>Regresar</span>
+                            <i className="fa-solid fa-arrow-left"></i>
+                        </button>
+                    </div>
                 </div>
             ):null}
-           
-
-
-
         </div>
     )
 }

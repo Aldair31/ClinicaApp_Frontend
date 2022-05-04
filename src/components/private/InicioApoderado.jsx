@@ -30,82 +30,101 @@ const InicioApoderado = ({ usuario }) => {
 					/>
 				) : null}
 				{loading === false ? (
-					<div className="datos_responsables">
-						{datos.map((item) => (
-							<>
-								{item._id === usuario.uid ? (
-									<div
-										div
-										className="dato_responsable"
-										key={item._id}
-									>
-										<p
-											style={{
-												textAlign: 'center',
-												position: 'relative',
-											}}
-										>
-											<img
-												alt="Perfil"
-												src={
-													url +
-													'/api/auth/uploads/' +
-													item.foto_perfil
-												}
-												width="110px"
-												style={{
-													border: '2px solid #3d53b65a',
-													borderRadius: '104px',
-													marginBottom: '21px',
-													maxHeight:'110px'
-												}}
-											/>
-											<div
-												style={{
-													position: 'absolute',
-													bottom: '20px',
-													right: '120px',
-												}}
-											>
-												<div
-													onClick={() => {
-														setForm(!form);
-													}}
-													style={{
-														cursor: 'pointer',
-														background:
-															'#39a78f',
-														padding: '5px',
-														borderRadius:
-															'100px',
-													}}
-												>
-													<i
-														style={{
-															color: '#fff',
-														}}
-														className="fas fa-pen"
-													></i>
-												</div>
-											</div>
-										</p>
-										<p className="text">
-											<strong>-DNI : </strong>
-											{item.dni}
-										</p>
-										<p className="text">
-											<strong>-Nombre: </strong>
-											{item.nombre}
-										</p>
-										<p className="text">
-											<strong>-Email: </strong>
-											{item.email}
-										</p>
+					// <div className="datos_responsables">
+					// 	{datos.map((item) => (
+					// 		<>
+					// 			{item._id === usuario.uid ? (
+					// 				<div
+					// 					div
+					// 					className="dato_responsable"
+					// 					key={item._id}
+					// 				>
+					// 					<p
+					// 						style={{
+					// 							textAlign: 'center',
+					// 							position: 'relative',
+					// 						}}
+					// 					>
+					// 						<img
+					// 							alt="Perfil"
+					// 							src={
+					// 								url +
+					// 								'/api/auth/uploads/' +
+					// 								item.foto_perfil
+					// 							}
+					// 							width="110px"
+					// 							style={{
+					// 								border: '2px solid #3d53b65a',
+					// 								borderRadius: '104px',
+					// 								marginBottom: '21px',
+					// 								maxHeight:'110px'
+					// 							}}
+					// 						/>
+					// 						<div
+					// 							style={{
+					// 								position: 'absolute',
+					// 								bottom: '20px',
+					// 								right: '120px',
+					// 							}}
+					// 						>
+					// 							<div
+					// 								onClick={() => {
+					// 									setForm(!form);
+					// 								}}
+					// 								style={{
+					// 									cursor: 'pointer',
+					// 									background:
+					// 										'#39a78f',
+					// 									padding: '5px',
+					// 									borderRadius:
+					// 										'100px',
+					// 								}}
+					// 							>
+					// 								<i
+					// 									style={{
+					// 										color: '#fff',
+					// 									}}
+					// 									className="fas fa-pen"
+					// 								></i>
+					// 							</div>
+					// 						</div>
+					// 					</p>
+					// 					<p className="text">
+					// 						<strong>-DNI : </strong>
+					// 						{item.dni}
+					// 					</p>
+					// 					<p className="text">
+					// 						<strong>-Nombre: </strong>
+					// 						{item.nombre}
+					// 					</p>
+					// 					<p className="text">
+					// 						<strong>-Email: </strong>
+					// 						{item.email}
+					// 					</p>
+					// 				</div>
+					// 			) : null}
+					// 		</>
+					// 	))}
+					// </div>
+					datos.map((item) => (
+						<>
+							{item._id === usuario.uid ? (
+								<div class="card" key={item._id}>
+									<div class="card-border-top"></div>
+									<div class="img">
+										<img alt='Perfil' src={url + '/api/auth/uploads/' + item.foto_perfil}></img>
 									</div>
-								) : null}
-							</>
-						))}
-					</div>
+									<button onClick={() => {setForm(!form)}}>
+										<i className="fas fa-pen"></i>
+									</button>
+									<span className="text">
+				 						{item.nombre}
+				 					</span>
+									{/* <p class="job"> {item.dni}</p> */}
+								</div>
+							) : null}
+						</>
+					))
 				) : (
 					<p>cargando...</p>
 				)}

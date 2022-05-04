@@ -13,22 +13,81 @@
             color: #FFF
             font-size: 20px
 
-.boton_Redireccion
+// .boton_Redireccion
+//     // display: block
+//     // margin-top: 3%
+//     // margin-left: 40%
+//     height: 40px
+//     display: flex
+//     justify-content: center
+//     // padding: 50px
+
+//     button
+//         border: none
+//         background: #0194E1
+//         border: 10px solid #0194E1
+//         border-radius: 20px 
+//         i
+//             // color: #0194E1
+//             color: #FFF
+//             font-size: 20px
+
+.contenedorRedireccion
+    display: grid
+    grid-template-columns: repeat(5, 1fr)    
+
+.cta
+    position: relative
+    margin: auto
+    padding: 12px 18px
+    transition: all 0.2s ease
+    border: none
+    background: none
+
+.cta:hover
+    cursor: pointer
+
+.cta:before
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
     display: block
-    margin-top: 3%
-    margin-left: 40%
+    border-radius: 50px
+    background: #b1dae7
+    width: 45px
+    height: 45px
+    transition: all 0.3s ease
 
-    button
-        border: none
-        background: #0194E1
-        border: 10px solid #0194E1
-        border-radius: 20px 
-        i
-            // color: #0194E1
-            color: #FFF
-            font-size: 20px
+.cta span
+    position: relative
+    font-family: "Ubuntu", sans-serif
+    font-size: 18px
+    font-weight: 700
+    letter-spacing: 0.05em
+    color: #234567
 
-    
+.cta i
+    position: relative
+    top: 0
+    margin-left: 10px
+    fill: none
+    stroke-linecap: round
+    stroke-linejoin: round
+    stroke: #234567
+    stroke-width: 2
+    transform: translateX(-5px)
+    transition: all 0.3s ease
+
+.cta:hover:before
+    width: 100%
+    background: #b1dae7
+
+.cta:hover i
+    transform: translateX(0)        
+
+.cta:active
+    transform: scale(0.95)
 
 
 @media screen and ( max-width: 900px )
