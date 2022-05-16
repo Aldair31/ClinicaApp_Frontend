@@ -16,7 +16,7 @@ const RedireccionAGraficos = ({usuario}) =>{
 			(
 				<>
 					{/* <div className="btnRedirecciones"> */}
-                    <div style={{marginTop: '-1.0%'}}></div>
+                    <div style={{marginTop:'-1%'}}></div>
                         <button className='cta' onClick={()=>{history.push(`/GraficoDeCrecimiento/${id}`)}}>
                             <span>Regresar</span>
                             <i className="fa-solid fa-arrow-left"></i>

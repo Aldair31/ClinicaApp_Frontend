@@ -79,6 +79,43 @@ import imgI12 from '../../img/imgI12.JPG';
 import imgJ12 from '../../img/imgJ12.JPG';
 import imgL12 from '../../img/imgL12.JPG';
 
+// 1 AÑO 3 MESES
+import imgD15 from '../../img/imgD15.JPG';
+import imgI15 from '../../img/imgI15.JPG';
+import imgK15 from '../../img/imgK15.JPG';
+import imgL15 from '../../img/imgL15.JPG';
+
+// 1 AÑO Y 6 MESES
+import imgA18 from '../../img/imgA18.JPG';
+import imgC18 from '../../img/imgC18.JPG';
+import imgD18 from '../../img/imgD18.JPG';
+import imgG18 from '../../img/imgG18.JPG';
+import imgH18 from '../../img/imgH18.JPG';
+import imgI18 from '../../img/imgI18.JPG';
+import imgJ18 from '../../img/imgJ18.JPG';
+import imgK18 from '../../img/imgK18.JPG';
+import imgL18 from '../../img/imgL18.JPG';
+
+// 1 AÑO Y 9 MESES
+import imgD21 from '../../img/imgD21.JPG';
+import imgG21 from '../../img/imgG21.JPG';
+import imgJ21 from '../../img/imgJ21.JPG';
+import imgK21 from '../../img/imgK21.JPG';
+
+// 2 Años
+import imgD24 from '../../img/imgD24.JPG';
+import imgG24 from '../../img/imgG24.JPG';
+import imgH24 from '../../img/imgH24.JPG';
+import imgI24 from '../../img/imgI24.JPG';
+
+// 2 AÑOS Y 6 MESES
+import imgD30 from '../../img/imgD30.JPG';
+import imgG30 from '../../img/imgG30.JPG';
+import imgI30 from '../../img/imgI30.JPG';
+import imgJ30 from '../../img/imgJ30.JPG';
+import imgK30 from '../../img/imgK30.JPG';
+import imgL30 from '../../img/imgL30.JPG';
+
 import img5 from '../../img/img5.jpg';
 
 const DesarrolloIntegral = () => {
@@ -460,15 +497,176 @@ const DesarrolloIntegral = () => {
             </>)
             
         }
+        //EDAD - 1 AÑO 3 MESES
+        if ((moment.duration(moment().diff(moment(edad)))).years() == '1' && (moment.duration(moment().diff(moment(edad)))).months() == '3') {
+            return (
+                <>
+                    <PresentacionDesarrolloIntegral>
+                        <SlideDesarrollo>
+                            <img src={imgD15} alt="" />
+                            <p>Mete un frijol en un frasco</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgI15} alt="" />
+                            <p>Come en la mesa con los demás</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgK15} alt="" />
+                            <p>Arrastra juguetes</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgL15} alt="" />
+                            <p>Identifica figuras de objetos comunes</p>
+                        </SlideDesarrollo>
+                    </PresentacionDesarrolloIntegral>                                               
+                </>
+            )
+            
+        }
+
+        //EDAD - 1 AÑO 6 MESES
+        if ((moment.duration(moment().diff(moment(edad)))).years() == '1' && (moment.duration(moment().diff(moment(edad)))).months() == '6') {
+            return (
+                <>
+                    <PresentacionDesarrolloIntegral>
+                        <SlideDesarrollo>
+                            <img src={imgA18} alt="" />
+                            <p>Sentado en el suelo, se para solo</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgC18} alt="" />
+                            <p>Corre (NO es caminar rápido)</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgD18} alt="" />
+                            <p>Hace torres de 3 cubos</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgG18} alt="" />
+                            <p>Distingue entre tú y yo</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgH18} alt="" />
+                            <p>Palabras frases "mamá teta"</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgI18} alt="" />
+                            <p>Inita tareas simples de la casa</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgJ18} alt="" />
+                            <p>Avisa sus necesidades</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgK18} alt="" />
+                            <p>Defiende su juguete</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgL18} alt="" />
+                            <p>Utiliza un objeto para alcanzar otro</p>
+                        </SlideDesarrollo>
+                    </PresentacionDesarrolloIntegral>                                               
+                </>
+            )
+            
+        }
+
+        //EDAD - 1 AÑO 9 MESES
+        if ((moment.duration(moment().diff(moment(edad)))).years() == '1' && (moment.duration(moment().diff(moment(edad)))).months() == '9') {
+            return (
+                <>
+                    <PresentacionDesarrolloIntegral>
+                        <SlideDesarrollo>
+                            <img src={imgD21} alt="" />
+                            <p>Hace torres de 5 cubos</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgG21} alt="" />
+                            <p>Comprende dos frases sencillas consecutivas: "Recoge el cubo y dámelo"</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgJ21} alt="" />
+                            <p>Intenta quitarse prendas inferiores</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgK21} alt="" />
+                            <p>Juega con otros niños</p>
+                        </SlideDesarrollo>
+                    </PresentacionDesarrolloIntegral>                                               
+                </>
+            )
+            
+        }
+
+        //EDAD - 2 AÑOS
+        if (!(moment.duration(moment().diff(moment(edad)))).months() && (moment.duration(moment().diff(moment(edad)))).years() == '2') {
+            return (
+                <>
+                    <PresentacionDesarrolloIntegral>
+                        <SlideDesarrollo>
+                            <img src={imgD24} alt="" />
+                            <p>Hace torres de 7 cubos</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgG24} alt="" />
+                            <p>Comprende tres frases: "Sientate, quitate los zapatos, dámelos"</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgH24} alt="" />
+                            <p>Dice oraciones simples: "Mama vamo calle", "Mama quiero pan"</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgI24} alt="" />
+                            <p>Desenrosca un tapón para mirar dentro</p>
+                        </SlideDesarrollo>
+                    </PresentacionDesarrolloIntegral>                                               
+                </>
+            )
+            
+        }
+
+        //EDAD - 2 AÑOs 6 MESES
+        if ((moment.duration(moment().diff(moment(edad)))).years() == '2' && (moment.duration(moment().diff(moment(edad)))).months() == '6') {
+            return (
+                <>
+                    <PresentacionDesarrolloIntegral>
+                        <SlideDesarrollo>
+                            <img src={imgD30} alt="" />
+                            <p>Hace puentes de 3 cubos</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgG30} alt="" />
+                            <p>Pasa página, elige figura del libro y las nomina</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgI30} alt="" />
+                            <p>Intenta enroscar</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgJ30} alt="" />
+                            <p>Se pone alguna ropa</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgK30} alt="" />
+                            <p>Juego social: sabe esperar su turno</p>
+                        </SlideDesarrollo>
+                        <SlideDesarrollo>
+                            <img src={imgL30} alt="" />
+                            <p>Coloca los aros en orden de tamaño</p>
+                        </SlideDesarrollo>
+                    </PresentacionDesarrolloIntegral>                                               
+                </>
+            )
+        }
 
     }
 
     // const [open, setOpen]= useState(false)
     return (
-        <div style={{height: '80vh'}}>
+        <div style={{height: '60vh'}}>
             {loading !== null ? (
                 <div className='contenedorRedireccion'>
-                    <div className="datosDesarrolloIntegral" style={{gridColumn: '1/5'}}>
+                    <div className="datosDesarrolloIntegral">
                         {datos_af.filter((item) => item._id === id)
                             .map((item) => (
                             console.log(item),
@@ -509,11 +707,13 @@ const DesarrolloIntegral = () => {
                             
                         ))}
                     </div>
-                    <div style={{marginTop: '2.5%'}}>
-                        <button className='cta' onClick={()=>{history.push(`/hijo/${id}`)}}>
-                            <span>Regresar</span>
-                            <i className="fa-solid fa-arrow-left"></i>
-                        </button>
+                    <div className='btnRegresarDesarrollo'>
+                        <div style={{margin:'auto'}}>
+                            <button className='cta' onClick={()=>{history.push(`/hijo/${id}`)}}>
+                                <span>Regresar</span>
+                                <i className="fa-solid fa-arrow-left"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             ):null}

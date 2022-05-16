@@ -31,7 +31,7 @@ const GraficoDeCrecimientoIMCNiños2a20 = () => {
 	}
 
   return (
-    <div style={{maxWidth: '99%', height: '80vh'}}>
+    <div className='graficosDeCrecimiento'>
 		
       <Line
         data={

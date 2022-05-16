@@ -25,7 +25,7 @@ const GraficoDeCrecimientoPesoTallaNiño = () => {
 	datos = tallaypeso.reverse()
 
    return (
-    <div style={{maxWidth: '99%', height: '80vh'}}>	
+    <div className='graficosDeCrecimiento'>	
      <Line
         data={
             {
