@@ -42,63 +42,6 @@ const InicioDoctor = () => {
 					&nbsp;&nbsp;Consultas de hoy {moment().format('DD/MM/YYYY')}
 				</h2>
 				{loading !== null ? (
-					// <div className="datos_filiacion">
-					// 	{datos_af.map((item) => (
-					// 		moment(item.fecha).format('DD/MM/YYYY')==moment().format('DD/MM/YYYY')?
-					// 		<div className="dato_filiacion" key={item._id}>
-					// 			<p>
-					// 				<strong>-Fecha de consulta: </strong>
-					// 				{
-					// 					moment(item.fecha).format('DD/MM/YYYY')
-					// 				}
-					// 			</p>
-					// 			<p>
-					// 				<strong>-DNI del paciente: </strong>
-					// 				{item.DNI}
-					// 			</p>
-					// 			<p>
-					// 				<strong>
-					// 					-Nombres del paciente:{' '}
-					// 				</strong>
-					// 				{item.nombre_paciente}
-					// 			</p>
-					// 			<p>
-					// 				<strong>-Responsable: </strong>
-					// 				{item.responsable}
-					// 			</p>
-					// 			<p>
-					// 				<strong>-Telefono: </strong>
-					// 				{item.telefono}
-					// 			</p>
-					// 			<p>
-					// 				<strong>-Motivo: </strong>
-					// 				<span>
-					// 					{switchMotivo(item.motivo)}
-					// 				</span>
-					// 			</p>
-					// 			{/* <p>
-					// 				<strong>-Sexo: </strong>
-					// 				<span>
-					// 					{item.sexo === 1
-					// 						? 'Hombre'
-					// 						: 'Mujer'}
-					// 				</span>
-					// 			</p> */}
-					// 			<p>
-					// 				<strong>-Condición: </strong>
-					// 				<span>
-					// 					{item.condicion == 1
-					// 						? 'Nuevo'
-					// 						: 'Continuador'}
-					// 				</span>
-					// 			</p>
-					// 			<NavLink to={`/datos-f/${item.id_Historia}`}>
-					// 				<p className="ver">Ver todo</p>
-					// 			</NavLink>
-					// 		</div>
-					// 		:null
-					// 	))}
-					// </div>
 					<div className='ScrollTable'>
 						<table>
 							<thead>

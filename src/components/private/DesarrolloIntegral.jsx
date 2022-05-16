@@ -87,7 +87,15 @@ const DesarrolloIntegral = () => {
     const history = useHistory()
     
     const DesarrolloNiñoMeses = (edad)=>{
-        let edadNiño = (moment.duration(moment().diff(moment(edad)))).months();
+        let edadNiño
+        // if((moment(edad).format(), 'months') >= 12)
+        if (!(moment.duration(moment().diff(moment(edad)))).years()) {
+            edadNiño = (moment.duration(moment().diff(moment(edad)))).months()
+        }
+        // edadNiño = (moment(edad).format('L'))
+        // let edadNiño = (moment.duration(moment().diff(moment(edad)))).months();
+        // let edadNiño = (moment(edad).format(), 'months') >= 12
+        console.log('Edad del niño para desarrollo',edadNiño)
         switch (edadNiño) {
 			case 1:
 				return(
@@ -423,7 +431,36 @@ const DesarrolloIntegral = () => {
                     </>
                 )
 		}
-       
+        //EDAD - 1 AÑO
+        if (!(moment.duration(moment().diff(moment(edad)))).months() && (moment.duration(moment().diff(moment(edad)))).years() == '1') {
+            return(
+            <>
+                <PresentacionDesarrolloIntegral>
+                    <SlideDesarrollo>
+                        <img src={imgC12} alt="" />
+                        <p>Camina solo, con pobre equilibrio y piernas separadas</p>
+                    </SlideDesarrollo>
+                    <SlideDesarrollo>
+                        <img src={imgH12} alt="" />
+                        <p>Dice dos palabras sueltas, además de papá y mamá</p>
+                    </SlideDesarrollo>
+                    <SlideDesarrollo>
+                        <img src={imgI12} alt="" />
+                        <p>Ofrece un juguete</p>
+                    </SlideDesarrollo>
+                    <SlideDesarrollo>
+                        <img src={imgJ12} alt="" />
+                        <p>Forcejea hasta quitarse los zapatos</p>
+                    </SlideDesarrollo>
+                    <SlideDesarrollo>
+                        <img src={imgL12} alt="" />
+                        <p>Hace garabatos</p>
+                    </SlideDesarrollo>
+                </PresentacionDesarrolloIntegral>                                               
+            </>)
+            
+        }
+
     }
 
     // const [open, setOpen]= useState(false)

@@ -62,12 +62,16 @@ const Dashboard = ({ usuario, logout }) => {
 	return (
 		<>
 			<BrowserRouter>
-				<Header />
-				<div className="btn_ops">
-					<button className="ops" onClick={()=>{setOpen(!open)}}>
-						<i class="fas fa-bars"></i>
-					</button>
+				<div style={{display:'flex'}}>
+					{/* <Header open={open} setOpen={setOpen}/> */}
+					<Header/>
+					<div className="btn_ops">
+						<button className="ops" onClick={()=>{setOpen(!open)}}>
+							<i class="fas fa-bars"></i>
+						</button>
+					</div>
 				</div>
+				
 				<div className="contenedor_dashboard">
 					<div className="menu_cont">
 						<div className={open ? 'sidebarOpen' : 'sidebar'}>

@@ -20,6 +20,9 @@ const FormCita = () => {
 	};
 	return (
 		<>
+			<div><h2>Registro de Citas</h2></div>
+			<br />
+			<br />
 			<Formik
 				initialValues={{
 					nombre_paciente: '',

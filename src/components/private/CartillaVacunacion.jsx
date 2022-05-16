@@ -7,7 +7,7 @@ import moment from 'moment';
 import '../../sass/CartillaVacunacion.sass'
 
 const CartillaVacunacion = () => {
-    const [vacunas, setVacunas] = useState({});
+    const [vacunas, setVacunas] = useState([]);
     const { id } = useParams();
     const history = useHistory()
 
@@ -22,10 +22,421 @@ const CartillaVacunacion = () => {
     }, [])
 
     console.log("asd: ", vacunas)
+    const [buscar, setBuscar] = useState('')
+    const [pagina, setPagina] = useState(0)
+    const [paginaActual, setPaginaActual] = useState(3)
+
+    const datosFiltrados = () =>{
+        let vacuna =[]
+        vacuna=vacunas
+        // if(buscar.length === 0)
+        return vacuna
+
+        // const filtrado = vacunas.filter(item => (item.Nombre.toLowerCase()).includes(buscar.toLowerCase()))
+
+        // return filtrado.slice(paginaActual, paginaActual+5)
+    }
+
     
+    const paginaSiguiente = () =>{
+        // if(vacunas.filter(item => (item.Nombre.toLowerCase()).includes(buscar.toLowerCase())).length > paginaActual + 5){
+            setPaginaActual(paginaActual)
+            setPagina(pagina+1)
+        // }
+    }
+
+    const paginaAnterior = () =>{
+        if(paginaActual>0){
+            setPaginaActual(paginaActual)
+            setPagina(pagina-1)
+        }
+    }
+
     return(
         <div className='contenedorRedireccion'>
-            <div className='tablaCartilla' style={{gridColumn: '1/5'}}>
+            <div className='titulo_de_cartVacunacion'>
+                <div className='txtCartilla'>
+                    <h2>Cartilla de Vacunación</h2>
+                </div>
+                <div className='btnRegresarCart'>
+                    <button className='cta' onClick={()=>{history.push(`/hijo/${id}`)}}>
+                        <span>Regresar</span>
+                        <i className="fa-solid fa-arrow-left"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div className='cards_Vacunacion'>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">Recién Nacido</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            BCG
+                            <br />
+                            <br />
+                            {vacunas.bcg==1 ? '1° Dosis - ' : 'NO'}
+                            {vacunas.fechabcg?moment(vacunas.fechabcg).format('DD/MM/YYYY'):null}
+                            <br />
+                            <br />
+                            Hepatitis B
+                            <br />
+                            <br />
+                            {vacunas.hepatb==1?'1° Dosis - ':'NO'}
+                            {vacunas.fechahepatb?moment(vacunas.fechahepatb).format('DD/MM/YYYY'):null}
+                        </p>
+                    </div>
+                </div>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">2 Meses</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            Hepatitis B
+                            <br />
+                            {vacunas.hepatb2==1?'2° Dosis - ':'NO'}
+                            {vacunas.fechahepatb2?moment(vacunas.fechahepatb2).format('DD/MM/YYYY'):null}
+                            <br />
+                            
+                            DPT
+                            <br />
+                            {vacunas.dpt==1?'1° Dosis - ':'NO'}
+                            {vacunas.fechadpt?moment(vacunas.fechadpt).format('DD/MM/YYYY'):null}
+                            <br />
+                            
+                            Neumococo
+                            <br />
+                            {vacunas.neumococo==1?'1° Dosis - ':'NO'}
+                            {vacunas.fechaneumococo?moment(vacunas.fechaneumococo).format('DD/MM/YYYY'):null}
+                            <br />
+                            
+                            Rotavirus
+                            <br />
+                            {vacunas.rotavirus==1?'1° Dosis - ':'NO'}
+                            {vacunas.fecharotavirus?moment(vacunas.fecharotavirus).format('DD/MM/YYYY'):null}
+                        
+                            
+                        </p>
+                    </div>
+                </div>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">4 Meses</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            Hepatitis B
+                            <br />
+                            {vacunas.hepatb3==1?'3° Dosis - ':'NO'}
+                            {vacunas.fechahepatb3?moment(vacunas.fechahepatb3).format('DD/MM/YYYY'):null}
+                            <br />
+                            DPT
+                            <br />
+                            {vacunas.dpt2==1?'2° Dosis - ':'NO'}
+                            {vacunas.fechadpt2?moment(vacunas.fechadpt2).format('DD/MM/YYYY'):null}
+                            <br />
+                            Neumococo
+                            <br />
+                            {vacunas.neumococo2==1?'2° Dosis - ':'NO'}
+                            {vacunas.fechaneumococo2?moment(vacunas.fechaneumococo2).format('DD/MM/YYYY'):null}
+                            <br />
+                            Rotavirus
+                            <br />
+                            {vacunas.rotavirus2==1?'2° Dosis - ':'NO'}
+                            {vacunas.fecharotavirus2?moment(vacunas.fecharotavirus2).format('DD/MM/YYYY'):null}
+                        
+                        </p>
+                    </div>
+                </div>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">6 Meses</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            <b>Hepatitis B</b>
+                            <br />
+                            {vacunas.hepatb4==1?'4° Dosis - ':'NO'}
+                            {vacunas.fechahepatb4?moment(vacunas.fechahepatb4).format('DD/MM/YYYY'):null}
+                            <br />
+                            DPT
+                            <br />
+                            {vacunas.dpt3==1?'3° Dosis - ':'NO'}
+                            {vacunas.fechadpt3?moment(vacunas.fechadpt3).format('DD/MM/YYYY'):null}
+                            <br />
+                            Neumococo
+                            <br />
+                            {vacunas.neumococo3==1?'3° Dosis - ':'NO'}
+                            {vacunas.fechaneumococo3?moment(vacunas.fechaneumococo3).format('DD/MM/YYYY'):null}
+                            <br />
+                            Rotavirus
+                            <br />
+                            {vacunas.rotavirus3==1?'3° Dosis - ':'NO'}
+                            {vacunas.fecharotavirus3?moment(vacunas.fecharotavirus3).format('DD/MM/YYYY'):null}
+                        
+                        </p>
+                    </div>
+                </div>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">7 Meses</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            <br />
+                            <br />
+                            <br />
+                            Influenza
+                            <br />
+                            <br />
+                            {vacunas.influenza==1?'1° Dosis - ':'NO'}
+                            {vacunas.fechainfluenza?moment(vacunas.fechainfluenza).format('DD/MM/YYYY'):null}
+                                
+                        </p>
+                    </div>
+                </div>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">8 Meses</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            <br />
+                            <br />
+                            <br />
+                            Influenza
+                            <br />
+                            <br />
+                            {vacunas.influenza2==1?'2° Dosis - ':'NO'}
+                            {vacunas.fechainfluenza2?moment(vacunas.fechainfluenza2).format('DD/MM/YYYY'):null}
+                                
+                        </p>
+                    </div>
+                </div>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">9 Meses</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            <br />
+                            <br />
+                            <br />
+                            Meningococo
+                            <br />
+                            <br />
+                            {vacunas.meningococo==1?'1° Dosis - ':'NO'}
+                            {vacunas.fechameningococo?moment(vacunas.fechameningococo).format('DD/MM/YYYY'):null}
+                                
+                        </p>
+                    </div>
+                </div>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">1 Año</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            <br />
+                            Meningococo
+                            <br />
+                            {vacunas.meningococo2==1?'2° Dosis - ':'NO'}
+                            {vacunas.fechameningococo2?moment(vacunas.fechameningococo2).format('DD/MM/YYYY'):null}
+                            <br />
+                            SPR
+                            <br />
+                            {vacunas.spr==1?'1° Dosis - ':'NO'}
+                            {vacunas.fechaspr?moment(vacunas.fechaspr).format('DD/MM/YYYY'):null}
+                            <br />
+                            Varicela
+                            <br />
+                            {vacunas.varicela==1?'1° Dosis - ':'NO'}
+                            {vacunas.fechavaricela?moment(vacunas.fechavaricela).format('DD/MM/YYYY'):null}
+                                
+                        </p>
+                    </div>
+                </div>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">1 Año y 1 Mes</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            <br />
+                            <br />
+                            <br />
+                            Hepatitis A
+                            <br />
+                            <br />
+                            {vacunas.hepata==1?'1° Dosis - ':'NO'}
+                            {vacunas.fechahepata?moment(vacunas.fechahepata).format('DD/MM/YYYY'):null}
+                                
+                        </p>
+                    </div>
+                </div>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">1 Año y 3 Meses</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            <br />
+                            <br />
+                            <br />
+                            Fiebre Amarila
+                            <br />
+                            <br />
+                            {vacunas.famarilla==1?'1° Dosis - ':'NO'}
+                            {vacunas.fechafamarilla?moment(vacunas.fechafamarilla).format('DD/MM/YYYY'):null}
+                                
+                        </p>
+                    </div>
+                </div>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">1 Año y 6 Meses</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            <br />
+                            DPT
+                            <br />
+                            {vacunas.dpt4==1?'4° Dosis - ':'NO'}
+                            {vacunas.fechadpt4?moment(vacunas.fechadpt4).format('DD/MM/YYYY'):null}
+                            <br />
+                            SPR
+                            <br />
+                            {vacunas.spr2==1?'2° Dosis - ':'NO'}
+                            {vacunas.fechaspr2?moment(vacunas.fechaspr2).format('DD/MM/YYYY'):null}
+                            <br />
+                            Varicela
+                            <br />
+                            {vacunas.varicela2==1?'2° Dosis - ':'NO'}
+                            {vacunas.fechavaricela2?moment(vacunas.fechavaricela2).format('DD/MM/YYYY'):null}
+                                
+                        </p>
+                    </div>
+                </div>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">1 Año y 7 Meses</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            <br />
+                            <br />
+                            <br />
+                            Hepatitis A
+                            <br />
+                            <br />
+                            {vacunas.hepata2==1?'2° Dosis - ':'NO'}
+                            {vacunas.fechahepata2?moment(vacunas.fechahepata2).format('DD/MM/YYYY'):null}
+                                
+                        </p>
+                    </div>
+                </div>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">2 Años</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            Neumococo
+                            <br />
+                            <br />
+                            {vacunas.neumococo4==1?'4° Dosis - ':'NO'}
+                            {vacunas.fechaneumococo4?moment(vacunas.fechaneumococo4).format('DD/MM/YYYY'):null}
+                            <br />
+                            <br />
+                            Influenza
+                            <br />
+                            <br />
+                            {vacunas.influenza3==1?'3° Dosis - ':'NO'}
+                            {vacunas.fechainfluenza3?moment(vacunas.fechainfluenza3).format('DD/MM/YYYY'):null}
+                        </p>
+                    </div>
+                </div>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">4 Años</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            DPT
+                            <br />
+                            <br />
+                            {vacunas.dpt5==1?'5° Dosis - ':'NO'}
+                            {vacunas.fechadpt5?moment(vacunas.fechadpt5).format('DD/MM/YYYY'):null}
+                            <br />
+                            <br />
+                            SPR
+                            <br />
+                            <br />
+                            {vacunas.spr3==1?'3° Dosis - ':'NO'}
+                            {vacunas.fechaspr3?moment(vacunas.fechaspr3).format('DD/MM/YYYY'):null}
+                                
+                        </p>
+                    </div>
+                </div>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">9 Años</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            <br />
+                            <br />
+                            <br />
+                            Papilomavirus
+                            <br />
+                            <br />
+                            {vacunas.papilomavirus==1?'1° Dosis - ':'NO'}
+                            {vacunas.fechapapilomavirus?moment(vacunas.fechapapilomavirus).format('DD/MM/YYYY'):null}
+                                
+                        </p>
+                    </div>
+                </div>
+                <div class="card-Vacunacion">
+                    <div class="card-info-Vacunacion">
+                        <p class="title-Vacunacion">9 Años y 6 Meses</p>
+                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                    </div>
+                    <div class="card-bio-Vacunacion">
+                        <p>
+                            <br />
+                            <br />
+                            <br />
+                            Papilomavirus
+                            <br />
+                            <br />
+                            {vacunas.papilomavirus2==1?'2° Dosis - ':'NO'}
+                            {vacunas.fechapapilomavirus2?moment(vacunas.fechapapilomavirus2).format('DD/MM/YYYY'):null}
+                                
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            {/* <div className='tablaCartilla' style={{gridColumn: '1/5'}}>
                 <table>
                     <thead>
                         <tr style={{textAlign: 'center'}}>
@@ -411,13 +822,8 @@ const CartillaVacunacion = () => {
                         </tr>
                     </tbody>
                 </table>
-            </div>
-            <div style={{marginTop: '2.5%'}}>
-                <button className='cta' onClick={()=>{history.push(`/hijo/${id}`)}}>
-                    <span>Regresar</span>
-                    <i className="fa-solid fa-arrow-left"></i>
-                </button>
-            </div>
+            </div> */}
+            
         </div>
     )
 }

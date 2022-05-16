@@ -14,8 +14,9 @@ const MisHijos = ({ usuario }) => {
 	}, [uid]);
 	return (
 		<>
-			<h2 style={{ marginBottom: '26px', marginTop: '31px' }}>Tus hijos</h2>
-			<div style={{ marginTop: '31px', display: 'grid', gap: '20px', gridTemplateColumns: 'repeat(4, 1fr)' }}>
+		<div className='contenidoDeHijos'>
+			<h2 className='txtCardsHijos'>Tus hijos</h2>
+			<div className='cardsHijos'>
 				{hijos.map((item) => {
 					return (
 						// <div
@@ -30,18 +31,23 @@ const MisHijos = ({ usuario }) => {
 						// >
 						// 	<Link to={`/hijo/${item._id}`}>{item.nombres_paciente}</Link>
 						// </div>
-						<div class="card-hijo">
-							<div class="card-details">
-								<p class="text-title">{item.nombres_paciente}</p>
-								{/* <p class="text-body">Here are the details of the card</p> */}
+						
+							<div className="card-hijo">
+								<div className="card-details">
+									<p className="text-title">{item.nombres_paciente}</p>
+									{/* <p class="text-body">Here are the details of the card</p> */}
+								</div>
+								<button className="card-button">
+									<Link to={`/hijo/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>Ver info	</Link>
+								</button>
 							</div>
-							<button class="card-button">
-								<Link to={`/hijo/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>Ver info	</Link>
-							</button>
-						</div>
+						
+						
 					);
 				})}
 			</div>
+		</div>
+			
 		</>
 	);
 };

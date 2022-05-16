@@ -368,7 +368,7 @@ const InicioSecretaria =  () => {
                     
                     customButtons={{
                         AgregarReserva:{
-                            text:'+',
+                            text:'+ Reserva',
                             click: function() {
                                 setState(true);
                             }

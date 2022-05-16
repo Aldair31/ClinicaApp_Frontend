@@ -1,13 +1,21 @@
 import React from 'react';
+import { useState } from 'react';
 
+// const Header = ({open, setOpen}) => {
 const Header = () => {
+	// const [open, setOpen]= useState(false)
 	// console.log("USUARIO HEADER: ", usuario)
 	return (
 		<>
 			<div className="header_dashboard">
 				<div className="contenedor">
 					<h2>Clínica Mi Mebé</h2>
-					<nav></nav>
+					{/* <div className="btn_ops">
+						<button className="ops" onClick={()=>{setOpen(!open)}}>
+							<i class="fas fa-bars"></i>
+						</button>
+					</div> */}
+					{/* <nav></nav> */}
 				</div>
 				{/* <div>rol</div> */}
 			</div>

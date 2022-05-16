@@ -15,11 +15,16 @@ const RedireccionAGraficos = ({usuario}) =>{
             {usuario.rol === 'Apoderado' ?
 			(
 				<>
-					<div className="btnRedirecciones">
-                        <button onClick={()=>{history.push(`/GraficoDeCrecimiento/${id}`)}}>
+					{/* <div className="btnRedirecciones"> */}
+                    <div style={{marginTop: '-1.0%'}}></div>
+                        <button className='cta' onClick={()=>{history.push(`/GraficoDeCrecimiento/${id}`)}}>
+                            <span>Regresar</span>
+                            <i className="fa-solid fa-arrow-left"></i>
+                        </button>
+                        {/* <button onClick={()=>{history.push(`/GraficoDeCrecimiento/${id}`)}}>
 						    <i class="fas fa-angle-left"></i>
-					    </button>
-					</div>
+					    </button> */}
+					{/* </div> */}
 				</>
 			):null}
         </>

@@ -138,54 +138,13 @@
                         svg
                             cursor: pointer
 
-@media screen and (max-width: 900px)
-    .btn_ops
-        display: block
-        position: absolute
-        margin-left: 90%
-        margin-top: -14.5%
-        .ops
-            background-color: transparent
-            border: none
-            i
-                font-size: 22px
-    .contenedor_dashboard
-        gap:0
-        .menu_cont
-            // padding: 22px
-            .sidebar 
-                display: none
-            .sidebarOpen
-                position: fixed
-                z-index: 50
-                opacity: 1
-                margin-left: 54%
-                // background: red
-                margin-top: -5%
-                // padding-left: 20px
-                // width: 
-                // height: 20vh
-                .menu
-                    margin-top: -15%
-                    background-color: #f4f4f4
-                    height: 40vh
-                    // padding: 28px
-                    // padding: 20px
-                    margin-left: 0px
-                    .itemLong
-                        // justify-content: center
-                        // align-content: center
-                        // align-items: center
-                        .item
-                            margin-top: 15px
-                            margin-bottom: 15px
-        
 .card
     width: 200px
     height: 300px
     background: #F4F4F4
     border-radius: 15px
     text-transform: uppercase
+    // display: flex
     // box-shadow: 1px 5px 60px 0px #100a886b
 
 .card .card-border-top
@@ -202,6 +161,7 @@
     display: block
     padding: 10px 5px
     font-size: 20px
+    margin-top: 10%
 
 .card .job
     font-weight: 400
@@ -225,12 +185,18 @@
     border-radius: 104px
 
 .card button
-    padding: 8px 25px
+    // padding: 8px 25px
+    padding: 5px
     display: block
     margin: auto
-    border-radius: 8px
+    // border-radius: 8px
+    border-radius: 104px
     border: none
-    margin-top: 20px
+    // margin-top: 20px
+    position: absolute
+    margin-top: -1.5%
+    margin-left: 9%
+    // margin-bottom: 5%
     background: #50B4A1
     color: white
     font-weight: 600
@@ -240,7 +206,145 @@
     cursor: pointer
 
 
+.listadoPacientesPaginacion
+    display: flex
+    flex-direction: column
+    background-color: #F4F4F4
+    height: 61vh
+    width: 90%
+    padding: 20px
+    border-radius: 15px
+    margin-bottom: 4vh
+    .encabezadoPaginacion
+        display: grid
+        grid-template-columns: repeat(2, 1fr)
+        width: 98%
+        padding: 0% 5%
+        margin-bottom: 20px
+        // gap: -20px
+    .contenedorDatosPaciente
+        display: flex
+        justify-content: space-between
+        align-items: center
+        text-transform: uppercase
+        // font-size: 20px
+        background-color: #FFF
+        border-radius: 15px
+        padding: 1% 5%
+        margin-bottom: 3%
+        width: 100%
+        height: 45px
+        .contenidoDatosPaciente
+            display: grid
+            grid-template-columns: repeat(2, 1fr)
+            width: 100%
+            .nombrePaciente
+                display: flex
+                gap: 10px
+
+.paginacionPacientes
+    display: flex
+    gap: 20px
+    justify-content: center
+    // background-color: #F4F4F4
+    width: 90%
+    height: 3vh
+    border-radius: 0 0 15px 15px
+    // padding: 5px
+    button
+        background-color: transparent
+        border: none
+    button:hover
+        cursor: pointer
+    button i
+        font-size: 20px
+    p
+        font-size: 20px
+        font-weight: bold
+
+
+@media screen and (max-width: 900px)
+    .btn_ops
+        display: block
+        position: fixed
+        // position: absolute
+        margin-left: 90%
+        // margin: auto
+        margin-top: 32px
+        .ops
+            background-color: transparent
+            border: none
+            i
+                font-size: 22px
+    .contenedor_dashboard
+        gap:0
+        // margin: auto
+        .menu_cont
+            // padding: 22px
+            padding: 0
+            .sidebar 
+                display: none
+            .sidebarOpen
+                position: fixed
+                z-index: 50
+                opacity: 1
+                margin-left: 58%
+                // background: red
+                margin-top: -3%
+                // padding-left: 20px
+                // width: 
+                // height: 20vh
+                .menu
+                    margin-top: -15%
+                    background-color: #f4f4f4
+                    height: 40vh
+                    // padding: 28px
+                    // padding: 20px
+                    margin-left: 0px
+                    .itemLong
+                        // justify-content: center
+                        // align-content: center
+                        // align-items: center
+                        .item
+                            margin-top: 15px
+                            margin-bottom: 15px
+        .list
+            margin: auto
+            h2
+                text-align: center
+    .card
+        margin: auto
+    .card button
+        margin-top: -4%
+        left: 46%
+
+
 /* From uiverse.io by @alexruix */
+
+.txtCardsHijos
+    margin-bottom: 26px 
+    margin-top: 31px
+
+.cardsHijos
+    margin-top: 31px
+    // max-width: 60%
+    // display: flex
+    // flex-wrap: nowrap
+    // gap: 20px
+    
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
+    row-gap: 20px
+    height: 68vh
+    // margin: auto
+    overflow-y: scroll
+    // display: flex
+    // display: flex
+    // display: grid
+    // grid-template-columns: repeat(2,1fr)
+    // gap: 20px
+    // grid-template-columns: repeat(4, 1fr)
+
 .card-hijo
     width: 190px
     height: 254px
@@ -288,3 +392,77 @@
         transform: translate(-50%, 50%)
         opacity: 1
         cursor: pointer
+
+@media screen and ( max-width: 900px )
+    .contenidoDeHijos 
+        margin: auto
+        text-align: center
+        display: block
+        align-items: center
+        align-content: center
+        justify-content: center
+    .txtCardsHijos
+        // position: fixed
+        // margin-bottom: 10%
+        margin-top: 10%
+        // position: sticky
+   
+    .cardsHijos
+        // margin-top: 15%
+        margin: auto
+        display: grid
+        grid-template-columns: repeat(1, 1fr)
+        // justify-content: center
+        align-content: flex-start
+        gap:50px
+        // row-gap: 20px
+        // align-items: center
+        height: 77vh
+        // flex-direction: column
+        // position: relative
+        
+        // position: fixed
+        // margin-bottom: 2%
+        // overflow-y: scroll
+        // height: 50%
+        // row-gap: -20px
+        .card-hijo
+            margin: auto
+            width: 70%
+        
+            // position: static
+            // height: 120%
+            // margin-bottom: -80%
+            
+        //     .card-details
+        //         color: black
+        //         height: 100%
+        //         gap: .5em
+        //         display: grid
+        //         place-content: center
+        //         .text-body
+        //             color: rgb(134, 134, 134)
+
+        //         .text-title
+        //             font-size: 1.5em
+        //             font-weight: bold
+        //             text-align: center
+        .card-button
+            // transform: translate(-50%, 125%)
+            width: 60%
+            border-radius: 1rem
+            border: none
+            background-color: #50B4A1
+            color: #fff
+            font-size: 1rem
+            padding: .5rem 1rem
+            position: absolute
+            left: 50%
+            bottom: 0
+            transform: translate(-50%, 50%)
+            opacity: 1
+            // opacity: 1
+            // transition: 0.3s ease-out
+    
+        
+    

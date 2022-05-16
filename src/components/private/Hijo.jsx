@@ -88,34 +88,51 @@ const Hijo = (props) => {
 					foto={fotos}
 				/>
 			)} */}
-			<div style={{gridColumn: '1/5'}}>
-
-				<h2 style={{ marginTop: '19px', textTransform: 'uppercase' }}>{datosPac.nombres_paciente}</h2>
+			{/* <div style={{gridColumn: '1/5'}}> */}
+			<div style={{margin: 'auto'}}>
+				<h2 className='nombreHijo'>{datosPac.nombres_paciente}</h2>
 				<br />
-				<p>
-					Observa mi crecimiento progresivo
-				</p>
+				<div className='btnRegresarHijo'>
+					<div className='txtHijo'>
+						<p>
+							Observa mi crecimiento progresivo
+						</p>
+					</div>
+					<div className='btnRegHijo'>
+						<button className='cta' onClick={()=>{history.push(`/mis-hijos`)}}>
+							<span>Regresar</span>
+							<i className="fa-solid fa-arrow-left"></i>
+						</button>
+					</div>
+				</div>
+				
 				<br />
 				<div className='contenedor-card'>
 					<div className="card-redireccion">
-						<div className="card-img-redireccion"></div>
+						<div className="card-img-redireccion">
+							<i class="fa-solid fa-baby"></i>
+						</div>
 						<div className="card-info-redireccion">
 							<p className="text-body-redireccion">En este apartado puedes ver las acciones que debe realizar tu niño.</p>
-							<Link to={`/DesarrolloIntegral/${id}`} className="text-title-redireccion">Desarrollo Integral</Link>
+							<Link to={`/DesarrolloIntegral/${id}`} className="text-title-redireccion"><b>Desarrollo Integral</b></Link>
 						</div>
 					</div>
 					<div className="card-redireccion">
-						<div className="card-img-redireccion"></div>
+						<div className="card-img-redireccion">
+							<i class="fa-solid fa-chart-line"></i>
+						</div>
 						<div className="card-info-redireccion">
 							<p className="text-body-redireccion">En este apartado puedes ver los gráficos de crecimiento de tu niño.</p>
-							<Link to={`/GraficoDeCrecimiento/${id}`} className="text-title-redireccion">Gráficos</Link>
+							<Link to={`/GraficoDeCrecimiento/${id}`} className="text-title-redireccion"><b>Gráficos</b></Link>
 						</div>
 					</div>
 					<div className="card-redireccion">
-						<div className="card-img-redireccion"></div>
+						<div className="card-img-redireccion">
+							<i class="fa-solid fa-syringe"></i>
+						</div>
 						<div className="card-info-redireccion">
 							<p className="text-body-redireccion">En este apartado puedes ver las vacunas que tiene tu niño.</p>
-							<Link to={`/CartillaVacunacion/${id}`} className="text-title-redireccion">Vacunas</Link>
+							<Link to={`/CartillaVacunacion/${id}`} className="text-title-redireccion"><b>Vacunas</b></Link>
 						</div>
 					</div>
 				</div>
@@ -153,12 +170,12 @@ const Hijo = (props) => {
 					<i className="fas fa-angle-left"></i>
 				</button>	
 			</div> */}
-			<div style={{marginTop: '2.5%'}}>
+			{/* <div style={{marginTop: '2.5%'}}>
 				<button className='cta' onClick={()=>{history.push(`/mis-hijos`)}}>
 					<span>Regresar</span>
 					<i className="fa-solid fa-arrow-left"></i>
 				</button>
-			</div>
+			</div> */}
 		</div>
 	);
 };
