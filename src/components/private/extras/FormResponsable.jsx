@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import url from '../../../keys/backend_keys';
 
 const FormResponsable = ({ datos, set_datos }) => {
+	const [password, setPassword] = useState(true)
+
+	const cambioEstadoPass = () =>{
+		setPassword(!password)
+	}
+
 	return (
 		<>
 			<Formik
 				initialValues={{
 					nombre: '',
-					email: '',
+					// email: '',
 					dni: '',
 					password: '',
 				}}
@@ -17,20 +23,20 @@ const FormResponsable = ({ datos, set_datos }) => {
 					if (!valores.nombre) {
 						errores.nombre = 'Por favor ingrese su nombre';
 					} else if (
-						!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.nombre)
+						!/^[a-zA-ZÀ-ÿ\s]{1,100}$/.test(valores.nombre)
 					) {
 						errores.nombre =
 							'EL nombre sólo puede contener letras y espacios';
 					}
-					if (!valores.email) {
-						errores.email = 'Por favor ingrese su correo';
-					} else if (
-						!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
-							valores.email
-						)
-					) {
-						errores.email = 'Por favor ingresa un correo';
-					}
+					// if (!valores.email) {
+					// 	errores.email = 'Por favor ingrese su correo';
+					// } else if (
+					// 	!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
+					// 		valores.email
+					// 	)
+					// ) {
+					// 	errores.email = 'Por favor ingresa un correo';
+					// }
 					if (!valores.dni) {
 						errores.dni = 'Por favor ingrese el DNI';
 					} else if (!/^[0-9]{8,8}$/.test(valores.dni)) {
@@ -73,7 +79,7 @@ const FormResponsable = ({ datos, set_datos }) => {
 										dni: valores.dni,
 										_id: data.uid,
 										nombre: valores.nombre,
-										email: valores.email,
+										// email: valores.email,
 									},
 								]);
 							} else {
@@ -86,7 +92,7 @@ const FormResponsable = ({ datos, set_datos }) => {
 				{({ errors }) => (
 					<Form className="formulario">
 						<div>
-							<label htmlFor="nombre">Nombre</label>
+							<label htmlFor="nombre"><strong>Nombre (mamá)</strong></label>
 							<div>
 								<Field
 									type="text"
@@ -108,13 +114,42 @@ const FormResponsable = ({ datos, set_datos }) => {
 							</div>
 						</div>
 						<div>
-							<label htmlFor="password">Password</label>
+							<label><strong>DNI (mamá)</strong></label>
+							{/* </div> */}
 							<div>
-								<Field
-									type="password"
-									id="password"
-									name="password"
-								></Field>
+								<Field type="text" name="dni"></Field>
+								<ErrorMessage
+									name="dni"
+									component={() => (
+										<div
+											className="msj_error_login"
+											// style={{ margin: '0' }}
+										>
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.dni}</span>
+										</div>
+									)}
+								/>
+							</div>
+						</div>
+						<div>
+							<label htmlFor="password"><strong>Password</strong></label>
+							<div>
+								<section className='responsablePassword'>
+									<Field
+										type={password ? "password" : "text"}
+										id="password"
+										name="password"
+									></Field>
+									{
+										password ? 
+											<i class="fa-solid fa-eye" onClick={cambioEstadoPass}></i> 
+										:
+											<i class="fa-solid fa-eye-slash" onClick={cambioEstadoPass}></i>
+									}
+								</section>
 								<ErrorMessage
 									name="password"
 									component={() => (
@@ -128,7 +163,7 @@ const FormResponsable = ({ datos, set_datos }) => {
 								/>
 							</div>
 						</div>
-						<div>
+						{/* <div>
 							<label htmlFor="email">Correo</label>
 							<div>
 								<Field
@@ -149,28 +184,7 @@ const FormResponsable = ({ datos, set_datos }) => {
 									)}
 								/>
 							</div>
-						</div>
-						<div>
-							<label>DNI</label>
-							{/* </div> */}
-							<div>
-								<Field type="text" name="dni"></Field>
-								<ErrorMessage
-									name="dni"
-									component={() => (
-										<div
-											className="msj_error_login"
-											// style={{ margin: '0' }}
-										>
-											<span>
-												<i className="fas fa-times-circle"></i>
-											</span>
-											<span>{errors.dni}</span>
-										</div>
-									)}
-								/>
-							</div>
-						</div>
+						</div> */}
 						<button
 							type="submit"
 							style={{

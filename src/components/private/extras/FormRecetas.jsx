@@ -28,8 +28,6 @@ const FormRecetas = () => {
         })
     }, [])
 
-    console.log("REC: ", Re)
-
     //PARA REGISTRAR DATOS DE RECETA
     const [MedicamentoReceta, setMedicamentoReceta] = useState([]);
     const handleChangeMed = (e) => {
@@ -134,7 +132,6 @@ const FormRecetas = () => {
             if(data.fechaProx){
                 setFecha(true)
             }
-            console.log("DATA DATITA: ", data)
         })
     }, [])
 
@@ -145,7 +142,6 @@ const FormRecetas = () => {
         })
     }
 
-    console.log("DATOS RECETA: ", Receta)
     //ACTUALIZANDO FECHA DE PRÓXIMA CITA EN RECETA
     const handleClick = (e) => {
         e.preventDefault()
@@ -260,7 +256,7 @@ const FormRecetas = () => {
         //OBTENIENDO CANTIDAD, MEDICAMENTO E INDICACIONES
         let datosMedic = []
         for (let i = 0; i < Re.length; i++) {
-            datosMedic.push([(i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ' (' + (Re[i].cantidad).toUpperCase() + ')', (i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ': ' + (Re[i].indicaciones).toUpperCase()])
+            datosMedic.push([(i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ' (' + (Re[i].cantidad).toUpperCase() + ')', (i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ': \n' + (Re[i].indicaciones.replace(/;/g, ' \n\n')).toUpperCase()])
         }
 
         //TABLA MEDICAMENTOS
@@ -331,7 +327,6 @@ const FormRecetas = () => {
                             onChange={handleChangeMed}
                         />
                     </div>
-                    {console.log("AEA: ", MedicamentoReceta.cantidad)}
                     <button onClick={() => AgregarMedicamento(dataItem)}>{isActive ? 'ACTUALIZAR MEDICAMENTO' : 'AGREGAR'}</button>
             </div>
             <div className={isActive ? 'buttonEnabled': 'buttonDisabled'}>
@@ -386,7 +381,6 @@ const FormRecetas = () => {
                                             if(Re.length - 1 == 0){
                                                 setBtnActive(false)
                                             }
-                                            console.log(Re.length - 1)
                                             var rpta = window.confirm("¿Desea eliminar este medicamento?")
                                             if(rpta){
                                                 fetch(`${url}/MedicamentoReceta/${item._id}`, {
