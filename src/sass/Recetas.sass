@@ -1,10 +1,11 @@
 .contenedorReceta
-    margin-top: 2.5%
-    width: 85%
-    height: 85vh
+    margin-top: 1.5%
+    // width: 85%
+    height: 82vh
     max-height: 85vh
-    max-width: 900px
+    max-width: 860px
     background: #f4f4f4
+    // background: red
     overflow-y: scroll
     border-radius: 10px
     
@@ -53,6 +54,20 @@
     .fila1-re
         display: grid
         grid-template-columns: repeat(2, 1fr)
+    
+    .fila2-re
+        margin-top: 2.5%
+        textarea
+            border: 1.5px solid #50B4A1
+            padding: 8px
+            width: 100%
+            display: block
+            background-color: #ffffff 
+            margin-top: 13px
+            resize: none
+            text-transform: uppercase
+            &:focus
+                border: 1.5px solid #50B4A1            
 
 .contenedor-re input,.contenedor-re select,.contenedor-re textarea,.contenedor-re button
     border: 1.5px solid #50B4A1
@@ -79,6 +94,56 @@
     margin-left: -40%
     margin-bottom: 10px
     text-transform: uppercase
+
+.listCantMed
+    display: block
+    position: relative
+    margin-top: -2.5%
+    .contenedorListCantidadMedic
+        position: absolute
+        .listaCantidadMedic
+            width: 175px
+            list-style: none
+            background: #dbdbdb
+            li
+                padding: 10px
+                cursor: pointer
+                &:hover
+                    border-left: 4px solid #50B4A1
+                    background: #FFF
+
+.listNombMed
+    margin-top: -2.5%
+    margin-left: -40.1%
+    position: relative
+    .contenedorListNombreMedic 
+        position: absolute   
+        .listaNombreMedic
+            list-style: none
+            width: 492.5px
+            background: #dbdbdb
+            cursor: pointer
+            li
+                padding: 10px
+                cursor: pointer
+                &:hover
+                    border-left: 4px solid #50B4A1
+                    background: #FFF
+
+.listIndMed
+    position: relative
+    .contenedorListIndicacionesMedic
+        position: absolute
+        .listaIndicacionesMedic
+            background: #dbdbdb
+            list-style: none
+            width: 701.5px
+            li
+                padding: 10px
+                cursor: pointer
+                &:hover
+                    border-left: 4px solid #50B4A1
+                    background: #FFF
 
 .contenedor-re button 
     background: #50B4A1
@@ -167,7 +232,7 @@
     margin-top: 3%
     margin-bottom: 2%
     button
-        padding: 10px
+        padding: 8px
         background-color: #50B4A1
         color: #FFF
         border: none

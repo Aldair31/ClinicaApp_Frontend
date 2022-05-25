@@ -144,7 +144,7 @@ const Vacunas = ({id}) => {
 						<div className='title'>2 MESES</div>
 						<br />
 						<div className='vacunasM'>
-							<label>DPT</label>
+							<label>Hexavalente</label>
 							<select
 								id='dpt'
 								name="dpt"
@@ -206,7 +206,7 @@ const Vacunas = ({id}) => {
 								<option value="1">Sí</option>
 							</select>
 							<input name="fecharotavirus" id='fecha5' disabled='true' onChange={handleChange} value={Dvacunas.fecharotavirus} type="date"></input>
-							<label>Hepatitis B</label>
+							{/* <label>Hepatitis B</label>
 							<select
 								id='hepatb2'
 								name="hepatb2"
@@ -225,14 +225,14 @@ const Vacunas = ({id}) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
-							<input name="fechahepatb2" id='fecha6' disabled='true' onChange={handleChange} value={Dvacunas.fechahepatb2} type="date"></input>
+							<input name="fechahepatb2" id='fecha6' disabled='true' onChange={handleChange} value={Dvacunas.fechahepatb2} type="date"></input> */}
 						</div>
 					</div>
 					<div className='vacunas'>
 						<div className='title'>4 MESES</div>
 						<br />
 						<div className='vacunasM'>
-							<label>DPT</label>
+							<label>Hexavalente</label>
 							<select
 								id='dpt2'	
 								name="dpt2"
@@ -294,7 +294,7 @@ const Vacunas = ({id}) => {
 								<option value="1">Sí</option>
 							</select>
 							<input name="fecharotavirus2" id='fecha9' disabled='true' onChange={handleChange} value={Dvacunas.fecharotavirus2} type="date"></input>
-							<label>Hepatitis B</label>
+							{/* <label>Hepatitis B</label>
 							<select
 								id='hepatb3'
 								name="hepatb3"
@@ -313,14 +313,14 @@ const Vacunas = ({id}) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
-							<input name="fechahepatb3" id='fecha10' disabled='true' onChange={handleChange} value={Dvacunas.fechahepatb3} type="date"></input>
+							<input name="fechahepatb3" id='fecha10' disabled='true' onChange={handleChange} value={Dvacunas.fechahepatb3} type="date"></input> */}
 						</div>
 					</div>
 					<div className='vacunas'>
 						<div className='title'>6 MESES</div>
 						<br />
 						<div className='vacunasM'>
-							<label>DPT</label>
+							<label>Hexavalente</label>
 							<select
 								id='dpt3'
 								name="dpt3"
@@ -382,7 +382,7 @@ const Vacunas = ({id}) => {
 								<option value="1">Sí</option>
 							</select>
 							<input name="fecharotavirus3" id='fecha13' disabled='true' onChange={handleChange} value={Dvacunas.fecharotavirus3} type="date"></input>
-							<label>Hepatitis B</label>
+							{/* <label>Hepatitis B</label>
 							<select
 								id='hepatb4'
 								name="hepatb4"
@@ -401,7 +401,7 @@ const Vacunas = ({id}) => {
 								<option value="2">No</option>
 								<option value="1">Sí</option>
 							</select>
-							<input name="fechahepatb4" id='fecha14' disabled='true' onChange={handleChange} value={Dvacunas.fechahepatb4} type="date"></input>
+							<input name="fechahepatb4" id='fecha14' disabled='true' onChange={handleChange} value={Dvacunas.fechahepatb4} type="date"></input> */}
 						</div>
 					</div>
 					<div className='vacunas'>

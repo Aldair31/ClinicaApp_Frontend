@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect,useState, useRef} from 'react';
 import { useParams } from 'react-router';
 import url from '../../../keys/backend_keys';
 import '../../../sass/Recetas.sass'
@@ -9,11 +9,14 @@ import { jsPDF } from "jspdf"
 import 'jspdf-autotable'
 
 import {Table} from "reactstrap";
+import useMedicamentos from '../../../hooks/useMedicamentos';
 
 const FormRecetas = () => {
     //ESTADO PARA SABER SI HAY MEDICAMENTOS EN UNA RECETA Y HABILITAR BOTONES PARA ACCIONES DE DOCUMENTO (MOSTRAR, DESCARGAR E IMPRIMIR)
     const [BtnAcitve, setBtnActive] = useState(false)
-
+    const [terminoCantidad, setTerminoCantidad] = useState("")
+    const [terminoNombre, setTerminoNombre] = useState("")
+    const [terminoIndicaciones, setTerminoIndicaciones] = useState("")
     //PARA OBTENER DATOS DE MEDICAMENTOS (CANTIDAD, MEDICAMENTOS, INDICACIONES) EN RECETA
     const [Re, setRe] = useState([])
 	let { id } = useParams();
@@ -28,13 +31,66 @@ const FormRecetas = () => {
         })
     }, [])
 
-    //PARA REGISTRAR DATOS DE RECETA
+    let {cantidadMedic, nombreMedic, indicacionesMedic} = useMedicamentos()
+
+    console.log('cantidad ',cantidadMedic)
+    console.log('nombre',nombreMedic)
+    console.log('indicaciones ',indicacionesMedic)
+
+    const cantidadMed = [...new Set(cantidadMedic)]
+    const nombreMed = [...new Set(nombreMedic)]
+    const indicacionesMed = [...new Set(indicacionesMedic)]
+    
+    console.log('cantidad de med',cantidadMed.slice(0,5));
+
+    const cantMedicina = () =>{
+        if (terminoCantidad.length===0) {
+            return cantidadMed.slice(0,5)
+        }
+
+        // const cantMed = cantidadMed.filter(buscarTermino(terminoCantidad.toUpperCase())).sort()
+        const cantMed = cantidadMed.filter(item => (item.toLowerCase()).includes(terminoCantidad.toLowerCase()))
+        // const cantMed = cantidadMed.filter(buscarTermino(terminoCantidad.toUpperCase())).sort()
+        return cantMed.slice(0,5)
+
+    }
+    const nombMedicina = () =>{
+        if (terminoNombre.length===0) {
+            return nombreMed.slice(0,5)
+        }
+
+        const nombMed = nombreMed.filter(buscarTermino(terminoNombre.toUpperCase())).sort()
+
+        return nombMed.slice(0,5)
+
+    }
+    const indMedicina = () =>{
+        if (terminoIndicaciones.length===0) {
+            return indicacionesMed.slice(0,5)
+        }
+
+        const indMed = indicacionesMed.filter(buscarTermino(terminoIndicaciones.toUpperCase())).sort()
+
+        return indMed.slice(0,5)
+
+    }
     const [MedicamentoReceta, setMedicamentoReceta] = useState([]);
     const handleChangeMed = (e) => {
         setMedicamentoReceta({
             ...MedicamentoReceta,
             [e.target.name]: e.target.value,
         });
+        if (MedicamentoReceta.cantidad) {
+            setTerminoCantidad(e.target.value)
+        }
+        if (MedicamentoReceta.nombreMedicina) {
+            setTerminoNombre(e.target.value)
+        }
+        if (MedicamentoReceta.indicaciones) {
+            setTerminoIndicaciones(e.target.value)
+        }
+        
+        
     };
     
     //ESTADO PARA SABER SI SE VA A ACTUALIZAR Y CAMBIAR EL NOMBRE DEL BOTÓN
@@ -135,6 +191,7 @@ const FormRecetas = () => {
         })
     }, [])
 
+    // console.log('Recetas', Receta)
     const handleChangeRe = (e) => {
         setReceta({
             ...Receta,
@@ -256,7 +313,7 @@ const FormRecetas = () => {
         //OBTENIENDO CANTIDAD, MEDICAMENTO E INDICACIONES
         let datosMedic = []
         for (let i = 0; i < Re.length; i++) {
-            datosMedic.push([(i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ' (' + (Re[i].cantidad).toUpperCase() + ')', (i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ': \n' + (Re[i].indicaciones.replace(/;/g, ' \n\n')).toUpperCase()])
+            datosMedic.push([(i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ' (' + (Re[i].cantidad).toUpperCase() + ')', (i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ':\n' + (Re[i].indicaciones.replace(/;/g, '\n\n')).toUpperCase()])
         }
 
         //TABLA MEDICAMENTOS
@@ -298,34 +355,208 @@ const FormRecetas = () => {
     //PARA PODER PASAR EL ITEM DEL MAP DE DATOS Y EDITAR
     const [dataItem, setDataItem] = useState({})
 
+
+    const [completarCantidad, setCompletarCantidad] = useState(false)
+    const [completarNombre, setCompletarNombre] = useState(false)
+    const [completarIndicaciones, setCompletarIndicaciones] = useState(false)
+
+    function buscarTermino(term){
+		return function(x){
+			return (x.toUpperCase()).includes(term) || !term
+		}
+	}
+
+    console.log('Medicamentos', MedicamentoReceta)
+    const handleCantidadMedic = (item) =>{
+        console.log('datos seleccionados')
+        
+        setMedicamentoReceta(
+            {
+                ...MedicamentoReceta,
+                cantidad:item
+            }
+        )
+        setCompletarCantidad(false)
+        setCompletarNombre(false)
+        setCompletarIndicaciones(false)
+        
+    }
+
+    const handleNombreMedic = (item) =>{
+        // console.log('datos seleccionados')
+        setMedicamentoReceta(
+            {
+                ...MedicamentoReceta,
+                nombreMedicina:item
+            }
+        )
+        setCompletarNombre(false)  
+    }
+    const handleIndicacionesMedic = (item) =>{
+        // console.log('datos seleccionados')
+        setMedicamentoReceta(
+            {
+                ...MedicamentoReceta,
+                indicaciones:item
+            }
+        )
+        setCompletarIndicaciones(false)  
+    }
+
+    const cantidadRef = useRef()
+    const nombreRef = useRef()
+    const indicacionesRef = useRef()
+    const ocultarCantidad = () =>{
+        const handleOutCantidad = (event)=>{
+            if (cantidadRef.current && !cantidadRef.current.contains(event.target)) {
+                    setCompletarCantidad(false)
+                    
+            }
+        }
+        document.addEventListener('click', handleOutCantidad);
+        return ()=>{
+            document.removeEventListener('click', handleOutCantidad);
+        }
+    }
+    const ocultarNombre = () =>{
+        const handleOutNombre = (event)=>{
+            if (nombreRef.current && !nombreRef.current.contains(event.target)) {
+                    setCompletarNombre(false)
+                    
+            }
+        }
+        document.addEventListener('click', handleOutNombre);
+        return ()=>{
+            document.removeEventListener('click', handleOutNombre);
+        }
+    }
+    const ocultarIndicaciones = () =>{
+        const handleOutIndicaciones = (event)=>{
+            if (indicacionesRef.current && !indicacionesRef.current.contains(event.target)) {
+                    setCompletarIndicaciones(false)
+                    
+            }
+        }
+        document.addEventListener('click', handleOutIndicaciones);
+        return ()=>{
+            document.removeEventListener('click', handleOutIndicaciones);
+        }
+    }
+
     return (
-        <div className='contenedorReceta'>
+        <div className='contenedorReceta' 
+            onClick={()=>{(ocultarCantidad(), ocultarNombre(), ocultarIndicaciones())}}
+        >
             <div className='titulo-re'>
                 <h3>AGREGAR RECETA MÉDICA</h3>
             </div>
-            <div className='contenedor-re'>
-                    <div className='fila1-re'>
-                        <div className='cantidad-re'>
+            <div className='contenedor-re'
+                >
+                    <div className='fila1-re' 
+                    >
+                        
+                        <div className='cantidad-re' >
                             <label>CANTIDAD</label>
-                            <input placeholder="CANTIDAD" type="text" name="cantidad" id='cantidad' value={MedicamentoReceta.cantidad} onChange={handleChangeMed}/>
+                            <input 
+                                ref={cantidadRef}
+                                placeholder="CANTIDAD" 
+                                type="text" 
+                                autoComplete='off'
+                                name="cantidad" 
+                                id='cantidad' 
+                                value={MedicamentoReceta.cantidad} 
+                                onChange={handleChangeMed}
+                                onFocus={()=>setCompletarCantidad(true)}
+                                onBlur={()=>{
+                                    // !completarCantidad ? ()=>{setCompletarCantidad(false)} : null
+                                    // ()=>handleCantidadMedic([])
+                                    // setTimeout(()=>{
+                                    //     setCompletarCantidad(false)
+                                    // },1000)
+                                }}
+                                onClick={completarCantidad ? (()=>{setCompletarNombre(false),setCompletarIndicaciones(false)}): null}
+                            />
+                            <div className={'listCantMed'}>
+                                <div className='contenedorListCantidadMedic'>
+                                    {
+                                        completarCantidad && cantMedicina().map((item) => (
+                                            <>
+                                                <ul className='listaCantidadMedic'>
+                                                    <li onClick={()=>handleCantidadMedic(item)} key={item}>
+                                                        {item}
+                                                    </li>
+                                                </ul> 
+                                            </>
+                                        ))
+                                    }
+                                </div>
+                            </div>
                         </div>
+                        
                         <div className='medicamento-re'>
                             <label>MEDICAMENTO</label>
-                            <input placeholder="MEDICAMENTO" type="text" name="nombreMedicina" id='medicamento' value={MedicamentoReceta.nombreMedicina} onChange={handleChangeMed}/>
+                            <input 
+                                ref={nombreRef}
+                                placeholder="MEDICAMENTO" 
+                                type="text" 
+                                autoComplete='off' 
+                                name="nombreMedicina" id='medicamento' 
+                                value={MedicamentoReceta.nombreMedicina} 
+                                onChange={handleChangeMed}
+                                onFocus={()=>setCompletarNombre(true)}
+                                // onBlur={()=>{
+                                //         setCompletarNombre(false)
+                                // }}
+                                onClick={completarNombre ? (()=>{setCompletarCantidad(false),setCompletarIndicaciones(false)}) : null}
+                            />
+                            <div className='listNombMed'>
+                                <div className='contenedorListNombreMedic'>
+                                    {
+                                        completarNombre && nombMedicina().map((item) => (
+                                            <ul className='listaNombreMedic'>
+                                                <li onClick={()=>handleNombreMedic(item)} key={item}>
+                                                    {item}
+                                                </li>
+                                            </ul>
+                                        ))   
+                                    }
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                     <div className='fila2-re'>
                         <label>INDICACIONES</label>
-                        <input
+                        <textarea
+                            ref={indicacionesRef}
                             type="text" 
                             placeholder="INDICACIONES"
+                            autoComplete='off'
                             rows="3"
                             cols="50"
                             name="indicaciones"
                             id='indicaciones'
                             value={MedicamentoReceta.indicaciones}
                             onChange={handleChangeMed}
+                            onFocus={()=>setCompletarIndicaciones(true)}
+                            onBlur={()=>{
+                                // setCompletarIndicaciones(false)
+                            }}
+                            onClick={completarIndicaciones ? (()=>{setCompletarCantidad(false),setCompletarNombre(false)}) : null}
                         />
+                        <div className='listIndMed'>
+                            <div className='contenedorListIndicacionesMedic'>
+                                {
+                                    completarIndicaciones && indMedicina().map((item) => (
+                                        <ul className='listaIndicacionesMedic'>
+                                            <li onClick={()=>handleIndicacionesMedic(item)} key={item}>
+                                                {item}
+                                            </li>
+                                        </ul>
+                                    ))  
+                                }
+                            </div>
+                        </div>
                     </div>
                     <button onClick={() => AgregarMedicamento(dataItem)}>{isActive ? 'ACTUALIZAR MEDICAMENTO' : 'AGREGAR'}</button>
             </div>
@@ -448,7 +679,7 @@ const FormRecetas = () => {
                 <div className={BtnAcitve && Fecha ? 'notDisabled': 'Disabled'}>
                     <button id='imprimirRe' onClick={imprimirDoc} disabled={BtnAcitve && Fecha?false:true}>IMPRIMIR RECETA</button>
                 </div>
-            </div>
+            </div>   
         </div>
     )
 }

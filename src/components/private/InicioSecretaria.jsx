@@ -204,7 +204,7 @@ const InicioSecretaria =  () => {
                             <button 
                             onClick={(e) => {
                                 e.preventDefault();
-                                if(moment(moment(new Date(`${reservas.fecha} ${reservas.hora}`)).format()).isBefore(reservas.fecha+'T08:59:59-05:00') || moment(moment(new Date(`${reservas.fecha} ${reservas.hora}`)).format()).isAfter(reservas.fecha+'T21:00:00-05:00') || moment(moment(new Date(`${reservas.fecha} ${reservas.hora}`)).format()).isBetween((reservas.fecha+'T12:59:59-05:00'), (reservas.fecha+'T15:59:59-05:00'))){
+                                if(moment(moment(new Date(`${reservas.fecha} ${reservas.hora}`)).format()).isBefore(reservas.fecha+'T08:59:59-05:00') || moment(moment(new Date(`${reservas.fecha} ${reservas.hora}`)).format()).isAfter(reservas.fecha+'T21:00:00-05:00') || moment(moment(new Date(`${reservas.fecha} ${reservas.hora}`)).format()).isBetween((reservas.fecha+'T14:00:00-05:00'), (reservas.fecha+'T15:59:59-05:00'))){
                                     alert('Registre una reserva a otra hora ')
                                 }
                                 // if (reservas.hora == '13:00' || reservas.hora == '13:30' || reservas.hora == '14:00' || reservas.hora == '14:30' || reservas.hora == '15:00' || reservas.hora == '15:30'){
