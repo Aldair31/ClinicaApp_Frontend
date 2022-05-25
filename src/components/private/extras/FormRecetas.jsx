@@ -445,7 +445,8 @@ const FormRecetas = () => {
 
     return (
         <div className='contenedorReceta' 
-            onClick={()=>{(ocultarCantidad(), ocultarNombre(), ocultarIndicaciones())}}
+            // onClick={()=>{(ocultarCantidad(), ocultarNombre(), ocultarIndicaciones())}}
+            onClick={()=>(ocultarCantidad(), ocultarNombre(), ocultarIndicaciones())}
         >
             <div className='titulo-re'>
                 <h3>AGREGAR RECETA MÉDICA</h3>
@@ -474,7 +475,14 @@ const FormRecetas = () => {
                                     //     setCompletarCantidad(false)
                                     // },1000)
                                 }}
-                                onClick={completarCantidad ? (()=>{setCompletarNombre(false),setCompletarIndicaciones(false)}): null}
+                                // onClick={completarCantidad ? (()=>{setCompletarNombre(false),setCompletarIndicaciones(false)}): null}
+                                // onClick={() => (
+                                //     completarCantidad ? (
+                                //         setCompletarNombre(false),
+                                //         setCompletarIndicaciones(false)
+                                //     ) :
+                                //         null
+                                // )}
                             />
                             <div className={'listCantMed'}>
                                 <div className='contenedorListCantidadMedic'>
@@ -507,7 +515,7 @@ const FormRecetas = () => {
                                 // onBlur={()=>{
                                 //         setCompletarNombre(false)
                                 // }}
-                                onClick={completarNombre ? (()=>{setCompletarCantidad(false),setCompletarIndicaciones(false)}) : null}
+                                // onClick={completarNombre ? (()=>{setCompletarCantidad(false),setCompletarIndicaciones(false)}) : null}
                             />
                             <div className='listNombMed'>
                                 <div className='contenedorListNombreMedic'>
@@ -542,7 +550,7 @@ const FormRecetas = () => {
                             onBlur={()=>{
                                 // setCompletarIndicaciones(false)
                             }}
-                            onClick={completarIndicaciones ? (()=>{setCompletarCantidad(false),setCompletarNombre(false)}) : null}
+                            // onClick={completarIndicaciones ? (()=>{setCompletarCantidad(false),setCompletarNombre(false)}) : null}
                         />
                         <div className='listIndMed'>
                             <div className='contenedorListIndicacionesMedic'>
