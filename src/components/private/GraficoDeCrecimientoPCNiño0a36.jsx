@@ -3,6 +3,7 @@ import React from 'react'
 import { Line } from 'react-chartjs-2'
 import useHistClinica from '../../hooks/useHistClinica'
 import RedireccionAGraficos from './RedireccionAGraficos'
+import calcularEdad from './../../functions/calcularEdad'
 
 const GraficoDeCrecimientoPCNiño0a36 = () => {
 	//IMG
@@ -15,15 +16,15 @@ const GraficoDeCrecimientoPCNiño0a36 = () => {
 	let meses = [] 
 
 	for (let item in fechaHistoria){
-		if(moment(fechaHistoria[item]).diff(moment(fechaNac[0]).format(), 'months') <= 36){
-			if((moment.duration(moment(fechaHistoria[item]).diff(moment(fechaNac[0])))).days() > 15){
-				meses[item] = moment(fechaHistoria[item]).diff(moment(fechaNac[0]).format(), 'months') * 2 + 2
+		let {years, months, days} = calcularEdad(fechaHistoria[item], fechaNac[0])
+		if(years*12 + months <= 36){
+			if(days > 15){
+				meses[item] = (years*12 + months) * 2 + 1
 			}
 			else{
-				meses[item] = (moment(fechaHistoria[item]).diff(moment(fechaNac[0]).format(), 'months') * 2 + 1)
+				meses[item] = (years*12 + months) * 2
 			}
 		}
-
 	}
 
 	for (var i = 0; i<meses.length; i++){
@@ -57,7 +58,15 @@ const GraficoDeCrecimientoPCNiño0a36 = () => {
 						pointRadius : 0
                     },
 					{
-						label : 'Ideal mínimo 2',
+                        label: 'Ideal mínimo 2',
+						data : [32.14881, null, 33.83392, null, 36.26428, null, 37.97959, null, 39.27893, null, 40.30766, null, 41.14714, null, 41.84742, null, 42.44134, null, 42.95162, null, 43.39458, null, 43.7823, null, 44.12399, null, 44.42679, null, 44.69639, null, 44.93733, null, 45.15333, null, 45.34746, null, 45.52229, null, 45.67997, null, 45.82234, null, 45.95096, null, 46.06719, null, 46.17221, null, 46.26704, null, 46.35259, null, 46.42963, null, 46.49889, null,46.56098, null, 46.61646, null, 46.66583, null, 46.70954, null, 46.74801, null, 46.78159, null, 46.81061, null, 46.8354, null, 46.85621, null, 46.86521],
+						borderColor : 'rgba(1, 97, 170, 1)',
+                        borderWidth: 1,
+						spanGaps : true,
+						pointRadius : 0
+                    },
+					{
+						label : 'Ideal mínimo 3',
 						data: [33.08389, null, 34.67253, null, 36.97377, null, 38.60724, null, 39.85123, null, 40.84114, null, 41.65291, null, 42.3333, null, 42.91311, null, 43.41365, null, 43.85025, null, 44.23432, null, 44.57454, null, 44.87767, null, 45.14908, null, 45.3931, null, 45.61325, null, 45.81245, null, 45.99315, null, 46.15739, null, 46.30692, null, 46.44325, null, 46.56767, null, 46.68129, null, 46.78511, null, 46.87997, null, 46.96663, null, 47.04578, null, 47.11801, null, 47.18385, null, 47.24379, null, 47.29824, null, 47.34761, null, 47.39225, null, 47.43247, null, 47.46857, null, 47.50081, null, 47.51556],
 						borderColor : 'rgba(1, 97, 170, 1)',
                         borderWidth: 1,
@@ -65,7 +74,7 @@ const GraficoDeCrecimientoPCNiño0a36 = () => {
 						pointRadius : 0
 					},
 					{
-						label : 'Ideal mínimo 3',
+						label : 'Ideal mínimo 4',
 						data: [34.46952, null, 35.93987, null, 38.07878, null, 39.60637, null, 40.77713, null, 41.71483, null, 42.48889, null, 43.14204, null, 43.70245, null, 44.18964, null, 44.61764, null, 44.99694, null, 45.33549, null, 45.63952, null, 45.91398, null, 46.16284, null, 46.38937, null, 46.59626, null, 46.78578, null, 46.95981, null, 47.11999, null, 47.26769, null, 47.40413, null, 47.53035, null, 47.64724, null, 47.75563, null, 47.85621, null, 47.94962, null, 48.0364, null, 48.11707, null, 48.19206, null, 48.26178, null, 48.3266, null, 48.38684, null, 48.44281, null, 48.49479, null, 48.54301, null, 48.56578],
 						borderColor : 'rgba(1, 97, 170, 1)',
                         borderWidth: 1,
@@ -76,8 +85,8 @@ const GraficoDeCrecimientoPCNiño0a36 = () => {
 					{
 						label : 'Ideal',
 						data: [35.81367, null, 37.19361, null, 39.20743, null, 40.65233, null, 41.76517, null, 42.66116, null, 43.40489, null, 44.0361, null, 44.58097, null, 45.05761, null, 45.47908, null, 45.85506, null, 46.19295, null, 46.49853, null, 46.77638, null, 47.03018, null, 47.26295, null, 47.47721, null, 47.67504, null, 47.85821, null, 48.02822, null, 48.18637, null, 48.33377, null, 48.4714, null, 48.60011, null, 48.72065, null, 48.83367, null, 48.93976, null, 49.03945, null, 49.13321, null, 49.22146, null, 49.30458, null, 49.38292, null, 49.45678, null, 49.52645, null, 49.59218, null, 49.65423, null, 49.68394],
-						borderColor : 'rgba(1, 97, 170, 1)',
-                        borderWidth: 2,
+						borderColor : 'rgba(119, 185, 0, 1)',
+                        borderWidth: 3,
                         spanGaps : true,
 						pointRadius : 0
 					},
@@ -100,6 +109,14 @@ const GraficoDeCrecimientoPCNiño0a36 = () => {
 					},
 					{
 						label : 'Ideal máximo 3',
+						data: [38.51574, null, 39.77262, null, 41.62581, null, 42.97189, null, 44.01984, null, 44.87197, null, 45.58593, null, 46.19736, null, 46.72983, null, 47.1997, null, 47.6188, null, 47.99592, null, 48.33781, null, 48.64972, null, 48.93584, null, 49.19955, null, 49.44362, null, 49.67034, null, 49.88166, null, 50.07919, null, 50.26432, null, 50.43825, null, 50.60203, null, 50.75654, null, 50.90258, null, 51.04085, null, 51.17196, null, 51.29647, null, 51.41485, null, 51.52756, null, 51.63499, null, 51.73749, null, 51.83539, null, 51.92898, null, 52.01853, null, 52.10429, null, 52.18646, null, 52.22628],
+						borderColor : 'rgba(1, 97, 170, 1)',
+                        borderWidth: 1,
+                        spanGaps : true,
+						pointRadius : 0
+					},
+					{
+						label : 'Ideal máximo 4',
 						data: [38.85417, null, 40.10028, null, 41.94138, null, 43.28181, null, 44.32733, null, 45.17877, null, 45.893, null, 46.50524, null, 47.0388, null, 47.5099, null, 47.93027, null, 48.30867, null, 48.65181, null, 48.96494, null, 49.25225, null, 49.51712, null, 49.76233, null, 49.99018, null, 50.20261, null, 50.40125, null, 50.58751, null, 50.76259, null, 50.92752, null, 51.08322, null, 51.23047, null, 51.36998, null, 51.50236, null, 51.62817, null, 51.7479, null, 51.86198, null, 51.97081, null, 52.07475, null, 52.17413, null, 52.26923, null, 52.36032, null, 52.44764, null, 52.53143, null, 52.57205],
 						borderColor : 'rgba(1, 97, 170, 1)',
                         borderWidth: 2,

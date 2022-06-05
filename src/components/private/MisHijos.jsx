@@ -35,7 +35,7 @@ const MisHijos = ({ usuario }) => {
 							<div className="card-hijo">
 								<div className="card-details">
 									<p className="text-title">{item.nombres_paciente}</p>
-									{/* <p class="text-body">Here are the details of the card</p> */}
+									{/* <p className="text-body">Here are the details of the card</p> */}
 								</div>
 								<button className="card-button">
 									<Link to={`/hijo/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>Ver info	</Link>

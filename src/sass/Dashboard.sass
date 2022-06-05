@@ -69,8 +69,8 @@
                     margin-right: 15px
     .list
         h2
+            // margin-top: 24px
             margin-bottom: 16px
-            margin-top: 24px
             span
                 text-decoration: underline
                 cursor: pointer
@@ -138,6 +138,40 @@
                         svg
                             cursor: pointer
 
+.opcionesCita
+    display: flex
+    justify-content: space-between
+    width: 85%
+    margin-top: 24px
+    margin-bottom: 24px
+    .agregarCita
+        display: flex
+        align-items: center
+        justify-content: center
+        height: 30px
+        column-gap: 10px
+        border-radius: 15px
+        width: 150px
+        border: 2px solid #379e8b
+        // padding: 0px 5px
+        i, p
+            font-size: 17px
+            font-weight: 500
+            color: #379e8b
+    .agregarCita:hover
+        cursor: pointer
+    .selectorFecha
+        // display: grid
+        // grid-template-columns: repeat(2, 1fr)
+        display: flex
+        width: 100%
+        justify-content: left
+        gap: 10px
+        input
+            border: 2px solid #379e8b
+            padding: 2px 5px
+            // text-align: center
+            // border-style: none
 .card
     width: 200px
     height: 300px

@@ -41,7 +41,13 @@ const Responsables = () => {
 		setForm(!form);
 	};
 	datos.sort((a, b) => {
-		return (a.nombre.toLowerCase() < b.nombre.toLowerCase()) ? -1 : 1})
+		return (a.nombre.toLowerCase() < b.nombre.toLowerCase()) ? -1 : 1
+	})
+
+	for(let item in datos){
+		datos[item].numero = parseInt(item)+1
+	}
+
 	// const onDelete = (id) => {
 	// 	fetch(`${url}/api/auth/${id}`, {
 	// 		headers: {
@@ -96,8 +102,8 @@ const Responsables = () => {
 		<>
 			<div style={{display: 'flex', justifyContent: 'space-between'}}>
 				<h2 className='tituloRespAgregar'>
-					Responsables&nbsp;&nbsp;&nbsp;&nbsp;
-					<span onClick={onForm}>Nuevo</span>
+					Responsables
+					{/* <span onClick={onForm}>Nuevo</span> */}
 				</h2>
 				{form && <MostrarFormNuevo datos={datos} set_datos={set_datos}/>}
 				<div 
@@ -130,7 +136,7 @@ const Responsables = () => {
 						<div key={item._id} className="contenedorDatosPaciente">
 							<div className='contenidoDatosPaciente'>
 								<div className='nombrePaciente'>
-									<p><i class="fa-regular fa-address-book"></i></p>
+									<p><b>{item.numero}.      </b><i className="fa-regular fa-address-book"></i></p>
 									<p>{item.nombre}</p>
 								</div>
 								{/* <p className='dniPac'>{item.dni_paciente}</p> */}

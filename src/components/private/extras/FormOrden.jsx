@@ -159,7 +159,7 @@ const FormOrden = () => {
         //OBTENIENDO SOLO INDICACIONES
         let datosIndic = []
         for (let i = 0; i < Orden.length; i++) {
-            datosIndic.push([(i+1) + '. ' + (Orden[i].indicaciones).toUpperCase()])
+            datosIndic.push([(i+1) + '. ' + (Orden[i].indicaciones.replace(/;/g, '\n\n')).toUpperCase()])
         }
         
         //TABLA PARA INDICACIONES
@@ -175,27 +175,31 @@ const FormOrden = () => {
             }
         })
         
-        return doc
+        let tituloPDF = 'ORDEN - ' + nombrePac + '-' + moment(Historia.histClinica.fecha).format('DD/MM/YYYY')
+        //DARLE NOMBRE AL PDF
+        doc.setProperties({title: tituloPDF})
+        
+        return {doc, tituloPDF}
     }
 
     // ACCIONES PDF
     const mostrarDoc = () => {
-        var doc = new jsPDF('p', 'mm', [242, 104])
-        doc = DocOrden()
-        doc.output('dataurlnewwindow', 'Orden.pdf')
+        // var doc = new jsPDF('p', 'mm', [242, 104])
+        let {doc, tituloPDF} = DocOrden()
+        doc.output('dataurlnewwindow', tituloPDF)
     }
     
     const guardarDoc = () => {
-        var doc = new jsPDF('p', 'mm', [242, 104])
-        doc = DocOrden()
-        doc.save('Orden.pdf')
+        // var doc = new jsPDF('p', 'mm', [242, 104])
+        let {doc, tituloPDF} = DocOrden()
+        doc.save(tituloPDF)
     }
 
     const imprimirDoc = () => {
-        var doc = new jsPDF('p', 'mm', [242, 104])
-        doc = DocOrden()
+        // var doc = new jsPDF('p', 'mm', [242, 104])
+        let {doc, tituloPDF} = DocOrden()
         doc.autoPrint()
-        doc.output('dataurlnewwindow', 'Orden.pdf')
+        doc.output('dataurlnewwindow', tituloPDF)
     }
 
     //PARA PODER PASAR EL ITEM DEL MAP DE DATOS Y EDITAR
@@ -293,7 +297,7 @@ const FormOrden = () => {
                                             setDataItem(item)
                                         }}
                                     >
-                                        <i class="fas fa-pen" style={{color:'#0079EC'}}></i>
+                                        <i className="fas fa-pen" style={{color:'#0079EC'}}></i>
                                     </button>
                                 </td>
                             </tr>

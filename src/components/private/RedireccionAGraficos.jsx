@@ -22,7 +22,7 @@ const RedireccionAGraficos = ({usuario}) =>{
                             <i className="fa-solid fa-arrow-left"></i>
                         </button>
                         {/* <button onClick={()=>{history.push(`/GraficoDeCrecimiento/${id}`)}}>
-						    <i class="fas fa-angle-left"></i>
+						    <i className="fas fa-angle-left"></i>
 					    </button> */}
 					{/* </div> */}
 				</>

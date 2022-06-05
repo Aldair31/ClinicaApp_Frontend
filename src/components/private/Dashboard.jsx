@@ -20,6 +20,7 @@ import MisHijos from './MisHijos';
 import Filiacion from './Filiacion';
 import Responsables from './Responsables';
 import NuevaCita from './NuevaCita';
+import MisCitasSecretaria from './MisCitasSecretaria';
 import DatosF from './DatosF';
 
 import HistoriasClinicas from './extras/HistoriasClinicas'
@@ -67,7 +68,7 @@ const Dashboard = ({ usuario, logout }) => {
 					<Header/>
 					<div className="btn_ops">
 						<button className="ops" onClick={()=>{setOpen(!open)}}>
-							<i class="fas fa-bars"></i>
+							<i className="fas fa-bars"></i>
 						</button>
 					</div>
 				</div>
@@ -149,7 +150,23 @@ const Dashboard = ({ usuario, logout }) => {
 													<path d="M6 12h10v1h-10v-1zm7.816-3h-7.816v1h9.047c-.45-.283-.863-.618-1.231-1zm5.184 1.975v2.569c0 4.106-6 2.456-6 2.456s1.518 6-2.638 6h-7.362v-20h9.5c.312-.749.763-1.424 1.316-2h-12.816v24h10.189c3.163 0 9.811-7.223 9.811-9.614v-3.886c-.623.26-1.297.421-2 .475zm-13-3.975h6.5c-.134-.32-.237-.656-.319-1h-6.181v1zm17-2.5c0 2.485-2.017 4.5-4.5 4.5s-4.5-2.015-4.5-4.5 2.017-4.5 4.5-4.5 4.5 2.015 4.5 4.5zm-2-.5h-2v-2h-1v2h-2v1h2v2h1v-2h2v-1z" />
 												</svg>
 											</NavLink>
-											Nueva cita
+											Nueva Cita
+										</div>
+										<div className="itemLong">
+											<NavLink
+												className="item"
+												to="/mis-citas"
+											>
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="24"
+													height="24"
+													viewBox="0 0 24 24"
+												>
+													<path d="M15.91 13.34l2.636-4.026-.454-.406-3.673 3.099c-.675-.138-1.402.068-1.894.618-.736.823-.665 2.088.159 2.824.824.736 2.088.665 2.824-.159.492-.55.615-1.295.402-1.95zm-3.91-10.646v-2.694h4v2.694c-1.439-.243-2.592-.238-4 0zm8.851 2.064l1.407-1.407 1.414 1.414-1.321 1.321c-.462-.484-.964-.927-1.5-1.328zm-18.851 4.242h8v2h-8v-2zm-2 4h8v2h-8v-2zm3 4h7v2h-7v-2zm21-3c0 5.523-4.477 10-10 10-2.79 0-5.3-1.155-7.111-3h3.28c1.138.631 2.439 1 3.831 1 4.411 0 8-3.589 8-8s-3.589-8-8-8c-1.392 0-2.693.369-3.831 1h-3.28c1.811-1.845 4.321-3 7.111-3 5.523 0 10 4.477 10 10z" />
+												</svg>
+											</NavLink>
+											Mis Citas
 										</div>
 										<div className="itemLong">
 											<NavLink
@@ -349,6 +366,10 @@ const Dashboard = ({ usuario, logout }) => {
 								<Route
 									path="/nueva-cita"
 									component={NuevaCita}
+								/>
+								<Route
+									path="/mis-citas"
+									component={MisCitasSecretaria}
 								/>
 								<Route
 									path="/responsables"

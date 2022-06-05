@@ -3,8 +3,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import consumNuevaCita from '../../../functions/citas';
 import moment from 'moment';
 import getFecha from '../../../functions/fecha'
+import consumCitaActualizada from '../../../functions/citaActualizada';
+import useCita from '../../../hooks/useCita';
 // consumNuevaCita
-const FormCita = () => {
+const FormCita = ({item}) => {
+	let [datos_af, loading, set_datos_af] = useCita();
 	const consumirNuevaCita = async (body) => {
 		console.log(body);
 		let resultado = await consumNuevaCita(body);
@@ -18,24 +21,43 @@ const FormCita = () => {
 			return true;
 		}
 	};
+
+	const consumirCitaActualizada = async (body) => {
+		let resultado = await consumCitaActualizada(body);
+		if (resultado.ok){
+			alert("Cita actualizada")
+		}
+	}
+
 	return (
-		<>
+		<div>
 			<div><h2>Registro de Citas</h2></div>
 			<br />
 			<br />
 			<Formik
-				initialValues={{
-					nombre_paciente: '',
-					dni_paciente: '',
-					responsable: '',
-					telefono: '',
-					//fecha_nac: '',
-					motivo: '3',
-					//sexo: '1',
-					hora: '',
-					fecha: '',
-					condicion: '1',
-				}}
+				initialValues={
+					item != undefined ? {
+						nombre_paciente: item.nombre_paciente,
+						dni_paciente: item.dni_paciente,
+						responsable: item.responsable,
+						telefono: item.telefono,
+						motivo: item.motivo,
+						hora: item.hora,
+						fecha: moment(item.fecha).format('YYYY-MM-DD'),
+						condicion: item.condicion,
+					} : {
+						nombre_paciente: '',
+						dni_paciente: '',
+						responsable: '',
+						telefono: '',
+						//fecha_nac: '',
+						motivo: '3',
+						//sexo: '1',
+						hora: '',
+						fecha: '',
+						condicion: '1',
+					}
+				}
 				validate={(valores) => {
 					let errores = {};
 					if (!valores.nombre_paciente) {
@@ -89,19 +111,45 @@ const FormCita = () => {
 					return errores;
 				}}
 				onSubmit={(valores, { resetForm }) => {
-					// resetForm();
-					//alert('Cita registrada');
-					console.log('Formulario enviado');
-					console.log(valores);
-					console.log('.------------');
-					// {moment(
-					// 	moment(item.fecha).format(
-					// 		'DD/MM/YYYY'
-					// 	),
-					// 	'DD/MM/YYYY',
-
-					// ).add(0, 'days').calendar()}
-					if (
+					if(item != undefined){
+						consumirCitaActualizada({
+							_id: item._id,
+							nombre_paciente: valores.nombre_paciente,
+							fecha: moment(
+								new Date(
+									`${valores.fecha} ${valores.hora}`
+								)
+							).format(),
+							responsable: valores.responsable,
+							telefono: valores.telefono,
+							motivo: valores.motivo,
+							condicion: valores.condicion,
+							DNI: valores.dni_paciente,
+						})
+						// set_datos_af([
+						// 	datos_af.map((dato) => {
+						// 		if(dato._id == item._id){
+						// 			{console.log("SÍ LO ENCONTRÉ, ES: ", dato.DNI)}
+						// 			dato.nombre_paciente = valores.nombre_paciente
+						// 			dato.DNI = valores.dni_paciente
+						// 			dato.responsable = valores.responsable
+						// 			dato.telefono = valores.telefono
+						// 			dato.motivo = valores.motivo
+						// 			// dato.hora = moment(valores.hora).format()
+						// 			// dato.fecha = moment(valores.fecha).format('YYYY-MM-DD')
+						// 			dato.fecha = moment(
+						// 				new Date(
+						// 					`${valores.fecha} ${valores.hora}`
+						// 				)
+						// 			).format()
+						// 			dato.condicion = valores.condicion
+						// 		}
+						// 	})
+						// ])
+						// set_datos_af([
+						// 	...datos_af
+						// ])
+					} else{
 						consumirNuevaCita({
 							nombre_paciente: valores.nombre_paciente,
 							//fecha_nac: moment(valores.fecha_nac).format(),
@@ -117,9 +165,28 @@ const FormCita = () => {
 							condicion: valores.condicion,
 							DNI: valores.dni_paciente,
 						})
-					) {
+
 						resetForm();
 					}
+					// if (
+					// 	consumirNuevaCita({
+					// 		nombre_paciente: valores.nombre_paciente,
+					// 		//fecha_nac: moment(valores.fecha_nac).format(),
+					// 		fecha: moment(
+					// 			new Date(
+					// 				`${valores.fecha} ${valores.hora}`
+					// 			)
+					// 		).format(),
+					// 		//sexo: valores.sexo,
+					// 		responsable: valores.responsable,
+					// 		telefono: valores.telefono,
+					// 		motivo: valores.motivo,
+					// 		condicion: valores.condicion,
+					// 		DNI: valores.dni_paciente,
+					// 	})
+					// ) {
+					// 	resetForm();
+					// }
 				}}
 			>
 				{({ errors }) => (
@@ -257,23 +324,26 @@ const FormCita = () => {
 									</option>
 								</Field>
 							</div>
-							<div style={{marginLeft:'150px'}}>
-								<label><b>Condición</b></label>
-								<Field name="condicion" as="select" style={{width:'100%'}}>
-									<option value="1">Nuevo</option>
-									<option value="2">Continuador</option>
-								</Field>
-							</div>
+							{
+								item != undefined ? null :
+								<div style={{marginLeft:'150px'}}>
+									<label><b>Condición</b></label>
+									<Field name="condicion" as="select" style={{width:'100%'}}>
+										<option value="1">Nuevo</option>
+										<option value="2">Continuador</option>
+									</Field>
+								</div>
+							}
 						</div>
 						<div style={{display:'flex', justifyContent:'center'}}>
 							<button type="submit" className="agregar" style={{width:'20%'}}>
-								Agregar
+								{item != undefined ? 'ACTUALIZAR' : 'AGREGAR'}
 							</button>
 						</div>
 					</Form>
 				)}
 			</Formik>
-		</>
+		</div>
 	);
 };
 

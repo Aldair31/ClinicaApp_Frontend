@@ -33,8 +33,24 @@ const FormFiliacion = ({ item }) => {
 		})
 		//setHc(e.target.value)
 	}
-	console.log("Edad:", Hc.edad)
+	console.log("Edad:", Hc.fecha_nac)
 	// Hc.edad = (moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' a ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' m ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' d'
+	
+	const calcularEdad = (fechaNac) =>{
+		let a = moment()
+		let b = moment(fechaNac)
+
+		let years = a.diff(b, 'year')
+		b.add(years, 'years')
+
+		let months = a.diff(b, 'months')
+		b.add(months, 'months')
+
+		let days = a.diff(b, 'days')
+
+		return years + " a " + months + " m " + days + " d"
+	}
+
 	return (
 		// <div>
 		// 	<label>Edad</label>
@@ -232,7 +248,7 @@ const FormFiliacion = ({ item }) => {
 									name="fecha_nac" 
 									max={getFecha()}
 									//value={(moment(Hc.fecha_nac).add(5, 'hours')).format('YYYY-MM-DD')}
-									value={moment(Hc.fecha_nac).format('YYYY-MM-DD')}
+									value={Hc.fecha_nac ? moment(Hc.fecha_nac).format('YYYY-MM-DD') : null}
 									onChange={handleChange}
 									></input>
 								</div>
@@ -254,15 +270,17 @@ const FormFiliacion = ({ item }) => {
 								<Field 
 									type="text"
 									name = "edad"
-									value={Hc.edad = (moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' a ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' m ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' d'}
+									// value={(moment.duration((moment().add(1, 'day')).diff(moment(Hc.fecha_nac)))).years() + ' a ' + (moment.duration((moment().add(1, 'day')).diff(moment(Hc.fecha_nac)))).months() + ' m ' + (moment.duration((moment().add(1, 'day')).diff(moment(Hc.fecha_nac)))).days() + ' d'}
+									value={Hc.fecha_nac ? calcularEdad(Hc.fecha_nac) : "0 a 0 m 0 d"}
+									readOnly
 								></Field>
 							</div>
 							<div className='tercero'>
 									<label>Sexo</label>
 									<Field style={{height:'6.1vh'}} className='mayus' name="sexo" as="select" value={Hc.sexo} onChange={handleChange}>
 										<option>-- Seleccione --</option>
-										<option value="1">Hombre</option>
-										<option value="2">Mujer</option>
+										<option value="1">Masculino</option>
+										<option value="2">Femenino</option>
 									</Field>
 								</div>
 						</div>
@@ -478,10 +496,10 @@ const FormFiliacion = ({ item }) => {
 								method: 'PUT',
 								body: JSON.stringify({
 									...Hc,
-
-									fecha_nac : moment(Hc.fecha_nac).format(),
+									fecha_nac : Hc.fecha_nac ? moment(Hc.fecha_nac).format() : null,
+									// fecha_nac: Hc.fecha_nac,
 									//fecha_nac : (moment(Hc.fecha_nac).add(5, 'hours')).format('YYYY-MM-DD')
-									edad: (moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' a ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' m ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' d'
+									edad: calcularEdad(Hc.fecha_nac)
 								}),
 								})
 								.then((resp) => resp.json())

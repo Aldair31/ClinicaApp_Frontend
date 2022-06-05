@@ -145,9 +145,9 @@ const FormResponsable = ({ datos, set_datos }) => {
 									></Field>
 									{
 										password ? 
-											<i class="fa-solid fa-eye" onClick={cambioEstadoPass}></i> 
+											<i className="fa-solid fa-eye" onClick={cambioEstadoPass}></i> 
 										:
-											<i class="fa-solid fa-eye-slash" onClick={cambioEstadoPass}></i>
+											<i className="fa-solid fa-eye-slash" onClick={cambioEstadoPass}></i>
 									}
 								</section>
 								<ErrorMessage

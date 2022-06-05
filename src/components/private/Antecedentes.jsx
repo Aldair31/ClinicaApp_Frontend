@@ -100,6 +100,30 @@ const Antecedentes = ({id}) => {
 						/>
 					</div>
 					<div>
+						<label>Talla al nacer</label>
+						<input
+							placeholder="Talla al nacer"
+							type="number"
+							min="0"
+							name="talla_al_nacer"
+							onChange={handleChange}
+							value={antecedentes.talla_al_nacer}
+						/>
+					</div>
+					<div>
+						<label>PC</label>
+						<input
+							placeholder="PC"
+							type="number"
+							min="0"
+							name="pc"
+							onChange={handleChange}
+							value={antecedentes.pc}
+						/>
+					</div>
+				</div>
+				<div className='row2'>
+					<div className='row2_1'>
 						<label>Tipo de Parto</label>
 						<select
 							name="tipoDeParto"
@@ -107,11 +131,11 @@ const Antecedentes = ({id}) => {
 							value={antecedentes.tipoDeParto}
 						>
 							<option value="" selected>-- Seleccione --</option>
-							<option value="1">Vaginal</option>
+							<option value="1">Eutócico</option>
 							<option value="2">Cesárea</option>
 						</select>
 					</div>
-					<div>
+					<div className='row2_1'>
 						<label>Edad Gestacional</label>
 						<input
 						name="edadGestacional"
@@ -123,7 +147,7 @@ const Antecedentes = ({id}) => {
 				</div>
 				<div className='row2'>
 					<div className='row2_1'>
-						<label>Apgar1</label>
+						<label>Apgar 1'</label>
 						<input
 							placeholder="Apgar1"
 							type="number"
@@ -133,7 +157,7 @@ const Antecedentes = ({id}) => {
 						/>
 					</div>
 					<div className='row2_2'>
-						<label>Apgar5</label>
+						<label>Apgar 5'</label>
 						<input
 							placeholder="Apgar5"
 							type="number"
@@ -209,7 +233,7 @@ const Antecedentes = ({id}) => {
 						</select>
 					</div>
 					<div>	
-						<label>Reacción Adversa</label>
+						<label>Reacción Adversa medicamentos</label>
 						<select
 							name="reaccionAdversaMed"
 							onChange={handleChange}
@@ -221,9 +245,21 @@ const Antecedentes = ({id}) => {
 						</select>
 					</div>
 				</div>
-				
-				
-				
+				<div className='row3'>
+					<div>
+						<label>SOB</label>
+						{/* <input placeholder="Asma Bronquial" /> */}
+						<select
+							name="sob"
+							onChange={handleChange}
+							value={antecedentes.sob}
+						>
+							<option value="" selected>-- Seleccione --</option>
+							<option value="true">Sí</option>
+							<option value="false">No</option>
+						</select>
+					</div>
+				</div>
 				<label>Enfermedades Anteriores</label>
 				<textarea
 					rows="3"

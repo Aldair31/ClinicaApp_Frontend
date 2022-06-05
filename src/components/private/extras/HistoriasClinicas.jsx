@@ -198,6 +198,21 @@ const HistoriasClinicas = () => {
 		setFormConfirmacion(!formConfirmacion);
 	};
 
+	const calcularEdad = (fechaConsulta, fechaNac) =>{
+		let a = moment(fechaConsulta)
+		let b = moment(fechaNac)
+
+		let years = a.diff(b, 'year')
+		b.add(years, 'years')
+
+		let months = a.diff(b, 'months')
+		b.add(months, 'months')
+
+		let days = a.diff(b, 'days')
+
+		return years + " a " + months + " m " + days + " d"
+	}
+
 	return (
 		<div>
 			<div className="list">
@@ -206,7 +221,7 @@ const HistoriasClinicas = () => {
 				</h2>
 				{form && <ModalNuevaHistClinica/>}
 				<div className='ScrollTable'>
-					<table>
+					<table  style={{width: '100%'}}>
 						<thead>
 							<tr>
 								<th>FECHA</th>
@@ -219,7 +234,8 @@ const HistoriasClinicas = () => {
 							{nuevosDatos.map((item) => (
 								<tr>
 									<td style={{textTransform: 'uppercase'}}>{moment(item.fecha).format('DD/MM/YYYY')}</td>
-									<td style={{textTransform: 'uppercase'}}>{(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).years()} AÑOS {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).months()} MESES {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).days()} DÍAS</td>
+									{/* <td style={{textTransform: 'uppercase'}}>{(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).years()} AÑOS {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).months()} MESES {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).days()} DÍAS</td> */}
+									<td>{calcularEdad(item.fecha, fechaNacimiento[0])}</td>
 									<td>
 										<button
 											style={{backgroundColor: 'transparent', border: 'none', cursor: 'pointer'}}

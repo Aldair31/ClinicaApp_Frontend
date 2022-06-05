@@ -144,10 +144,10 @@ const PresentacionDesarrolloIntegral = ({children}) =>{
                     </div>
                     <div className='botones_ant_sig'>
                         <button onClick={anterior}>
-                            <i class="fas fa-angle-left"></i>
+                            <i className="fas fa-angle-left"></i>
                         </button>
                         <button onClick={siguiente}>
-                            <i class="fas fa-angle-right"></i>
+                            <i className="fas fa-angle-right"></i>
                         </button>
                     </div>
                 </div>

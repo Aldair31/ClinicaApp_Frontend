@@ -110,7 +110,7 @@ const Hijo = (props) => {
 				<div className='contenedor-card'>
 					<div className="card-redireccion">
 						<div className="card-img-redireccion">
-							<i class="fa-solid fa-baby"></i>
+							<i className="fa-solid fa-baby"></i>
 						</div>
 						<div className="card-info-redireccion">
 							<p className="text-body-redireccion">En este apartado puedes ver las acciones que debe realizar tu niño.</p>
@@ -119,7 +119,7 @@ const Hijo = (props) => {
 					</div>
 					<div className="card-redireccion">
 						<div className="card-img-redireccion">
-							<i class="fa-solid fa-chart-line"></i>
+							<i className="fa-solid fa-chart-line"></i>
 						</div>
 						<div className="card-info-redireccion">
 							<p className="text-body-redireccion">En este apartado puedes ver los gráficos de crecimiento de tu niño.</p>
@@ -128,7 +128,7 @@ const Hijo = (props) => {
 					</div>
 					<div className="card-redireccion">
 						<div className="card-img-redireccion">
-							<i class="fa-solid fa-syringe"></i>
+							<i className="fa-solid fa-syringe"></i>
 						</div>
 						<div className="card-info-redireccion">
 							<p className="text-body-redireccion">En este apartado puedes ver las vacunas que tiene tu niño.</p>

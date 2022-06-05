@@ -63,7 +63,6 @@ const InicioSecretaria =  () => {
 
     const eliminarEvento = (info)=>{
         if(info.event.start){
-            console.log(info.event.start)
             setEliminar(true)
         }
     }   
@@ -229,7 +228,6 @@ const InicioSecretaria =  () => {
                                         }),
                                     }).then((resp) =>resp.json()).then((data)=>{
                                             if(data.ok){
-                                                    console.log(data.reserva.fecha)
                                                     alert('Se Registró la Reserva correctamente')
                                                     setRes([
                                                         ...res,
@@ -243,9 +241,7 @@ const InicioSecretaria =  () => {
                                                             ).format(),
                                                         },
                                                     ]);
-                                                    console.log(reservas.hora)
-                                                    console.log(data)
-                                                    
+                                                    setState(false)
                                                     
                                                     // console.log(moment('13:00').format('HH:mm'))
                                                 }
@@ -351,11 +347,11 @@ const InicioSecretaria =  () => {
                     select={handleDateClick}
                     dateClick={onChange}
                     dayMaxEventRows={ true} // for all non-TimeGrid views
-                    view={{
-                        timeGrid: {
-                        dayMaxEventRows: 10 // adjust to 6 only for timeGridWeek/timeGridDay
-                        }
-                    }}
+                    // view={{
+                    //     timeGrid: {
+                    //     dayMaxEventRows: 10 // adjust to 6 only for timeGridWeek/timeGridDay
+                    //     }
+                    // }}
                     eventClick={[eliminarEvento,onChange]
                         // (info)=>{
                         // console.log('click', moment(info.event.start).format())

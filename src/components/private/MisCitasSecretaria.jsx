@@ -1,10 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react'
 import useCita from '../../hooks/useCita';
 import '../../sass/Dashboard.sass';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-const InicioDoctor = () => {
-	let [datos_af, loading] = useCita();
+import url from '../../keys/backend_keys';
+import FormCita from './extras/FormCita';
+
+const MisCitasSecretaria = () => {
+    let [datos_af, loading, set_datos_af] = useCita();
 	const switchMotivo = (valor) => {
 		switch (valor) {
 			case 1:
@@ -36,7 +39,49 @@ const InicioDoctor = () => {
 		CitasHoy[item].numero = parseInt(item)+1
 	}
 
-	console.log("Citas Hoy: ", CitasHoy)
+	const [state, setState] = useState(false)
+	const ModalNuevaCita = ({datos}) =>{
+		return(
+			<div
+				style={{
+					background: '#00000039',
+					position: 'absolute',
+					top: '0',
+					left: '0',
+					height: '100vh',
+					width: '100%',
+					zIndex:'3',
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+				}}
+			>
+				<div className="nuevaCita">
+					<FormCita item={datos}/>
+				</div>
+				<button
+					onClick={() => {
+						setState(false);
+					}}
+					style={{
+						position: 'absolute',
+						top: '0',
+						right: '0',
+						border: 'none',
+						padding: '18px',
+						cursor: 'pointer',
+					}}
+				>
+					<i
+						className="fas fa-times"
+						style={{ fontSize: '19px' }}
+					></i>
+				</button>
+			</div>
+		)
+	}
+
+	const [dataItem, setDataItem] = useState({})
 
 	return (
 		<>
@@ -65,6 +110,7 @@ const InicioDoctor = () => {
 						></input>
 					</div>
 				</section>
+				{state && <ModalNuevaCita datos={dataItem}/>}
 				{loading !== null ? (
 					CitasHoy.length > 0 ? (
 						<div className='ScrollTable'>
@@ -76,7 +122,7 @@ const InicioDoctor = () => {
 										<th>PACIENTE</th>
 										<th>RESPONSABLE</th>
 										<th>MOTIVO</th>
-										<th>ATENDIDO</th>
+										<th></th>
 										<th></th>
 									</tr>
 								</thead>
@@ -88,21 +134,56 @@ const InicioDoctor = () => {
 											<td className='nombPac'>{item.nombre_paciente}</td>
 											<td className='respons'>{item.responsable}</td>
 											<td>{switchMotivo(item.motivo)}</td>
-											<td></td>
 											<td>
-												<Link to={`/historia-clinica/${item.id_HistClinica}`}>
-												{/* <Link to={`/datos-f/${item.id_Historia}`}> */}
-													<strong
-														style={{
-															textDecoration: 'underline',
-															cursor: 'pointer',
-														}}
-													>
-														<i className="fas fa-external-link-alt"></i>
-													</strong>
-													{item.post}
-												</Link>
-											</td>
+                                                <i 
+                                                    className="fas fa-trash-alt" 
+                                                    style={{color: 'red', cursor: 'pointer'}}
+													onClick={(e) => {
+														e.preventDefault()
+														var rpta = window.confirm("¿Está seguro de eliminar la Cita?")
+														if(rpta){
+															fetch(`${url}/Cita/${item._id}`, {
+																headers: {
+																	'Content-Type': 'application/json'
+																},
+																method: 'DELETE'
+															})
+															.then((resp) => resp.json())
+															.then((data) => {
+																if(data.ok){
+																	alert('Cita eliminada')
+																	set_datos_af(datos_af.filter((datos) => datos._id != item._id))
+																}
+															})
+															.catch((err) => {
+																console.log(err);
+															});
+														}
+													}}
+                                                >
+                                                </i>
+                                            </td>
+											<td>
+                                                <i 
+                                                    className="fas fa-pen" 
+                                                    style={{color: 'blue', cursor: 'pointer'}}
+													onClick = {() => {
+														setState(true)
+														setDataItem({
+															_id: item._id,
+															nombre_paciente: item.nombre_paciente,
+															dni_paciente: item.DNI,
+															responsable: item.responsable,
+															telefono: item.telefono,
+															motivo: item.motivo,
+															hora: moment(item.fecha).format('HH:mm'),
+															fecha: moment(item.fecha).format('YYYY-MM-DD'),
+															condicion: item.condicion,
+														})
+													}}
+                                                >
+                                                </i>
+                                            </td>
 										</tr>
 									))}
 								</tbody>
@@ -125,6 +206,6 @@ const InicioDoctor = () => {
 			</div>
 		</>
 	);
-};
+}
 
-export default InicioDoctor;
+export default MisCitasSecretaria

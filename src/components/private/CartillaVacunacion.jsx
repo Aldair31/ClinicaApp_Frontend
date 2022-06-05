@@ -67,12 +67,12 @@ const CartillaVacunacion = () => {
             </div>
             
             <div className='cards_Vacunacion'>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">Recién Nacido</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">Recién Nacido</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             BCG
                             <br />
@@ -89,12 +89,12 @@ const CartillaVacunacion = () => {
                         </p>
                     </div>
                 </div>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">2 Meses</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">2 Meses</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             Hepatitis B
                             <br />
@@ -123,12 +123,12 @@ const CartillaVacunacion = () => {
                         </p>
                     </div>
                 </div>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">4 Meses</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">4 Meses</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             Hepatitis B
                             <br />
@@ -153,12 +153,12 @@ const CartillaVacunacion = () => {
                         </p>
                     </div>
                 </div>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">6 Meses</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">6 Meses</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             <b>Hepatitis B</b>
                             <br />
@@ -183,12 +183,12 @@ const CartillaVacunacion = () => {
                         </p>
                     </div>
                 </div>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">7 Meses</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">7 Meses</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             <br />
                             <br />
@@ -202,12 +202,12 @@ const CartillaVacunacion = () => {
                         </p>
                     </div>
                 </div>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">8 Meses</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">8 Meses</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             <br />
                             <br />
@@ -221,12 +221,12 @@ const CartillaVacunacion = () => {
                         </p>
                     </div>
                 </div>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">9 Meses</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">9 Meses</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             <br />
                             <br />
@@ -240,12 +240,12 @@ const CartillaVacunacion = () => {
                         </p>
                     </div>
                 </div>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">1 Año</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">1 Año</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             <br />
                             Meningococo
@@ -266,12 +266,12 @@ const CartillaVacunacion = () => {
                         </p>
                     </div>
                 </div>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">1 Año y 1 Mes</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">1 Año y 1 Mes</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             <br />
                             <br />
@@ -285,12 +285,12 @@ const CartillaVacunacion = () => {
                         </p>
                     </div>
                 </div>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">1 Año y 3 Meses</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">1 Año y 3 Meses</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             <br />
                             <br />
@@ -304,12 +304,12 @@ const CartillaVacunacion = () => {
                         </p>
                     </div>
                 </div>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">1 Año y 6 Meses</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">1 Año y 6 Meses</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             <br />
                             DPT
@@ -330,12 +330,12 @@ const CartillaVacunacion = () => {
                         </p>
                     </div>
                 </div>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">1 Año y 7 Meses</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">1 Año y 7 Meses</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             <br />
                             <br />
@@ -349,12 +349,12 @@ const CartillaVacunacion = () => {
                         </p>
                     </div>
                 </div>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">2 Años</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">2 Años</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             Neumococo
                             <br />
@@ -371,12 +371,12 @@ const CartillaVacunacion = () => {
                         </p>
                     </div>
                 </div>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">4 Años</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">4 Años</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             DPT
                             <br />
@@ -394,12 +394,12 @@ const CartillaVacunacion = () => {
                         </p>
                     </div>
                 </div>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">9 Años</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">9 Años</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             <br />
                             <br />
@@ -413,12 +413,12 @@ const CartillaVacunacion = () => {
                         </p>
                     </div>
                 </div>
-                <div class="card-Vacunacion">
-                    <div class="card-info-Vacunacion">
-                        <p class="title-Vacunacion">9 Años y 6 Meses</p>
-                        {/* <p class="subtitle-Vacunacion">Web Dev</p> */}
+                <div className="card-Vacunacion">
+                    <div className="card-info-Vacunacion">
+                        <p className="title-Vacunacion">9 Años y 6 Meses</p>
+                        {/* <p className="subtitle-Vacunacion">Web Dev</p> */}
                     </div>
-                    <div class="card-bio-Vacunacion">
+                    <div className="card-bio-Vacunacion">
                         <p>
                             <br />
                             <br />

@@ -107,7 +107,7 @@ const ListaOrden = () => {
         <div className='contenedorOrden'>
             <div className='tituloOrden'>
                 <h3>ÓRDENES MÉDICAS</h3>
-				<span onClick={onForm}><i class="fas fa-file-medical"></i></span>
+				<span onClick={onForm}><i className="fas fa-file-medical"></i></span>
                 {form && <ModalConfirmación/>}
 			</div>
             <div className='contenedorFormOrden'>

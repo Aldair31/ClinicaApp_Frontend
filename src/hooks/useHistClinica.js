@@ -16,7 +16,7 @@ const useHistClinica = () => {
 				setGrafica(data)
 			});
 			
-	}, []);
+	}, [id]);
 	return grafica
 };
 

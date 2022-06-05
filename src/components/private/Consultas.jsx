@@ -21,17 +21,19 @@ const Consultas = () => {
 				return resp.json();
 			})
 			.then((datos) => {
-				console.log('respuesta');
-				console.log(datos);
+				// console.log('respuesta');
+				// console.log(datos);
 				setCitas(datos);
 			});
 	}, []);
 
 	citas.sort((a, b) => {
-		return (a.nombres_paciente.toLowerCase() < b.nombres_paciente.toLowerCase()) ? -1 : 1})
-
-
-
+		return (a.nombres_paciente.toLowerCase() < b.nombres_paciente.toLowerCase()) ? -1 : 1
+	})
+		
+	for(let item in citas){
+		citas[item].numero = parseInt(item)+1
+	}
 
 	// const [termino, setTermino] = useState("")
 	// const handleChange = (e)=>{
@@ -163,7 +165,7 @@ const Consultas = () => {
 						<div key={item._id} className="contenedorDatosPaciente">
 							<div className='contenidoDatosPaciente'>
 								<div className='nombrePaciente'>
-									<p><i class="fa-regular fa-address-book"></i></p>
+									<p><b>{item.numero}.      </b><i className="fa-regular fa-address-book"></i></p>
 									<p>{item.nombres_paciente}</p>
 								</div>
 								{/* <p className='dniPac'>{item.dni_paciente}</p> */}

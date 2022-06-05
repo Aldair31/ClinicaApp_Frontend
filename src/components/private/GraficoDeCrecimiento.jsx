@@ -41,77 +41,77 @@ const GraficoDeCrecimiento = ({usuario}) => {
 									{item.sexo === 1 ? (
 										<p>
 											<div className='cardsGraficas'>
-												<div class="card-Graficas">
-													<div class="img-section-Graficas">
+												<div className="card-Graficas">
+													<div className="img-section-Graficas">
 														<p>GRÁFICA DE 0 A 36 MESES</p>
 														
-														{/* <i class="fa-solid fa-chart-line"></i> */}
+														{/* <i className="fa-solid fa-chart-line"></i> */}
 													</div>
-													<div class="card-desc-Graficas">
+													<div className="card-desc-Graficas">
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoPesoEdadNiño0a36/${id}`}>
 																<p>PESO - EDAD</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoTallaEdadNiño0a36/${id}`}>
 																<p>TALLA - EDAD</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoPesoTallaNiño0a36/${id}`}>
 																<p>PESO - TALLA</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoPCNiño0a36/${id}`}>
 																<p>PC - EDAD</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 													</div>
 												</div>
-												<div class="card-Graficas">
-													<div class="img-section-Graficas">
+												<div className="card-Graficas">
+													<div className="img-section-Graficas">
 														<p>GRÁFICA DE 2 A 20 AÑOS</p>
 														
-														{/* <i class="fa-solid fa-chart-line"></i> */}
+														{/* <i className="fa-solid fa-chart-line"></i> */}
 													</div>
-													<div class="card-desc-Graficas">
+													<div className="card-desc-Graficas">
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoPesoEdadNiño2a20/${id}`}>
 																<p>PESO - EDAD</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoTallaEdadNiño2a20/${id}`}>
 																<p>TALLA - EDAD</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoIMCNiños2a20/${id}`}>
 																<p>IMC</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 													</div>
 												</div>
-												<div class="card-Graficas">
-													<div class="img-section-Graficas">
+												<div className="card-Graficas">
+													<div className="img-section-Graficas">
 														<p>GRÁFICA MAYORES A 7kg Y 77cm</p>
 														
-														{/* <i class="fa-solid fa-chart-line"></i> */}
+														{/* <i className="fa-solid fa-chart-line"></i> */}
 													</div>
-													<div class="card-desc-Graficas">
+													<div className="card-desc-Graficas">
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoPesoTallaNiño/${id}`}>
 																<p>PESO - TALLA</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 													</div>
@@ -222,77 +222,77 @@ const GraficoDeCrecimiento = ({usuario}) => {
 									{item.sexo === 2 ? (
 										<p>
 											<div className='cardsGraficas'>
-												<div class="card-Graficas">
-													<div class="img-section-Graficas">
+												<div className="card-Graficas">
+													<div className="img-section-Graficas">
 														<p>GRÁFICA DE 0 A 36 MESES</p>
 														
-														{/* <i class="fa-solid fa-chart-line"></i> */}
+														{/* <i className="fa-solid fa-chart-line"></i> */}
 													</div>
-													<div class="card-desc-Graficas">
+													<div className="card-desc-Graficas">
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoPesoEdadNiña0a36/${id}`}>
 																<p>PESO - EDAD</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoTallaEdadNiña0a36/${id}`}>
 																<p>TALLA - EDAD</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoPesoTallaNiña0a36/${id}`}>
 																<p>PESO - TALLA</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoPCNiña0a36/${id}`}>
 																<p>PC - EDAD</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 													</div>
 												</div>
-												<div class="card-Graficas">
-													<div class="img-section-Graficas">
+												<div className="card-Graficas">
+													<div className="img-section-Graficas">
 														<p>GRÁFICA DE 2 A 20 AÑOS</p>
 														
-														{/* <i class="fa-solid fa-chart-line"></i> */}
+														{/* <i className="fa-solid fa-chart-line"></i> */}
 													</div>
-													<div class="card-desc-Graficas">
+													<div className="card-desc-Graficas">
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoPesoEdadNiña2a20/${id}`}>
 																<p>PESO - EDAD</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoTallaEdadNiña2a20/${id}`}>
 																<p>TALLA - EDAD</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoIMCNiñas2a20/${id}`}>
 																<p>IMC</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 													</div>
 												</div>
-												<div class="card-Graficas">
-													<div class="img-section-Graficas">
+												<div className="card-Graficas">
+													<div className="img-section-Graficas">
 														<p>GRÁFICA MAYORES A 7kg Y 77cm</p>
 														
-														{/* <i class="fa-solid fa-chart-line"></i> */}
+														{/* <i className="fa-solid fa-chart-line"></i> */}
 													</div>
-													<div class="card-desc-Graficas">
+													<div className="card-desc-Graficas">
 														<div className='buttonGraficas'>
 															<Link className="tooltip" to={`/GraficoDeCrecimientoPesoTallaNiña/${id}`}>
 																<p>PESO - TALLA</p>
-																<span class="tooltiptext"><i class="fa-solid fa-arrow-right"></i></span>
+																<span className="tooltiptext"><i className="fa-solid fa-arrow-right"></i></span>
 															</Link>
 														</div>
 													</div>

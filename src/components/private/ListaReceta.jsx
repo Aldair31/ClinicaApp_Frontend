@@ -104,7 +104,7 @@ const ListaReceta = () => {
         <div className="contenedorReceta">
             <div className='titulo_receta'>
                 <h3>RECETAS MÉDICAS</h3>
-				<span onClick={onForm}><i class="fas fa-file-medical"></i></span>
+				<span onClick={onForm}><i className="fas fa-file-medical"></i></span>
 			</div>
             {form && <ModalConfirmación/>}
             <div className='contenedor-re'>

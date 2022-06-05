@@ -12,7 +12,7 @@ const Header = () => {
 					<h2>Clínica Mi Mebé</h2>
 					{/* <div className="btn_ops">
 						<button className="ops" onClick={()=>{setOpen(!open)}}>
-							<i class="fas fa-bars"></i>
+							<i className="fas fa-bars"></i>
 						</button>
 					</div> */}
 					{/* <nav></nav> */}

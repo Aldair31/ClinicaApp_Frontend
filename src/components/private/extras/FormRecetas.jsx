@@ -10,6 +10,7 @@ import 'jspdf-autotable'
 
 import {Table} from "reactstrap";
 import useMedicamentos from '../../../hooks/useMedicamentos';
+import calcularEdad from '../../../functions/calcularEdad';
 
 const FormRecetas = () => {
     //ESTADO PARA SABER SI HAY MEDICAMENTOS EN UNA RECETA Y HABILITAR BOTONES PARA ACCIONES DE DOCUMENTO (MOSTRAR, DESCARGAR E IMPRIMIR)
@@ -209,7 +210,7 @@ const FormRecetas = () => {
             method: 'PUT',
             body: JSON.stringify({
                 ...Receta,
-                fechaProx: moment(Receta.fechaProx).format(),
+                fechaProx: Receta.fechaProx ? moment(Receta.fechaProx).format() : null,
             }),
         })
             .then((resp) => resp.json())
@@ -237,7 +238,7 @@ const FormRecetas = () => {
     //GENERANDO DOCUMENTO PDF
     const DocReceta = () => {
         var doc = new jsPDF('p', 'mm', [242, 208])
-
+        
         doc.addImage(fondoReceta, 'JPG', 0, 0)
 
         var fechaHist = new Image()
@@ -262,17 +263,18 @@ const FormRecetas = () => {
         doc.setFont(undefined, 'bold').setFontSize(10).setTextColor('black').text(109.5, 226, 'PRÓXIMA CITA');
         //DÍA
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(110, 229.5, 'DÍA');
-        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(110.5, 234.5, Receta.fechaProx!=undefined?moment(Receta.fechaProx).format('DD'):'');
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(110.5, 234.5, Re.fechaProx!=undefined?moment(Re.fechaProx).format('DD'):'');
         //MES
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(118.4, 229.5, 'MES');
-        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(120, 234.5, Receta.fechaProx!=undefined?moment(Receta.fechaProx).format('MM'):'');
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(120, 234.5, Re.fechaProx!=undefined?moment(Re.fechaProx).format('MM'):'');
         //AÑO
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(127.5, 229.5, 'AÑO');
-        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(127.3, 234.5, Receta.fechaProx!=undefined?moment(Receta.fechaProx).format('YYYY'):'');
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(127.3, 234.5, Re.fechaProx!=undefined?moment(Re.fechaProx).format('YYYY'):'');
 
         //OBTENIENDO DATOS DE ENCABEZADO RECETA (EDAD, PESO, TALLA, PC)
+        let {years, months, days} = calcularEdad(Hc.histClinica.fecha, Hc.historia.fecha_nac)
         let datos = [
-            [((moment.duration(moment(Hc.histClinica.fecha).diff(moment(Hc.historia.fecha_nac)))).years() + 'a ' + (moment.duration(moment(Hc.histClinica.fecha).diff(moment(Hc.historia.fecha_nac)))).months() + 'm ' + (moment.duration(moment(Hc.histClinica.fecha).diff(moment(Hc.historia.fecha_nac)))).days() + 'd'), Hc.histClinica.peso!=undefined?Hc.histClinica.peso + ' kg':'', Hc.histClinica.talla!=undefined?Hc.histClinica.talla + ' cm':'', Hc.histClinica.pc!=undefined?Hc.histClinica.pc + ' cm':'']
+            [(years + 'a ' + months + 'm ' + days + 'd'), Hc.histClinica.peso!=undefined?Hc.histClinica.peso + ' kg':'', Hc.histClinica.talla!=undefined?Hc.histClinica.talla + ' cm':'', Hc.histClinica.pc!=undefined?Hc.histClinica.pc + ' cm':'']
         ]
         
         //TABLA DATOS PACIENTE
@@ -310,13 +312,19 @@ const FormRecetas = () => {
         //LÍNEAS MITAD
         doc.setLineWidth(0.5).setLineDash([1, 1], 0).setDrawColor('black').line(104, 0, 104, 840);
 
-        //OBTENIENDO CANTIDAD, MEDICAMENTO E INDICACIONES
+        //OBTENIENDO CANTIDAD Y MEDICAMENTOS
         let datosMedic = []
         for (let i = 0; i < Re.length; i++) {
-            datosMedic.push([(i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ' (' + (Re[i].cantidad).toUpperCase() + ')', (i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ':\n' + (Re[i].indicaciones.replace(/;/g, '\n\n')).toUpperCase()])
+            datosMedic.push([(i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ' (' + (Re[i].cantidad).toUpperCase() + ')'])
         }
 
-        //TABLA MEDICAMENTOS
+        //OBTENIENDO INDICACIONES
+        let indicMed = []
+        for (let i = 0; i < Re.length; i++) {
+            indicMed.push([(i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ':\n' + (Re[i].indicaciones.replace(/;/g, '\n\n')).toUpperCase()])
+        }
+
+        //TABLA CANTIDAD Y MEDICAMENTOS
         doc.autoTable({
             body: datosMedic,
             theme:'plain',
@@ -324,32 +332,43 @@ const FormRecetas = () => {
             startY:65,
             rowPageBreak: 'avoid',
             margin:{left:2, bottom: 40},
-            columnStyles: {
-                0: {cellWidth:107.5},
-                1: {cellWidth:100},
-            }
+            tableWidth: 107.5
         })
 
-        return doc
+        //TABLA INDICACIONES
+        doc.autoTable({
+            body: indicMed,
+            theme:'plain',
+            styles:{fontSize: 12, lineColor:[200, 83, 100], textColor:[0,0,0], halign: 'left', font: 'courier', cellPadding:2}, //, fillColor: [166, 193, 200]
+            startY:50,
+            // rowPageBreak: 'avoid',
+            margin:{left:106, bottom: 25},
+            tableWidth: 100
+        })
+        
+        let tituloPDF = 'RECETA - ' + paciente + '-' + moment(Hc.histClinica.fecha).format('DD/MM/YYYY')
+        //DARLE NOMBRE AL PDF
+        doc.setProperties({title: tituloPDF})
+        return {doc, tituloPDF}
     }
 
     const mostrarDoc = () => {
-        var doc = new jsPDF('p', 'mm', [242, 208])
-        doc = DocReceta()
-        doc.output('dataurlnewwindow', 'Receta.pdf')
+        // var doc = new jsPDF('p', 'mm', [242, 208])
+        let {doc, tituloPDF} = DocReceta()
+        doc.output('dataurlnewwindow', tituloPDF)
     }
     
     const guardarDoc = () => {
-        var doc = new jsPDF('p', 'mm', [242, 208])
-        doc = DocReceta()
-        doc.save('Receta.pdf')
+        // var doc = new jsPDF('p', 'mm', [242, 208])
+        let {doc, tituloPDF} = DocReceta()
+        doc.save(tituloPDF)
     }
 
     const imprimirDoc = () => {
-        var doc = new jsPDF('p', 'mm', [242, 208])
-        doc = DocReceta()
+        // var doc = new jsPDF('p', 'mm', [242, 208])
+        let {doc, tituloPDF} = DocReceta()
         doc.autoPrint()
-        doc.output('dataurlnewwindow', 'Receta.pdf')
+        doc.output('dataurlnewwindow', tituloPDF)
     }
 
     //PARA PODER PASAR EL ITEM DEL MAP DE DATOS Y EDITAR
@@ -590,7 +609,7 @@ const FormRecetas = () => {
                         type="date" 
                         name='fechaProx' 
                         onChange={handleChangeRe} 
-                        value={Receta.fechaProx!=undefined?moment(Receta.fechaProx).format('YYYY-MM-DD'):''}
+                        value={Receta.fechaProx ? moment(Receta.fechaProx).format('YYYY-MM-DD') : ''}
                         disabled={Receta.length!=0?false:true}
                     ></input>
                 </div>
@@ -660,7 +679,7 @@ const FormRecetas = () => {
                                             setDataItem(item)
                                         }}
                                         >
-                                        <i class="fas fa-pen"></i>
+                                        <i className="fas fa-pen"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -670,22 +689,23 @@ const FormRecetas = () => {
             </div>
             
             <div className='botonesReceta'>
-                <div className={Re.length!=0?'notDisabled':'Disabled'}>
+                <div className={Receta.fechaProx ? 'notDisabled' : 'Disabled'}>
                     <button
                         onClick={handleClick}
-                        disabled={Re.length!=0?false:true}
+                        // disabled={Re.length!=0?false:true}
+                        disabled = {Receta.fechaProx ? false : true}
                     >
-                        {Fecha ? 'ACTUALIZAR FECHA' : 'GRABAR FECHA'}
+                        ACTUALIZAR FECHA
                     </button>
                 </div>
-                <div className={BtnAcitve && Fecha ? 'notDisabled': 'Disabled'}>
-                    <button id='mostrarRe' onClick={mostrarDoc} disabled={BtnAcitve && Fecha?false:true}>MOSTRAR RECETA</button>
+                <div className={BtnAcitve ? 'notDisabled': 'Disabled'}>
+                    <button id='mostrarRe' onClick={mostrarDoc} disabled={BtnAcitve ? false : true}>MOSTRAR RECETA</button>
                 </div>
-                <div className={BtnAcitve && Fecha ? 'notDisabled': 'Disabled'}>
-                    <button id='descargarRe' onClick={guardarDoc} disabled={BtnAcitve && Fecha?false:true}>DESCARGAR RECETA</button>
+                <div className={BtnAcitve ? 'notDisabled': 'Disabled'}>
+                    <button id='descargarRe' onClick={guardarDoc} disabled={BtnAcitve ? false : true}>DESCARGAR RECETA</button>
                 </div>
-                <div className={BtnAcitve && Fecha ? 'notDisabled': 'Disabled'}>
-                    <button id='imprimirRe' onClick={imprimirDoc} disabled={BtnAcitve && Fecha?false:true}>IMPRIMIR RECETA</button>
+                <div className={BtnAcitve ? 'notDisabled': 'Disabled'}>
+                    <button id='imprimirRe' onClick={imprimirDoc} disabled={BtnAcitve ? false : true}>IMPRIMIR RECETA</button>
                 </div>
             </div>   
         </div>

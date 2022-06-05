@@ -349,6 +349,21 @@ const HistoriaClinica = () => {
 		})
 	}
 
+	const calcularEdad = (fechaConsulta, fechaNac) =>{
+		let a = moment(fechaConsulta)
+		let b = moment(fechaNac)
+
+		let years = a.diff(b, 'year')
+		b.add(years, 'years')
+
+		let months = a.diff(b, 'months')
+		b.add(months, 'months')
+
+		let days = a.diff(b, 'days')
+
+		return years + " a " + months + " m " + days + " d"
+	}
+
 	return (
 		<div>
             <div className='encabezadoHC'>
@@ -415,8 +430,9 @@ const HistoriaClinica = () => {
 					</label>
 				</div>
 				<div className='NombreEdad'>
-					<label><b>Edad de Consulta: </b>{(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).years()} a {(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).months()} m {(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).days()} d
-					</label>
+					{/* <label><b>Edad de Consultaaa: </b>{(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).years()} a {(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).months()} m {(moment.duration(moment(Hc.fecha).diff(moment(datos.fecha_nac)))).days()} d
+					</label> */}
+					<label><b>Edad de Consulta: </b>{calcularEdad(Hc.fecha, datos.fecha_nac)}</label>
 				</div>
 				<div className='NombreEdad'>
 					<label><b>Referencia: </b> {datos.referencia}</label>

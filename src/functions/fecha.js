@@ -6,7 +6,6 @@ const getFecha = ()=>{
     var fecha = ''
     d   = (d>9) ? d:`0${d}`
     fecha = (m > 9) ? `${a}-${m}-${d}`:`${a}-0${m}-${d}` 
-    console.log(fecha);
     return fecha
 }
 export default getFecha
