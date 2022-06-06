@@ -110,9 +110,10 @@ const InicioDoctor = () => {
 											<td>{switchMotivo(item.motivo)}</td>
 											<td>
 												{
-													item.anamnesis != undefined
+													item.anamnesis != undefined && item.anamnesis != ''
 													?
 														<i class="fa-solid fa-shield-check" style={{color: 'green'}}></i>
+														// <i class="fa-solid fa-heart-circle-check" style={{color: 'green'}}></i>
 													:
 														<i class="fa-solid fa-ban" style={{color: 'red'}}></i>
 												}
