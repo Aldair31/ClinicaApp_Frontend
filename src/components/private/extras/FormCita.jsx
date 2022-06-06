@@ -4,21 +4,16 @@ import consumNuevaCita from '../../../functions/citas';
 import moment from 'moment';
 import getFecha from '../../../functions/fecha'
 import consumCitaActualizada from '../../../functions/citaActualizada';
-import useCita from '../../../hooks/useCita';
 // consumNuevaCita
-const FormCita = ({item}) => {
-	let [datos_af, loading, set_datos_af] = useCita();
+const FormCita = ({item, datos_af, set_datos_af, setState}) => {
 	const consumirNuevaCita = async (body) => {
-		console.log(body);
 		let resultado = await consumNuevaCita(body);
-		console.log('Resultado: ');
-		console.log(resultado);
 		if (resultado.ok === false) {
 			alert(resultado.msg);
 			return false;
 		} else {
 			alert('Cita Registrada');
-			return true;
+			return resultado;
 		}
 	};
 
@@ -26,7 +21,43 @@ const FormCita = ({item}) => {
 		let resultado = await consumCitaActualizada(body);
 		if (resultado.ok){
 			alert("Cita actualizada")
+			return resultado
 		}
+	}
+
+	const insertarDatos = (valores) => {
+		set_datos_af([
+			...datos_af,
+			{
+				_id: valores._id,
+				nombre_paciente: valores.nombre_paciente,
+				fecha: moment(valores.fecha).format(),
+				responsable: valores.responsable,
+				telefono: valores.telefono,
+				motivo: valores.motivo,
+				condicion: valores.condicion,
+				DNI: valores.DNI,
+			},
+		])
+	}
+
+	const actualizarDatos = (valores) => {
+		set_datos_af([
+			datos_af.map((dato) => {
+				if(dato._id == item._id){
+					dato.nombre_paciente = valores.nombre_paciente
+					dato.fecha = moment(valores.fecha).format()
+					dato.responsable = valores.responsable
+					dato.telefono = valores.telefono
+					dato.motivo = valores.motivo
+					dato.condicion = valores.condicion
+					dato.DNI = valores.DNI
+				}
+			})
+		])
+		set_datos_af([
+			...datos_af
+		])
 	}
 
 	return (
@@ -36,7 +67,7 @@ const FormCita = ({item}) => {
 			<br />
 			<Formik
 				initialValues={
-					item != undefined ? {
+					(item != undefined && Object.keys(item).length != 0) ? {
 						nombre_paciente: item.nombre_paciente,
 						dni_paciente: item.dni_paciente,
 						responsable: item.responsable,
@@ -111,7 +142,7 @@ const FormCita = ({item}) => {
 					return errores;
 				}}
 				onSubmit={(valores, { resetForm }) => {
-					if(item != undefined){
+					if(item != undefined && Object.keys(item).length != 0){
 						consumirCitaActualizada({
 							_id: item._id,
 							nombre_paciente: valores.nombre_paciente,
@@ -126,29 +157,7 @@ const FormCita = ({item}) => {
 							condicion: valores.condicion,
 							DNI: valores.dni_paciente,
 						})
-						// set_datos_af([
-						// 	datos_af.map((dato) => {
-						// 		if(dato._id == item._id){
-						// 			{console.log("SÍ LO ENCONTRÉ, ES: ", dato.DNI)}
-						// 			dato.nombre_paciente = valores.nombre_paciente
-						// 			dato.DNI = valores.dni_paciente
-						// 			dato.responsable = valores.responsable
-						// 			dato.telefono = valores.telefono
-						// 			dato.motivo = valores.motivo
-						// 			// dato.hora = moment(valores.hora).format()
-						// 			// dato.fecha = moment(valores.fecha).format('YYYY-MM-DD')
-						// 			dato.fecha = moment(
-						// 				new Date(
-						// 					`${valores.fecha} ${valores.hora}`
-						// 				)
-						// 			).format()
-						// 			dato.condicion = valores.condicion
-						// 		}
-						// 	})
-						// ])
-						// set_datos_af([
-						// 	...datos_af
-						// ])
+						.then((data) => (data.ok && (actualizarDatos(data.Cita), setState(false))))
 					} else{
 						consumirNuevaCita({
 							nombre_paciente: valores.nombre_paciente,
@@ -165,28 +174,8 @@ const FormCita = ({item}) => {
 							condicion: valores.condicion,
 							DNI: valores.dni_paciente,
 						})
-
-						resetForm();
+						.then((data) => (data.ok && (insertarDatos(data.cita), setState(false))))
 					}
-					// if (
-					// 	consumirNuevaCita({
-					// 		nombre_paciente: valores.nombre_paciente,
-					// 		//fecha_nac: moment(valores.fecha_nac).format(),
-					// 		fecha: moment(
-					// 			new Date(
-					// 				`${valores.fecha} ${valores.hora}`
-					// 			)
-					// 		).format(),
-					// 		//sexo: valores.sexo,
-					// 		responsable: valores.responsable,
-					// 		telefono: valores.telefono,
-					// 		motivo: valores.motivo,
-					// 		condicion: valores.condicion,
-					// 		DNI: valores.dni_paciente,
-					// 	})
-					// ) {
-					// 	resetForm();
-					// }
 				}}
 			>
 				{({ errors }) => (
@@ -275,7 +264,7 @@ const FormCita = ({item}) => {
 							<div>
 								<div>
 									<label><b>Fecha</b></label>
-									<Field name="fecha" type="date" min={getFecha()} style={{width:'125%'}}></Field>
+									<Field name="fecha" type="date" min={item === undefined ? getFecha() : ''} style={{width:'125%'}}></Field>
 								</div>
 								<div>
 									<ErrorMessage
@@ -325,7 +314,7 @@ const FormCita = ({item}) => {
 								</Field>
 							</div>
 							{
-								item != undefined ? null :
+								(item != undefined && Object.keys(item).length != 0) ? null :
 								<div style={{marginLeft:'150px'}}>
 									<label><b>Condición</b></label>
 									<Field name="condicion" as="select" style={{width:'100%'}}>
@@ -337,7 +326,7 @@ const FormCita = ({item}) => {
 						</div>
 						<div style={{display:'flex', justifyContent:'center'}}>
 							<button type="submit" className="agregar" style={{width:'20%'}}>
-								{item != undefined ? 'ACTUALIZAR' : 'AGREGAR'}
+								{(item != undefined && Object.keys(item).length != 0) ? 'ACTUALIZAR' : 'AGREGAR'}
 							</button>
 						</div>
 					</Form>

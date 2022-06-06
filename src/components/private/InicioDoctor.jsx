@@ -3,6 +3,7 @@ import useCita from '../../hooks/useCita';
 import '../../sass/Dashboard.sass';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import url from '../../keys/backend_keys';
 const InicioDoctor = () => {
 	let [datos_af, loading] = useCita();
 	const switchMotivo = (valor) => {
@@ -24,9 +25,28 @@ const InicioDoctor = () => {
 		})
 	}
 	let CitasHoy = []
+	//AGREGANDO SOLO CITAS DEL DÍA SELECCIONADO
 	for (let item in datos_af) {
 		if(moment(datos_af[item].fecha).format('DD/MM/YYYY')==moment(fecha.fechaCita).format('DD/MM/YYYY')){
 			CitasHoy.push(datos_af[item])
+		}
+	}
+
+	//PARA OBTENER DATO DE ANAMNESIS DE LA HISTORIA CLÍNICA A LA QUE PERTENECE LA CITA
+	const [datosHistClinica, setDatosHistClinica] = useState([])
+	useEffect(() => {
+		fetch((`${url}/HistClinica`))
+		.then((resp) => resp.json())
+		.then((data) => {
+			setDatosHistClinica(data)
+		})
+	}, [])
+	
+	for(let itemCita in CitasHoy){
+		for(let itemHist in datosHistClinica){
+			if(datosHistClinica[itemHist]._id == CitasHoy[itemCita].id_HistClinica){
+				CitasHoy[itemCita].anamnesis = datosHistClinica[itemHist].anamnesis
+			}
 		}
 	}
 
@@ -53,7 +73,7 @@ const InicioDoctor = () => {
 					&nbsp;&nbsp;CITAS DE {moment(fecha.fechaCita).format('DD/MM/YYYY')}
 				</h2> */}
 				<section className='opcionesCita'>
-					<div className='selectorFecha'>
+					<div className='selectorFecha' style={{display: 'flex', justifyContent: 'left'}}>
 						<div style={{display: 'flex', alignItems: 'center'}}><b>CITAS DE: </b></div>
 						<input 
 							// style={{height:'6.3vh'}}
@@ -82,13 +102,21 @@ const InicioDoctor = () => {
 								</thead>
 								<tbody>
 									{CitasHoy.map((item) => (
-										<tr key={item._id}>
+										<tr key={item.numero}>
 											<td>{item.numero}</td>
 											<td>{moment(item.fecha).format('LT')}</td>
 											<td className='nombPac'>{item.nombre_paciente}</td>
 											<td className='respons'>{item.responsable}</td>
 											<td>{switchMotivo(item.motivo)}</td>
-											<td></td>
+											<td>
+												{
+													item.anamnesis != undefined
+													?
+														<i class="fa-solid fa-shield-check" style={{color: 'green'}}></i>
+													:
+														<i class="fa-solid fa-ban" style={{color: 'red'}}></i>
+												}
+											</td>
 											<td>
 												<Link to={`/historia-clinica/${item.id_HistClinica}`}>
 												{/* <Link to={`/datos-f/${item.id_Historia}`}> */}
@@ -98,7 +126,7 @@ const InicioDoctor = () => {
 															cursor: 'pointer',
 														}}
 													>
-														<i className="fas fa-external-link-alt"></i>
+														<i class="fa-solid fa-arrow-up-right-from-square"></i>
 													</strong>
 													{item.post}
 												</Link>

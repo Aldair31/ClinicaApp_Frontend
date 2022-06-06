@@ -3,14 +3,12 @@ import useCita from '../../hooks/useCita';
 import '../../sass/Cita.sass';
 import '../../sass/Dashboard.sass';
 import FormCita from './extras/FormCita';
-import moment from 'moment';
-import { Link } from 'react-router-dom';
-import InicioDoctor from './InicioDoctor';
-import consumNuevaCita from '../../functions/citas';
+import MisCitasSecretaria from './MisCitasSecretaria';
 
 // import {BrowserRouter} from 'react-router-dom'
 const NuevaCita = () => {
 	const [state, setState] = useState(false)
+	const [datos_af, loading, set_datos_af] = useCita();
 	const ModalNuevaCita = () =>{
 		return(
 			<div
@@ -28,7 +26,7 @@ const NuevaCita = () => {
 				}}
 			>
 				<div className="nuevaCita">
-					<FormCita/>
+					<FormCita datos_af={datos_af} set_datos_af={set_datos_af} setState={setState}/>
 				</div>
 				<button
 					onClick={() => {
@@ -52,29 +50,18 @@ const NuevaCita = () => {
 		)
 	}
 
-	const item2 = {
-		nombre_paciente: 'david',
-		fecha: '2022-06-02T21:30:00.000Z'
-	}
-
 	return (
 		<>
 			<div>
-				{/* {state && <ModalNuevaCita/>}
-				<div style={{position: 'relative', zIndex: '2', width: '20%'}}>
+				<MisCitasSecretaria datos_af={datos_af} loading={loading} set_datos_af={set_datos_af}/>
+				{state && <ModalNuevaCita/>}
+				<div style={{position: 'relative', zIndex: '2', width: '20%', marginTop: '-70vh'}}>
 					<section className='opcionesCita'>
 						<div className="agregarCita" onClick={() => {setState(true)}}>
 							<i className="fa-regular fa-circle-plus"></i>
 							<p>NUEVA CITA</p>
 						</div>
 					</section>
-				</div>
-				<div style={{marginTop: '-55px', position: 'relative', zIndex: '1'}}>
-					<InicioDoctor/>
-				</div> */}
-				{/* <div style={{marginBottom:'20px', marginTop:'20px' , position:'absolute'}}><h2>Nueva cita</h2> </div> */}
-				<div className="nuevaCita">
-					<FormCita/>
 				</div>
 			</div>
 		</>
