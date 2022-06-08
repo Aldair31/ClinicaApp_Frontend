@@ -263,13 +263,13 @@ const FormRecetas = () => {
         doc.setFont(undefined, 'bold').setFontSize(10).setTextColor('black').text(109.5, 226, 'PRÓXIMA CITA');
         //DÍA
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(110, 229.5, 'DÍA');
-        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(110.5, 234.5, Re.fechaProx!=undefined?moment(Re.fechaProx).format('DD'):'');
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(110.5, 234.5, Receta.fechaProx!=undefined?moment(Receta.fechaProx).format('DD'):'');
         //MES
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(118.4, 229.5, 'MES');
-        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(120, 234.5, Re.fechaProx!=undefined?moment(Re.fechaProx).format('MM'):'');
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(120, 234.5, Receta.fechaProx!=undefined?moment(Receta.fechaProx).format('MM'):'');
         //AÑO
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(127.5, 229.5, 'AÑO');
-        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(127.3, 234.5, Re.fechaProx!=undefined?moment(Re.fechaProx).format('YYYY'):'');
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(127.3, 234.5, Receta.fechaProx!=undefined?moment(Receta.fechaProx).format('YYYY'):'');
 
         //OBTENIENDO DATOS DE ENCABEZADO RECETA (EDAD, PESO, TALLA, PC)
         let {years, months, days} = calcularEdad(Hc.histClinica.fecha, Hc.historia.fecha_nac)
