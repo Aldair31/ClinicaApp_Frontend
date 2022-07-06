@@ -13,7 +13,6 @@ const useMedicamentos = () =>{
         })
     }, [])
 
-    console.log('Medicamento',Med)
     return Med
 }
 

@@ -8,7 +8,6 @@ const FormApoderado = (usuario) => {
 	const subirArchivo = (e) => {
 		let file = e.target.files[0];
 		setEstado({ file: file });
-		console.log(file);
 	};
 
 	const consumirArchivo = (usuario) => {
@@ -24,14 +23,10 @@ const FormApoderado = (usuario) => {
 				id: usuario.usuario.uid,
 			},
 		}).then((res) => {
-			console.log('....');
-			console.log(res);
-			console.log('.....');
 			let [user] = usuario.datos.filter(
 				(item) => item._id === usuario.usuario.uid
 			);
 			user.foto_perfil = res.data.usuario.foto_perfil;
-			console.log(user);
 			usuario.set_datos(
 				usuario.datos.filter(
 					(item) => item._id !== usuario.usuario.uid

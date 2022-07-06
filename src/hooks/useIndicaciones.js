@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import url from '../keys/backend_keys';
-const useFiliacionUnica = () => {
-	const [grafica, setGrafica] = useState([]);
+const useIndicaciones = () => {
+	const [indicaciones, setIndicaciones] = useState([]);
 	const { id } = useParams();
 
 	useEffect(() => {
-		fetch(`${url}/Historia/id/${id}`)
+		fetch(`${url}/HistClinica/medicamentos/${id}`)
 			.then((resp) =>{
 				return resp.json();
 			})
 			
 			.then((data) =>{
-				setGrafica(data)
+				setIndicaciones(data)
 			});
 			
 	}, [id]);
 
-	return grafica
+	return indicaciones
 };
 
-export default useFiliacionUnica;
+export default useIndicaciones;

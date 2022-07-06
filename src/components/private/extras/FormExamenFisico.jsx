@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import url from '../../../keys/backend_keys';
 const FormExamenFisico = ({item}) => {
-	console.log('******')
-	console.log(item)
-	console.log('******')
 	return (
 		<>	
 		<div 
@@ -156,9 +153,6 @@ const FormExamenFisico = ({item}) => {
 				}}
 				onSubmit={(valores, { resetForm }) => {
 					// resetForm();
-					console.log('valores')
-					console.log(valores)
-					console.log(item._id)
 					fetch(`${url}/ExamenFisico/${item._id}`, {
 						headers: {
 							'Content-Type': 'application/json',
@@ -175,12 +169,7 @@ const FormExamenFisico = ({item}) => {
 						.then((data) => {
 							if (data.ok) {
 								alert('Actualizado correctamente');
-								// console.log(data);
-								// const { evento } = data;
-								// console.log(evento);
-								// return evento;
 							}
-							console.log(data)
 						})
 				}}
 			>

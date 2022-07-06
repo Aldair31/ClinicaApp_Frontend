@@ -13,7 +13,6 @@ const Filiacion = () => {
 			{loading !== null ? (
 				<div className="datos_filiacion">
 					{datos_af.map((item) => (
-						console.log(item),
 						<div className="dato_filiacion" key={item._id}>
 							<p>
 								<strong>-DNI del paciente: </strong>

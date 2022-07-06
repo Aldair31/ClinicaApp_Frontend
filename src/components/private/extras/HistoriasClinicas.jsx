@@ -14,7 +14,7 @@ const HistoriasClinicas = () => {
 		fetch(`${url}/HistClinica/${id}`)
 			.then((resp) => resp.json())
 			.then((data) => setDatos(data));
-	}, []);
+	}, [id]);
 
 	let {fechaNac} = useHistClinica()
 
@@ -25,9 +25,6 @@ const HistoriasClinicas = () => {
 	}
 
 	const nuevosDatos = datos.slice().sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
-
-	console.log('NUEVOS DATOS: ', nuevosDatos)
-	console.log('DATOS: ', datos)
 
 	const ModalNuevaHistClinica = () => {
 		const [nuevaHistClinica, setnuevaHistClinica] = useState({})
@@ -78,7 +75,7 @@ const HistoriasClinicas = () => {
 								<button
 									onClick={(e) => {
 										e.preventDefault();
-										if(nuevaHistClinica.fecha != undefined){
+										if(nuevaHistClinica.fecha !== undefined){
 											// if(!moment(moment(nuevaHistClinica.fecha).format('DD-MM-YYYY')).isBefore(moment(fechaNacimiento[0]).format('DD-MM-YYYY'))){
 											if(new Date(moment(nuevaHistClinica.fecha).format()).getTime()>=new Date(moment(fechaNacimiento[0]).format()).getTime()) {
 												fetch(`${url}/HistClinica/new`, {
@@ -148,55 +145,55 @@ const HistoriasClinicas = () => {
 	};
 
 	//ESTADO PARA SABER SI SE VA A ELIMINAR
-	const [BtnAcitve, setBtnActive] = useState(false)
+	// const [BtnAcitve, setBtnActive] = useState(false)
 
 	//MODAL DE CONFIRMACIÓN PARA CREAR
-    const ModalConfirmación = () => {
-        return (
-            <>
-                <div
-                    style={{
-                        background: '#00000039',
-                        position: 'absolute',
-                        top: '0',
-                        left: '0',
-                        height: '100vh',
-                        width: '100%',
-                        zIndex:'2',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}
-                >
-                    <form
-                         style={{
-                            background: '#ffffff',
-                            padding: '2px',
-                            borderRadius: '6px',
-                        }}
-                    >
-                        <div className="ModalReceta">
-                            <h3>¿Está seguro que desea eliminar la Historia Clínica?</h3>
-                            <div className="ListaBotones">
-                                <button onClick={(e) => {
-                                    e.preventDefault()
-                                    setBtnActive(true)
-                                }}>
-                                    SÍ
-                                </button>
-                                <button onClick={() => {setFormConfirmacion(false)}}>NO</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </>
-        )
-    }
+    // const ModalConfirmación = () => {
+    //     return (
+    //         <>
+    //             <div
+    //                 style={{
+    //                     background: '#00000039',
+    //                     position: 'absolute',
+    //                     top: '0',
+    //                     left: '0',
+    //                     height: '100vh',
+    //                     width: '100%',
+    //                     zIndex:'2',
+    //                     display: 'flex',
+    //                     justifyContent: 'center',
+    //                     alignItems: 'center',
+    //                 }}
+    //             >
+    //                 <form
+    //                      style={{
+    //                         background: '#ffffff',
+    //                         padding: '2px',
+    //                         borderRadius: '6px',
+    //                     }}
+    //                 >
+    //                     <div className="ModalReceta">
+    //                         <h3>¿Está seguro que desea eliminar la Historia Clínica?</h3>
+    //                         <div className="ListaBotones">
+    //                             <button onClick={(e) => {
+    //                                 e.preventDefault()
+    //                                 setBtnActive(true)
+    //                             }}>
+    //                                 SÍ
+    //                             </button>
+    //                             <button onClick={() => {setFormConfirmacion(false)}}>NO</button>
+    //                         </div>
+    //                     </div>
+    //                 </form>
+    //             </div>
+    //         </>
+    //     )
+    // }
 
-	const [formConfirmacion, setFormConfirmacion] = useState(false);
-	const onFormConfirmacion = () => {
-		setFormConfirmacion(!formConfirmacion);
-	};
+	// const [formConfirmacion, setFormConfirmacion] = useState(false);
+	// const onFormConfirmacion = () => {
+	// 	setFormConfirmacion(!formConfirmacion);
+	// };
 
 	const calcularEdad = (fechaConsulta, fechaNac) =>{
 		let a = moment(fechaConsulta)
@@ -232,10 +229,10 @@ const HistoriasClinicas = () => {
 						</thead>
 						<tbody>
 							{nuevosDatos.map((item) => (
-								<tr>
+								<tr key={item._id}>
 									<td style={{textTransform: 'uppercase'}}>{moment(item.fecha).format('DD/MM/YYYY')}</td>
 									{/* <td style={{textTransform: 'uppercase'}}>{(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).years()} AÑOS {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).months()} MESES {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).days()} DÍAS</td> */}
-									<td>{calcularEdad(item.fecha, fechaNacimiento[0])}</td>
+									<td>{fechaNacimiento[0] !== 'Invalid date' ? calcularEdad(item.fecha, fechaNacimiento[0]) : ''}</td>
 									<td>
 										<button
 											style={{backgroundColor: 'transparent', border: 'none', cursor: 'pointer'}}
@@ -254,7 +251,7 @@ const HistoriasClinicas = () => {
 													.then((data) => {
 														if(data.ok){
 															alert('Historia Clínica eliminada')
-															setDatos(datos.filter((datos) => datos._id != item._id))
+															setDatos(datos.filter((datos) => datos._id !== item._id))
 														}
 													})
 													.catch((err) => {
@@ -264,7 +261,7 @@ const HistoriasClinicas = () => {
 											}}
 										>
 											<i className="fas fa-trash-alt" style={{color: 'red'}}></i>
-											{formConfirmacion && <ModalConfirmación/>}
+											{/* {formConfirmacion && <ModalConfirmación/>} */}
 										</button>
 									</td>
 									<td>

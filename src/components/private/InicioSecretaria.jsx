@@ -3,9 +3,9 @@ import '../../sass/Calendario.sass';
 import url from '../../keys/backend_keys';
 import moment from 'moment';
 import FullCalendar from '@fullcalendar/react'; // must go before plugins
-import dayGridPlugin from '@fullcalendar/daygrid';// a plugin!
+// import dayGridPlugin from '@fullcalendar/daygrid';// a plugin!
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
-import useReserva from '../../hooks/useReserva';
+// import useReserva from '../../hooks/useReserva';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import getFecha from '../../functions/fecha'
 // import { set } from 'react-hook-form';
@@ -38,12 +38,12 @@ const InicioSecretaria =  () => {
 			
 	}, []);
 
-    const handleChangeRes = (e)=>{
-		setRes({
-			...res,
-			[e.target.name]: e.target.value
-		})
-	}
+    // const handleChangeRes = (e)=>{
+	// 	setRes({
+	// 		...res,
+	// 		[e.target.name]: e.target.value
+	// 	})
+	// }
 
     let NombreYFecha = []
     for (let item in res){
@@ -54,7 +54,7 @@ const InicioSecretaria =  () => {
     const Datos = (str) => {
         let data = []
         for (let item in res){
-            if(moment(res[item].fecha).format() == str){
+            if(moment(res[item].fecha).format() === str){
                 data = res[item]
             }
         }
@@ -242,8 +242,6 @@ const InicioSecretaria =  () => {
                                                         },
                                                     ]);
                                                     setState(false)
-                                                    
-                                                    // console.log(moment('13:00').format('HH:mm'))
                                                 }
                                                 else{
                                                     alert('Ya existe una Reserva a esa hora')

@@ -15,7 +15,7 @@ const ListaReceta = () => {
         .then((data) => {
             setListaReceta(data)
         })
-    }, [])
+    }, [id])
 
     //PARA MOSTRAR DATOS
     let Datos = []
@@ -47,7 +47,6 @@ const ListaReceta = () => {
                     id_HistClinica: id
                 })
             }
-            console.log("DATA: ", data)
             history.push(`/agregar-receta/${data.receta._id}`)
         })
     }
@@ -110,8 +109,8 @@ const ListaReceta = () => {
             <div className='contenedor-re'>
                 {Datos.map((item) => {
                     return(
-                        <>
-                            {item.id_HistClinica == id ? (
+                        <div key={item._id}>
+                            {item.id_HistClinica === id ? (
                                 <div style={{marginBottom: '5px'}}>
                                     <Link
                                         to={`/agregar-receta/${item._id}`}
@@ -120,7 +119,7 @@ const ListaReceta = () => {
                                     </Link>
                                 </div>
                             ):null}
-                        </>
+                        </div>
                     )
                 })}
             </div>

@@ -3,9 +3,9 @@ import useAfiliacion from '../../hooks/useAfiliacion';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import '../../sass/DatosF.sass';
-import { BrowserRouter, Link,Switch, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import FormFiliacion from './extras/FormFiliacion';
-import Antecedentes from './Antecedentes';
+// import Antecedentes from './Antecedentes';
 //MARQUITO QUIERE QUE HAGAS UN SORTEO :V
 //TU PATITA MEMERSON
 const DatosF = ({ usuario }) => {
@@ -19,7 +19,7 @@ const DatosF = ({ usuario }) => {
 					{datos_af
 						.filter((item) => item._id === id)
 						.map((item) => (
-							<>
+							<div key={item._id}>
 								<h2 style={{marginLeft:'5%'}}>
 									Datos de filiación&nbsp;&nbsp;
 									{rol === 'Doctor' ? (
@@ -73,6 +73,7 @@ const DatosF = ({ usuario }) => {
 									) : null}
 								</h2>
 								<FormFiliacion item={id} />
+								{/* <Probando id={id}/> */}
 								{/* <BrowserRouter>
 								<Switch>
 										<Route path="/antecedentes/:id">
@@ -87,7 +88,7 @@ const DatosF = ({ usuario }) => {
 								
 								
 								
-							</>
+							</div>
 						))}
 				</div>
 			) : null}

@@ -12,7 +12,7 @@ const Hijos = ({ match }) => {
 	const agregarHijo = (dni) => {
 		fetch(`${url}/Historia/${dni}`)
 			.then((resp) => resp.json())
-			.then((datos) => datos)
+			// .then((datos) => datos)
 			.then((datos) => {
 				fetch(`${url}/Historia/${datos._id}`, {
 					headers: {
@@ -21,15 +21,11 @@ const Hijos = ({ match }) => {
 					method: 'PUT',
 					body: JSON.stringify({
 						...datos,
-						// fecha_nac: moment(new Date(`${valores.fecha}`)).add(1, 'days').format(),
 						id_Usuario: match.params.id,
 					}),
 				})
 					.then((resp) => resp.json())
 					.then((datos) => {
-                        console.log('es voluntario');
-                        console.log(datos);
-                        console.log('es voluntario');
 						if(datos.ok){
 							setUsuario({
 								...usuario,
@@ -154,6 +150,7 @@ const Hijos = ({ match }) => {
 										marginBottom:'10%',
 										width:'90%'
 									}}
+									key={item._id}
 								>
 									<br />
 									<div>

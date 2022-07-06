@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import url from '../../../keys/backend_keys';
 
 const FormResponsable = ({ datos, set_datos }) => {
-	const [password, setPassword] = useState(true)
+	// const [password, setPassword] = useState(true)
 
-	const cambioEstadoPass = () =>{
-		setPassword(!password)
-	}
+	// const cambioEstadoPass = () =>{
+	// 	setPassword(!password)
+	// }
 
 	return (
 		<>
@@ -16,7 +16,7 @@ const FormResponsable = ({ datos, set_datos }) => {
 					nombre: '',
 					// email: '',
 					dni: '',
-					password: '',
+					// password: '',
 				}}
 				validate={(valores) => {
 					let errores = {};
@@ -43,9 +43,9 @@ const FormResponsable = ({ datos, set_datos }) => {
 						errores.dni =
 							'El DNI sólo puede contener 8 números.';
 					}
-					if (!valores.password) {
-						errores.password = 'Por favor ingrese su clave';
-					}
+					// if (!valores.password) {
+					// 	errores.password = 'Por favor ingrese su clave';
+					// }
 					return errores;
 				}}
 				onSubmit={(valores, { resetForm }) => {
@@ -57,7 +57,10 @@ const FormResponsable = ({ datos, set_datos }) => {
 						},
 						method: 'POST',
 						body: JSON.stringify({
-							...valores,
+							// ...valores,
+							nombre: valores.nombre,
+							dni: valores.dni,
+							password: valores.dni,
 							rol: 'Apoderado',
 						}),
 					})
@@ -66,13 +69,7 @@ const FormResponsable = ({ datos, set_datos }) => {
 						})
 						.then((data) => {
 							if (data.ok) {
-								console.log('-----data-----');
-								console.log(data);
-								console.log('--------------');
 								alert('Registrado con éxito');
-								console.log('--------');
-								console.log(valores);
-								console.log('---------');
 								set_datos([
 									...datos,
 									{
@@ -134,7 +131,7 @@ const FormResponsable = ({ datos, set_datos }) => {
 								/>
 							</div>
 						</div>
-						<div>
+						{/* <div>
 							<label htmlFor="password"><strong>Password</strong></label>
 							<div>
 								<section className='responsablePassword'>
@@ -162,7 +159,7 @@ const FormResponsable = ({ datos, set_datos }) => {
 									)}
 								/>
 							</div>
-						</div>
+						</div> */}
 						{/* <div>
 							<label htmlFor="email">Correo</label>
 							<div>

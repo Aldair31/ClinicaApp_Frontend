@@ -3,7 +3,7 @@ import '../../sass/Dashboard.sass';
 import '../../sass/ModalPaciente.sass';
 import '../../sass/Responsables.sass';
 import useResponsables from '../../hooks/useResponsables';
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 // import url from '../../keys/backend_keys';
 
 import FormResponsable from './extras/FormResponsable';
@@ -99,11 +99,12 @@ const Responsables = () => {
     }
 
 	return (
+		!loading &&
 		<>
 			<div style={{display: 'flex', justifyContent: 'space-between'}}>
 				<h2 className='tituloRespAgregar'>
-					Responsables
-					{/* <span onClick={onForm}>Nuevo</span> */}
+					Responsables&nbsp;&nbsp;&nbsp;
+					<span onClick={onForm}>Nuevo</span>
 				</h2>
 				{form && <MostrarFormNuevo datos={datos} set_datos={set_datos}/>}
 				<div 

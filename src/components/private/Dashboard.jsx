@@ -13,18 +13,18 @@ import HistoriaClinica from './HistoriaClinica';
 import Error404 from '../Error404';
 import Hijo from './Hijo';
 // import Consultas from '../private/Consultas';
-import Vacunas from '../private/Vacunas';
+// import Vacunas from '../private/Vacunas';
 // Citas
 import Hijos from './Hijos';
 import MisHijos from './MisHijos';
-import Filiacion from './Filiacion';
+// import Filiacion from './Filiacion';
 import Responsables from './Responsables';
 import NuevaCita from './NuevaCita';
 import MisCitasSecretaria from './MisCitasSecretaria';
 import DatosF from './DatosF';
 
 import HistoriasClinicas from './extras/HistoriasClinicas'
-import Antecedentes from './Antecedentes';
+// import Antecedentes from './Antecedentes';
 import GraficoDeCrecimiento from './GraficoDeCrecimiento';
 //PARA NIÑOS
 import GraficoDeCrecimientoPesoEdadNiño0a36 from './GraficoDeCrecimientoPesoEdadNiño0a36';
@@ -58,7 +58,6 @@ import FormOrden from './extras/FormOrden'
 import ListaOrden from './ListaOrden'
 
 const Dashboard = ({ usuario, logout }) => {
-	console.log(usuario);
 	const [open, setOpen]= useState(false)
 	return (
 		<>
@@ -228,7 +227,7 @@ const Dashboard = ({ usuario, logout }) => {
 											<NavLink
 												className="item"
 												to="/mis-hijos"
-												exact
+												// exact
 											>
 												<svg
 													xmlns="http://www.w3.org/2000/svg"
@@ -245,7 +244,7 @@ const Dashboard = ({ usuario, logout }) => {
 								) : null}
 								<div className="itemLong">
 									<Link
-										exact
+										// exact
 										to="/"
 										className="item"
 										onClick={() => {
@@ -270,7 +269,7 @@ const Dashboard = ({ usuario, logout }) => {
 					<>
 						<div onClick={()=>{setOpen(false)}}>
 							<Switch>
-								<Route path="/" exact component={InitScreen} />
+								<Route path="/" exact={true} component={InitScreen} />
 
 								<Route
 									path="/pacientess"

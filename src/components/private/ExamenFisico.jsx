@@ -21,9 +21,6 @@ const ExamenFisico = () => {
 			<div className="list">
 				<div className="citas">
 					{examenFisico.map((item) => {
-                        console.log("**")
-                        
-						console.log(item)
 						return (
 							<>
 								{item.id_Historia===id?  (

@@ -22,7 +22,7 @@ const FormOrden = () => {
                 setBtnActive(true)
             }
         })
-    }, [])
+    }, [id])
     
     //PARA REGISTRAR DATOS DE INDICACIONES
     const [Indicacion, setIndicacion] = useState([])
@@ -37,7 +37,7 @@ const FormOrden = () => {
     
     //PETICÍON POST/UPDATE PARA AGREGAR INDICACIÓN
     const AgregarIndicacion = (dato) =>{
-        if(Indicacion.indicaciones!=undefined && Indicacion.indicaciones!=''){
+        if(Indicacion.indicaciones!==undefined && Indicacion.indicaciones!==''){
             if(isActive){
                 fetch(`${url}/IndicacionOrden/${dato._id}`, {
                     headers: {
@@ -57,11 +57,16 @@ const FormOrden = () => {
                             indicaciones: ''
                         })
                         setOrden([
-                            Orden.map((datos) => {
-                                if(datos._id == dato._id){
-                                    datos.indicaciones = Indicacion.indicaciones
-                                }
-                            })
+                            // Orden.map((datos) => {
+                            //     if(datos._id == dato._id){
+                            //         datos.indicaciones = Indicacion.indicaciones
+                            //     }
+                            // })
+                            Orden.map((data) => (
+                                data._id === dato._id && (
+                                    data.indicaciones = Indicacion.indicaciones
+                                )
+                            ))
                         ])
                         setOrden([
                             ...Orden
@@ -114,9 +119,7 @@ const FormOrden = () => {
         .then((data) => {
             setHistoria(data)
         })
-    }, [])
-
-    // console.log('DATOS HISTORIA',Historia)
+    }, [id])
     
     const DocOrden = () => {
         var doc = new jsPDF('p', 'mm', [242, 104])
@@ -159,7 +162,7 @@ const FormOrden = () => {
         //OBTENIENDO SOLO INDICACIONES
         let datosIndic = []
         for (let i = 0; i < Orden.length; i++) {
-            datosIndic.push([(i+1) + '. ' + (Orden[i].indicaciones.replace(/;/g, '\n\n')).toUpperCase()])
+            datosIndic.push([(i+1) + '. ' + (Orden[i].indicaciones.replace(/;/g, '\n\n- ')).toUpperCase()])
         }
         
         //TABLA PARA INDICACIONES
@@ -214,7 +217,7 @@ const FormOrden = () => {
                     placeholder='INDICACIONES'
                     name="indicaciones"
                     id='indicaciones'
-                    value={Indicacion.indicaciones}
+                    value={Indicacion.indicaciones ? Indicacion.indicaciones : ''}
                     onChange={handleChangeIndic}
                 ></input>
                 <div className='agregarIndic'>
@@ -249,14 +252,14 @@ const FormOrden = () => {
                     </thead>
                     <tbody>
                         {Orden.map((item) => (
-                            <tr>
+                            <tr key={item._id}>
                                 <td className='tdIndicacion'>{item.indicaciones}</td>
                                 <td>
                                     <button 
                                         style={{backgroundColor: 'transparent', border: 'none', cursor: 'pointer'}}
                                         onClick={(e) => {
                                             e.preventDefault()
-                                            if(Orden.length - 1 == 0){
+                                            if(Orden.length - 1 === 0){
                                                 setBtnActive(false)
                                             }
                                             var rpta = window.confirm("¿Desea eliminar esta indicación?")
@@ -271,7 +274,7 @@ const FormOrden = () => {
                                                 .then((data) => {
                                                     if(data.ok){
                                                         alert('Indicación eliminada')
-                                                        setOrden(Orden.filter((datos) => datos._id != item._id))
+                                                        setOrden(Orden.filter((datos) => datos._id !== item._id))
                                                     }
                                                 })
                                                 .catch((err) => {

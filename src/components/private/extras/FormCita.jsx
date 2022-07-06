@@ -43,17 +43,28 @@ const FormCita = ({item, datos_af, set_datos_af, setState}) => {
 
 	const actualizarDatos = (valores) => {
 		set_datos_af([
-			datos_af.map((dato) => {
-				if(dato._id == item._id){
-					dato.nombre_paciente = valores.nombre_paciente
-					dato.fecha = moment(valores.fecha).format()
-					dato.responsable = valores.responsable
-					dato.telefono = valores.telefono
-					dato.motivo = valores.motivo
-					dato.condicion = valores.condicion
+			// datos_af.map((dato) => {
+			// 	if(dato._id === item._id){
+			// 		dato.nombre_paciente = valores.nombre_paciente
+			// 		dato.fecha = moment(valores.fecha).format()
+			// 		dato.responsable = valores.responsable
+			// 		dato.telefono = valores.telefono
+			// 		dato.motivo = valores.motivo
+			// 		dato.condicion = valores.condicion
+			// 		dato.DNI = valores.DNI
+			// 	}
+			// })
+			datos_af.map((dato) => (
+				dato._id === item._id && (
+					dato.nombre_paciente = valores.nombre_paciente,
+					dato.fecha = moment(valores.fecha).format(),
+					dato.responsable = valores.responsable,
+					dato.telefono = valores.telefono,
+					dato.motivo = valores.motivo,
+					dato.condicion = valores.condicion,
 					dato.DNI = valores.DNI
-				}
-			})
+				)
+			))
 		])
 		set_datos_af([
 			...datos_af
@@ -67,7 +78,7 @@ const FormCita = ({item, datos_af, set_datos_af, setState}) => {
 			<br />
 			<Formik
 				initialValues={
-					(item != undefined && Object.keys(item).length != 0) ? {
+					(item !== undefined && Object.keys(item).length !== 0) ? {
 						nombre_paciente: item.nombre_paciente,
 						dni_paciente: item.dni_paciente,
 						responsable: item.responsable,
@@ -142,7 +153,7 @@ const FormCita = ({item, datos_af, set_datos_af, setState}) => {
 					return errores;
 				}}
 				onSubmit={(valores, { resetForm }) => {
-					if(item != undefined && Object.keys(item).length != 0){
+					if(item !== undefined && Object.keys(item).length !== 0){
 						consumirCitaActualizada({
 							_id: item._id,
 							nombre_paciente: valores.nombre_paciente,
@@ -311,10 +322,13 @@ const FormCita = ({item, datos_af, set_datos_af, setState}) => {
 									<option value="3">
 										Control de crecimiento
 									</option>
+									<option value="4">
+										Reevaluación
+									</option>
 								</Field>
 							</div>
 							{
-								(item != undefined && Object.keys(item).length != 0) ? null :
+								(item !== undefined && Object.keys(item).length !== 0) ? null :
 								<div style={{marginLeft:'150px'}}>
 									<label><b>Condición</b></label>
 									<Field name="condicion" as="select" style={{width:'100%'}}>
@@ -326,7 +340,7 @@ const FormCita = ({item, datos_af, set_datos_af, setState}) => {
 						</div>
 						<div style={{display:'flex', justifyContent:'center'}}>
 							<button type="submit" className="agregar" style={{width:'20%'}}>
-								{(item != undefined && Object.keys(item).length != 0) ? 'ACTUALIZAR' : 'AGREGAR'}
+								{(item !== undefined && Object.keys(item).length !== 0) ? 'ACTUALIZAR' : 'AGREGAR'}
 							</button>
 						</div>
 					</Form>

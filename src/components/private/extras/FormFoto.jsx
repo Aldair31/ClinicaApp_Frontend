@@ -9,14 +9,12 @@ const FormFoto = ({ id, setForm, setFotos, fotos }) => {
 	const subirArchivo = (e) => {
 		let file = e.target.files[0];
 		setEstado({ file: file });
-		console.log(file);
 	};
 
 	const consumirArchivo = (id) => {
 		let file = state.file;
 		let formdata = new FormData();
 		formdata.append('foto', file);
-		console.log(formdata);
 		axios({
 			url: `${url}/Fotos/files`,
 			method: 'POST',
@@ -25,9 +23,6 @@ const FormFoto = ({ id, setForm, setFotos, fotos }) => {
 				id,
 			},
 		}).then((res) => {
-			console.log('....');
-			console.log(res);
-			console.log('.....');
 			fetch(`${url}/Fotos/${id}`)
 				.then((resp) => resp.json())
 				.then((dat) => setFotos(dat));

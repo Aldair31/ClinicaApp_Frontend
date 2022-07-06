@@ -108,23 +108,21 @@ const InicioApoderado = ({ usuario }) => {
 					// 	))}
 					// </div>
 					datos.map((item) => (
-						<>
-							{item._id === usuario.uid ? (
-								<div className="card" key={item._id}>
-									<div className="card-border-top"></div>
-									<div className="img">
-										<img alt='Perfil' src={url + '/api/auth/uploads/' + item.foto_perfil}></img>
-									</div>
-									<button onClick={() => {setForm(!form)}}>
-										<i className="fas fa-pen"></i>
-									</button>
-									<span className="text">
-				 						{item.nombre}
-				 					</span>
-									{/* <p className="job"> {item.dni}</p> */}
+						item._id === usuario.uid ? (
+							<div className="card" key={item._id}>
+								<div className="card-border-top"></div>
+								<div className="img">
+									<img alt='Perfil' src={url + '/api/auth/uploads/' + item.foto_perfil}></img>
 								</div>
-							) : null}
-						</>
+								<button onClick={() => {setForm(!form)}}>
+									<i className="fas fa-pen"></i>
+								</button>
+								<span className="text">
+									 {item.nombre}
+								 </span>
+								{/* <p className="job"> {item.dni}</p> */}
+							</div>
+						) : null
 					))
 				) : (
 					<p>cargando...</p>

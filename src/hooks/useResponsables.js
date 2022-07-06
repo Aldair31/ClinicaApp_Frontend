@@ -11,14 +11,13 @@ const useResponsables = () => {
 			.then((data) => {
 				set_datos(data);
 				setLoading(false);
-				// console.log(data);
 				// return data;
 			})
 			// .catch((err) => {
 			// 	return err;
 			// });
 	}, []);
-	return [datos, loading,set_datos];
+	return [datos, loading, set_datos];
 };
 
 export default useResponsables;

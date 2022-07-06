@@ -1,10 +1,10 @@
 import React from 'react';
 import useAfiliacion from '../../hooks/useAfiliacion';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import '../../sass/DatosF.sass';
-import { BrowserRouter, Link,Switch, Route } from 'react-router-dom';
-import FormFiliacion from './extras/FormFiliacion';
+// import { BrowserRouter, Link,Switch, Route } from 'react-router-dom';
+// import FormFiliacion from './extras/FormFiliacion';
 import Antecedentes from './Antecedentes';
 //MARQUITO QUIERE QUE HAGAS UN SORTEO :V
 //TU PATITA MEMERSON
@@ -18,7 +18,7 @@ const DatosAntecedentes = () => {
 					{datos_af
 						.filter((item) => item._id === id)
 						.map((item) => (
-							<>
+							<div key={item._id}>
 								
 								<Antecedentes id={id} />
 								{/* <BrowserRouter>
@@ -35,7 +35,7 @@ const DatosAntecedentes = () => {
 								
 								
 								
-							</>
+							</div>
 						))}
 				</div>
 			) : null}

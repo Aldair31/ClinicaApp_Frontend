@@ -1,10 +1,9 @@
 import React from 'react';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 // const Header = ({open, setOpen}) => {
 const Header = () => {
 	// const [open, setOpen]= useState(false)
-	// console.log("USUARIO HEADER: ", usuario)
 	return (
 		<>
 			<div className="header_dashboard">

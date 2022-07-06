@@ -3,9 +3,6 @@ import '../../../sass/DatosF.sass';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import url from '../../../keys/backend_keys';
 const FormAntecedentes = ({ item }) => {
-	console.log('******')
-	console.log(item)
-	console.log('******')
 	return (
 		<>	
 		<div 
@@ -125,9 +122,6 @@ const FormAntecedentes = ({ item }) => {
 				}}
 				onSubmit={(valores, { resetForm }) => {
 					// resetForm();
-					console.log('valores')
-					console.log(valores)
-					console.log(item._id)
 					fetch(`${url}/Antecedentes/${item._id}`, {
 						headers: {
 							'Content-Type': 'application/json',
@@ -143,7 +137,6 @@ const FormAntecedentes = ({ item }) => {
 							if (data.ok) {
 								alert('Actualizado correctamente');
 							}
-							console.log(data)
 						})
 				}}
 			>

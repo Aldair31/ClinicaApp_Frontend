@@ -21,7 +21,6 @@ const DocReceta = () => {
 	// 		[e.target.name]: e.target.value
 	// 	})
 	// }
-    // console.log("DATOOOOOOOOS: ", Re)
 
     var doc = new jsPDF('p', 'mm', [232, 208]) //Largo - Ancho
     // var doc = new jsPDF('p', 'mm')

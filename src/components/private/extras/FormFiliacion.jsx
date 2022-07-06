@@ -5,37 +5,40 @@ import url from '../../../keys/backend_keys';
 import getFecha from '../../../functions/fecha';
 // import getFecha  from '../../../functions/fecha';
 import { useEffect,useState } from 'react';
-import { useParams } from 'react-router';
+// import { useParams } from 'react-router';
 
 import '../../../sass/Filiacion.sass'
 const FormFiliacion = ({ item }) => {
-	let fechaNac = ''
-	if(item.fecha_nac != null){
-		fechaNac = moment(item.fecha_nac).format('YYYY-MM-DD')
-	}
-	const [Hc, setHc] = useState({})
-	// let { id } = useParams();
+	
 	let  id  = item;
-	useEffect(() => {
-		fetch(`${url}/Historia/id/${id}`)
-			.then((resp) => resp.json())
-			.then((data)=>{
-				/*console.log('hist.clinica');
-				console.log(data);
-				console.log(id)*/
-				setHc(data)
-			})
-	}, []);
+	const [Hc, setHc] = useState({})
+	const [user, setUser] = useState({})
+    useEffect(() => {
+		const fetchData = async () => {
+            let response = await fetch(`${url}/Historia/id/${id}`)
+            let data = await response.json(); 
+            setHc(data)
+            if(data.id_Usuario){
+                let responseUser = await fetch(`${url}/api/auth/${data.id_Usuario}`)
+                let dataUser = await responseUser.json()
+                setUser(dataUser)
+            }
+        }
+        fetchData()
+	}, [id]);
 	const handleChange = (e)=>{
 		setHc({
 			...Hc,
 			[e.target.name]: e.target.value
 		})
-		//setHc(e.target.value)
 	}
-	console.log("Edad:", Hc.fecha_nac)
-	// Hc.edad = (moment.duration(moment().diff(moment(Hc.fecha_nac)))).years() + ' a ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).months() + ' m ' + (moment.duration(moment().diff(moment(Hc.fecha_nac)))).days() + ' d'
-	
+
+	const handleChangeUser = (e)=>{
+		setUser({
+			...user,
+			[e.target.name]: e.target.value
+		})
+	}
 	const calcularEdad = (fechaNac) =>{
 		let a = moment()
 		let b = moment(fechaNac)
@@ -51,6 +54,32 @@ const FormFiliacion = ({ item }) => {
 		return years + " a " + months + " m " + days + " d"
 	}
 
+	// const switchTipoApoderado = (valor) => {
+	// 	switch (valor) {
+	// 		case '1':
+	// 			return user.nombre = Hc.nombre_madre;
+	// 		case '2':
+	// 			return user.nombre = Hc.nombre_padre;
+	// 		case '3':
+	// 			return user.nombre = ''
+	// 		default:
+	// 			return 'Sin dato';
+	// 	}
+	// };
+
+	// const switchSelectorApoderado = (valor) => {
+	// 	switch (valor) {
+	// 		case Hc.nombre_madre:
+	// 			return user.tipoApoderado = '1'
+	// 		case Hc.nombre_padre:
+	// 			return user.tipoApoderado = '2'
+	// 		case '':
+	// 			return user.tipoApoderado = '3'
+	// 		default :
+	// 			return 'No recibo dato'
+	// 	}
+	// }
+
 	return (
 		// <div>
 		// 	<label>Edad</label>
@@ -61,22 +90,28 @@ const FormFiliacion = ({ item }) => {
 		<>
 			<Formik
 				initialValues={{
-					nombres_paciente: item.nombres_paciente,
-					dni_paciente: item.dni_paciente,
-					//fecha_nac: fechaNac,
+					nombres_paciente: '',
+					dni_paciente: '',
+					fecha_nac: '',
+					edad: '0 a 0 m 0 d',
 					// fecha_nac: moment(item.fecha_nac).format('YYYY-MM-DD'),
 					//edad : (moment.duration(moment().diff(moment(item.fecha_nac)))).years() + ' años ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).months() + ' meses ' + (moment.duration(moment().diff(moment(item.fecha_nac)))).days() + ' días',
 					sexo : '1',
-					lugar_nac: item.lugar_nac,
-					direccion: item.direccion,
-					nombre_madre: item.nombre_madre,
-					ocupacion_madre: item.ocupacion_madre,
-					telefono_madre: item.telefono_madre,
-					nombre_padre: item.nombre_padre,
-					telefono_padre: item.telefono_padre,
-					ocupacion_padre: item.ocupacion_padre,
-					numero_hijo: item.numero_hijo,
-					referencia: item.referencia,
+					lugar_nac: '',
+					direccion: '',
+					nombre_madre: '',
+					ocupacion_madre: '',
+					telefono_madre: '',
+					nombre_padre: '',
+					telefono_padre: '',
+					ocupacion_padre: '',
+					numero_hijo: 1,
+					referencia: '',
+					procedencia: '',
+					//DATOS PARA APODERADO
+					nombre: '',
+					dni: '',
+					tipoApoderado: '1'
 				}}
 				validate={() => {
 					let errores = {};
@@ -84,7 +119,7 @@ const FormFiliacion = ({ item }) => {
 						errores.nombres_paciente =
 							'Por favor ingrese su nombre';
 					} else if (
-						!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(
+						!/^[a-zA-ZÀ-ÿ\s]{1,80}$/.test(
 							Hc.nombres_paciente
 						)
 					) {
@@ -207,7 +242,7 @@ const FormFiliacion = ({ item }) => {
 							<div className='primero'>
 								<div>
 									<label>Nombre</label>
-									<Field className='mayus' type="text" name="nombres_paciente" value={Hc.nombres_paciente} onChange={handleChange}></Field>
+									<Field className='mayus' type="text" name="nombres_paciente" value={Hc.nombres_paciente ? Hc.nombres_paciente : ''} onChange={handleChange}></Field>
 								</div>
 								<ErrorMessage
 									name="nombres_paciente"
@@ -224,7 +259,7 @@ const FormFiliacion = ({ item }) => {
 							<div className='segundo'>
 								<div>
 									<label>DNI</label>
-									<Field type="text" name="dni_paciente" value={Hc.dni_paciente} onChange={handleChange}></Field>
+									<Field type="text" name="dni_paciente" value={Hc.dni_paciente ? Hc.dni_paciente : ''} onChange={handleChange}></Field>
 								</div>
 								<ErrorMessage
 									name="dni_paciente"
@@ -248,7 +283,7 @@ const FormFiliacion = ({ item }) => {
 									name="fecha_nac" 
 									max={getFecha()}
 									//value={(moment(Hc.fecha_nac).add(5, 'hours')).format('YYYY-MM-DD')}
-									value={Hc.fecha_nac ? moment(Hc.fecha_nac).format('YYYY-MM-DD') : null}
+									value={Hc.fecha_nac ? moment(Hc.fecha_nac).format('YYYY-MM-DD') : ''}
 									onChange={handleChange}
 									></input>
 								</div>
@@ -276,19 +311,19 @@ const FormFiliacion = ({ item }) => {
 								></Field>
 							</div>
 							<div className='tercero'>
-									<label>Sexo</label>
-									<Field style={{height:'6.1vh'}} className='mayus' name="sexo" as="select" value={Hc.sexo} onChange={handleChange}>
-										<option>-- Seleccione --</option>
-										<option value="1">Masculino</option>
-										<option value="2">Femenino</option>
-									</Field>
-								</div>
+								<label>Sexo</label>
+								<Field style={{height:'6.1vh'}} className='mayus' name="sexo" as="select" value={Hc.sexo ? Hc.sexo : ''} onChange={handleChange}>
+									<option>-- Seleccione --</option>
+									<option value="1">Masculino</option>
+									<option value="2">Femenino</option>
+								</Field>
+							</div>
 						</div>
 						<div className='fila'>
 							<div className='primero'>
 								<div>
 									<label>Dirección</label>
-									<Field className='mayus' type="text" name="direccion" value={Hc.direccion} onChange={handleChange}></Field>
+									<Field className='mayus' type="text" name="direccion" value={Hc.direccion ? Hc.direccion : ''} onChange={handleChange}></Field>
 								</div>
 								<ErrorMessage
 									name="direccion"
@@ -305,7 +340,7 @@ const FormFiliacion = ({ item }) => {
 							<div className='segundo'>
 								<div>
 									<label>Lugar de nacimiento</label>
-									<Field className='mayus' type="text" name="lugar_nac" value={Hc.lugar_nac} onChange={handleChange}></Field>
+									<Field className='mayus' type="text" name="lugar_nac" value={Hc.lugar_nac ? Hc.lugar_nac : ''} onChange={handleChange}></Field>
 								</div>
 								<ErrorMessage
 									name="lugar_nac"
@@ -324,7 +359,7 @@ const FormFiliacion = ({ item }) => {
 							<div className='primero'>
 								<div>
 									<label>Nombre madre</label>
-									<Field className='mayus' type="text" name="nombre_madre" value={Hc.nombre_madre} onChange={handleChange}></Field>
+									<Field className='mayus' type="text" name="nombre_madre" value={Hc.nombre_madre ? Hc.nombre_madre : ''} onChange={handleChange}></Field>
 								</div>
 								<ErrorMessage
 									name="nombre_madre"
@@ -344,7 +379,7 @@ const FormFiliacion = ({ item }) => {
 									<Field
 										type="text"
 										name="telefono_madre"
-										value={Hc.telefono_madre} onChange={handleChange}
+										value={Hc.telefono_madre ? Hc.telefono_madre : ''} onChange={handleChange}
 									></Field>
 								</div>
 								<ErrorMessage
@@ -366,7 +401,7 @@ const FormFiliacion = ({ item }) => {
 										className='mayus'
 										type="text"
 										name="ocupacion_madre"
-										value={Hc.ocupacion_madre} onChange={handleChange}
+										value={Hc.ocupacion_madre ? Hc.ocupacion_madre : ''} onChange={handleChange}
 									></Field>
 								</div>
 								<ErrorMessage
@@ -386,7 +421,7 @@ const FormFiliacion = ({ item }) => {
 							<div className='primero'>
 								<div>
 									<label>Nombre padre</label>
-									<Field className='mayus' type="text" name="nombre_padre" value={Hc.nombre_padre} onChange={handleChange}></Field>
+									<Field className='mayus' type="text" name="nombre_padre" value={Hc.nombre_padre ? Hc.nombre_padre : ''} onChange={handleChange}></Field>
 								</div>
 								<ErrorMessage
 									name="nombre_padre"
@@ -406,7 +441,7 @@ const FormFiliacion = ({ item }) => {
 									<Field
 										type="text"
 										name="telefono_padre"
-										value={Hc.telefono_padre} onChange={handleChange}
+										value={Hc.telefono_padre ? Hc.telefono_padre : ''} onChange={handleChange}
 									></Field>
 								</div>
 								<ErrorMessage
@@ -428,7 +463,7 @@ const FormFiliacion = ({ item }) => {
 										className='mayus'
 										type="text"
 										name="ocupacion_padre"
-										value={Hc.ocupacion_padre} onChange={handleChange}
+										value={Hc.ocupacion_padre ? Hc.ocupacion_padre : ''} onChange={handleChange}
 									></Field>
 								</div>
 								<ErrorMessage
@@ -448,7 +483,7 @@ const FormFiliacion = ({ item }) => {
 							<div className='primero'>
 								<div>
 									<label>Referencia</label>
-									<Field className='mayus' type="text" name="referencia" value={Hc.referencia} onChange={handleChange}></Field>
+									<Field className='mayus' type="text" name="referencia" value={Hc.referencia ? Hc.referencia : ''} onChange={handleChange}></Field>
 								</div>
 								<ErrorMessage
 									name="referencia"
@@ -469,7 +504,7 @@ const FormFiliacion = ({ item }) => {
 										type="number"
 										name="numero_hijo"
 										min="1"
-										value={Hc.numero_hijo} onChange={handleChange}
+										value={Hc.numero_hijo ? Hc.numero_hijo : ''} onChange={handleChange}
 									></Field>
 								</div>
 								<ErrorMessage
@@ -480,6 +515,96 @@ const FormFiliacion = ({ item }) => {
 												<i className="fas fa-times-circle"></i>
 											</span>
 											<span>{errors.numero_hijo}</span>
+										</div>
+									)}
+								/>
+							</div>
+							<div className="tercero">
+								<div>
+									<label>Procedencia</label>
+									<Field
+										className='mayus'
+										type="text"
+										name="procedencia"
+										value={Hc.procedencia ? Hc.procedencia : ''} onChange={handleChange}
+									></Field>
+								</div>
+								<ErrorMessage
+									name="procedencia"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.procedencia}</span>
+										</div>
+									)}
+								/>
+							</div>
+							{/* <div className='tercero'>
+								<label>Apoderado</label>
+								<Field 
+									style={{height:'6.1vh'}} 
+									className='mayus' 
+									name="tipoApoderado" 
+									as="select" 
+									value={user.nombre ? switchSelectorApoderado(user.nombre) : ''} 
+									onChange={handleChangeUser}>
+									<option>-- Seleccione --</option>
+									<option value="1">Mamá</option>
+									<option value="2">Papá</option>
+									<option value="3">Otro</option>
+								</Field>
+							</div> */}
+						</div>
+						<h2 style={{fontSize: '23px'}}>Datos de Apoderado</h2>
+						<div className='fila'>
+							<div className='primero'>
+								<div>
+									<label>Nombre Apoderado</label>
+									<Field 
+										className='mayus' 
+										type="text" 
+										name="nombre" 
+										value={user.nombre ? user.nombre : ''} 
+										onChange={handleChangeUser}
+										// readOnly = {user.nombre === '' ? false : true}
+										readOnly
+										>
+									</Field>
+								</div>
+								<ErrorMessage
+									name="nombres_paciente"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.nombres_paciente}</span>
+										</div>
+									)}
+								/>
+							</div>
+							<div className='segundo'>
+								<div>
+									<label>DNI Apoderado</label>
+									<Field 
+										type="text" 
+										name="dni" 
+										value={user.dni ? user.dni : ''} 
+										onChange={handleChangeUser}
+										// readOnly = {switchTipoApoderado(user.tipoApoderado) === 'Sin dato' ? true : false}
+										readOnly
+									></Field>
+								</div>
+								<ErrorMessage
+									name="dni_paciente"
+									component={() => (
+										<div className="msj_error_login">
+											<span>
+												<i className="fas fa-times-circle"></i>
+											</span>
+											<span>{errors.dni_paciente}</span>
 										</div>
 									)}
 								/>
@@ -497,14 +622,11 @@ const FormFiliacion = ({ item }) => {
 								body: JSON.stringify({
 									...Hc,
 									fecha_nac : Hc.fecha_nac ? moment(Hc.fecha_nac).format() : null,
-									// fecha_nac: Hc.fecha_nac,
-									//fecha_nac : (moment(Hc.fecha_nac).add(5, 'hours')).format('YYYY-MM-DD')
 									edad: calcularEdad(Hc.fecha_nac)
 								}),
 								})
 								.then((resp) => resp.json())
 								.then((datos) => {
-									console.log(datos);
 									if(datos.ok){
 										alert('datos actualizados')
 									}
@@ -513,6 +635,50 @@ const FormFiliacion = ({ item }) => {
 									console.log(err);
 									// rej(err);
 								});
+
+								//PARA REGISTRAR AL RESPONSABLE
+								if(!Hc.id_Usuario){
+									fetch(`${url}/api/auth/new`, {
+										headers: {
+											'Content-Type': 'application/json',
+										},
+										method: 'POST',
+										body: JSON.stringify({
+											nombre: user.nombre,
+											dni: user.dni,
+											password: user.dni,
+											rol: 'Apoderado',
+										}),
+									})
+										.then((resp) => resp.json())
+										.then((data) => {
+											// if (data.ok) {
+											// 	fetch(`${url}/Historia/${Hc.dni_paciente}`)
+											// 	.then((resp) => resp.json())
+											// 	.then((datos) => {
+											// 		fetch(`${url}/Historia/${datos._id}`, {
+											// 			headers: {
+											// 				'Content-Type': 'application/json',
+											// 			},
+											// 			method: 'PUT',
+											// 			body: JSON.stringify({
+											// 				...datos,
+											// 				id_Usuario: data.uid,
+											// 			}),
+											// 		})
+											// 			.then((resp) => resp.json())
+											// 			.then((datos) => {
+											// 				if(datos.ok){
+											// 					alert('Agregado correctamente')
+											// 				}else{
+											// 					alert('Datos incorrectos')
+											// 				}
+											// 			});
+											// 	});
+											// }
+										})
+								}
+
 							}}
 							>
 								Actualizar

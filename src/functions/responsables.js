@@ -10,7 +10,6 @@ const consumNuevoResponsable = (body) => {
 		})
 			.then((resp) => resp.json())
 			.then((datos) => {
-                console.log(datos);
 				res(datos);
 			})
 			.catch((err) => {

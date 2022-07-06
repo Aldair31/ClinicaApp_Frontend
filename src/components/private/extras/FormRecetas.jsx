@@ -30,19 +30,13 @@ const FormRecetas = () => {
                 setBtnActive(true)
             }
         })
-    }, [])
+    }, [id])
 
     let {cantidadMedic, nombreMedic, indicacionesMedic} = useMedicamentos()
-
-    console.log('cantidad ',cantidadMedic)
-    console.log('nombre',nombreMedic)
-    console.log('indicaciones ',indicacionesMedic)
 
     const cantidadMed = [...new Set(cantidadMedic)]
     const nombreMed = [...new Set(nombreMedic)]
     const indicacionesMed = [...new Set(indicacionesMedic)]
-    
-    console.log('cantidad de med',cantidadMed.slice(0,5));
 
     const cantMedicina = () =>{
         if (terminoCantidad.length===0) {
@@ -99,7 +93,7 @@ const FormRecetas = () => {
     
     //PETICIÓN POST/UPDATE PARA REGISTRAR MEDICAMENTO
     const AgregarMedicamento = (dato) => {
-        if((MedicamentoReceta.cantidad!=undefined && MedicamentoReceta.cantidad!='') && (MedicamentoReceta.nombreMedicina!=undefined && MedicamentoReceta.nombreMedicina!='') && (MedicamentoReceta.indicaciones!=undefined && MedicamentoReceta.indicaciones!='')){
+        if((MedicamentoReceta.cantidad!==undefined && MedicamentoReceta.cantidad!=='') && (MedicamentoReceta.nombreMedicina!==undefined && MedicamentoReceta.nombreMedicina!=='') && (MedicamentoReceta.indicaciones!==undefined && MedicamentoReceta.indicaciones!=='')){
             if(isActive){
                 fetch(`${url}/MedicamentoReceta/${dato._id}`, {
                     headers: {
@@ -123,13 +117,13 @@ const FormRecetas = () => {
                             indicaciones: ''
                         })
                         setRe([
-                            Re.map((datos) => {
-                                if(datos._id == dato._id){
-                                    datos.cantidad = MedicamentoReceta.cantidad
-                                    datos.nombreMedicina = MedicamentoReceta.nombreMedicina
+                            Re.map((datos) => (
+                                datos._id === dato._id && (
+                                    datos.cantidad = MedicamentoReceta.cantidad,
+                                    datos.nombreMedicina = MedicamentoReceta.nombreMedicina,
                                     datos.indicaciones = MedicamentoReceta.indicaciones
-                                }
-                            })
+                                )
+                            ))
                         ])
                         setRe([
                             ...Re
@@ -190,9 +184,8 @@ const FormRecetas = () => {
                 setFecha(true)
             }
         })
-    }, [])
+    }, [id])
 
-    // console.log('Recetas', Receta)
     const handleChangeRe = (e) => {
         setReceta({
             ...Receta,
@@ -232,7 +225,7 @@ const FormRecetas = () => {
             .then((dataHc)=>{
                 setHc(dataHc)
             })
-    }, [])
+    }, [id])
     
 
     //GENERANDO DOCUMENTO PDF
@@ -263,18 +256,18 @@ const FormRecetas = () => {
         doc.setFont(undefined, 'bold').setFontSize(10).setTextColor('black').text(109.5, 226, 'PRÓXIMA CITA');
         //DÍA
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(110, 229.5, 'DÍA');
-        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(110.5, 234.5, Receta.fechaProx!=undefined?moment(Receta.fechaProx).format('DD'):'');
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(110.5, 234.5, Receta.fechaProx!==undefined?moment(Receta.fechaProx).format('DD'):'');
         //MES
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(118.4, 229.5, 'MES');
-        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(120, 234.5, Receta.fechaProx!=undefined?moment(Receta.fechaProx).format('MM'):'');
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(120, 234.5, Receta.fechaProx!==undefined?moment(Receta.fechaProx).format('MM'):'');
         //AÑO
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(127.5, 229.5, 'AÑO');
-        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(127.3, 234.5, Receta.fechaProx!=undefined?moment(Receta.fechaProx).format('YYYY'):'');
+        doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('white').text(127.3, 234.5, Receta.fechaProx!==undefined?moment(Receta.fechaProx).format('YYYY'):'');
 
         //OBTENIENDO DATOS DE ENCABEZADO RECETA (EDAD, PESO, TALLA, PC)
         let {years, months, days} = calcularEdad(Hc.histClinica.fecha, Hc.historia.fecha_nac)
         let datos = [
-            [(years + 'a ' + months + 'm ' + days + 'd'), Hc.histClinica.peso!=undefined?Hc.histClinica.peso + ' kg':'', Hc.histClinica.talla!=undefined?Hc.histClinica.talla + ' cm':'', Hc.histClinica.pc!=undefined?Hc.histClinica.pc + ' cm':'']
+            [(years + 'a ' + months + 'm ' + days + 'd'), Hc.histClinica.peso!==undefined?Hc.histClinica.peso + ' kg':'', Hc.histClinica.talla!==undefined?Hc.histClinica.talla + ' cm':'', Hc.histClinica.pc!==undefined?Hc.histClinica.pc + ' cm':'']
         ]
         
         //TABLA DATOS PACIENTE
@@ -321,7 +314,7 @@ const FormRecetas = () => {
         //OBTENIENDO INDICACIONES
         let indicMed = []
         for (let i = 0; i < Re.length; i++) {
-            indicMed.push([(i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ':\n' + (Re[i].indicaciones.replace(/;/g, '\n\n')).toUpperCase()])
+            indicMed.push([(i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ':\n- ' + (Re[i].indicaciones.replace(/;/g, '\n\n- ')).toUpperCase()])
         }
 
         //TABLA CANTIDAD Y MEDICAMENTOS
@@ -332,7 +325,7 @@ const FormRecetas = () => {
             startY:65,
             rowPageBreak: 'avoid',
             margin:{left:2, bottom: 40},
-            tableWidth: 107.5
+            tableWidth: 103.5
         })
 
         //TABLA INDICACIONES
@@ -385,9 +378,7 @@ const FormRecetas = () => {
 		}
 	}
 
-    console.log('Medicamentos', MedicamentoReceta)
     const handleCantidadMedic = (item) =>{
-        console.log('datos seleccionados')
         
         setMedicamentoReceta(
             {
@@ -412,7 +403,6 @@ const FormRecetas = () => {
         setCompletarNombre(false)  
     }
     const handleIndicacionesMedic = (item) =>{
-        // console.log('datos seleccionados')
         setMedicamentoReceta(
             {
                 ...MedicamentoReceta,
@@ -465,7 +455,12 @@ const FormRecetas = () => {
     return (
         <div className='contenedorReceta' 
             // onClick={()=>{(ocultarCantidad(), ocultarNombre(), ocultarIndicaciones())}}
-            onClick={()=>(ocultarCantidad(), ocultarNombre(), ocultarIndicaciones())}
+            // onClick={()=>(ocultarCantidad(), ocultarNombre(), ocultarIndicaciones())}
+            onClick={() => {
+                ocultarCantidad()
+                ocultarNombre()
+                ocultarIndicaciones()
+            }}
         >
             <div className='titulo-re'>
                 <h3>AGREGAR RECETA MÉDICA</h3>
@@ -484,7 +479,7 @@ const FormRecetas = () => {
                                 autoComplete='off'
                                 name="cantidad" 
                                 id='cantidad' 
-                                value={MedicamentoReceta.cantidad} 
+                                value={MedicamentoReceta.cantidad ? MedicamentoReceta.cantidad : ''} 
                                 onChange={handleChangeMed}
                                 onFocus={()=>setCompletarCantidad(true)}
                                 onBlur={()=>{
@@ -506,14 +501,12 @@ const FormRecetas = () => {
                             <div className={'listCantMed'}>
                                 <div className='contenedorListCantidadMedic'>
                                     {
-                                        completarCantidad && cantMedicina().map((item) => (
-                                            <>
-                                                <ul className='listaCantidadMedic'>
-                                                    <li onClick={()=>handleCantidadMedic(item)} key={item}>
-                                                        {item}
-                                                    </li>
-                                                </ul> 
-                                            </>
+                                        completarCantidad && cantMedicina().map((item, index) => (
+                                            <ul className='listaCantidadMedic' key={index}>
+                                                <li onClick={()=>handleCantidadMedic(item)} key={item}>
+                                                    {item}
+                                                </li>
+                                            </ul> 
                                         ))
                                     }
                                 </div>
@@ -528,7 +521,7 @@ const FormRecetas = () => {
                                 type="text" 
                                 autoComplete='off' 
                                 name="nombreMedicina" id='medicamento' 
-                                value={MedicamentoReceta.nombreMedicina} 
+                                value={MedicamentoReceta.nombreMedicina ? MedicamentoReceta.nombreMedicina : ''} 
                                 onChange={handleChangeMed}
                                 onFocus={()=>setCompletarNombre(true)}
                                 // onBlur={()=>{
@@ -539,8 +532,8 @@ const FormRecetas = () => {
                             <div className='listNombMed'>
                                 <div className='contenedorListNombreMedic'>
                                     {
-                                        completarNombre && nombMedicina().map((item) => (
-                                            <ul className='listaNombreMedic'>
+                                        completarNombre && nombMedicina().map((item, index) => (
+                                            <ul className='listaNombreMedic' key={index}>
                                                 <li onClick={()=>handleNombreMedic(item)} key={item}>
                                                     {item}
                                                 </li>
@@ -563,7 +556,7 @@ const FormRecetas = () => {
                             cols="50"
                             name="indicaciones"
                             id='indicaciones'
-                            value={MedicamentoReceta.indicaciones}
+                            value={MedicamentoReceta.indicaciones ? MedicamentoReceta.indicaciones : ''}
                             onChange={handleChangeMed}
                             onFocus={()=>setCompletarIndicaciones(true)}
                             onBlur={()=>{
@@ -574,8 +567,8 @@ const FormRecetas = () => {
                         <div className='listIndMed'>
                             <div className='contenedorListIndicacionesMedic'>
                                 {
-                                    completarIndicaciones && indMedicina().map((item) => (
-                                        <ul className='listaIndicacionesMedic'>
+                                    completarIndicaciones && indMedicina().map((item, index) => (
+                                        <ul className='listaIndicacionesMedic' key={index}>
                                             <li onClick={()=>handleIndicacionesMedic(item)} key={item}>
                                                 {item}
                                             </li>
@@ -610,7 +603,7 @@ const FormRecetas = () => {
                         name='fechaProx' 
                         onChange={handleChangeRe} 
                         value={Receta.fechaProx ? moment(Receta.fechaProx).format('YYYY-MM-DD') : ''}
-                        disabled={Receta.length!=0?false:true}
+                        disabled={Receta.length!==0?false:true}
                     ></input>
                 </div>
             </div>
@@ -627,7 +620,7 @@ const FormRecetas = () => {
                     </thead>
                     <tbody>
                         {Re.map((item) => (
-                            <tr className='tablaReceta'>
+                            <tr className='tablaReceta' key={item._id}>
                                 <td style={{textTransform: 'uppercase'}}>{item.cantidad}</td>
                                 <td style={{textTransform: 'uppercase'}}>{item.nombreMedicina}</td>
                                 <td style={{textTransform: 'uppercase'}}>{item.indicaciones}</td>
@@ -636,7 +629,7 @@ const FormRecetas = () => {
                                         style={{backgroundColor: 'transparent', border: 'none', cursor: 'pointer'}}
                                         onClick={(e)=>{
                                             e.preventDefault()
-                                            if(Re.length - 1 == 0){
+                                            if(Re.length - 1 === 0){
                                                 setBtnActive(false)
                                             }
                                             var rpta = window.confirm("¿Desea eliminar este medicamento?")
@@ -692,7 +685,7 @@ const FormRecetas = () => {
                 <div className={Receta.fechaProx ? 'notDisabled' : 'Disabled'}>
                     <button
                         onClick={handleClick}
-                        // disabled={Re.length!=0?false:true}
+                        // disabled={Re.length!==0?false:true}
                         disabled = {Receta.fechaProx ? false : true}
                     >
                         ACTUALIZAR FECHA

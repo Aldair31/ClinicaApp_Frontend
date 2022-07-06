@@ -7,12 +7,12 @@ import {Link} from 'react-router-dom'
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
 const Consultas = () => {
-	function buscarTermino(term){
-		return function(x){
-			return (x.nombres_paciente.toUpperCase()).includes(term) || !term
-			// return x.dni_paciente.includes(term) || !term
-		}
-	}
+	// function buscarTermino(term){
+	// 	return function(x){
+	// 		return (x.nombres_paciente.toUpperCase()).includes(term) || !term
+	// 		// return x.dni_paciente.includes(term) || !term
+	// 	}
+	// }
 	
 	const [citas, setCitas] = useState([]);
 	useEffect(() => {
@@ -21,8 +21,6 @@ const Consultas = () => {
 				return resp.json();
 			})
 			.then((datos) => {
-				// console.log('respuesta');
-				// console.log(datos);
 				setCitas(datos);
 			});
 	}, []);

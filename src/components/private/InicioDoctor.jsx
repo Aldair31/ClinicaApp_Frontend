@@ -12,8 +12,10 @@ const InicioDoctor = () => {
 				return 'Vacuna';
 			case 2:
 				return 'Consulta pediátrica';
-			default:
+			case 3:
 				return 'Control de crecimiento';
+			default:
+				return 'Reevaluación';
 		}
 	};
 
@@ -27,7 +29,7 @@ const InicioDoctor = () => {
 	let CitasHoy = []
 	//AGREGANDO SOLO CITAS DEL DÍA SELECCIONADO
 	for (let item in datos_af) {
-		if(moment(datos_af[item].fecha).format('DD/MM/YYYY')==moment(fecha.fechaCita).format('DD/MM/YYYY')){
+		if(moment(datos_af[item].fecha).format('DD/MM/YYYY')===moment(fecha.fechaCita).format('DD/MM/YYYY')){
 			CitasHoy.push(datos_af[item])
 		}
 	}
@@ -44,7 +46,7 @@ const InicioDoctor = () => {
 	
 	for(let itemCita in CitasHoy){
 		for(let itemHist in datosHistClinica){
-			if(datosHistClinica[itemHist]._id == CitasHoy[itemCita].id_HistClinica){
+			if(datosHistClinica[itemHist]._id === CitasHoy[itemCita].id_HistClinica){
 				CitasHoy[itemCita].anamnesis = datosHistClinica[itemHist].anamnesis
 			}
 		}
@@ -55,8 +57,6 @@ const InicioDoctor = () => {
 	for(let item in CitasHoy){
 		CitasHoy[item].numero = parseInt(item)+1
 	}
-
-	console.log("Citas Hoy: ", CitasHoy)
 
 	return (
 		<>
@@ -110,12 +110,12 @@ const InicioDoctor = () => {
 											<td>{switchMotivo(item.motivo)}</td>
 											<td>
 												{
-													item.anamnesis != undefined && item.anamnesis != ''
+													item.anamnesis !== undefined && item.anamnesis !== ''
 													?
-														<i class="fa-solid fa-shield-check" style={{color: 'green'}}></i>
-														// <i class="fa-solid fa-heart-circle-check" style={{color: 'green'}}></i>
+														<i className="fa-solid fa-shield-check" style={{color: 'green'}}></i>
+														// <i className="fa-solid fa-heart-circle-check" style={{color: 'green'}}></i>
 													:
-														<i class="fa-solid fa-ban" style={{color: 'red'}}></i>
+														<i className="fa-solid fa-ban" style={{color: 'red'}}></i>
 												}
 											</td>
 											<td>
@@ -127,7 +127,7 @@ const InicioDoctor = () => {
 															cursor: 'pointer',
 														}}
 													>
-														<i class="fa-solid fa-arrow-up-right-from-square"></i>
+														<i className="fa-solid fa-arrow-up-right-from-square"></i>
 													</strong>
 													{item.post}
 												</Link>

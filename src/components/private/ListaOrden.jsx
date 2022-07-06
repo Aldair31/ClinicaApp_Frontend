@@ -15,7 +15,7 @@ const ListaOrden = () => {
         .then((data) => {
             setListaOrden(data)
         })
-    }, [])
+    }, [id])
 
     //PARA MOSTRAR DATOS
     let Datos = []
@@ -49,7 +49,6 @@ const ListaOrden = () => {
 					id_HistClinica: id
 				})
 			}
-			console.log("DATA: ", data)
 			// window.location.href = `/agregar-orden/${data.orden._id}`
 			history.push(`/agregar-orden/${data.orden._id}`)
 		})
@@ -113,8 +112,8 @@ const ListaOrden = () => {
             <div className='contenedorFormOrden'>
                 {Datos.map((item) => {
                     return(
-                        <>
-                            {item.id_HistClinica == id ? (
+                        <div key={item._id}>
+                            {item.id_HistClinica === id ? (
                                 <div style={{marginBottom: '5px'}}>
                                     <Link
                                         to={`/agregar-orden/${item._id}`}
@@ -123,7 +122,7 @@ const ListaOrden = () => {
                                     </Link>
                                 </div>
                             ):null}
-                        </>
+                        </div>
                     )
                 })}
             </div>

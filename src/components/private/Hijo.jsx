@@ -1,82 +1,80 @@
 import React, { useState, useEffect } from 'react';
 import '../../sass/Galeria.sass';
-import FormFoto from './extras/FormFoto';
+// import FormFoto from './extras/FormFoto';
 import url from '../../keys/backend_keys';
 import {Link, useHistory } from 'react-router-dom';
 import '../../sass/Redirecciones.sass'
 
 const Hijo = (props) => {
-	const [form, setForm] = useState(false);
-	const [fotos, setFotos] = useState([]);
-	const [modal, setModal] = useState(false);
-	const [idFoto, setIdFoto] = useState(null);
+	// const [form, setForm] = useState(false);
+	// const [fotos, setFotos] = useState([]);
+	// const [modal, setModal] = useState(false);
+	// const [idFoto, setIdFoto] = useState(null);
 	const history = useHistory()
 
 	//OBTENER DATOS PACIENTE
 	const [datosPac, setDatosPac] = useState([])
+	const id = props.match.params.id;
 	useEffect(() => {
 		fetch(`${url}/Historia/id/${id}`)
 			.then((resp) => resp.json())
 			.then((datos) => {
 				setDatosPac(datos);
 			})
-	}, [])
+	}, [id])
 
-	console.log("Asa: ", datosPac)
-
-	const id = props.match.params.id;
-	useEffect(() => {
-		fetch(`${url}/Fotos/${id}`)
-			.then((resp) => resp.json())
-			.then((dat) => setFotos(dat));
-	}, [id]);
-	const Modal = ({ url }) => {
-		return (
-			<div
-				style={{
-					height: '100vh',
-					width: '100%',
-					background: '#0000009d',
-					position: 'absolute',
-					top: '0px',
-					left: '0px',
-					display: 'flex',
-					alignItems: 'center'
-				}}
-			>
-				<p style={{
-					position: 'absolute',
-					top: '0px',
-					textAlign:'center',
-					width: '100%',
-					padding: '11px'
-				}}>
-					<button 
-						onClick={()=>{
-							setModal(false)
-						}}
-					style={{
-						cursor: 'pointer',
-						color: "#ffffff",
-						background: 'transparent',
-						border: 'none'
-					}}>Cerrar</button>
-				</p>
-				<img
-					style={{
-						maxWidth: '600px',
-						with: '80%',
-						margin: 'auto',
-						position: 'relative'
-						,
-						zIndex: '22'
-					}}
-					alt={url}
-					src={url}
-				></img>
-			</div>
-		);
-	};
+	// useEffect(() => {
+	// 	fetch(`${url}/Fotos/${id}`)
+	// 		.then((resp) => resp.json())
+	// 		.then((dat) => setFotos(dat));
+	// }, [id]);
+	// const Modal = ({ url }) => {
+	// 	return (
+	// 		<div
+	// 			style={{
+	// 				height: '100vh',
+	// 				width: '100%',
+	// 				background: '#0000009d',
+	// 				position: 'absolute',
+	// 				top: '0px',
+	// 				left: '0px',
+	// 				display: 'flex',
+	// 				alignItems: 'center'
+	// 			}}
+	// 		>
+	// 			<p style={{
+	// 				position: 'absolute',
+	// 				top: '0px',
+	// 				textAlign:'center',
+	// 				width: '100%',
+	// 				padding: '11px'
+	// 			}}>
+	// 				<button 
+	// 					onClick={()=>{
+	// 						setModal(false)
+	// 					}}
+	// 				style={{
+	// 					cursor: 'pointer',
+	// 					color: "#ffffff",
+	// 					background: 'transparent',
+	// 					border: 'none'
+	// 				}}>Cerrar</button>
+	// 			</p>
+	// 			<img
+	// 				style={{
+	// 					maxWidth: '600px',
+	// 					with: '80%',
+	// 					margin: 'auto',
+	// 					position: 'relative'
+	// 					,
+	// 					zIndex: '22'
+	// 				}}
+	// 				alt={url}
+	// 				src={url}
+	// 			></img>
+	// 		</div>
+	// 	);
+	// };
 	return (
 		<div className='contenedorRedireccion'>
 			{/* {modal && <Modal url={`${url}/Fotos/album/${idFoto}`} />}
@@ -145,7 +143,6 @@ const Hijo = (props) => {
 									clave={item.nombre}
 									onClick={(e) => {
 										setModal(true);
-										console.log(e.target);
 										setIdFoto(
 											e.target.getAttribute('clave')
 										);

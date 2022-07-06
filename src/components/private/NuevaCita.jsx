@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useCita from '../../hooks/useCita';
 import '../../sass/Cita.sass';
 import '../../sass/Dashboard.sass';

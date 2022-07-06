@@ -17,7 +17,7 @@ const MisHijos = ({ usuario }) => {
 		<div className='contenidoDeHijos'>
 			<h2 className='txtCardsHijos'>Tus hijos</h2>
 			<div className='cardsHijos'>
-				{hijos.map((item) => {
+				{hijos && hijos.map((item) => {
 					return (
 						// <div
 						// 	style={{
@@ -32,7 +32,7 @@ const MisHijos = ({ usuario }) => {
 						// 	<Link to={`/hijo/${item._id}`}>{item.nombres_paciente}</Link>
 						// </div>
 						
-							<div className="card-hijo">
+							<div className="card-hijo" key={item._id}>
 								<div className="card-details">
 									<p className="text-title">{item.nombres_paciente}</p>
 									{/* <p className="text-body">Here are the details of the card</p> */}

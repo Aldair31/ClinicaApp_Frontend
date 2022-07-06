@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
-import useCita from '../../hooks/useCita';
+// import useCita from '../../hooks/useCita';
 import '../../sass/Dashboard.sass';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import url from '../../keys/backend_keys';
 import FormCita from './extras/FormCita';
 
@@ -57,7 +57,9 @@ const MisCitasSecretaria = ({datos_af, loading, set_datos_af}) => {
 			case 2:
 				return 'Consulta pediátrica';
 			case 3:
-				return 'Control de crecimiento'
+				return 'Control de crecimiento';
+			case 4:
+				return 'Reevaluación';
 			default:
 				return 'No estoy obteniendo dato';
 		}
@@ -72,7 +74,7 @@ const MisCitasSecretaria = ({datos_af, loading, set_datos_af}) => {
 	}
 	let CitasHoy = []
 	for (let item in datos_af) {
-		if(moment(datos_af[item].fecha).format('DD/MM/YYYY')==moment(fecha.fechaCita).format('DD/MM/YYYY')){
+		if(moment(datos_af[item].fecha).format('DD/MM/YYYY')===moment(fecha.fechaCita).format('DD/MM/YYYY')){
 			CitasHoy.push(datos_af[item])
 		}
 	}
@@ -116,7 +118,6 @@ const MisCitasSecretaria = ({datos_af, loading, set_datos_af}) => {
 									</tr>
 								</thead>
 								<tbody>
-									{console.log(CitasHoy)}
 									{CitasHoy.map((item) => (
 										<tr key={item.numero}>
 											<td>{item.numero}</td>
@@ -142,7 +143,7 @@ const MisCitasSecretaria = ({datos_af, loading, set_datos_af}) => {
 															.then((data) => {
 																if(data.ok){
 																	alert('Cita eliminada')
-																	set_datos_af(datos_af.filter((datos) => datos._id != item._id))
+																	set_datos_af(datos_af.filter((datos) => datos._id !== item._id))
 																}
 															})
 															.catch((err) => {

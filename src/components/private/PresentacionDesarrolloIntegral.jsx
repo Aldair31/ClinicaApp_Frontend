@@ -1,9 +1,9 @@
 import React, {useRef} from 'react'
-import img1 from '../../img/img1.jpg';
-import img2 from '../../img/img2.jpg';
-import img3 from '../../img/img3.jpg';
-import img4 from '../../img/img4.jpg';
-import img5 from '../../img/img5.jpg';
+// import img1 from '../../img/img1.jpg';
+// import img2 from '../../img/img2.jpg';
+// import img3 from '../../img/img3.jpg';
+// import img4 from '../../img/img4.jpg';
+// import img5 from '../../img/img5.jpg';
 
 
 import '../../sass/DesarrolloIntegral.sass';
@@ -29,16 +29,12 @@ const SlideDesarrollo = ({children}) =>{
 
 const PresentacionDesarrolloIntegral = ({children}) =>{
     const slideshow = useRef(null)
-    const intervaloSlideshow = useRef(null)
+    // const intervaloSlideshow = useRef(null)
 
     const siguiente = () =>{
-        console.log('siguiente')
-        // console.log(slideshow.current.children.length)
-        // console.log(slideshow.current.children.lenght)
         if(slideshow.current.children.length > 0){
             const primerElemento = slideshow.current.children[0];
             
-            console.log(primerElemento)
             slideshow.current.style.transition=`300ms ease-out all`
 
             const tamañoSlide = slideshow.current.children[0].offsetWidth;
@@ -58,14 +54,9 @@ const PresentacionDesarrolloIntegral = ({children}) =>{
     }
 
     const anterior = () =>{
-        console.log('anterior')
-        console.log(slideshow.current.children)
         if(slideshow.current.children.length > 0){
             const index = slideshow.current.children.length - 1
             const ultimoElemento = slideshow.current.children[index];
-            
-            // console.log(ultimoElemento)
-            console.log(slideshow.current.firstChild)
 
             slideshow.current.insertBefore(ultimoElemento, slideshow.current.firstChild)
             slideshow.current.style.transition='none';

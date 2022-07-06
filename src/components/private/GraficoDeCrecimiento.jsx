@@ -1,5 +1,5 @@
 import React from 'react'
-import useCita from '../../hooks/useCita';
+// import useCita from '../../hooks/useCita';
 import '../../sass/GraficoDeCrecimiento.sass';
 import { useParams, useHistory} from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,7 @@ import useAfiliacion from '../../hooks/useAfiliacion';
 import { connect } from 'react-redux';
 
 const GraficoDeCrecimiento = ({usuario}) => {
-	let [datos_af, loading] = useAfiliacion();
+	let [datos_af] = useAfiliacion();
 	const { id } = useParams();
 	const history = useHistory()
 	return (
@@ -15,13 +15,11 @@ const GraficoDeCrecimiento = ({usuario}) => {
 		<div className='contenedorRedireccion'>
 			<div className="datos_Graficos">
 				{datos_af.map((item) => {
-					console.log("**")
-					console.log(item)
 					return (
-						<>
+						<div key={item._id}>
 							{item._id===id?  (
-								<div key={item._id}>
-									<div className="dato_Graficos" key={item._id}>
+								<div>
+									<div className="dato_Graficos">
 									<div className='headerGraficos'>
 										<div>
 											<h2>Gráficos de Crecimiento</h2>
@@ -39,7 +37,7 @@ const GraficoDeCrecimiento = ({usuario}) => {
 										</div>
 									</div>
 									{item.sexo === 1 ? (
-										<p>
+										<div>
 											<div className='cardsGraficas'>
 												<div className="card-Graficas">
 													<div className="img-section-Graficas">
@@ -216,11 +214,11 @@ const GraficoDeCrecimiento = ({usuario}) => {
 											>
 												Ver Gráfica Peso - Talla
 											</Link> */}
-										</p>
+										</div>
                                         
 									) : null}
 									{item.sexo === 2 ? (
-										<p>
+										<div>
 											<div className='cardsGraficas'>
 												<div className="card-Graficas">
 													<div className="img-section-Graficas">
@@ -397,12 +395,12 @@ const GraficoDeCrecimiento = ({usuario}) => {
 											>
 												Ver Gráfica Peso - Talla
 											</Link> */}
-										</p>
+										</div>
 									) : null}
 									</div>
 								</div>
 							) : null}
-						</>
+						</div>
 					);
 				})}	
 			</div>
