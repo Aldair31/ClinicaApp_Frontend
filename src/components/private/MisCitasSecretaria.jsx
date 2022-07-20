@@ -60,6 +60,8 @@ const MisCitasSecretaria = ({datos_af, loading, set_datos_af}) => {
 				return 'Control de crecimiento';
 			case 4:
 				return 'Reevaluación';
+			case 5:
+				return 'Teleconsulta'
 			default:
 				return 'No estoy obteniendo dato';
 		}

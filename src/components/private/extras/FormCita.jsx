@@ -325,6 +325,9 @@ const FormCita = ({item, datos_af, set_datos_af, setState}) => {
 									<option value="4">
 										Reevaluación
 									</option>
+									<option value="5">
+										Teleconsulta
+									</option>
 								</Field>
 							</div>
 							{

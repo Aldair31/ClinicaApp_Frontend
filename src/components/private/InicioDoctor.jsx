@@ -14,8 +14,12 @@ const InicioDoctor = () => {
 				return 'Consulta pediátrica';
 			case 3:
 				return 'Control de crecimiento';
-			default:
+			case 4:
 				return 'Reevaluación';
+			case 5: 
+				return 'Teleconsulta';
+			default:
+				return 'Sin Datos'				
 		}
 	};
 
