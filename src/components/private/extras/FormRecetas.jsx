@@ -393,7 +393,6 @@ const FormRecetas = () => {
     }
 
     const handleNombreMedic = (item) =>{
-        // console.log('datos seleccionados')
         setMedicamentoReceta(
             {
                 ...MedicamentoReceta,

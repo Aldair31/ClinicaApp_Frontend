@@ -42,8 +42,6 @@ const GraficoDeCrecimiento = ({usuario}) => {
 												<div className="card-Graficas">
 													<div className="img-section-Graficas">
 														<p>GRÁFICA DE 0 A 36 MESES</p>
-														
-														{/* <i className="fa-solid fa-chart-line"></i> */}
 													</div>
 													<div className="card-desc-Graficas">
 														<div className='buttonGraficas'>

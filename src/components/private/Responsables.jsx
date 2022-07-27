@@ -213,7 +213,7 @@ const Responsables = () => {
 		// 					</p>
 		// 					<br/> */}
 		// 					<p>
-		// 						<NavLink to={`/hijos/${item._id}`} style={{color:'#50B4A1',cursor:'pointer'}}>Ver hijos</NavLink>
+		// 						<NavLink to={`/hijos/${item._id}`} style={{color:'#0194E1',cursor:'pointer'}}>Ver hijos</NavLink>
 								
 		// 					</p>
 		// 				</div>

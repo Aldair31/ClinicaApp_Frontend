@@ -130,7 +130,7 @@ const FormApoderado = (usuario) => {
 						width: '100%',
 						padding: '7px',
 						border: 'none',
-						background: '#50B4A1',
+						background: '#0194E1',
 						color: 'white',
 						cursor: 'pointer',
 					}}

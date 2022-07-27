@@ -213,9 +213,8 @@ const FormFiliacion = ({ item }) => {
 			// 			.then((data) => {
 			// 				if (data.ok) {
 			// 					alert('Actualizado correctamente');
-			// 					console.log(data);
+			// 					(data);
 			// 					/*const { evento } = data;
-			// 					console.log(evento);*/
 			// 					return data;
 			// 				}
 			// 			})

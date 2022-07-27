@@ -206,11 +206,7 @@ const InicioSecretaria =  () => {
                                 if(moment(moment(new Date(`${reservas.fecha} ${reservas.hora}`)).format()).isBefore(reservas.fecha+'T08:59:59-05:00') || moment(moment(new Date(`${reservas.fecha} ${reservas.hora}`)).format()).isAfter(reservas.fecha+'T21:00:00-05:00') || moment(moment(new Date(`${reservas.fecha} ${reservas.hora}`)).format()).isBetween((reservas.fecha+'T14:00:00-05:00'), (reservas.fecha+'T15:59:59-05:00'))){
                                     alert('Registre una reserva a otra hora ')
                                 }
-                                // if (reservas.hora == '13:00' || reservas.hora == '13:30' || reservas.hora == '14:00' || reservas.hora == '14:30' || reservas.hora == '15:00' || reservas.hora == '15:30'){
-                                //     alert('Registre una reserva a otra hora ') 
-                                //     // console.log("AEA: ", moment(new Date(`${reservas.fecha} ${reservas.hora}`)).format())
-                                //     // console.log(moment.duration(reservas.hora, "HH:mm"))
-                                // }
+
                                 else{
                                     fetch(`${url}/Reserva/new`,{
                                         headers: {
@@ -352,7 +348,6 @@ const InicioSecretaria =  () => {
                     // }}
                     eventClick={[eliminarEvento,onChange]
                         // (info)=>{
-                        // console.log('click', moment(info.event.start).format())
                         // Datos(moment(moment(info.event.start).add(5, 'hours')).format())
                         // if(Datos(moment(info.event.start).format())){
                         //     eliminarRes()

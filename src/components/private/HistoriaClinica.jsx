@@ -10,6 +10,7 @@ import '../../sass/Cita.sass';
 import '../../sass/DatosF.sass';
 import moment from 'moment';
 import useIndicaciones from '../../hooks/useIndicaciones';
+import HistoriasClinicasAnteriores from './HistoriasClinicasAnteriores';
 
 // import '../../sass/Antecedentes.sass';
 const HistoriaClinica = () => {
@@ -367,10 +368,90 @@ const HistoriaClinica = () => {
 		return years + " a " + months + " m " + days + " d"
 	}
 
+	const ModalHistClinicasAnteriores = () => {
+        const [modal, setModal] = useState(false);
+        return (
+            <>
+				<div >
+					{modal ? (
+						<div
+							style={{
+								background: '#00000039',
+								position: 'absolute',
+								top: '0',
+								left: '0',
+								height: '100vh',
+								width: '100%',
+								zIndex:'2',
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+							}}>
+							<div 
+							style={{
+								width:'80%',
+								margin:'auto',
+								background: '#ffffff',
+								padding: '20px 20px',
+								borderRadius: '6px',
+							}}>
+								<div>
+									<HistoriasClinicasAnteriores id={Hc.id_Historia} fechaNac={datos.fecha_nac}/>
+								</div>
+							</div>
+							
+						
+							<button
+								onClick={() => {
+									setModal(false);
+								}}
+								style={{
+									position: 'absolute',
+									top: '0',
+									right: '0',
+									border: 'none',
+									padding: '18px',
+									cursor: 'pointer',
+								}}
+							>
+								<i
+									className="fas fa-times"
+									style={{ fontSize: '19px' }}
+								>
+								</i>
+							</button>
+						</div>)
+					: null}   
+				</div>
+				<div>
+					<button
+						onClick={() => {
+							setModal(true);
+						}}
+						style={{
+							border:'0',
+							fontSize: '16px',
+							cursor: 'pointer',
+							color: 'crimson',
+							backgroundColor:'transparent',
+							textDecoration:'underline'
+						}}
+					>
+						<strong>VER HISTORIAS ANTERIORES</strong>
+					</button>
+				</div>
+			</>
+        );
+    }
+
+
 	return (
 		<div>
             <div className='encabezadoHC'>
 				<h2 className="titulo-hc">Historia clínica</h2>
+				<div style={{display: 'flex', alignItems: 'center'}}>
+					<ModalHistClinicasAnteriores/>
+				</div>
 			</div>
 			<br></br>
 			
@@ -422,8 +503,6 @@ const HistoriaClinica = () => {
 					</div>
 				</div>
 			</div>
-			
-			
 			<form className="cont">
 				<div className='NombreEdad'>
 					<label><b>Paciente: </b> {datos.nombres_paciente}</label>
@@ -441,67 +520,6 @@ const HistoriaClinica = () => {
 					<label><b>Referencia: </b> {datos.referencia}</label>
 				</div>
 				<br></br>
-                {/* <h3>Datos de la H.clínica</h3> */}
-				
-				{/* <Link
-				to={{
-					pathname: `/antecedentes/${Hc.id_Historia}`,
-					state: { modal: true },
-				}}
-				className="link"
-				>
-				View Photo
-				</Link>
-				<Switch>
-					<Route path='/antecedentes/:Hc.id_Historia' component={Modal} />
-				</Switch> */}
-				
-					{/* <Link
-						to={`/historias-clinicas/${id}`}
-						style={{
-							fontSize: '16px',
-							cursor: 'pointer',
-							color: 'crimson',
-						}}
-					>
-						Ver H. clínicas
-					</Link>
-					&nbsp;&nbsp; */}
-					{/* <Link
-						to={`/antecedentes/${Hc.id_Historia}`}
-						style={{
-							fontSize: '17px',
-							cursor: 'pointer',
-							color: 'crimson',
-						}}
-					>
-						Ver antecedentes
-					</Link>
-					&nbsp;&nbsp; */}
-					{/* <Link
-						to={`/vacunas/${id}`}
-						style={{
-							fontSize: '17px',
-							cursor: 'pointer',
-							color: 'crimson',
-						}}
-					>
-						Ver vacunas
-					</Link> */}
-					{/* &nbsp;&nbsp;
-					<Link
-						to={`/GraficoDeCrecimiento/${id}`}
-						style={{
-							fontSize: '17px',
-							cursor: 'pointer',
-							color: 'crimson',
-						}}
-					>
-						Ver Gráfico de Crecimiento
-					</Link> */}
-				
-				{/* <br />
-				<br /> */}
 				<h3>Anamnesis *</h3>
 				<textarea
 					rows="3"
