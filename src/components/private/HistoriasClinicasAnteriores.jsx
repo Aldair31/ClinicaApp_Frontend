@@ -12,7 +12,7 @@ const HistoriasClinicasAnteriores = ({id, fechaNac}) => {
 		fetch(`${url}/HistClinica/${id}`)
 			.then((resp) => resp.json())
 			.then((data) => setDatos(data));
-	}, []);
+	}, [id]);
 
     const nuevosDatos = datos.slice().sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
     

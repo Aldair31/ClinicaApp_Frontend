@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import url from '../../keys/backend_keys';
+import ModalConfirmar from '../includes/ModalConfirmar';
+import ModalAccepted from '../includes/ModalAccepted';
+
 const Hijos = ({ match }) => {
 	const [usuario, setUsuario] = useState({ nombre: 'cargando' });
 	const idUser = match.params.id;
 	const [state, setState] = useState(false);
+	const [modalAccepted, setModalAccepted] = useState(false);
+	const [message, setMessage] = useState('');
 	useEffect(() => {
 		fetch(`${url}/api/auth/${idUser}`)
 			.then((resp) => resp.json())
@@ -12,7 +17,6 @@ const Hijos = ({ match }) => {
 	const agregarHijo = (dni) => {
 		fetch(`${url}/Historia/${dni}`)
 			.then((resp) => resp.json())
-			// .then((datos) => datos)
 			.then((datos) => {
 				fetch(`${url}/Historia/${datos._id}`, {
 					headers: {
@@ -27,17 +31,54 @@ const Hijos = ({ match }) => {
 					.then((resp) => resp.json())
 					.then((datos) => {
 						if(datos.ok){
-							setUsuario({
-								...usuario,
-								hijos: [...usuario.hijos, datos.evento],
-							});
-							alert('Agregado correctamente')
+							setModalAccepted(true)
+							const hijoEncontrado = usuario.hijos.find((hijo) => hijo._id === datos.evento._id);
+							if(!hijoEncontrado){
+								setUsuario({
+									...usuario,
+									hijos: [...usuario.hijos, datos.evento],
+								});
+								setMessage('Agregado Correctamente')
+							} else{
+								setMessage('El hijo ya está agregado')
+							}
+							setState(false);
 						}else{
 							alert('Datos incorrectos')
 						}
 					});
 			});
 	};
+
+	const [hijo, setHijo] = useState({})
+	const [confirmDelete, setConfirmDelete] = useState(false);
+	const [modalEliminar, setModalEliminar] = useState(false);
+
+	const eliminarHijo = () => {
+		fetch(`${url}/Historia/${hijo._id}`, {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			method: 'PUT',
+			body: JSON.stringify({
+				...hijo,
+				id_Usuario: null
+			}),
+		})
+			.then((resp) => resp.json())
+			.then((dataPaciente) => {
+				if(dataPaciente.ok){
+					setUsuario({
+						...usuario,
+						hijos: usuario.hijos.filter((data) => data._id !== hijo._id),
+					});
+					setConfirmDelete(false)
+					setModalEliminar(false)
+				}
+			})
+
+	}
+
 	const FormAgregarHijo = () => {
 		return (
 			<div
@@ -51,6 +92,7 @@ const Hijos = ({ match }) => {
 					display: 'flex',
 					justifyContent: 'center',
 					alignItems: 'center',
+					zIndex: '1'
 				}}
 			>
 				<form
@@ -115,6 +157,18 @@ const Hijos = ({ match }) => {
 		<>
 			<section>
 				{state ? <FormAgregarHijo /> : null}
+				{
+					modalEliminar && 
+					<ModalConfirmar 
+						pregunta={'¿Desea Eliminar Este Hijo?'} 
+						setEliminar={setModalEliminar}
+						setConfirmDelete={setConfirmDelete}
+						setModalAccepted={setModalAccepted}
+						setMessage={setMessage}
+					/>
+				}
+				{modalAccepted && <ModalAccepted message={message} setModalAccepted={setModalAccepted}/>}
+				{confirmDelete && eliminarHijo()}
 				<h3 style={{ marginTop: '33px' }}>
 					Hijos del usuario: {usuario.nombre}
 				</h3>
@@ -142,6 +196,7 @@ const Hijos = ({ match }) => {
 							{usuario.hijos.map((item) => (
 								<div
 									style={{
+										position: 'relative',
 										padding: '11px',
 										background: '#f4f4f4',
 										borderRadius: '11px',
@@ -161,6 +216,26 @@ const Hijos = ({ match }) => {
 									</div>
 									<br />
 									<div><b>DNI:</b> {item.dni_paciente}</div>
+									<button 
+										onClick={(e) => {
+											e.preventDefault()
+											setModalEliminar(true)
+											setHijo(item)
+										}}
+
+										style={{
+											position: 'absolute',
+											top: 10,
+											right: 10,
+
+											background: 'transparent',
+											border: 'none',
+											color: 'red',
+											cursor: 'pointer'
+										}}
+									>
+										<i className="fas fa-trash-alt"></i>
+									</button>
 								</div>
 							))}
 						</div>
