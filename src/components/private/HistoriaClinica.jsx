@@ -31,7 +31,7 @@ const HistoriaClinica = () => {
 		})
 	}
 	//TRAYENDO DATOS DE LA RECETA
-	const datosRe = useIndicaciones()
+	const datosRe = useIndicaciones(id)
 
 	let tratamiento = ''
 	for (let i = 0; i < datosRe.length; i++) {

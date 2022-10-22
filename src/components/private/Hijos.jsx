@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import url from '../../keys/backend_keys';
 import ModalConfirmar from '../includes/ModalConfirmar';
 import ModalAccepted from '../includes/ModalAccepted';
+import { Formik, Form} from 'formik';
+import '../../sass/Hijos.sass'
 
 const Hijos = ({ match }) => {
 	const [usuario, setUsuario] = useState({ nombre: 'cargando' });
@@ -9,11 +11,21 @@ const Hijos = ({ match }) => {
 	const [state, setState] = useState(false);
 	const [modalAccepted, setModalAccepted] = useState(false);
 	const [message, setMessage] = useState('');
+	const [edit, setEdit] = useState(false)
+	const [responsable, setResponsable] = useState({})
 	useEffect(() => {
 		fetch(`${url}/api/auth/${idUser}`)
 			.then((resp) => resp.json())
-			.then((datosUsuario) => setUsuario(datosUsuario));
+			.then((datosUsuario) =>{
+				setUsuario(datosUsuario)
+				setResponsable(datosUsuario)});
 	}, [idUser]);
+	const handleChange = (e) =>{
+		setResponsable({
+			...responsable,
+			[e.target.name]: e.target.value,
+		})
+	}
 	const agregarHijo = (dni) => {
 		fetch(`${url}/Historia/${dni}`)
 			.then((resp) => resp.json())
@@ -170,8 +182,76 @@ const Hijos = ({ match }) => {
 				{modalAccepted && <ModalAccepted message={message} setModalAccepted={setModalAccepted}/>}
 				{confirmDelete && eliminarHijo()}
 				<h3 style={{ marginTop: '33px' }}>
-					Hijos del usuario: {usuario.nombre}
+					Hijos del usuario: 
+					{/* {usuario.nombre} */}
 				</h3>
+				<Formik
+					>
+					<Form>
+							<div className='editApoderado'>
+								<div>
+									<input type="text" 
+										name='nombre'
+										value={responsable.nombre ? responsable.nombre : ''}
+										onChange={handleChange}
+										readOnly={edit ? false : true}
+									/>
+								</div>
+								<div>
+									<div className={edit ? 'btnEditActivos' : 'activarbtn'}>
+										<button 
+											className='btnCheck'
+											disabled={edit ? false : true}
+											onClick={(e)=>{
+												e.preventDefault()
+												
+												fetch(`${url}/api/auth/Responsable/${usuario._id}`,{
+													headers:{
+														'Content-type': 'application/json'
+													},
+													method: 'PUT',
+													body: JSON.stringify({
+														...responsable
+													}),
+												}).then((resp)=>resp.json())
+												.then((data)=>{
+													if(data.ok){
+														alert('Responsable Actualizado')
+														setEdit(false)
+													}
+												})
+											}}>
+												<i className="fa-solid fa-check"></i>
+										</button>
+									
+										<button
+										className='btnTimes'
+										disabled={edit ? false : true}
+										onClick={(e)=>{
+											e.preventDefault()
+											setEdit(false)
+											setResponsable({
+												nombre: usuario.nombre
+											})
+										}}>
+											<i className="fas fa-times"></i>
+										</button>
+									</div>
+									<div className={edit ? 'activarbtn' : 'activadobtn'}>
+										<button
+											disabled={edit ? true : false}
+											onClick={(e)=>{
+												e.preventDefault()
+												setEdit(true)
+											}
+											}>
+												<i className="fas fa-pen"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</Form>
+				</Formik>
 				<br />
 				<button
 					onClick={() => {

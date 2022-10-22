@@ -113,7 +113,7 @@ const MisCitasSecretaria = ({datos_af, loading, set_datos_af}) => {
 										<th>N°</th>
 										<th>Hora</th>
 										<th>PACIENTE</th>
-										<th>RESPONSABLE</th>
+										{/* <th>RESPONSABLE</th> */}
 										<th>MOTIVO</th>
 										<th></th>
 										<th></th>
@@ -125,7 +125,7 @@ const MisCitasSecretaria = ({datos_af, loading, set_datos_af}) => {
 											<td>{item.numero}</td>
 											<td>{moment(item.fecha).format('LT')}</td>
 											<td className='nombPac'>{item.nombre_paciente}</td>
-											<td className='respons'>{item.responsable}</td>
+											{/* <td className='respons'>{item.responsable}</td> */}
 											<td>{switchMotivo(item.motivo)}</td>
 											<td>
                                                 <i 

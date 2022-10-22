@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 // import { Check } from './extras/Check';
 import '../../sass/Dashboard.sass'
 import InicioSecretaria from './InicioSecretaria';
-import InicioDoctor from './InicioDoctor';
+// import InicioDoctor from './InicioDoctor';
 import InicioApoderado from './InicioApoderado';
+import NuevaCita from './NuevaCita';
 
 const InitScreen = ({usuario, logout}) => {
 	return (
@@ -14,7 +15,8 @@ const InitScreen = ({usuario, logout}) => {
 				<InicioSecretaria/>
 			):null}
 			{usuario.rol === 'Doctor' ? (
-				<InicioDoctor/>
+				// <InicioDoctor/>
+				<NuevaCita/>
 			):null}
 			{usuario.rol === 'Apoderado' ? (
 				<InicioApoderado/>

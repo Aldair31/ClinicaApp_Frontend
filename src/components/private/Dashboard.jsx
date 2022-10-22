@@ -56,6 +56,7 @@ import ListaReceta from './ListaReceta'
 //ORDEN
 import FormOrden from './extras/FormOrden'
 import ListaOrden from './ListaOrden'
+import InicioDoctor from './InicioDoctor';
 
 const Dashboard = ({ usuario, logout }) => {
 	const [open, setOpen]= useState(false)
@@ -84,6 +85,15 @@ const Dashboard = ({ usuario, logout }) => {
 												to="/"
 												exact
 											>
+												{/* <svg
+													width="24"
+													height="24"
+													xmlns="http://www.w3.org/2000/svg"
+													fillRule="evenodd"
+													clipRule="evenodd"
+												>
+													<path d="M19 22h2v-11.931c-1.16-.753-2.515-1.509-3.815-2.052.329-.544.574-1.189.697-1.877 1.821.75 3.499 1.753 5.118 2.86v13h1v2h-24v-2h1v-13c1.615-1.084 3.298-2.08 5.122-2.83.137.664.387 1.293.728 1.863-1.36.563-2.614 1.267-3.839 2.04l-.011.007v11.92h2v-5h14v5zm-12 1h3v-4h-3v4zm4 0h2v-4h-2v4zm3 0h3v-4h-3v4zm-9-7h2v-2h-2v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2zm-12-3h2v-2h-2v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2zm-5-13c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5m1 4v-2h-2v2h-2v2h2v2h2v-2h2v-2h-2z" />
+												</svg> */}
 												<svg
 													width="24"
 													height="24"
@@ -92,6 +102,23 @@ const Dashboard = ({ usuario, logout }) => {
 													clipRule="evenodd"
 												>
 													<path d="M19 22h2v-11.931c-1.16-.753-2.515-1.509-3.815-2.052.329-.544.574-1.189.697-1.877 1.821.75 3.499 1.753 5.118 2.86v13h1v2h-24v-2h1v-13c1.615-1.084 3.298-2.08 5.122-2.83.137.664.387 1.293.728 1.863-1.36.563-2.614 1.267-3.839 2.04l-.011.007v11.92h2v-5h14v5zm-12 1h3v-4h-3v4zm4 0h2v-4h-2v4zm3 0h3v-4h-3v4zm-9-7h2v-2h-2v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2zm-12-3h2v-2h-2v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2zm4 0h2v-2h-2v2zm-5-13c2.76 0 5 2.24 5 5s-2.24 5-5 5-5-2.24-5-5 2.24-5 5-5m1 4v-2h-2v2h-2v2h2v2h2v-2h2v-2h-2z" />
+												</svg>
+											</NavLink>
+											{/* Consultas */}
+											Citas
+										</div>
+										<div className="itemLong">
+											<NavLink
+												className="item"
+												to="/consultas"
+											>
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="24"
+													height="24"
+													viewBox="0 0 24 24"
+												>
+													<path d="M6 12h10v1h-10v-1zm7.816-3h-7.816v1h9.047c-.45-.283-.863-.618-1.231-1zm5.184 1.975v2.569c0 4.106-6 2.456-6 2.456s1.518 6-2.638 6h-7.362v-20h9.5c.312-.749.763-1.424 1.316-2h-12.816v24h10.189c3.163 0 9.811-7.223 9.811-9.614v-3.886c-.623.26-1.297.421-2 .475zm-13-3.975h6.5c-.134-.32-.237-.656-.319-1h-6.181v1zm17-2.5c0 2.485-2.017 4.5-4.5 4.5s-4.5-2.015-4.5-4.5 2.017-4.5 4.5-4.5 4.5 2.015 4.5 4.5zm-2-.5h-2v-2h-1v2h-2v1h2v2h1v-2h2v-1z" />
 												</svg>
 											</NavLink>
 											Consultas
@@ -270,7 +297,10 @@ const Dashboard = ({ usuario, logout }) => {
 						<div onClick={()=>{setOpen(false)}}>
 							<Switch>
 								<Route path="/" exact={true} component={InitScreen} />
-
+								<Route
+									path="/consultas"
+									component={InicioDoctor}
+								/>
 								<Route
 									path="/pacientess"
 									component={Pacientes}

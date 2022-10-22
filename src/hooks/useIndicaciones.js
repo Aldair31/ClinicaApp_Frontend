@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import url from '../keys/backend_keys';
-const useIndicaciones = () => {
+const useIndicaciones = (id) => {
 	const [indicaciones, setIndicaciones] = useState([]);
-	const { id } = useParams();
 
 	useEffect(() => {
 		fetch(`${url}/HistClinica/medicamentos/${id}`)

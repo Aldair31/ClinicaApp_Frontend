@@ -123,14 +123,14 @@ const FormOrden = () => {
     
     const DocOrden = () => {
         var doc = new jsPDF('p', 'mm', [242, 104])
-
+        // var doc = new jsPDF('p', 'mm', [297, 210])
         doc.addImage(FondoOrden, 'JPG', 0, 0)
 
         var fechaHist = new Image()
         fechaHist.src = 'https://i.ibb.co/M1j5RKq/fechapgn.png'
         
         doc.addImage(fechaHist, 'JPG', 2, 228)
-        doc.addImage(fechaHist, 'JPG', 106, 228)
+        // doc.addImage(fechaHist, 'JPG', 106, 228)
         
 
         doc.setFont(undefined, 'bold').setFontSize(8).setTextColor('black').text(6, 229.5, 'DÍA');

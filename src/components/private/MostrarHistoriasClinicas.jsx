@@ -51,7 +51,7 @@ const MostrarHistoriasClinicas = ({id}) =>{
 		return years + " a " + months + " m " + days + " d"
 	}
 
-    const datosRe = useIndicaciones()
+    const datosRe = useIndicaciones(id)
 
 	let tratamiento = ''
 	for (let i = 0; i < datosRe.length; i++) {
@@ -160,7 +160,7 @@ const MostrarHistoriasClinicas = ({id}) =>{
 				cols="50"
 				placeholder="Tratamiento"
 				name="tratamiento"
-				value={Hc.tratamiento ? Hc.tratamiento : tratamiento}
+				value={tratamiento}
 				onChange={handleChange}
 				style={{resize:'none'}}
 				readOnly

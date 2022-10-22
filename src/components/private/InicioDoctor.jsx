@@ -98,7 +98,7 @@ const InicioDoctor = () => {
 										<th>N°</th>
 										<th>Hora</th>
 										<th>PACIENTE</th>
-										<th>RESPONSABLE</th>
+										{/* <th>RESPONSABLE</th> */}
 										<th>MOTIVO</th>
 										<th>ATENDIDO</th>
 										<th></th>
@@ -110,7 +110,7 @@ const InicioDoctor = () => {
 											<td>{item.numero}</td>
 											<td>{moment(item.fecha).format('LT')}</td>
 											<td className='nombPac'>{item.nombre_paciente}</td>
-											<td className='respons'>{item.responsable}</td>
+											{/* <td className='respons'>{item.responsable}</td> */}
 											<td>{switchMotivo(item.motivo)}</td>
 											<td>
 												{
