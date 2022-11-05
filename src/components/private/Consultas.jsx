@@ -3,7 +3,7 @@ import '../../sass/Dashboard.sass';
 import '../../sass/LC.sass';
 import url from '../../keys/backend_keys';
 import {Link} from 'react-router-dom'
-import capitalize from '../../functions/capitalize';
+// import capitalize from '../../functions/capitalize';
 import mayusFirst from '../../functions/mayusFirst';
 // import '../../sass/Recetas.sass'
 // import 'bootstrap/dist/css/bootstrap.min.css'
@@ -62,34 +62,34 @@ const Consultas = () => {
     }
 
 	// BORRAR
-	const [historias, setHistorias] = useState([])
-	useEffect(() => {
-		fetch(`${url}/Historia/`)
-			.then((resp) => resp.json())
-			.then((historia) => {
-				setHistorias(historia)
-			})
-	}, [])
+	// const [historias, setHistorias] = useState([])
+	// useEffect(() => {
+	// 	fetch(`${url}/Historia/`)
+	// 		.then((resp) => resp.json())
+	// 		.then((historia) => {
+	// 			setHistorias(historia)
+	// 		})
+	// }, [])
 
-	const actualizarHistorias = () => {
-		historias.map((item) =>
-			fetch(`${url}/Historia/${item._id}`, {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'PUT',
-				body: JSON.stringify({
-					...item,
-					nombres_paciente: item.nombres_paciente && capitalize(item.nombres_paciente),
-					nombre_madre: item.nombre_madre && capitalize(item.nombre_madre),
-					nombre_padre: item.nombre_padre && capitalize(item.nombre_padre),
-					referencia: item.referencia && capitalize(item.referencia),
-					procedencia: item.procedencia && capitalize(item.procedencia),
-					lugar_nac: item.lugar_nac && capitalize(item.lugar_nac),
-				})
-			})
-		)
-	}
+	// const actualizarHistorias = () => {
+	// 	historias.map((item) =>
+	// 		fetch(`${url}/Historia/${item._id}`, {
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 			},
+	// 			method: 'PUT',
+	// 			body: JSON.stringify({
+	// 				...item,
+	// 				nombres_paciente: item.nombres_paciente && capitalize(item.nombres_paciente),
+	// 				nombre_madre: item.nombre_madre && capitalize(item.nombre_madre),
+	// 				nombre_padre: item.nombre_padre && capitalize(item.nombre_padre),
+	// 				referencia: item.referencia && capitalize(item.referencia),
+	// 				procedencia: item.procedencia && capitalize(item.procedencia),
+	// 				lugar_nac: item.lugar_nac && capitalize(item.lugar_nac),
+	// 			})
+	// 		})
+	// 	)
+	// }
 
 	const [antecedentes, setAntecedentes] = useState([])
 	useEffect(() => {
@@ -129,168 +129,168 @@ const Consultas = () => {
 		)
 	}
 	
-	const [citas1, setCitas1] = useState([])
-	useEffect(() => {
-		fetch(`${url}/Cita/`)
-			.then((resp) => resp.json())
-			.then((cita) => {
-				setCitas1(cita)
-			})
-	}, [])
+	// const [citas1, setCitas1] = useState([])
+	// useEffect(() => {
+	// 	fetch(`${url}/Cita/`)
+	// 		.then((resp) => resp.json())
+	// 		.then((cita) => {
+	// 			setCitas1(cita)
+	// 		})
+	// }, [])
 
-	const actualizarCitas = () => {
-		citas1.map((item) =>
-			fetch(`${url}/Cita/${item._id}`, {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'PUT',
-				body: JSON.stringify({
-					...item,
-					nombre_paciente: item.nombre_paciente && capitalize(item.nombre_paciente),
-					responsable: item.responsable && capitalize(item.responsable),
-				})
-			})
-		)
-	}
+	// const actualizarCitas = () => {
+	// 	citas1.map((item) =>
+	// 		fetch(`${url}/Cita/${item._id}`, {
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 			},
+	// 			method: 'PUT',
+	// 			body: JSON.stringify({
+	// 				...item,
+	// 				nombre_paciente: item.nombre_paciente && capitalize(item.nombre_paciente),
+	// 				responsable: item.responsable && capitalize(item.responsable),
+	// 			})
+	// 		})
+	// 	)
+	// }
 
-	const [histClinicas, setHistClinicas] = useState([])
-	useEffect(() => {
-		fetch(`${url}/HistClinica/`)
-			.then((resp) => resp.json())
-			.then((histClinica) => {
-				setHistClinicas(histClinica)
-			})
-	}, [])
+	// const [histClinicas, setHistClinicas] = useState([])
+	// useEffect(() => {
+	// 	fetch(`${url}/HistClinica/`)
+	// 		.then((resp) => resp.json())
+	// 		.then((histClinica) => {
+	// 			setHistClinicas(histClinica)
+	// 		})
+	// }, [])
 
-	const actualizarHistClinicas = () => {
-		histClinicas.map((item) =>
-			fetch(`${url}/HistClinica/${item._id}`, {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'PUT',
-				body: JSON.stringify({
-					...item,
-					anamnesis: item.anamnesis && mayusFirst(item.anamnesis),
-					diagnostico: item.diagnostico && mayusFirst(item.diagnostico),
-					tratamiento: item.tratamiento && mayusFirst(item.tratamiento),
-					examenesAuxiliares: item.examenesAuxiliares && mayusFirst(item.examenesAuxiliares),
-					planDiagnosticoTerapeutico: item.planDiagnosticoTerapeutico && mayusFirst(item.planDiagnosticoTerapeutico),
-					apreciacionG: item.apreciacionG && mayusFirst(item.apreciacionG),
-					tcsc: item.tcsc && mayusFirst(item.tcsc),
-					ojos: item.ojos && mayusFirst(item.ojos),
-					orofaringe: item.orofaringe && mayusFirst(item.orofaringe),
-					oidos: item.oidos && mayusFirst(item.oidos),
-					aparatoResp: item.aparatoResp && mayusFirst(item.aparatoResp),
-					aparatoCV: item.aparatoCV && mayusFirst(item.aparatoCV),
-					abdomen: item.abdomen && mayusFirst(item.abdomen),
-					aparatoGU: item.aparatoGU && mayusFirst(item.aparatoGU),
-					locomotor: item.locomotor && mayusFirst(item.locomotor),
-					genitales: item.genitales && mayusFirst(item.genitales),
-					neurologico: item.neurologico && mayusFirst(item.neurologico),
-				})
-			})
-		)
-	}
+	// const actualizarHistClinicas = () => {
+	// 	histClinicas.map((item) =>
+	// 		fetch(`${url}/HistClinica/${item._id}`, {
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 			},
+	// 			method: 'PUT',
+	// 			body: JSON.stringify({
+	// 				...item,
+	// 				anamnesis: item.anamnesis && mayusFirst(item.anamnesis),
+	// 				diagnostico: item.diagnostico && mayusFirst(item.diagnostico),
+	// 				tratamiento: item.tratamiento && mayusFirst(item.tratamiento),
+	// 				examenesAuxiliares: item.examenesAuxiliares && mayusFirst(item.examenesAuxiliares),
+	// 				planDiagnosticoTerapeutico: item.planDiagnosticoTerapeutico && mayusFirst(item.planDiagnosticoTerapeutico),
+	// 				apreciacionG: item.apreciacionG && mayusFirst(item.apreciacionG),
+	// 				tcsc: item.tcsc && mayusFirst(item.tcsc),
+	// 				ojos: item.ojos && mayusFirst(item.ojos),
+	// 				orofaringe: item.orofaringe && mayusFirst(item.orofaringe),
+	// 				oidos: item.oidos && mayusFirst(item.oidos),
+	// 				aparatoResp: item.aparatoResp && mayusFirst(item.aparatoResp),
+	// 				aparatoCV: item.aparatoCV && mayusFirst(item.aparatoCV),
+	// 				abdomen: item.abdomen && mayusFirst(item.abdomen),
+	// 				aparatoGU: item.aparatoGU && mayusFirst(item.aparatoGU),
+	// 				locomotor: item.locomotor && mayusFirst(item.locomotor),
+	// 				genitales: item.genitales && mayusFirst(item.genitales),
+	// 				neurologico: item.neurologico && mayusFirst(item.neurologico),
+	// 			})
+	// 		})
+	// 	)
+	// }
 
-	const [indicOrdens, setIndicOrdens] = useState([])
-	useEffect(() => {
-		fetch(`${url}/IndicacionOrden/`)
-			.then((resp) => resp.json())
-			.then((indicOrden) => {
-				setIndicOrdens(indicOrden)
-			})
-	}, [])
+	// const [indicOrdens, setIndicOrdens] = useState([])
+	// useEffect(() => {
+	// 	fetch(`${url}/IndicacionOrden/`)
+	// 		.then((resp) => resp.json())
+	// 		.then((indicOrden) => {
+	// 			setIndicOrdens(indicOrden)
+	// 		})
+	// }, [])
 
-	const actualizarIndicacionOrden = () => {
-		indicOrdens.map((item) =>
-			fetch(`${url}/IndicacionOrden/${item._id}`, {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'PUT',
-				body: JSON.stringify({
-					...item,
-					indicaciones: item.indicaciones && mayusFirst(item.indicaciones),
-				})
-			})
-		)
-	}
+	// const actualizarIndicacionOrden = () => {
+	// 	indicOrdens.map((item) =>
+	// 		fetch(`${url}/IndicacionOrden/${item._id}`, {
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 			},
+	// 			method: 'PUT',
+	// 			body: JSON.stringify({
+	// 				...item,
+	// 				indicaciones: item.indicaciones && mayusFirst(item.indicaciones),
+	// 			})
+	// 		})
+	// 	)
+	// }
 
-	const [medicRecetas, setMedicRecetas] = useState([])
-	useEffect(() => {
-		fetch(`${url}/MedicamentoReceta/`)
-			.then((resp) => resp.json())
-			.then((medicReceta) => {
-				setMedicRecetas(medicReceta)
-			})
-	}, [])
+	// const [medicRecetas, setMedicRecetas] = useState([])
+	// useEffect(() => {
+	// 	fetch(`${url}/MedicamentoReceta/`)
+	// 		.then((resp) => resp.json())
+	// 		.then((medicReceta) => {
+	// 			setMedicRecetas(medicReceta)
+	// 		})
+	// }, [])
 
-	const actualizarMedicamentosReceta = () => {
-		medicRecetas.map((item) =>
-			fetch(`${url}/MedicamentoReceta/${item._id}`, {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'PUT',
-				body: JSON.stringify({
-					...item,
-					cantidad: item.cantidad && mayusFirst(item.cantidad),
-					nombreMedicina: item.nombreMedicina && mayusFirst(item.nombreMedicina),
-					indicaciones: item.indicaciones && mayusFirst(item.indicaciones),
-				})
-			})
-		)
-	}
+	// const actualizarMedicamentosReceta = () => {
+	// 	medicRecetas.map((item) =>
+	// 		fetch(`${url}/MedicamentoReceta/${item._id}`, {
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 			},
+	// 			method: 'PUT',
+	// 			body: JSON.stringify({
+	// 				...item,
+	// 				cantidad: item.cantidad && mayusFirst(item.cantidad),
+	// 				nombreMedicina: item.nombreMedicina && mayusFirst(item.nombreMedicina),
+	// 				indicaciones: item.indicaciones && mayusFirst(item.indicaciones),
+	// 			})
+	// 		})
+	// 	)
+	// }
 
-	const [reservas, setReservas] = useState([])
-	useEffect(() => {
-		fetch(`${url}/Reserva/`)
-			.then((resp) => resp.json())
-			.then((reserva) => {
-				setReservas(reserva)
-			})
-	}, [])
+	// const [reservas, setReservas] = useState([])
+	// useEffect(() => {
+	// 	fetch(`${url}/Reserva/`)
+	// 		.then((resp) => resp.json())
+	// 		.then((reserva) => {
+	// 			setReservas(reserva)
+	// 		})
+	// }, [])
 
-	const actualizarReservas = () => {
-		reservas.map((item) =>
-			fetch(`${url}/Reserva/${item._id}`, {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'PUT',
-				body: JSON.stringify({
-					...item,
-					nombre_paciente: item.nombre_paciente && capitalize(item.nombre_paciente),
-				})
-			})
-		)
-	}
+	// const actualizarReservas = () => {
+	// 	reservas.map((item) =>
+	// 		fetch(`${url}/Reserva/${item._id}`, {
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 			},
+	// 			method: 'PUT',
+	// 			body: JSON.stringify({
+	// 				...item,
+	// 				nombre_paciente: item.nombre_paciente && capitalize(item.nombre_paciente),
+	// 			})
+	// 		})
+	// 	)
+	// }
 
-	const [usuarios, setUsuarios] = useState([])
-	useEffect(() => {
-		fetch(`${url}/api/auth/`)
-			.then((resp) => resp.json())
-			.then((usuario) => {
-				setUsuarios(usuario)
-			})
-	}, [])
+	// const [usuarios, setUsuarios] = useState([])
+	// useEffect(() => {
+	// 	fetch(`${url}/api/auth/`)
+	// 		.then((resp) => resp.json())
+	// 		.then((usuario) => {
+	// 			setUsuarios(usuario)
+	// 		})
+	// }, [])
 
-	const actualizarUsuarios = () => {
-		usuarios.map((item) =>
-			fetch(`${url}/api/auth/Responsable/${item._id}`, {
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				method: 'PUT',
-				body: JSON.stringify({
-					// ...item,
-					nombre: item.nombre && capitalize(item.nombre),
-				})
-			})
-		)
-	}
+	// const actualizarUsuarios = () => {
+	// 	usuarios.map((item) =>
+	// 		fetch(`${url}/api/auth/Responsable/${item._id}`, {
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 			},
+	// 			method: 'PUT',
+	// 			body: JSON.stringify({
+	// 				// ...item,
+	// 				nombre: item.nombre && capitalize(item.nombre),
+	// 			})
+	// 		})
+	// 	)
+	// }
 
 	return (
 		<>
@@ -327,10 +327,10 @@ const Consultas = () => {
 							<div className='contenidoDatosPaciente'>
 								<div className='nombrePaciente'>
 									<p><b>{item.numero}.      </b><i className="fa-regular fa-address-book"></i></p>
-									<p>{item.nombres_paciente && capitalize(item.nombres_paciente)}</p>
+									<p>{item.nombres_paciente && item.nombres_paciente}</p>
 								</div>
 								{/* <p className='dniPac'>{item.dni_paciente}</p> */}
-								<em className='referenciaPac'>{item.referencia && capitalize(item.referencia)}</em>
+								<em className='referenciaPac'>{item.referencia && item.referencia}</em>
 							</div>
 							<Link to={`datos-f/${item._id}`}>
 								<strong

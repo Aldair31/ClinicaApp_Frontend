@@ -118,10 +118,10 @@ const MostrarHistoriasClinicas = ({id}) =>{
 			<textarea rows="3" cols="50" placeholder="TCSC" value={Hc.tcsc ? Hc.tcsc : ''} name="tcsc" onChange={handleChange} style={{resize:'none'}} readOnly/>
 			<label>Ojos</label>
 			<textarea rows="3" cols="50" placeholder="Ojos" value={Hc.ojos ? Hc.ojos : ''} name="ojos" onChange={handleChange} style={{resize:'none'}}/>
-			<label>Orofaringe</label>
-			<textarea rows="3" cols="50" placeholder="Orofaringe" value={Hc.orofaringe ? Hc.orofaringe : ''} name="orofaringe" onChange={handleChange} style={{resize:'none'}} readOnly/>
 			<label>Oidos</label>
 			<textarea rows="3" cols="50" placeholder="Oídos" value={Hc.oidos ? Hc.oidos : ''} name="oidos" onChange={handleChange} style={{resize:'none'}} readOnly/>
+			<label>Orofaringe</label>
+			<textarea rows="3" cols="50" placeholder="Orofaringe" value={Hc.orofaringe ? Hc.orofaringe : ''} name="orofaringe" onChange={handleChange} style={{resize:'none'}} readOnly/>
 			<label>Aparato CV</label>
 			<textarea rows="3" cols="50" placeholder="Aparato CV" value={Hc.aparatoCV ? Hc.aparatoCV : ''} name="aparatoCV" onChange={handleChange} style={{resize:'none'}} readOnly/>
 			<label>Aparato resp.</label>
@@ -132,6 +132,8 @@ const MostrarHistoriasClinicas = ({id}) =>{
 			<textarea rows="3" cols="50" placeholder="Aparato GU" value={Hc.aparatoGU ? Hc.aparatoGU : ''} name="aparatoGU" onChange={handleChange} style={{resize:'none'}} readOnly/>
 			<label>Locomotor</label>
 			<textarea rows="3" cols="50" placeholder="Locomotor" value={Hc.locomotor ? Hc.locomotor : ''} name="locomotor" onChange={handleChange} style={{resize:'none'}} readOnly/>
+			<label>Genitales</label>
+                <textarea rows="3" cols="50" placeholder="Genitales" value={Hc.genitales ? Hc.genitales : ''} name="genitales" onChange={handleChange} style={{resize:'none'}} readOnly/>
 			<label>Neurológico</label>
 			<textarea rows="3" cols="50" placeholder="Neurológico" value={Hc.neurologico ? Hc.neurologico : ''} name="neurologico" onChange={handleChange} style={{resize:'none'}} readOnly/>
 			<h3>Diagnóstico</h3>
@@ -156,6 +158,17 @@ const MostrarHistoriasClinicas = ({id}) =>{
 				style={{resize:'none'}}
 				readOnly
 			></textarea>
+			<h3>Plan Diagnóstico - Terapéutico</h3>
+				<textarea
+					rows="3"
+					cols="50"
+					placeholder="Plan Diagnóstico - Terapéutico"
+					name="planDiagnosticoTerapeutico"
+					value={Hc.planDiagnosticoTerapeutico ? Hc.planDiagnosticoTerapeutico : ''}
+					onChange={handleChange}
+					style={{resize:'none'}}
+					readOnly
+				></textarea>
 			<h3>Tratamiento</h3>
 			<textarea
 				rows= {tratamiento ==='' ? '3' : '10'}

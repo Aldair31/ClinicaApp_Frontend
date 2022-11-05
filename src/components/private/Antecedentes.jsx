@@ -36,7 +36,7 @@ const Antecedentes = ({id}) => {
 						<select
 							name="asmaBronquialFam"
 							onChange={handleChange}
-							value={antecedentes.asmaBronquialFam ? antecedentes.asmaBronquialFam : ''}
+							value={antecedentes.asmaBronquialFam}
 						>
 							<option>-- Seleccione --</option>
 							<option value="true">Sí</option>
@@ -48,7 +48,7 @@ const Antecedentes = ({id}) => {
 						<select
 							name="diabetes"
 							onChange={handleChange}
-							value={antecedentes.diabetes ? antecedentes.diabetes : ''}
+							value={antecedentes.diabetes}
 						>
 							<option>-- Seleccione --</option>
 							<option value="true">Sí</option>
@@ -60,7 +60,7 @@ const Antecedentes = ({id}) => {
 						<select
 							name="epilepsia"
 							onChange={handleChange}
-							value={antecedentes.epilepsia ? antecedentes.epilepsia : ''}
+							value={antecedentes.epilepsia}
 						>
 							<option>-- Seleccione --</option>
 							<option value="true">Sí</option>
@@ -68,11 +68,6 @@ const Antecedentes = ({id}) => {
 						</select>
 					</div>
 				</div>
-				
-				
-				{/* <input placeholder="Asma Bronquial" /> */}
-				
-				
 				<label>Otros</label>
 				<textarea
 					rows="3"
@@ -176,7 +171,6 @@ const Antecedentes = ({id}) => {
 					onChange={handleChange}
 					style={{resize:'none'}}
 				></textarea>
-				{/* wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww */}
 				<h3>Patológicos</h3>
 				<label>Alergias</label>
 				<textarea
@@ -195,7 +189,7 @@ const Antecedentes = ({id}) => {
 						<select
 							name="asmaBronquialPat"
 							onChange={handleChange}
-							value={antecedentes.asmaBronquialPat ? antecedentes.asmaBronquialPat : ''}
+							value={antecedentes.asmaBronquialPat}
 						>
 							<option>-- Seleccione --</option>
 							<option value="true">Sí</option>
@@ -204,11 +198,10 @@ const Antecedentes = ({id}) => {
 					</div>
 					<div>
 						<label>Nebulización</label>
-						{/* <input placeholder="Nebulización" /> */}
 						<select
 							name="nebulizacion"
 							onChange={handleChange}
-							value={antecedentes.nebulizacion ? antecedentes.nebulizacion : ''}
+							value={antecedentes.nebulizacion}
 						>
 							<option>-- Seleccione --</option>
 							<option value="true">Sí</option>
@@ -223,7 +216,7 @@ const Antecedentes = ({id}) => {
 							name="intervencionQuirurgica"
 							onChange={handleChange}
 
-							value={antecedentes.intervencionQuirurgica ? antecedentes.intervencionQuirurgica : ''}
+							value={antecedentes.intervencionQuirurgica}
 						>
 							<option>-- Seleccione --</option>
 							<option value="true">Sí</option>
@@ -235,7 +228,7 @@ const Antecedentes = ({id}) => {
 						<select
 							name="reaccionAdversaMed"
 							onChange={handleChange}
-							value={antecedentes.reaccionAdversaMed ? antecedentes.reaccionAdversaMed : ''}
+							value={antecedentes.reaccionAdversaMed}
 						>
 							<option>-- Seleccione --</option>
 							<option value="true">Sí</option>
@@ -250,7 +243,7 @@ const Antecedentes = ({id}) => {
 						<select
 							name="sob"
 							onChange={handleChange}
-							value={antecedentes.sob ? antecedentes.sob : ''}
+							value={antecedentes.sob}
 						>
 							<option>-- Seleccione --</option>
 							<option value="true">Sí</option>
