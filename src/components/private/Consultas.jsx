@@ -360,7 +360,7 @@ const Consultas = () => {
 					</div>
 				: null
 			}
-			<button onClick={(e) => {
+			{/* <button onClick={(e) => {
 				e.preventDefault()
 				actualizarHistorias()
 				actualizarAntecedentes()
@@ -371,7 +371,7 @@ const Consultas = () => {
 				actualizarReservas()
 				actualizarUsuarios()
 				
-			}}>HOLA</button>
+			}}>HOLA</button> */}
 		</>
 	);
 };
