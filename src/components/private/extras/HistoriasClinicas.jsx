@@ -230,8 +230,8 @@ const HistoriasClinicas = () => {
 						<tbody>
 							{nuevosDatos.map((item) => (
 								<tr key={item._id}>
-									<td style={{textTransform: 'uppercase'}}>{moment(item.fecha).format('DD/MM/YYYY')}</td>
-									{/* <td style={{textTransform: 'uppercase'}}>{(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).years()} AÑOS {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).months()} MESES {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).days()} DÍAS</td> */}
+									<td>{moment(item.fecha).format('DD/MM/YYYY')}</td>
+									{/* <td>{(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).years()} AÑOS {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).months()} MESES {(moment.duration(moment(item.fecha).diff(moment(fechaNacimiento[0])))).days()} DÍAS</td> */}
 									<td>{fechaNacimiento[0] !== 'Invalid date' ? calcularEdad(item.fecha, fechaNacimiento[0]) : ''}</td>
 									<td>
 										<button

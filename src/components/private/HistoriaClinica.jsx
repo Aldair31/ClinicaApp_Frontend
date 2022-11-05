@@ -35,7 +35,7 @@ const HistoriaClinica = () => {
 
 	let tratamiento = ''
 	for (let i = 0; i < datosRe.length; i++) {
-		tratamiento += (i+1) + '. ' + (datosRe[i].nombreMedicina).toUpperCase() + ':\n- ' + (datosRe[i].indicaciones.replace(/;/g, '\n\n- ')).toUpperCase() + '\n\n'
+		tratamiento += (i+1) + '. ' + datosRe[i].nombreMedicina + ':\n- ' + (datosRe[i].indicaciones.replace(/;/g, `\n\n- `)) + '\n\n'
 	}
 
 	Hc.imc = Math.round((Hc.peso/(Math.pow((Hc.talla/100),2)))*1000)/1000
@@ -505,7 +505,7 @@ const HistoriaClinica = () => {
 			</div>
 			<form className="cont">
 				<div className='NombreEdad'>
-					<label><b>Paciente: </b> {datos.nombres_paciente}</label>
+					<label><b>Paciente: </b> {datos.nombres_paciente && datos.nombres_paciente}</label>
 				</div>
 				<div className='NombreEdad'>
 					<label><b>Fecha de Consulta: </b>{moment(Hc.fecha).format('DD/MM/YYYY')}
@@ -517,7 +517,7 @@ const HistoriaClinica = () => {
 					<label><b>Edad de Consulta: </b>{calcularEdad(Hc.fecha, datos.fecha_nac)}</label>
 				</div>
 				<div className='NombreEdad'>
-					<label><b>Referencia: </b> {datos.referencia}</label>
+					<label><b>Referencia: </b> {datos.referencia && datos.referencia}</label>
 				</div>
 				<br></br>
 				<h3>Anamnesis *</h3>
@@ -568,10 +568,12 @@ const HistoriaClinica = () => {
 				</div>
 				<label>Piel y TCSC</label>
                 <textarea rows="3" cols="50" placeholder="TCSC" value={Hc.tcsc ? Hc.tcsc : ''} name="tcsc" onChange={handleChange} style={{resize:'none'}}/>
-				<label>Orofaringe</label>
-                <textarea rows="3" cols="50" placeholder="Orofaringe" value={Hc.orofaringe ? Hc.orofaringe : ''} name="orofaringe" onChange={handleChange} style={{resize:'none'}}/>
+				<label>Ojos</label>
+                <textarea rows="3" cols="50" placeholder="Ojos" value={Hc.ojos ? Hc.ojos : ''} name="ojos" onChange={handleChange} style={{resize:'none'}}/>
 				<label>Oidos</label>
                 <textarea rows="3" cols="50" placeholder="Oídos" value={Hc.oidos ? Hc.oidos : ''} name="oidos" onChange={handleChange} style={{resize:'none'}}/>
+				<label>Orofaringe</label>
+                <textarea rows="3" cols="50" placeholder="Orofaringe" value={Hc.orofaringe ? Hc.orofaringe : ''} name="orofaringe" onChange={handleChange} style={{resize:'none'}}/>
 				<label>Aparato CV</label>
                 <textarea rows="3" cols="50" placeholder="Aparato CV" value={Hc.aparatoCV ? Hc.aparatoCV : ''} name="aparatoCV" onChange={handleChange} style={{resize:'none'}}/>
                 <label>Aparato resp.</label>
@@ -586,6 +588,8 @@ const HistoriaClinica = () => {
                 <textarea rows="3" cols="50" placeholder="Aparato GU" value={Hc.aparatoGU ? Hc.aparatoGU : ''} name="aparatoGU" onChange={handleChange} style={{resize:'none'}}/>
 				<label>Locomotor</label>
                 <textarea rows="3" cols="50" placeholder="Locomotor" value={Hc.locomotor ? Hc.locomotor : ''} name="locomotor" onChange={handleChange} style={{resize:'none'}}/>
+				<label>Genitales</label>
+                <textarea rows="3" cols="50" placeholder="Genitales" value={Hc.genitales ? Hc.genitales : ''} name="genitales" onChange={handleChange} style={{resize:'none'}}/>
                 <label>Neurológico</label>
                 <textarea rows="3" cols="50" placeholder="Neurológico" value={Hc.neurologico ? Hc.neurologico : ''} name="neurologico" onChange={handleChange} style={{resize:'none'}}/>
 				<h3>Diagnóstico</h3>
@@ -605,6 +609,16 @@ const HistoriaClinica = () => {
 					placeholder="Ex. auxiliares"
 					name="examenesAuxiliares"
 					value={Hc.examenesAuxiliares ? Hc.examenesAuxiliares : ''}
+					onChange={handleChange}
+					style={{resize:'none'}}
+				></textarea>
+				<h3>Plan Diagnóstico - Terapéutico</h3>
+				<textarea
+					rows="3"
+					cols="50"
+					placeholder="Plan Diagnóstico - Terapéutico"
+					name="planDiagnosticoTerapeutico"
+					value={Hc.planDiagnosticoTerapeutico ? Hc.planDiagnosticoTerapeutico : ''}
 					onChange={handleChange}
 					style={{resize:'none'}}
 				></textarea>

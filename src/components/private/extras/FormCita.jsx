@@ -262,7 +262,7 @@ const FormCita = ({item, datos_af, set_datos_af, setState}) => {
 								<div>
 									<label><b>Nombre del paciente</b></label>
 									<input
-										style={{width:'125%', textTransform:'uppercase'}}
+										style={{width:'125%'}}
 										type="text"
 										name="nombre_paciente"
 										autoComplete='off'
@@ -319,7 +319,7 @@ const FormCita = ({item, datos_af, set_datos_af, setState}) => {
 							<div>
 								<div>
 									<label><b>Responsable</b></label>
-									<Field type="text" name="responsable" style={{width:'125%', textTransform:'uppercase'}}></Field>
+									<Field type="text" name="responsable" style={{width:'125%'}}></Field>
 								</div>
 								<ErrorMessage
 									name="responsable"
@@ -402,7 +402,7 @@ const FormCita = ({item, datos_af, set_datos_af, setState}) => {
 										Consulta pediátrica
 									</option>
 									<option value="3">
-										Control de crecimiento
+										Control de crecimiento y desarrollo
 									</option>
 									<option value="4">
 										Reevaluación

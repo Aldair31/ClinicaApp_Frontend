@@ -135,7 +135,8 @@ const Antecedentes = ({id}) => {
 					<div className='row2_1'>
 						<label>Edad Gestacional</label>
 						<input
-						name="edadGestacional"
+							name="edadGestacional"
+							type="number"
 							placeholder="Edad Gestacional"
 							value={antecedentes.edadGestacional ? antecedentes.edadGestacional : ''}
 							onChange={handleChange}

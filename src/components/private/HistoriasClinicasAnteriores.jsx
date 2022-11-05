@@ -34,7 +34,7 @@ const HistoriasClinicasAnteriores = ({id, fechaNac}) => {
                                             }
                                         }
                                         >
-                                        <p style={{textTransform: 'uppercase'}}>{moment(item.fecha).format('DD/MM/YYYY')}</p>
+                                        <p>{moment(item.fecha).format('DD/MM/YYYY')}</p>
                                         {/* {calcularEdad(item.fecha, fechaNac)} */}
                                     </div>
                                 ))

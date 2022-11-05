@@ -55,13 +55,13 @@ const MostrarHistoriasClinicas = ({id}) =>{
 
 	let tratamiento = ''
 	for (let i = 0; i < datosRe.length; i++) {
-		tratamiento += (i+1) + '. ' + (datosRe[i].nombreMedicina).toUpperCase() + ':\n- ' + (datosRe[i].indicaciones.replace(/;/g, '\n\n- ')).toUpperCase() + '\n\n'
+		tratamiento += (i+1) + '. ' + datosRe[i].nombreMedicina + ':\n- ' + (datosRe[i].indicaciones.replace(/;/g, `\n\n- `)) + '\n\n'
 	}
 
     return (
 		<form>
 			<div className='NombreEdad'>
-				<label><b>Paciente: </b> {datos.nombres_paciente}</label>
+				<label><b>Paciente: </b> {datos.nombres_paciente && datos.nombres_paciente}</label>
 			</div>
 			<div className='NombreEdad'>
 				<label><b>Fecha de Consulta: </b>{moment(Hc.fecha).format('DD/MM/YYYY')}
@@ -71,7 +71,7 @@ const MostrarHistoriasClinicas = ({id}) =>{
 				<label><b>Edad de Consulta: </b>{calcularEdad(Hc.fecha, datos.fecha_nac)}</label>
 			</div>
 			<div className='NombreEdad'>
-				<label><b>Referencia: </b> {datos.referencia}</label>
+				<label><b>Referencia: </b> {datos.referencia && datos.referencia}</label>
 			</div>
 			<br></br>
 			<h3>Anamnesis *</h3>
@@ -116,6 +116,8 @@ const MostrarHistoriasClinicas = ({id}) =>{
 			</div>
 			<label>Piel y TCSC</label>
 			<textarea rows="3" cols="50" placeholder="TCSC" value={Hc.tcsc ? Hc.tcsc : ''} name="tcsc" onChange={handleChange} style={{resize:'none'}} readOnly/>
+			<label>Ojos</label>
+			<textarea rows="3" cols="50" placeholder="Ojos" value={Hc.ojos ? Hc.ojos : ''} name="ojos" onChange={handleChange} style={{resize:'none'}}/>
 			<label>Orofaringe</label>
 			<textarea rows="3" cols="50" placeholder="Orofaringe" value={Hc.orofaringe ? Hc.orofaringe : ''} name="orofaringe" onChange={handleChange} style={{resize:'none'}} readOnly/>
 			<label>Oidos</label>

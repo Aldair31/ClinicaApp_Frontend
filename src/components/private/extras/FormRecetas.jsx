@@ -43,9 +43,7 @@ const FormRecetas = () => {
             return cantidadMed.slice(0,5)
         }
 
-        // const cantMed = cantidadMed.filter(buscarTermino(terminoCantidad.toUpperCase())).sort()
         const cantMed = cantidadMed.filter(item => (item.toLowerCase()).includes(terminoCantidad.toLowerCase()))
-        // const cantMed = cantidadMed.filter(buscarTermino(terminoCantidad.toUpperCase())).sort()
         return cantMed.slice(0,5)
 
     }
@@ -116,17 +114,15 @@ const FormRecetas = () => {
                             nombreMedicina: '',
                             indicaciones: ''
                         })
+                        Re.map((datos) => (
+                            datos._id === dato._id && (
+                                datos.cantidad = MedicamentoReceta.cantidad,
+                                datos.nombreMedicina = MedicamentoReceta.nombreMedicina,
+                                datos.indicaciones = MedicamentoReceta.indicaciones
+                            )
+                        ))
                         setRe([
-                            Re.map((datos) => (
-                                datos._id === dato._id && (
-                                    datos.cantidad = MedicamentoReceta.cantidad,
-                                    datos.nombreMedicina = MedicamentoReceta.nombreMedicina,
-                                    datos.indicaciones = MedicamentoReceta.indicaciones
-                                )
-                            ))
-                        ])
-                        setRe([
-                            ...Re
+                            ...Re,
                         ])
                         setActive(!isActive)
                     }
@@ -146,18 +142,21 @@ const FormRecetas = () => {
                 .then((datos) => {
                     if(datos.ok){
                         alert('Medicamento agregado')
-                        setMedicamentoReceta({cantidad: '',
-                        nombreMedicina: '',
-                        indicaciones:''})
                         setRe([
                             ...Re,
                             {
                                 _id: datos.medicamentoReceta._id,
+                                id_Receta: id,
                                 cantidad: MedicamentoReceta.cantidad,
                                 nombreMedicina: MedicamentoReceta.nombreMedicina,
                                 indicaciones: MedicamentoReceta.indicaciones,
                             },
                         ])
+                        setMedicamentoReceta({
+                            cantidad: '',
+                            nombreMedicina: '',
+                            indicaciones: ''
+                        })
                         setBtnActive(true)
                     }
                 })
@@ -287,7 +286,7 @@ const FormRecetas = () => {
     
         //OBTENIENDO NOMBRE DE PACIENTE
         let paciente = [
-            [(Hc.historia.nombres_paciente).toUpperCase()]
+            [Hc.historia.nombres_paciente]
         ]
         
         //TABLA NOMBRE PACIENTE
@@ -308,13 +307,13 @@ const FormRecetas = () => {
         //OBTENIENDO CANTIDAD Y MEDICAMENTOS
         let datosMedic = []
         for (let i = 0; i < Re.length; i++) {
-            datosMedic.push([(i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ' (' + (Re[i].cantidad).toUpperCase() + ')'])
+            datosMedic.push([(i+1) + '. ' + Re[i].nombreMedicina + ' (' + Re[i].cantidad + ')'])
         }
 
         //OBTENIENDO INDICACIONES
         let indicMed = []
         for (let i = 0; i < Re.length; i++) {
-            indicMed.push([(i+1) + '. ' + (Re[i].nombreMedicina).toUpperCase() + ':\n- ' + (Re[i].indicaciones.replace(/;/g, '\n\n- ')).toUpperCase()])
+            indicMed.push([(i+1) + '. ' + Re[i].nombreMedicina + ':\n- ' + Re[i].indicaciones.replace(/;/g, '\n\n- ')])
         }
 
         //TABLA CANTIDAD Y MEDICAMENTOS
@@ -618,11 +617,11 @@ const FormRecetas = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {Re.map((item) => (
-                            <tr className='tablaReceta' key={item._id}>
-                                <td style={{textTransform: 'uppercase'}}>{item.cantidad}</td>
-                                <td style={{textTransform: 'uppercase'}}>{item.nombreMedicina}</td>
-                                <td style={{textTransform: 'uppercase'}}>{item.indicaciones}</td>
+                        {Re.map((item, index) => (
+                            <tr className='tablaReceta' key={index}>
+                                <td>{item.cantidad}</td>
+                                <td>{item.nombreMedicina}</td>
+                                <td>{item.indicaciones}</td>
                                 <td style={{textAlign: 'center'}}>
                                     <button 
                                         style={{backgroundColor: 'transparent', border: 'none', cursor: 'pointer'}}

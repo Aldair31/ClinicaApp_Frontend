@@ -144,7 +144,7 @@ const FormOrden = () => {
 
         //OBTENIENDO NOMBRE DE PACIENTE
         let nombrePac = [
-            [(Historia.historia.nombres_paciente).toUpperCase()]
+            [Historia.historia.nombres_paciente]
         ]
 
         //TABLA PARA NOMBRE DE PACIENTE
@@ -162,7 +162,7 @@ const FormOrden = () => {
         //OBTENIENDO SOLO INDICACIONES
         let datosIndic = []
         for (let i = 0; i < Orden.length; i++) {
-            datosIndic.push([(i+1) + '. ' + (Orden[i].indicaciones.replace(/;/g, '\n\n- ')).toUpperCase()])
+            datosIndic.push([(i+1) + '. ' + Orden[i].indicaciones.replace(/;/g, '\n\n- ')])
         }
         
         //TABLA PARA INDICACIONES

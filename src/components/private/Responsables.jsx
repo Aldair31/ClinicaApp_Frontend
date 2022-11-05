@@ -117,7 +117,7 @@ const Responsables = () => {
 					<input 
 						type="search" 
 						placeholder='Buscar por nombre' 
-						style={{borderStyle:'none', fontFamily:'Poppins', fontWeight:'700', outline:'0', width:'90%', textTransform:'uppercase'}}
+						style={{borderStyle:'none', fontFamily:'Poppins', fontWeight:'700', outline:'0', width:'90%'}}
 						name='buscar'
 						value={buscar}
 						onChange={buscarT}

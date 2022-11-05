@@ -8,6 +8,7 @@ import fondoGraficoM from '../../img/fondoGraficoM.jpg'
 
 const DescargarGrafico = ({grafico, datosPaciente}) => {
     const DocPDF = () => {
+		const nombrePaciente = datosPaciente.nombres_paciente;
 		//CREANDO IMG DE LA GRÁFICA
 		let imgGrafico = ''
 		if(grafico){
@@ -24,12 +25,12 @@ const DescargarGrafico = ({grafico, datosPaciente}) => {
 		doc.addImage(LogoGrafico, 'PNG', 165, 8)
 
 		//DATOS DE PACIENTE
-		doc.setFont('Courier', 'bold').setFontSize(15).setTextColor('white').text(13, 10, 'PACIENTE:___________________________________');
+		doc.setFont('Courier', 'bold').setFontSize(15).setTextColor('white').text(13, 10, 'Paciente:___________________________________');
 		doc.setFont('Courier', 'bold').setFontSize(15).setTextColor('white').text(13, 16, '         ___________________________________');
-		doc.setFont(undefined, 'bold').setFontSize(15).setTextColor('white').text(43, 10, datosPaciente.nombres_paciente.toUpperCase(), {maxWidth: 110});
-		doc.setFont('Courier', 'bold').setFontSize(15).setTextColor('white').text(13, 25, 'EDAD    :___________________________________ ');
-		doc.setFont(undefined, 'bold').setFontSize(15).setTextColor('white').text(43, 25, (years + ' AÑOS ' + months + ' MESES ' + days + ' DÍAS'));
-		doc.setFont('Courier', 'bold').setFontSize(15).setTextColor('white').text(13, 35, 'FECHA   :___________________________________ ');
+		doc.setFont(undefined, 'bold').setFontSize(15).setTextColor('white').text(43, 10, nombrePaciente, {maxWidth: 110});
+		doc.setFont('Courier', 'bold').setFontSize(15).setTextColor('white').text(13, 25, 'Edad    :___________________________________ ');
+		doc.setFont(undefined, 'bold').setFontSize(15).setTextColor('white').text(43, 25, (years + ' años ' + months + ' meses ' + days + ' días'));
+		doc.setFont('Courier', 'bold').setFontSize(15).setTextColor('white').text(13, 35, 'Fecha   :___________________________________ ');
 		doc.setFont(undefined, 'bold').setFontSize(15).setTextColor('white').text(43, 35, moment().format('DD/MM/YYYY'));
 
 		//DATOS DE FIRMA
@@ -38,8 +39,8 @@ const DescargarGrafico = ({grafico, datosPaciente}) => {
 		doc.setFont('helvetic', 'bold').setFontSize(9).setTextColor('white').text(206, 43, 'C.M.P. 30305 - R.N.E 19230');
 
 		doc.addImage(imgGrafico, 'JPEG', 13, 45, 271, 160, );
-		doc.setProperties({title: (datosPaciente.nombres_paciente.toUpperCase() + ' - ' + moment().format('DD/MM/YYYY'))})
-        doc.save(datosPaciente.nombres_paciente.toUpperCase() + ' - ' + moment().format('DD/MM/YYYY'))
+		doc.setProperties({title: (nombrePaciente + ' - ' + moment().format('DD/MM/YYYY'))})
+        doc.save(nombrePaciente + ' - ' + moment().format('DD/MM/YYYY'))
 	}
 
     return(

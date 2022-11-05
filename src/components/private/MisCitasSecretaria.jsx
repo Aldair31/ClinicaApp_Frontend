@@ -57,7 +57,7 @@ const MisCitasSecretaria = ({datos_af, loading, set_datos_af}) => {
 			case 2:
 				return 'Consulta pediátrica';
 			case 3:
-				return 'Control de crecimiento';
+				return 'Control de crecimiento y desarrollo';
 			case 4:
 				return 'Reevaluación';
 			case 5:
