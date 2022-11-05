@@ -4,7 +4,7 @@ import '../../sass/LC.sass';
 import url from '../../keys/backend_keys';
 import {Link} from 'react-router-dom'
 // import capitalize from '../../functions/capitalize';
-import mayusFirst from '../../functions/mayusFirst';
+// import mayusFirst from '../../functions/mayusFirst';
 // import '../../sass/Recetas.sass'
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -86,48 +86,51 @@ const Consultas = () => {
 	// 				referencia: item.referencia && capitalize(item.referencia),
 	// 				procedencia: item.procedencia && capitalize(item.procedencia),
 	// 				lugar_nac: item.lugar_nac && capitalize(item.lugar_nac),
+	// 				ocupacion_madre: item.ocupacion_madre && capitalize(item.ocupacion_madre),
+	// 				ocupacion_padre: item.ocupacion_padre && capitalize(item.ocupacion_padre),
+	// 				direccion: item.direccion && capitalize(item.direccion),
 	// 			})
 	// 		})
 	// 	)
 	// }
+	// 
+	// const [antecedentes, setAntecedentes] = useState([])
+	// useEffect(() => {
+	// 	fetch(`${url}/Antecedentes/`)
+	// 		.then((resp) => resp.json())
+	// 		.then((antecedente) => {
+	// 			setAntecedentes(antecedente)
+	// 		})
+	// }, [])
 
-	const [antecedentes, setAntecedentes] = useState([])
-	useEffect(() => {
-		fetch(`${url}/Antecedentes/`)
-			.then((resp) => resp.json())
-			.then((antecedente) => {
-				setAntecedentes(antecedente)
-			})
-	}, [])
+	// const isValid = (item) => {
+	// 	if(item === 'true'){
+	// 		return true
+	// 	}
+	// 	if(item === 'false'){
+	// 		return false
+	// 	}
+	// }
 
-	const isValid = (item) => {
-		if(item === 'true'){
-			return true
-		}
-		if(item === 'false'){
-			return false
-		}
-	}
-
-	const actualizarAntecedentes = () => {
-		antecedentes.map((item) => 
-			fetch(`${url}/Antecedentes/${item._id}`, {
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				method: 'PUT',
-				body: JSON.stringify({
-					...item,
-					Otros: item.Otros && mayusFirst(item.Otros),
-					complicaciones: item.complicaciones && mayusFirst(item.complicaciones),
-					alergia: item.alergia && mayusFirst(item.alergia),
-					reaccionAdversaMed: item.reaccionAdversaMed !== undefined ? isValid(item.reaccionAdversaMed) : undefined,
-					sob: item.sob !== undefined ? isValid(item.sob) : undefined,
-					enfAnteriores: item.enfAnteriores && mayusFirst(item.enfAnteriores),
-				})
-			})
-		)
-	}
+	// const actualizarAntecedentes = () => {
+	// 	antecedentes.map((item) => 
+	// 		fetch(`${url}/Antecedentes/${item._id}`, {
+	// 			headers: {
+	// 				'Content-Type': 'application/json'
+	// 			},
+	// 			method: 'PUT',
+	// 			body: JSON.stringify({
+	// 				...item,
+	// 				Otros: item.Otros && mayusFirst(item.Otros),
+	// 				complicaciones: item.complicaciones && mayusFirst(item.complicaciones),
+	// 				alergia: item.alergia && mayusFirst(item.alergia),
+	// 				reaccionAdversaMed: item.reaccionAdversaMed !== undefined ? isValid(item.reaccionAdversaMed) : undefined,
+	// 				sob: item.sob !== undefined ? isValid(item.sob) : undefined,
+	// 				enfAnteriores: item.enfAnteriores && mayusFirst(item.enfAnteriores),
+	// 			})
+	// 		})
+	// 	)
+	// }
 	
 	// const [citas1, setCitas1] = useState([])
 	// useEffect(() => {
@@ -361,15 +364,15 @@ const Consultas = () => {
 				: null
 			}
 			{/* <button onClick={(e) => {
-				e.preventDefault()
-				actualizarHistorias()
-				actualizarAntecedentes()
-				actualizarCitas()
-				actualizarHistClinicas()
-				actualizarIndicacionOrden()
-				actualizarMedicamentosReceta()
-				actualizarReservas()
-				actualizarUsuarios()
+				// e.preventDefault()
+				// actualizarHistorias()
+				// actualizarAntecedentes()
+				// actualizarCitas()
+				// actualizarHistClinicas()
+				// actualizarIndicacionOrden()
+				// actualizarMedicamentosReceta()
+				// actualizarReservas()
+				// actualizarUsuarios()
 				
 			}}>HOLA</button> */}
 		</>
