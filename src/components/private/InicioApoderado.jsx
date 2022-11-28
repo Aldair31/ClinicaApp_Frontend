@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import '../../sass/Dashboard.sass';
 import useResponsables from '../../hooks/useResponsables';
 import FormApoderado from './extras/FormApoderado';
-import url from '../../keys/backend_keys';
+// import url from '../../keys/backend_keys';
 const InicioApoderado = ({ usuario }) => {
 	const [datos, loading,set_datos] = useResponsables();
 	const [form, setForm] = useState(false);
@@ -112,7 +112,7 @@ const InicioApoderado = ({ usuario }) => {
 							<div className="card" key={item._id}>
 								<div className="card-border-top"></div>
 								<div className="img">
-									<i class="fa-solid fa-user"></i>
+									<i className="fa-solid fa-user"></i>
 									{/* <img alt='Perfil' src={url + '/api/auth/uploads/' + item.foto_perfil}></img> */}
 								</div>
 								{/* <button onClick={() => {setForm(!form)}}>
