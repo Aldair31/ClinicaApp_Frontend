@@ -112,11 +112,12 @@ const InicioApoderado = ({ usuario }) => {
 							<div className="card" key={item._id}>
 								<div className="card-border-top"></div>
 								<div className="img">
-									<img alt='Perfil' src={url + '/api/auth/uploads/' + item.foto_perfil}></img>
+									<i class="fa-solid fa-user"></i>
+									{/* <img alt='Perfil' src={url + '/api/auth/uploads/' + item.foto_perfil}></img> */}
 								</div>
-								<button onClick={() => {setForm(!form)}}>
+								{/* <button onClick={() => {setForm(!form)}}>
 									<i className="fas fa-pen"></i>
-								</button>
+								</button> */}
 								<span className="text">
 									 {item.nombre}
 								 </span>

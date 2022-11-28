@@ -1,4 +1,3 @@
-const url = 'http://localhost:5000';
-// const url = 'https://backend-clinica-mibebe.herokuapp.com';
+const url = process.env.REACT_APP_API
 
 export default url;
