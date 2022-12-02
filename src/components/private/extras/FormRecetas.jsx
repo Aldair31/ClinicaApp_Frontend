@@ -100,9 +100,9 @@ const FormRecetas = () => {
                     method: 'PUT',
                     body: JSON.stringify({
                         ...MedicamentoReceta,
-                        cantidad: MedicamentoReceta.cantidad,
-                        nombreMedicina: MedicamentoReceta.nombreMedicina,
-                        indicaciones: MedicamentoReceta.indicaciones,
+                        // cantidad: MedicamentoReceta.cantidad,
+                        // nombreMedicina: MedicamentoReceta.nombreMedicina,
+                        // indicaciones: MedicamentoReceta.indicaciones,
                     })
                 })
                 .then((resp) => resp.json())
@@ -147,9 +147,9 @@ const FormRecetas = () => {
                             {
                                 _id: datos.medicamentoReceta._id,
                                 id_Receta: id,
-                                cantidad: MedicamentoReceta.cantidad,
-                                nombreMedicina: MedicamentoReceta.nombreMedicina,
-                                indicaciones: MedicamentoReceta.indicaciones,
+                                cantidad: datos.medicamentoReceta.cantidad,
+                                nombreMedicina: datos.medicamentoReceta.nombreMedicina,
+                                indicaciones: datos.medicamentoReceta.indicaciones,
                             },
                         ])
                         setMedicamentoReceta({
@@ -518,7 +518,8 @@ const FormRecetas = () => {
                                 placeholder="MEDICAMENTO" 
                                 type="text" 
                                 autoComplete='off' 
-                                name="nombreMedicina" id='medicamento' 
+                                name="nombreMedicina"
+                                id='medicamento' 
                                 value={MedicamentoReceta.nombreMedicina ? MedicamentoReceta.nombreMedicina : ''} 
                                 onChange={handleChangeMed}
                                 onFocus={()=>setCompletarNombre(true)}
