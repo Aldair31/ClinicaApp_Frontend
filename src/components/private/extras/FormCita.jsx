@@ -85,17 +85,6 @@ const FormCita = ({item, datos_af, set_datos_af, setState}) => {
 
 	const actualizarDatos = (valores) => {
 		set_datos_af([
-			// datos_af.map((dato) => {
-			// 	if(dato._id === item._id){
-			// 		dato.nombre_paciente = valores.nombre_paciente
-			// 		dato.fecha = moment(valores.fecha).format()
-			// 		dato.responsable = valores.responsable
-			// 		dato.telefono = valores.telefono
-			// 		dato.motivo = valores.motivo
-			// 		dato.condicion = valores.condicion
-			// 		dato.DNI = valores.DNI
-			// 	}
-			// })
 			datos_af.map((dato) => (
 				dato._id === item._id && (
 					dato.nombre_paciente = valores.nombre_paciente,
