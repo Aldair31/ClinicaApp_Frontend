@@ -70,6 +70,7 @@ const Vacunas = ({id}) => {
 				method: 'POST',
 				body: JSON.stringify({
 					...vacunas,
+					bcg: true,
 					id_Historia: id,
 				}),
 			})
@@ -77,8 +78,12 @@ const Vacunas = ({id}) => {
 				.then((data) => {
 					if (data.ok) {
 						setTiene(true)
+						setVacunas(data.vacuna)
 						alert('datos registrados');
 					}
+				})
+				.catch((err) => {
+					console.log(err);
 				});
 		}
 	};
@@ -108,8 +113,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechabcg" id='fecha' disabled={true} onChange={handleChange} value={Dvacunas.fechabcg ? Dvacunas.fechabcg : ''} type="date"></input>
 							<label>Hepatitis B</label>
@@ -128,8 +133,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechahepatb" id='fecha2' disabled={true} onChange={handleChange} value={Dvacunas.fechahepatb ? Dvacunas.fechahepatb : ''} type="date"></input>
 						</div>
@@ -154,8 +159,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechadpt" id='fecha3' disabled={true} onChange={handleChange} value={Dvacunas.fechadpt ? Dvacunas.fechadpt : ''} type="date"></input>
 							<label>Neumococo</label>
@@ -174,8 +179,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechaneumococo" id='fecha4' disabled={true} onChange={handleChange} value={Dvacunas.fechaneumococo ? Dvacunas.fechaneumococo : ''} type="date"></input>
 						</div>
@@ -196,8 +201,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fecharotavirus" id='fecha5' disabled={true} onChange={handleChange} value={Dvacunas.fecharotavirus ? Dvacunas.fecharotavirus : ''} type="date"></input>
 							{/* <label>Hepatitis B</label>
@@ -216,8 +221,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechahepatb2" id='fecha6' disabled={true} onChange={handleChange} value={Dvacunas.fechahepatb2} type="date"></input> */}
 						</div>
@@ -242,8 +247,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechadpt2" id='fecha7' disabled={true} onChange={handleChange} value={Dvacunas.fechadpt2 ? Dvacunas.fechadpt2 : ''} type="date"></input>
 							<label>Neumococo</label>
@@ -262,8 +267,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechaneumococo2" id='fecha8' disabled={true} onChange={handleChange} value={Dvacunas.fechaneumococo2 ? Dvacunas.fechaneumococo2 : ''} type="date"></input>
 						</div>
@@ -284,8 +289,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fecharotavirus2" id='fecha9' disabled={true} onChange={handleChange} value={Dvacunas.fecharotavirus2 ? Dvacunas.fecharotavirus2 : ''} type="date"></input>
 							{/* <label>Hepatitis B</label>
@@ -304,8 +309,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechahepatb3" id='fecha10' disabled={true} onChange={handleChange} value={Dvacunas.fechahepatb3} type="date"></input> */}
 						</div>
@@ -330,8 +335,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechadpt3" id='fecha11' disabled={true} onChange={handleChange} value={Dvacunas.fechadpt3 ? Dvacunas.fechadpt3 : ''} type="date"></input>
 							<label>Neumococo</label>
@@ -350,8 +355,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechaneumococo3" id='fecha12' disabled={true} onChange={handleChange} value={Dvacunas.fechaneumococo3 ? Dvacunas.fechaneumococo3 : ''} type="date"></input>
 						</div>
@@ -372,8 +377,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fecharotavirus3" id='fecha13' disabled={true} onChange={handleChange} value={Dvacunas.fecharotavirus3 ? Dvacunas.fecharotavirus3 : ''} type="date"></input>
 							{/* <label>Hepatitis B</label>
@@ -392,8 +397,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechahepatb4" id='fecha14' disabled={true} onChange={handleChange} value={Dvacunas.fechahepatb4} type="date"></input> */}
 						</div>
@@ -418,8 +423,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechainfluenza" id='fecha15' disabled={true} onChange={handleChange} value={Dvacunas.fechainfluenza ? Dvacunas.fechainfluenza : ''} type="date"></input>
 						</div>
@@ -444,8 +449,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechainfluenza2" id='fecha16' disabled={true} onChange={handleChange} value={Dvacunas.fechainfluenza2 ? Dvacunas.fechainfluenza2 : ''} type="date"></input>
 						</div>
@@ -470,8 +475,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechameningococo" id='fecha17' disabled={true} onChange={handleChange} value={Dvacunas.fechameningococo ? Dvacunas.fechameningococo : ''} type="date"></input>
 						</div>
@@ -496,8 +501,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechaspr" id='fecha18' disabled={true} onChange={handleChange} value={Dvacunas.fechaspr ? Dvacunas.fechaspr : ''} type="date"></input>
 							<label>Varicela</label>
@@ -516,8 +521,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechavaricela" id='fecha19' disabled={true} onChange={handleChange} value={Dvacunas.fechavaricela ? Dvacunas.fechavaricela : ''} type="date"></input>
 							</div>
@@ -538,8 +543,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechameningococo2" id='fecha20' disabled={true} onChange={handleChange} value={Dvacunas.fechameningococo2 ? Dvacunas.fechameningococo2 : ''} type="date"></input>
 						</div>
@@ -564,8 +569,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechahepata" id='fecha21' disabled={true} onChange={handleChange} value={Dvacunas.fechahepata ? Dvacunas.fechahepata : ''} type="date"></input>
 						</div>
@@ -590,8 +595,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechafamarilla" id='fecha22' disabled={true} onChange={handleChange} value={Dvacunas.fechafamarilla ? Dvacunas.fechafamarilla : ''} type="date"></input>
 						</div>
@@ -616,8 +621,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechadpt4" id='fecha23' disabled={true} onChange={handleChange} value={Dvacunas.fechadpt4 ? Dvacunas.fechadpt4 : ''} type="date"></input>
 							<label>SPR</label>
@@ -636,8 +641,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechaspr2" id='fecha24' disabled={true} onChange={handleChange} value={Dvacunas.fechaspr2 ? Dvacunas.fechaspr2 : ''} type="date"></input>
 							</div>
@@ -658,8 +663,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechavaricela2" id='fecha25' disabled={true} onChange={handleChange} value={Dvacunas.fechavaricela2 ? Dvacunas.fechavaricela2 : ''} type="date"></input>
 						</div>
@@ -684,8 +689,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechahepata2" id='fecha26' disabled={true} onChange={handleChange} value={Dvacunas.fechahepata2 ? Dvacunas.fechahepata2 : ''} type="date"></input>
 						</div>
@@ -710,8 +715,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechaneumococo4" id='fecha27' disabled={true} onChange={handleChange} value={Dvacunas.fechaneumococo4 ? Dvacunas.fechaneumococo4 : ''} type="date"></input>
 							<label>Influenza</label>
@@ -730,8 +735,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechainfluenza3" id='fecha28' disabled={true} onChange={handleChange} value={Dvacunas.fechainfluenza3 ? Dvacunas.fechainfluenza3 : ''} type="date"></input>
 						</div>
@@ -751,8 +756,8 @@ const Vacunas = ({id}) => {
 										document.getElementById('fecha29').disabled=true
 									}
 								}}>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechadpt5" id='fecha29' disabled={true} onChange={handleChange} value={Dvacunas.fechadpt5 ? Dvacunas.fechadpt5 : ''} type="date"></input>
 							<label>SPR</label>
@@ -771,8 +776,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechaspr3" id='fecha30' disabled={true} onChange={handleChange} value={Dvacunas.fechaspr3 ? Dvacunas.fechaspr3 : ''} type="date"></input>
 						</div>
@@ -797,8 +802,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No</option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechapapilomavirus" id='fecha31' disabled={true} onChange={handleChange} value={Dvacunas.fechapapilomavirus ? Dvacunas.fechapapilomavirus : ''} type="date"></input>
 						</div>
@@ -823,8 +828,8 @@ const Vacunas = ({id}) => {
 									}
 								}}
 							>
-								<option value="2">No </option>
-								<option value="1">Sí</option>
+								<option value="false">No</option>
+								<option value="true">Sí</option>
 							</select>
 							<input name="fechapapilomavirus2" id='fecha32' disabled={true} onChange={handleChange} value={Dvacunas.fechapapilomavirus2 ? Dvacunas.fechapapilomavirus2 : ''} type="date"></input>
 						</div>

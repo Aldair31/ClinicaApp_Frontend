@@ -295,6 +295,59 @@ const Consultas = () => {
 	// 	)
 	// }
 
+	// const [vacunas, setVacunas] = useState([])
+	// useEffect(() => {
+	// 	fetch(`${url}/Vacuna/`)
+	// 		.then((resp) => resp.json())
+	// 		.then((vacuna) => {
+	// 			setVacunas(vacuna)
+	// 		})
+	// }, [])
+
+	// // const actualizarVacunas = () => {
+	// // 	vacunas.slice(140, 156).map((item) =>
+	// // 		fetch(`${url}/Vacuna/${item._id}`, {
+	// // 			headers: {
+	// // 				'Content-Type': 'application/json',
+	// // 			},
+	// // 			method: 'PUT',
+	// // 			body: JSON.stringify({
+	// // 				...item,
+	// // 				bcg: item.bcg ? true : undefined,
+	// // 				hepatb: item.hepatb ? true : undefined,
+	// // 				dpt: item.dpt ? true : undefined,
+	// // 				neumococo: item.neumococo ? true : undefined,
+	// // 				rotavirus: item.rotavirus ? true : undefined,
+	// // 				dpt2: item.dpt2 ? true : undefined,
+	// // 				neumococo2: item.neumococo2 ? true : undefined,
+	// // 				rotavirus2: item.rotavirus2 ? true : undefined,
+	// // 				dpt3: item.dpt3 ? true : undefined,
+	// // 				neumococo3: item.neumococo3 ? true : undefined,
+	// // 				rotavirus3: item.rotavirus3 ? true : undefined,
+	// // 				influenza: item.influenza ? true : undefined,
+	// // 				influenza2: item.influenza2 ? true : undefined,
+	// // 				meningococo: item.meningococo ? true : undefined,
+	// // 				spr: item.spr ? true : undefined,
+	// // 				varicela: item.varicela ? true : undefined,
+	// // 				meningococo2: item.meningococo2 ? true : undefined,
+	// // 				hepata: item.hepata ? true : undefined,
+	// // 				famarilla: item.famarilla ? true : undefined,
+	// // 				dpt4: item.dpt4 ? true : undefined,
+	// // 				spr2: item.spr2 ? true : undefined,
+	// // 				varicela2: item.varicela2 ? true : undefined,
+	// // 				hepata2: item.hepata2 ? true : undefined,
+	// // 				neumococo4: item.neumococo4 ? true : undefined,
+	// // 				influenza3: item.influenza3 ? true : undefined,
+	// // 				dpt5: item.dpt5 ? true : undefined,
+	// // 				spr3: item.spr3 ? true : undefined,
+	// // 				papilomavirus: item.papilomavirus ? true : undefined,
+	// // 				papilomavirus2: item.papilomavirus2 ? true : undefined,
+	// // 			}),
+	// // 		})
+			// console.log(item)
+	// 	)
+	// }
+
 	return (
 		<>
 			<div style={{display: 'flex', justifyContent: 'space-between'}}>
@@ -373,6 +426,7 @@ const Consultas = () => {
 				// actualizarMedicamentosReceta()
 				// actualizarReservas()
 				// actualizarUsuarios()
+				// actualizarVacunas()
 				
 			}}>HOLA</button> */}
 		</>
